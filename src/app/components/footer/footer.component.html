@@ -1,0 +1,64 @@
+<footer>
+  <div class="meta-top">
+    <h5>
+      Video Query&nbsp;
+    </h5>
+    <ul class="list-inline pages">
+      <li class="list-inline-item">
+        <a routerLink="/home" title="Home">
+          Home
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a routerLink="/new-query" title="New Query">
+          New Query
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a routerLink="/existing-query" title="Existing Query">
+          Existing Query
+        </a>
+      </li>
+      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
+        <a [href]="apiUrl" target="_blank" title="API">
+          API
+        </a>
+      </li>
+      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
+        <a [href]="adminUrl" target="_blank" title="Admin">
+          Admin
+        </a>
+      </li>
+    </ul>
+    <ul class="list-inline social">
+      <li class="list-inline-item">
+        <a href="https://github.com/PARC-projects/video-query" title="Video Query Github">
+          <i class="fa fa-github fa-2x"></i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a [href]="'mailto:' + mailToAddress" title="Video Query Contact">
+          <i class="fa fa-envelope-o fa-2x"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="meta-bottom clearfix">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm">
+          <p class="float-left">
+            Designed and built by
+            <a href="https://github.com/fetorres" title="Frank Torres">Frank Torres</a> &
+            <a href="https://github.com/chad-ramos" title="Chad Ramos">Chad Ramos</a> and maintained by our
+            <a href="https://github.com/fetorres/video-query/graphs/contributors" title="Video Query Contributors">contributors</a>.
+          </p>
+          <p class="float-right">
+            &copy; 2018 - Code licensed under a
+            <a href="https://github.com/PARC-projects/video-query/blob/master/LICENSE.md" title="Video Query License">Aladdin Free Public</a> license.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

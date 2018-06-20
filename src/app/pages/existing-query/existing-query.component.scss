@@ -1,0 +1,34 @@
+@import "../../../custom";
+.existing-query {
+    background: gray("100");
+}
+
+.query-selection {
+    background: color("white");
+}
+
+.canvas-container {
+    padding: 1rem 0;
+}
+
+.empty-state-page {
+    text-align: center;
+    color: gray("600");
+    margin: 10rem 0 0;
+    i {
+        font-size: 15rem;
+    }
+}
+
+.processing-state-page {
+    text-align: center;
+    color: gray("600");
+    margin: 2rem 0 0;
+    i {
+        font-size: 15rem;
+    }
+}
+
+.chart-switch a {
+    color: gray("300");
+}

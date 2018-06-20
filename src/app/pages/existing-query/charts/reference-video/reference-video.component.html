@@ -1,0 +1,35 @@
+<div class="vq-widget">
+  <app-chart-header [disableRefresh]="isEditable" [title]="'Video for selected match'" (resetClick)="onResetMatch()"
+    [tooltip]="'View the clip of the chosen match, and then score it as Valid or Invalid, or remove it from the list.
+                When a match is selected, the video is positioned at the start of the corresponding video clip.
+                See above for the clip duration.'">
+  </app-chart-header>
+  <div class="video-container">
+    <ng-container *ngIf="!matchService.videoSrc">
+      <div class="empty-state">
+        <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+        <p>Select A Match</p>
+      </div>
+    </ng-container>
+    <video controls align="center" #videoPlayer [style.display]="matchService.videoSrc ? 'block' : 'none'">
+      <source src="{{matchService.videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+    </video>
+    <app-loader [show]="loading"></app-loader>
+  </div>
+  <div class="container">
+    <div class="row ">
+      <div class="col-sm">
+        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === false" class="btn btn-block btn-secondary"
+          [ngClass]="{'btn-danger' : matchService.getActiveMatch()?.user_match === false}" (click)="onValidationClicked(false)">Invalid</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match" class="btn btn-block btn-secondary"
+          [ngClass]="{'btn-success' : matchService.getActiveMatch()?.user_match}" (click)="onValidationClicked(true)">Valid</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === null" class="btn btn-block btn-secondary"
+          (click)="onValidationClicked()">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>

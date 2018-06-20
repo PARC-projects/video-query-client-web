@@ -1,0 +1,23 @@
+@import "../../../../../custom";
+
+.video-container {
+    background: theme-color("light");
+    min-height: 481px;
+    margin: 0 0 1rem;
+    .empty-state {
+        padding: 9rem 0 0;
+        text-align: center;
+        color: gray("600");
+        font-size: 2rem;
+        font-weight: 300;
+    }
+}
+
+video {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+    // padding: 1rem;
+}

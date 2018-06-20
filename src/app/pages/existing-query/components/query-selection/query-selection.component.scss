@@ -1,0 +1,23 @@
+@import "../../../../../custom";
+.query-selection-content {
+    padding-top: 1rem;
+    min-height: 640px;
+    .list-group-item.active {
+        color: color("white");
+    }
+    .list-group {
+        border: 1px solid gray("100");
+        border-radius: 0.25rem;
+        margin: 0 0 1rem;
+        max-height: 700px;
+        overflow-y: auto;
+    }
+}
+
+#searchInput {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.vq-pagination {
+    margin: 0.5rem 0 0.5rem;
+}

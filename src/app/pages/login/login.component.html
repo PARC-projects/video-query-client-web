@@ -1,0 +1,43 @@
+<app-header></app-header>
+<section class="login-form-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="font-weight-light text-center">Login
+          <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
+        </h2>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{errorMessage}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errorMessage = null">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
+          <div class="form-group">
+            <label for="usename">Username</label>
+            <input type="text" required class="form-control" id="username" placeholder="Enter username" [(ngModel)]="loginRequest.username"
+              name="username" #username="ngModel" [disabled]="loading">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)">
+              <div *ngIf="username.errors.required" class="vq-invalid-feedback">
+                Username is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" required class="form-control" id="password" placeholder="Enter password" [(ngModel)]="loginRequest.password"
+              name="password" #password="ngModel" [disabled]="loading">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <div *ngIf="password.errors.required" class="vq-invalid-feedback">
+                Password is required.
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-warning text-center" [disabled]="loginFrom.invalid || loading">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

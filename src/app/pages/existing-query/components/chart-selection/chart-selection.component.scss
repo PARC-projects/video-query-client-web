@@ -1,0 +1,16 @@
+@import "../../../../../custom";
+ul.chart-switch {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    a {
+        color: gray("500");
+        &:hover {
+            transition: 0.25s color;
+            color: gray("900");
+        }
+    }
+    li {
+        cursor: pointer;
+    }
+}

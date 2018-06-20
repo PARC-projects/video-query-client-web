@@ -1,0 +1,18 @@
+<header>
+  <div class="row">
+    <div class="col-sm">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="col-sm">
+      <ul class="list-inline float-right">
+        <li class="list-inline-item" *ngIf="!disableRefresh">
+          <i (click)="onReset()" class=" fa fa-refresh"> </i>
+          <i matTooltip="{{ tooltip }}" class="vq-info-tooltip fa fa-question"></i>
+        </li>
+        <li class="list-inline-item" *ngIf="disableRefresh">
+          <i matTooltip="{{ tooltip }}" class="vq-info-tooltip fa fa-question"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

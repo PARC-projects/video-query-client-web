@@ -1,0 +1,22 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IQueryView } from '../../../../models/query.model';
+
+@Component({
+  selector: 'app-query-header',
+  templateUrl: './query-header.component.html',
+  styleUrls: ['./query-header.component.scss']
+})
+export class QueryHeaderComponent {
+  @Input() query: IQueryView;
+  @Input() isEditable: boolean;
+  @Output() resetQuery: EventEmitter<void> = new EventEmitter();
+  @Output() revisionSubmit: EventEmitter<void> = new EventEmitter();
+
+  onResetQuery(): void {
+    this.resetQuery.emit();
+  }
+
+  onRevisionSubmit(): void {
+    this.revisionSubmit.emit();
+  }
+}

@@ -1,0 +1,37 @@
+li.page-item {
+    cursor: pointer;
+}
+
+li.disabled,
+li.active {
+    cursor: no-drop;
+}
+
+li.active a {
+    &:hover {
+        color: #fff;
+    }
+}
+
+select {
+    padding-left: 6px;
+    padding-right: 22px;
+}
+
+li:last-child a {
+    padding-right: 2px;
+}
+
+.pagination {
+    margin-top: 2px;
+    li {
+        a {
+            border: none;
+            font-size: 12px;
+        }
+    }
+}
+
+.per-page {
+    font-size: 12px;
+}

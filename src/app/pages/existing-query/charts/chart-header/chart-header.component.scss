@@ -1,0 +1,21 @@
+@import "../../../../../custom";
+header {
+    margin: 0 0 0.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 3px 0 0;
+}
+
+ul {
+    margin: 0;
+    i {
+        cursor: pointer;
+        color: gray("500");
+        &:hover {
+            transition: color 0.5s;
+            color: map-get($map: $parc-colors, $key: "orange")
+        }
+    }
+}

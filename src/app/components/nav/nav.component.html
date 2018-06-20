@@ -1,0 +1,74 @@
+<section class=" fixed-top">
+  <nav class="main navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/home">
+      Video Query
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{'show':isCollapsed}">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav" *ngIf="authenticationService.checkLogin()">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': currentPage=== 'home'}" routerLink="/home" (click)="currentPage = 'home'">
+            <i class="fa fa-home"></i> &nbsp;Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': currentPage === 'new-query'}" routerLink="/new-query" (click)="currentPage = 'new-query'">
+            <i class="fa fa-plus-square"></i> &nbsp;New
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': currentPage=== 'existing-query'}" routerLink="/existing-query" (click)="currentPage = 'existing-query'">
+            <i class="fa fa-database"></i> &nbsp;Existing
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': currentPage=== 'help'}" routerLink="/help" (click)="currentPage = 'help'">
+            <i class="fa fa-question-circle-o"></i> &nbsp;Help
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="">
+          <a class="nav-link" [href]="apiUrl" target="_blank" title="API">
+            <i class="fa fa-cubes"></i> &nbsp;API
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+          <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
+            <i class="fa fa-lock"></i> &nbsp;Admin
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+          <a class="nav-link" routerLink="/" (click)="currentPage = ''">
+            <i class="fa fa-sign-out"></i> &nbsp;Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- <section class="sub-nav" *ngIf="currentPage === 'help'">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section> -->
+</section>

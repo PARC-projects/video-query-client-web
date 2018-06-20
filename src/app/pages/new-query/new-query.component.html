@@ -1,0 +1,162 @@
+<section class="new-query-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h1 class="vq-title">New Query</h1>
+        <p class="lead">Fill in the details for your new search.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <form #newQueryForm="ngForm" (ngSubmit)="onSubmitForm()">
+          <fieldset class="vq-fieldset-border">
+            <legend>Reference Video Clip
+              <i matTooltip="Select your reference clip. Start by selecting the set containing your reference video." class="fa fa-question vq-info-tooltip"></i>
+            </legend>
+            <div class="form-group">
+              <label for="searchSet">What Set does the reference video exist in?</label>
+              <select class="form-control" [disabled]="disabled" id="searchSet" [(ngModel)]="newQueryService.selectedSearchSet" (ngModelChange)="onSelectedSearchSet()"
+                name="selectedSearchSet">
+                <option *ngFor="let searchSet of newQueryService.searchSets?.results" [ngValue]="searchSet">{{searchSet.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="referenceVideosAreLoading"></i>
+              <label for="video">Reference Video:</label>
+              <select class="form-control" required [disabled]="disabled || !newQueryService.videos || newQueryService.videos.length < 1"
+                id="video" [(ngModel)]="newQueryService.form.video" name="video" #video="ngModel" (change)="onReferenceSelect()">
+                <option *ngFor="let video of newQueryService.videos" [ngValue]="video.id">{{video.name}}</option>
+              </select>
+              <div *ngIf="video.invalid && (video.dirty || video.touched)">
+                <div *ngIf="video.errors.required" class="vq-invalid-feedback">
+                  Reference Video is required.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label>Reference Time: </label>&nbsp;
+                  <input type="hidden" [(ngModel)]="newQueryService.form.current_video_length" name="current_video_length">
+                  <small class="text-muted">{{newQueryService.form.reference_time}}</small>
+                  <div class="row">
+                    <div class="col-sm">
+                      <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="referenceTimeHours"
+                        [(ngModel)]="newQueryService.form.reference_time_hours" name="reference_time_hours" #referenceTimeHours="ngModel"
+                        pattern="^[0-9]\d*$" (change)="adjustVideoTime(referenceTimeSeconds.invalid, referenceTimeMinutes.invalid, referenceTimeHours.invalid)">
+                      <small id="referenceTimeHours" class="form-text text-muted">Hour</small>
+                    </div>
+                    <div class="col-sm">
+                      <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="referenceTimeMinutes"
+                        [(ngModel)]="newQueryService.form.reference_time_minutes" name="reference_time_minutes" #referenceTimeMinutes="ngModel"
+                        pattern="^([0-5]?[0-9]|60)$" (change)="adjustVideoTime(referenceTimeSeconds.invalid, referenceTimeMinutes.invalid, referenceTimeHours.invalid)">
+                      <small id="referenceTimeMinutes" class="form-text text-muted">Min</small>
+                    </div>
+                    <div class="col-sm">
+                      <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="referenceTimeSeconds"
+                        [(ngModel)]="newQueryService.form.reference_time_seconds" name="reference_time_seconds" #referenceTimeSeconds="ngModel"
+                        pattern="^([0-5]?[0-9]|60)$" (change)="adjustVideoTime(referenceTimeSeconds.invalid, referenceTimeMinutes.invalid, referenceTimeHours.invalid)">
+                      <small id="referenceTimeSeconds" class="form-text text-muted">Sec</small>
+                    </div>
+                  </div>
+                  <div *ngIf="referenceTimeHours.invalid && (referenceTimeHours.dirty || referenceTimeHours.touched)">
+                    <div *ngIf="referenceTimeHours.errors.required" class="vq-invalid-feedback">
+                      Hours is required.
+                    </div>
+                    <div *ngIf="referenceTimeHours.errors.pattern" class="vq-invalid-feedback">Hours must be a positive integer.</div>
+                  </div>
+                  <div *ngIf="referenceTimeMinutes.invalid && (referenceTimeMinutes.dirty || referenceTimeMinutes.touched)">
+                    <div *ngIf="referenceTimeMinutes.errors.required" class="vq-invalid-feedback">
+                      Minutes is required.
+                    </div>
+                    <div *ngIf="referenceTimeMinutes.errors.pattern" class="vq-invalid-feedback">Minutes must be between 0-60.</div>
+                  </div>
+                  <div *ngIf="referenceTimeSeconds.invalid && (referenceTimeSeconds.dirty || referenceTimeSeconds.touched)">
+                    <div *ngIf="referenceTimeSeconds.errors.required" class="vq-invalid-feedback">
+                      Seconds is required.
+                    </div>
+                    <div *ngIf="referenceTimeSeconds.errors.pattern" class="vq-invalid-feedback">Seconds must be between 0-60.</div>
+                  </div>
+                  <input type="hidden" appReferenceTime [(ngModel)]="newQueryService.form.reference_time" name="reference_time" #referenceTime="ngModel">
+                  <div *ngIf="referenceTime.invalid">
+                    <div *ngIf="referenceTime.errors.referenceTimeLength" class="vq-invalid-feedback">Reference Time should be less then video length.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="name">Query name:</label>
+            <input type="text" required class="form-control" [disabled]="disabled || !newQueryService.form.video" id="name" [(ngModel)]="newQueryService.form.name"
+              placeholder="Enter query name" name="name" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+              <div *ngIf="name.errors.required" class="vq-invalid-feedback">
+                Query Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="form-group">
+                <label for="searchSet">Search Set To Query Against:
+                  <i matTooltip="Search Sets are sets of video clips. The app will search for all matching video clips in the Search Set you choose.
+                     (A new Search Set can be defined in the Admin interface.) " class="fa fa-question vq-info-tooltip"></i>
+                </label>
+                <select class="form-control" required [disabled]="disabled || !newQueryService.form.video" id="searchSet" [(ngModel)]="newQueryService.form.search_set_to_query"
+                  name="searchSet" #searchSet="ngModel">
+                  <option *ngFor="let searchSet of newQueryService.searchSets?.results" [ngValue]="searchSet.id">{{searchSet.name}}</option>
+                </select>
+                <div *ngIf="searchSet.invalid && (searchSet.dirty || searchSet.touched)">
+                  <div *ngIf="searchSet.errors.required" class="vq-invalid-feedback">
+                    Search Set To Query Against is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="maxMatches">Max Matches:</label>
+                <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="maxMatches" pattern="^[0-9]\d*$"
+                  [(ngModel)]="newQueryService.form.max_matches_for_review" name="max_matches" #maxMatches="ngModel">
+                <div *ngIf="maxMatches.invalid && (maxMatches.dirty || maxMatches.touched)">
+                  <div *ngIf="maxMatches.errors.required" class="vq-invalid-feedback">
+                    Max Matches is required.
+                  </div>
+                  <div *ngIf="maxMatches.errors.pattern" class="vq-invalid-feedback">Matches must be a positive integer.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes:
+              <i matTooltip="Enter any desired notes for this query.  These notes will display with the query results." class="fa fa-question vq-info-tooltip">
+              </i>
+            </label>
+            <textarea class="form-control" [disabled]="disabled || !newQueryService.form.video" id="notes" rows="3" [(ngModel)]="newQueryService.form.notes"
+              name="notes"></textarea>
+          </div>
+          <button type="submit" [disabled]="disabled || newQueryForm.invalid || !newQueryService.form.video" class="btn btn-warning">Submit</button>
+        </form>
+      </div>
+      <div class="col-sm">
+        <div class="vq-widget">
+          <div class="video-container">
+            <ng-container *ngIf="!videoSrc">
+              <div class="empty-state">
+                <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+                <p>Select A Reference Video</p>
+              </div>
+            </ng-container>
+            <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+              <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+            </video>
+            <app-loader [show]="videoLoading"></app-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loader [show]="loading"></app-loader>
+</section>
