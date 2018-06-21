@@ -4,12 +4,13 @@
 }
 
 .video-container {
-    background: theme-color("dark");
+    background: theme-color("light");
     min-height: 482px;
+    margin: 0.5rem 0 0;
     .empty-state {
         padding: 9rem 0 0;
         text-align: center;
-        color: gray("400");
+        color: gray("600");
         font-size: 2rem;
         font-weight: 300;
     }

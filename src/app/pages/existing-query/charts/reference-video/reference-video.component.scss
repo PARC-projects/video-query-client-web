@@ -1,5 +1,4 @@
 @import "../../../../../custom";
-
 .video-container {
     background: theme-color("light");
     min-height: 481px;
@@ -11,13 +10,15 @@
         font-size: 2rem;
         font-weight: 300;
     }
-}
-
-video {
-    max-width: 500px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 1rem;
-    // padding: 1rem;
+    position: relative;
+    video {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 1rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 1rem;
+    }
 }
