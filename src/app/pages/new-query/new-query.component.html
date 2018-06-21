@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm">
         <h1 class="vq-title">New Query</h1>
-        <p class="lead">Fill in the details for your new search.</p>
+        <p class="lead">Execute a new search for video similarities by creating and submitting a new query.</p>
       </div>
     </div>
   </div>
@@ -119,8 +119,7 @@
               <div class="form-group">
                 <label for="maxMatches">Max Matches:
                   <i matTooltip="Maximum number of matches the user wants to review in one cycle. The app will select
-                     a random sampling of matches and near matches that does not exceed this number."
-                     class="vq-info-tooltip fa fa-question">
+                     a random sampling of matches and near matches that does not exceed this number." class="vq-info-tooltip fa fa-question">
                   </i>
                 </label>
                 <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="maxMatches" pattern="^[0-9]\d*$"
@@ -146,18 +145,20 @@
         </form>
       </div>
       <div class="col-sm">
-        <div class="vq-widget">
-          <div class="video-container">
-            <ng-container *ngIf="!videoSrc">
-              <div class="empty-state">
-                <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
-                <p>Select A Reference Video</p>
-              </div>
-            </ng-container>
-            <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
-              <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
-            </video>
-            <app-loader [show]="videoLoading"></app-loader>
+        <div class="video-container">
+          <div class="vq-widget">
+            <div class="video-content">
+              <ng-container *ngIf="!videoSrc">
+                <div class="empty-state">
+                  <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+                  <p>Select A Reference Video</p>
+                </div>
+              </ng-container>
+              <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+                <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+              </video>
+              <app-loader [show]="videoLoading"></app-loader>
+            </div>
           </div>
         </div>
       </div>

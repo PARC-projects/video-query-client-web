@@ -4,16 +4,16 @@
       <h4 class="font-weight-light">{{query?.name}}</h4>
     </div>
     <div class="float-right">
-      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" *ngIf="!isEditable">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onResetQuery()">
           Reset
         </button>
         <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onRevisionSubmit()">
           Submit
         </button>
-        <button type="button" class="btn btn-warning" [disabled]="disabled">
+        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onFinalizeSubmit()">
           Finalize
-        </button>  <!-- A stub for now, allows us to describe the step during a demo -->
+        </button>
       </div>
     </div>
   </header>

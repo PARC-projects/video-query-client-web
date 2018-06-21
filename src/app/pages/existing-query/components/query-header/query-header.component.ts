@@ -11,6 +11,7 @@ export class QueryHeaderComponent {
   @Input() isEditable: boolean;
   @Output() resetQuery: EventEmitter<void> = new EventEmitter();
   @Output() revisionSubmit: EventEmitter<void> = new EventEmitter();
+  @Output() finalizeSubmit: EventEmitter<void> = new EventEmitter();
 
   onResetQuery(): void {
     this.resetQuery.emit();
@@ -18,5 +19,9 @@ export class QueryHeaderComponent {
 
   onRevisionSubmit(): void {
     this.revisionSubmit.emit();
+  }
+
+  onFinalizeSubmit(): void {
+    this.finalizeSubmit.emit();
   }
 }

@@ -17,7 +17,7 @@
               <div class="row">
                 <div class="col-lg">
                   <app-query-header [query]="existingQueryService.currentQuery" [isEditable]="isQueryDisabled() || disabled" (resetQuery)="onResetQuery()"
-                    (revisionSubmit)="onRevisionSubmit()"></app-query-header>
+                    (revisionSubmit)="onRevisionSubmit()" (finalizeSubmit)="onFinalizeSubmit()"></app-query-header>
                 </div>
               </div>
               <div class="row" [hidden]="isQueryDisabled()">
