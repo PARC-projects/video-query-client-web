@@ -5,8 +5,15 @@
     </div>
     <div class="float-right">
       <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" *ngIf="!isEditable">
-        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onResetQuery()">Reset</button>
-        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onRevisionSubmit()" [disabled]="disabled">Submit</button>
+        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onResetQuery()">
+          Reset
+        </button>
+        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onRevisionSubmit()">
+          Submit
+        </button>
+        <button type="button" class="btn btn-warning" [disabled]="disabled">
+          Finalize
+        </button>  <!-- A stub for now, allows us to describe the step during a demo -->
       </div>
     </div>
   </header>

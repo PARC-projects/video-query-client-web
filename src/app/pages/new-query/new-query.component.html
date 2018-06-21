@@ -117,7 +117,12 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="maxMatches">Max Matches:</label>
+                <label for="maxMatches">Max Matches:
+                  <i matTooltip="Maximum number of matches the user wants to review in one cycle. The app will select
+                     a random sampling of matches and near matches that does not exceed this number."
+                     class="vq-info-tooltip fa fa-question">
+                  </i>
+                </label>
                 <input type="text" required [disabled]="disabled || !newQueryService.form.video" class="form-control" id="maxMatches" pattern="^[0-9]\d*$"
                   [(ngModel)]="newQueryService.form.max_matches_for_review" name="max_matches" #maxMatches="ngModel">
                 <div *ngIf="maxMatches.invalid && (maxMatches.dirty || maxMatches.touched)">
