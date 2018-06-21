@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ChartOneComponent } from './charts/chart-one/chart-one.component';
@@ -97,6 +97,12 @@ export class ExistingQueryComponent implements OnInit {
       this.onQueryClick(this.existingQueryService.currentQuery.id);
       this.buildChart(this.chartVersion);
     }
+  }
+
+  onFinalizeSubmit(): void {
+    const message = `"${this.existingQueryService.currentQuery.name}":
+    has been submitted for to be finalized. This feature is still in development.`;
+    this.alertService.setAlert(message, AlertType.Info);
   }
 
   /**
