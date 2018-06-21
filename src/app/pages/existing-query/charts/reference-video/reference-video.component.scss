@@ -3,6 +3,7 @@
     background: theme-color("light");
     min-height: 481px;
     margin: 0 0 1rem;
+    position: relative;
     .empty-state {
         padding: 9rem 0 0;
         text-align: center;
@@ -10,7 +11,7 @@
         font-size: 2rem;
         font-weight: 300;
     }
-    position: relative;
+
     video {
         width: 100%;
         height: auto;

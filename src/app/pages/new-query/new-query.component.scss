@@ -4,25 +4,30 @@
 }
 
 .video-container {
-    background: theme-color("light");
-    min-height: 482px;
-    margin: 0.5rem 0 0;
-    .empty-state {
-        padding: 9rem 0 0;
-        text-align: center;
-        color: gray("600");
-        font-size: 2rem;
-        font-weight: 300;
+    margin: 19px 0 0;
+    .video-content {
+        background: theme-color("dark");
+        min-height: 482px;
+        margin: 0.5rem 0 0;
+        position: relative;
+        .empty-state {
+            padding: 9rem 0 0;
+            text-align: center;
+            color: gray("400");
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 1rem;
+        }
     }
-}
-
-video {
-    padding: 1rem;
-    max-width: 500px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
 fieldset.vq-fieldset-border {
