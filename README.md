@@ -1,9 +1,11 @@
-# Video Query
+# Video Query Client
 
-This repository provides the front-end deployment for the Video Query project. It uses [Angular 6.x](https://angular.io). 
 The home page for the Video Query project is
 
-[Video Query Home](https://github.com/PARC-projects/video-query-home)
+##### [Video Query Home](https://github.com/PARC-projects/video-query-home)
+
+This repository provides the front-end deployment for the Video Query project. It uses [Angular 6.x](https://angular.io). 
+
 
 This front end calls the RESTful Video Query API, which uses Video Query Algorithms.
 The API can be used independently as well, for video querying independent of this front end.
@@ -18,6 +20,18 @@ For detailed instruction on how to utilize this repository, please have a look a
 
 - [Web Client](https://github.com/PARC-projects/video-query-home/wiki/Web-Client)
   - [Setup](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Setup)
+  - [Example](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example)
+
+## Sample Video
+We provide an [Example](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example)
+that uses the video "sample.mp4" in the file_store/videos asset folder. This video was downloaded from YouTube.
+The license information for this video is contained in `file_store/videos/sample.mp4-license-info.txt`,
+with a screen shot of the YouTube page at the date and time of download provided as 
+`file_store/videos/sample.mp4-asset-screen-cap.png`. This information is provided as an attribution, 
+and it must not be considered advice, legal or otherwise, about using the video for this or any other purpose. 
+Furthermore, the video file is provided WITHOUT ANY WARRANTY; without even the implied warranty 
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull
