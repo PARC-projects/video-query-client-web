@@ -1,8 +1,7 @@
 # Video Query Client
 
-The home page for the Video Query project is at
+Home page for Video Query project: **[Video Query Home](https://github.com/PARC-projects/video-query-home)**
 
-#### [Video Query Home](https://github.com/PARC-projects/video-query-home)
 
 This repository provides the front-end deployment for the Video Query project. It uses [Angular 6.x](https://angular.io). 
 
