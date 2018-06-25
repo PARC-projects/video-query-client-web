@@ -1,17 +1,2 @@
-<section class="query-selection-content">
-  <app-chart-header [title]="'Queries'" [disableRefresh]="true" [tooltip]="'Select a query to review.'">
-  </app-chart-header>
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" class="form-control" id="searchInput" placeholder="Search..." [ngModel]="searchTerm" (ngModelChange)="onSearch($event)">
-    </div>
-  </div>
-  <div class="list-group">
-    <a *ngFor="let query of queries?.results" [ngClass]="{'active': query.id === currentQueryId}" class="list-group-item list-group-item-action"
-      (click)="onQueryClick(query)">{{query.name}}</a>
-  </div>
-  <section class="vq-pagination">
-    <app-pagination [pagination]="queries?.pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
-  </section>
-  <app-loader [show]="loading"></app-loader>
-</section>
+<app-list-nav [config]="listNavConfig" (selected)="onSelected($event)" (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
+  (search)="onSearch($event)"></app-list-nav>
