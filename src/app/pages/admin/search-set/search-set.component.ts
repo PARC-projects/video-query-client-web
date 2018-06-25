@@ -13,5 +13,4 @@ export class SearchSetComponent implements OnInit {
   ngOnInit() {
     this.searchSetService.initialize();
   }
-
 }

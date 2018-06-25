@@ -62,6 +62,7 @@ import { QuerySelectionComponent } from './pages/existing-query/components/query
 import { ChartSelectionComponent } from './pages/existing-query/components/chart-selection/chart-selection.component';
 import { QueryHeaderComponent } from './pages/existing-query/components/query-header/query-header.component';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
+import { ListNavComponent } from './components/list-nav/list-nav.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     QueryHeaderComponent,
     ChartHeaderComponent,
     HelpComponent,
-    SearchSetComponent
+    SearchSetComponent,
+    ListNavComponent
   ],
   imports: [
     BrowserModule,
