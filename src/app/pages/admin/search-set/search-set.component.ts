@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchSetService } from './services/search-set.service';
 
 @Component({
   selector: 'app-search-set',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchSetComponent implements OnInit {
 
-  constructor() { }
+  constructor(public searchSetService: SearchSetService) { }
 
   ngOnInit() {
+    this.searchSetService.initialize();
   }
 
 }
