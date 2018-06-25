@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { IPagination } from '../../models/pagination';
 
 export interface IListNavConfig {
   data: any;
   title: string;
   tooltip: string;
   displayPropertyName: string;
+  pagination: IPagination;
 }
 
 @Component({
@@ -15,8 +17,9 @@ export interface IListNavConfig {
 export class ListNavComponent implements OnInit {
   @Input() config: IListNavConfig;
 
-  @Output() click: EventEmitter<number> = new EventEmitter();
+  @Output() selected: EventEmitter<number> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
+  @Output() paginationClick: EventEmitter<number> = new EventEmitter();
   @Output() search: EventEmitter<string> = new EventEmitter();
 
   currentId: number;
@@ -35,6 +38,10 @@ export class ListNavComponent implements OnInit {
     this.perPageSelection.emit(this.perPage);
   }
 
+  onPaginationClick(): void {
+    this.paginationClick.emit(this.perPage);
+  }
+
   onSearch(search: string): void {
     const self = this;
     clearTimeout(this.timeout);
@@ -46,6 +53,6 @@ export class ListNavComponent implements OnInit {
 
   onClick(id: number): void {
     this.currentId = id;
-    this.click.emit(this.currentId);
+    this.selected.emit(this.currentId);
   }
 }

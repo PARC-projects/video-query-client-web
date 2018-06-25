@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
 import { ISearchSet, ISearchSetResponse } from '../../../../models/search-set.model';
 import { IListNavConfig } from '../../../../components/list-nav/list-nav.component';
+import { IPagination } from '../../../../models/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class SearchSetService {
           data: this.searchSets,
           title: 'Search Sets',
           tooltip: 'Select a Search Set to review.',
-          displayPropertyName: 'name'
+          displayPropertyName: 'name',
+          pagination: resp.pagination
         } as IListNavConfig;
       });
   }

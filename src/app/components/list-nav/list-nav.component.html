@@ -11,7 +11,7 @@
       (click)="onClick(node.id)">{{node[config.displayPropertyName]}}</a>
   </div>
   <section class="vq-pagination">
-    <app-pagination [pagination]="queries?.pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+    <app-pagination [pagination]="config?.pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
   </section>
   <app-loader [show]="loading"></app-loader>
 </section>

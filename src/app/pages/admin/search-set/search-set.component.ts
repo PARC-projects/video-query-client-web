@@ -13,4 +13,20 @@ export class SearchSetComponent implements OnInit {
   ngOnInit() {
     this.searchSetService.initialize();
   }
+
+  onSearch($event) {
+    console.log(1);
+  }
+
+  onPerPageSelection($event) {
+    console.log(2);
+  }
+
+  onPaginationClick(): void {
+    console.log(4);
+  }
+
+  onSelected($event) {
+    console.log(3);
+  }
 }

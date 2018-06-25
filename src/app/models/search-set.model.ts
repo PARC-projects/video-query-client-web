@@ -1,7 +1,8 @@
 import { IPagination } from './pagination';
 
-export interface ISearchSetResponse extends IPagination {
+export interface ISearchSetResponse {
   results: ISearchSet[];
+  pagination: IPagination;
 }
 
 export interface ISearchSet  {
