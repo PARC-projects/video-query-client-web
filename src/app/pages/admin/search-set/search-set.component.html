@@ -1,8 +1,7 @@
-<section class="existing-query">
+<section class="search-set">
   <div class="container-fluid">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-        {{searchSetService.searchSets | json}}
+      <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
         <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)" (paginationClick)="onPaginationClick($event)"
           (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-list-nav>
       </div>
