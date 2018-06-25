@@ -22,6 +22,7 @@ import { ExistingQueryComponent } from './pages/existing-query/existing-query.co
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HelpComponent } from './pages/help/help.component';
+import { SearchSetComponent } from './pages/admin/search-set/search-set.component';
 
 /**
  * Repositories
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
   { path: 'new-query', component: NewQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'existing-query', component: ExistingQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'help', component: HelpComponent, canActivate: [AuthenticationGuard] },
+  { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
   { path: '**', component: LoginComponent }
 ];
 
@@ -92,7 +94,8 @@ const appRoutes: Routes = [
     ChartSelectionComponent,
     QueryHeaderComponent,
     ChartHeaderComponent,
-    HelpComponent
+    HelpComponent,
+    SearchSetComponent
   ],
   imports: [
     BrowserModule,

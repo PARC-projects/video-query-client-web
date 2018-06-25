@@ -31,9 +31,14 @@
             <i class="fa fa-question-circle-o"></i> &nbsp;Help
           </a>
         </li>
-        <li class="nav-item" *ngIf="">
+        <!-- <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
           <a class="nav-link" [href]="apiUrl" target="_blank" title="API">
             <i class="fa fa-cubes"></i> &nbsp;API
+          </a>
+        </li> -->
+        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+          <a class="nav-link" routerLink="search-sets" title="Search Sets" (click)="currentPage = 'search-sets'">
+            <i class="fa fa-tasks"></i> &nbsp;Search Sets
           </a>
         </li>
         <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
@@ -41,7 +46,7 @@
             <i class="fa fa-lock"></i> &nbsp;Admin
           </a>
         </li>
-        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+        <li class="nav-item">
           <a class="nav-link" routerLink="/" (click)="currentPage = ''">
             <i class="fa fa-sign-out"></i> &nbsp;Logout
           </a>
