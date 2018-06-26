@@ -9,7 +9,7 @@
         <section class="search-set-content">
           <div class="row">
             <div class="col-6">
-              <app-search-set-current [data]="searchSetService.videosInSearchSet"></app-search-set-current>
+              <app-search-set-current [data]="searchSetService.videosInSearchSet" (remove)="onRemove($event)"></app-search-set-current>
             </div>
             <div class="col-6">
               <app-search-set-search></app-search-set-search>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
 
 @Component({
@@ -6,12 +6,11 @@ import { IVideo } from '../../../../../models/video.model';
   templateUrl: './search-set-current.component.html',
   styleUrls: ['./search-set-current.component.scss']
 })
-export class SearchSetCurrentComponent implements OnInit {
+export class SearchSetCurrentComponent {
   @Input() data: IVideo[];
+  @Output() remove: EventEmitter<IVideo> = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
+  onRemove(video: IVideo) {
+    this.remove.emit(video);
   }
-
 }

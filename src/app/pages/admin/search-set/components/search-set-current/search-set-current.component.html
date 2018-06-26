@@ -14,7 +14,7 @@
         <td>{{video.id}}</td>
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
-        <td>
+        <td (click)="onRemove(video)">
           <i class="fa fa-times"></i>
         </td>
       </tr>

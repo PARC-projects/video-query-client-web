@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchSetService } from './services/search-set.service';
+import { IVideo } from '../../../models/video.model';
 
 @Component({
   selector: 'app-search-set',
@@ -39,6 +40,12 @@ export class SearchSetComponent implements OnInit {
         this.loading = false;
       })
       .catch(this.handleError);
+  }
+
+  onRemove(videoToRemove: IVideo) {
+    if (confirm(`Are you sure you would remove ${videoToRemove.name} from this Search Set?`)) {
+
+    }
   }
 
   private handleError(): void {
