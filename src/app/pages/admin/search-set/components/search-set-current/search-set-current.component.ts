@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
+import { SearchSetService } from '../../services/search-set.service';
 
 @Component({
   selector: 'app-search-set-current',
@@ -7,10 +8,12 @@ import { IVideo } from '../../../../../models/video.model';
   styleUrls: ['./search-set-current.component.scss']
 })
 export class SearchSetCurrentComponent {
-  @Input() data: IVideo[];
-  @Output() remove: EventEmitter<IVideo> = new EventEmitter();
 
-  onRemove(video: IVideo) {
-    this.remove.emit(video);
+  constructor(public searchSetService: SearchSetService) { }
+
+  onRemove(videoToRemove: IVideo) {
+    if (confirm(`Are you sure you would remove ${videoToRemove.name} from this Search Set?`)) {
+
+    }
   }
 }

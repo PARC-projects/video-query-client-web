@@ -42,12 +42,6 @@ export class SearchSetComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onRemove(videoToRemove: IVideo) {
-    if (confirm(`Are you sure you would remove ${videoToRemove.name} from this Search Set?`)) {
-
-    }
-  }
-
   private handleError(): void {
     this.loading = false;
   }

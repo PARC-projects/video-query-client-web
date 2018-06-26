@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody class="table">
-      <tr *ngFor="let video of data">
+      <tr *ngFor="let video of searchSetService.videosInSearchSet">
         <td>{{video.id}}</td>
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
