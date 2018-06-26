@@ -10,6 +10,7 @@ import { IPagination } from '../../../../models/pagination';
 export class SearchSetService {
 
   searchSets: ISearchSet[];
+  searchSet: ISearchSet;
   listNavConfig: IListNavConfig;
 
   constructor(private searchSetRepository: SearchSetRepository) { }
@@ -25,6 +26,13 @@ export class SearchSetService {
           displayPropertyName: 'name',
           pagination: resp.pagination
         } as IListNavConfig;
+      });
+  }
+
+  getById(id: number) {
+    return this.searchSetRepository.getById(id)
+      .subscribe((resp: ISearchSet) => {
+        this.searchSet = resp;
       });
   }
 }

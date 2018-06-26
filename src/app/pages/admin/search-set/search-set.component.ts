@@ -26,7 +26,7 @@ export class SearchSetComponent implements OnInit {
     console.log(4);
   }
 
-  onSelected($event) {
-    console.log(3);
+  onSelected(id: number) {
+    this.searchSetService.getById(id);
   }
 }
