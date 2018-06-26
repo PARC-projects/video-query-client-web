@@ -7,11 +7,17 @@ import { SearchSetService } from './services/search-set.service';
   styleUrls: ['./search-set.component.scss']
 })
 export class SearchSetComponent implements OnInit {
+  loading = false;
 
   constructor(public searchSetService: SearchSetService) { }
 
   ngOnInit() {
-    this.searchSetService.initialize();
+    this.loading = true;
+    this.searchSetService.initialize()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(this.handleError);
   }
 
   onSearch($event) {
@@ -27,6 +33,15 @@ export class SearchSetComponent implements OnInit {
   }
 
   onSelected(id: number) {
-    this.searchSetService.getById(id);
+    this.loading = true;
+    this.searchSetService.getById(id)
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError(): void {
+    this.loading = false;
   }
 }
