@@ -1,0 +1,21 @@
+<div class="vq-widget">
+  <h4>Current Videos</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Path</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="table">
+      <tr *ngFor="let video of data">
+        <td>{{video.id}}</td>
+        <td>{{video.name}}</td>
+        <td>{{video.path}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -6,8 +6,16 @@
           (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-list-nav>
       </div>
       <div class="col-12 col-md-8 col-lg-9 col-xl-10">
-        <pre>{{searchSetService.searchSet|json}}</pre>
-        <pre>{{searchSetService.videosInSearchSet|json}}</pre>
+        <section class="search-set-content">
+          <div class="row">
+            <div class="col-6">
+              <app-search-set-current [data]="searchSetService.videosInSearchSet"></app-search-set-current>
+            </div>
+            <div class="col-6">
+              <app-search-set-search></app-search-set-search>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>

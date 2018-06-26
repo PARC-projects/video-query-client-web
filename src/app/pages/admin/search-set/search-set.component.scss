@@ -1,8 +1,12 @@
 @import "../../../../custom";
 .search-set {
-  background: gray("100");
+    background: gray("100");
+}
+
+.search-set-content {
+    padding: 1rem 0;
 }
 
 .list-nav {
-  background: color("white");
+    background: color("white");
 }
