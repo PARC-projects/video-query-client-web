@@ -11,10 +11,10 @@ const API_URL = environment.apiUrl;
 export class VideoRepository {
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<IVideoResponse[]> {
+  getAll(): Observable<IVideoResponse> {
     return this.http.get(API_URL + '/videos/').pipe(
-      map((resp: IVideoResponse[]) => {
-        return resp || [] as IVideoResponse[];
+      map((resp: IVideoResponse) => {
+        return resp || {} as IVideoResponse;
       }),
       catchError(this.handleError)
     );

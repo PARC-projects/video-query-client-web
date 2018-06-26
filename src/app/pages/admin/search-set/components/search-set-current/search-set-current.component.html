@@ -3,7 +3,6 @@
   <table>
     <thead>
       <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Path</th>
         <th></th>
@@ -11,7 +10,6 @@
     </thead>
     <tbody class="table">
       <tr *ngFor="let video of searchSetService.videosInSearchSet">
-        <td>{{video.id}}</td>
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
         <td (click)="onRemove(video)">

@@ -2,11 +2,11 @@
 table {
     width: 100%;
     i {
-        color: lighten(theme-color("danger"), 20%);
+        color: lighten(theme-color("success"), 10%);
         cursor: pointer;
         &:hover {
             transition: 0.25s all;
-            color: theme-color("danger")
+            color: theme-color("success")
         }
     }
 }

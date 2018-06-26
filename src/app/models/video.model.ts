@@ -1,7 +1,8 @@
 import { IPagination } from './pagination';
 
-export interface IVideoResponse extends IPagination {
+export interface IVideoResponse {
   results: IVideo[];
+  pagination: IPagination;
 }
 
 export interface IVideo {

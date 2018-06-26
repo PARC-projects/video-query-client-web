@@ -2,7 +2,6 @@ $fa-font-path: "./assets/fonts" !default;
 @import "custom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
-
 .vq-widget {
     background: color("white");
     padding: 0.5rem 1rem 1rem;
@@ -32,22 +31,26 @@ $fa-font-path: "./assets/fonts" !default;
     pointer-events: none;
     display: none;
     background-color: rgba(gray("800"), 0.85);
-    color: #fff;
+    color: color('white');
     border-radius: 2px;
 }
 
-.fa-question{
-  color: #2b81af !important;
+.vq-info-tooltip {
+    color: lighten(theme-color("primary"), 20%) !important;
+    &:hover {
+        transition: 0.25s all;
+        color: theme-color("primary")
+    }
 }
 
 .mat-tooltip {
-  font-size: 11pt !important;
+    font-size: 11pt !important;
 }
 
 .form-control.small {
-  width: 50%;
+    width: 50%;
 }
 
 .fa-refresh {
-  margin-right: 4pt;
+    margin-right: 4pt;
 }

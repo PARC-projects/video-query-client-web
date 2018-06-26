@@ -18,19 +18,17 @@
   <table>
     <thead>
       <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Path</th>
         <th></th>
       </tr>
     </thead>
     <tbody class="table">
-      <tr *ngFor="let video of searchSetService.videosInSearchSet">
-        <td>{{video.id}}</td>
+      <tr *ngFor="let video of searchSetService.videos">
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
         <td (click)="onAdd(video)">
-          <i class="fa fa-add"></i>
+          <i class="fa fa-plus"></i>
         </td>
       </tr>
     </tbody>
