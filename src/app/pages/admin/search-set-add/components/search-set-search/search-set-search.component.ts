@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { SearchSetService } from '../../services/search-set.service';
+import { Component} from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
+import { SearchSetAddService } from '../../search-set-add.service';
 
 @Component({
   selector: 'app-search-set-search',
@@ -9,9 +9,9 @@ import { IVideo } from '../../../../../models/video.model';
 })
 export class SearchSetSearchComponent {
 
-  constructor(public searchSetService: SearchSetService) { }
+  constructor(public searchSetAddService: SearchSetAddService) { }
 
-  onRemove(videoToAdd: IVideo) {
+  onAdd(videoToAdd: IVideo) {
     if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
 
     }

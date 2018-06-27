@@ -1,0 +1,41 @@
+<div class="vq-widget">
+  <h4>{{searchSetAddService.form.name}}</h4>
+  <div class="row">
+    <div class="col">
+      <label for="searchSetName">Name</label>
+      <input type="text" class="form-control" id="searchSetName" aria-describedby="searchSetNameHelp" [(ngModel)]="searchSetAddService.form.name" >
+      <small id="searchSetNameHelp" class="form-text text-muted">Name Identifier</small>
+    </div>
+    <div class="col">
+      <label for="searchSetDuration">Duration</label>
+      <input type="text" class="form-control" id="searchSetDuration" aria-describedby="searchSetDurationHelp">
+      <small id="searchSetDurationHelp" class="form-text text-muted">Duration of clips</small>
+    </div>
+  </div>
+  <br>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck1">
+    <label class="custom-control-label" for="customCheck1">Dynamic target adjustment</label>&nbsp;
+    <i matTooltip="Let the algorithms know whether to “average” the features of all validated matches in each round and have that be the new reference."
+      class="vq-info-tooltip fa fa-question"></i>
+  </div>
+  <hr>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Path</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table">
+      <tr *ngFor="let video of searchSetAddService.videosInSearchSet">
+        <td>{{video.name}}</td>
+        <td>{{video.path}}</td>
+        <td (click)="onRemove(video)">
+          <i class="fa fa-times"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

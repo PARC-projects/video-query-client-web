@@ -23,6 +23,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HelpComponent } from './pages/help/help.component';
 import { SearchSetComponent } from './pages/admin/search-set/search-set.component';
+import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
+import { SearchSetSearchComponent } from './pages/admin/search-set-add/components/search-set-search/search-set-search.component';
+import { SearchSetCurrentComponent } from './pages/admin/search-set-add/components/search-set-current/search-set-current.component';
 
 /**
  * Repositories
@@ -63,8 +66,7 @@ import { ChartSelectionComponent } from './pages/existing-query/components/chart
 import { QueryHeaderComponent } from './pages/existing-query/components/query-header/query-header.component';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
 import { ListNavComponent } from './components/list-nav/list-nav.component';
-import { SearchSetSearchComponent } from './pages/admin/search-set/components/search-set-search/search-set-search.component';
-import { SearchSetCurrentComponent } from './pages/admin/search-set/components/search-set-current/search-set-current.component';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
@@ -72,6 +74,7 @@ const appRoutes: Routes = [
   { path: 'existing-query', component: ExistingQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'help', component: HelpComponent, canActivate: [AuthenticationGuard] },
   { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
+  { path: 'search-sets/add', component: SearchSetAddComponent, canActivate: [AuthenticationGuard] },
   { path: '**', component: LoginComponent }
 ];
 
@@ -101,7 +104,8 @@ const appRoutes: Routes = [
     SearchSetComponent,
     ListNavComponent,
     SearchSetSearchComponent,
-    SearchSetCurrentComponent
+    SearchSetCurrentComponent,
+    SearchSetAddComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div class="vq-widget">
-  <h4>Add Videos</h4>
+  <h4>Search For Videos</h4>
   <div class="row">
     <div class="col">
       <label for="filterName">Video Name</label>
@@ -9,7 +9,7 @@
     <div class="col">
       <label for="searchSet">Search Set</label>
       <select class="form-control" required id="searchSet" name="searchSet">
-        <option *ngFor="let searchSet of searchSetService.searchSets?.results">{{searchSet.name}}</option>
+        <option *ngFor="let searchSet of searchSetAddService.searchSets">{{searchSet.name}}</option>
       </select>
       <small id="searchSetHelp" class="form-text text-muted">Filter videos by Search Set.</small>
     </div>
@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody class="table">
-      <tr *ngFor="let video of searchSetService.videos">
+      <tr *ngFor="let video of searchSetAddService.videos">
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
         <td (click)="onAdd(video)">

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
-import { SearchSetService } from '../../services/search-set.service';
+import { SearchSetService } from '../../../search-set/services/search-set.service';
+import { SearchSetAddService } from '../../search-set-add.service';
 
 @Component({
   selector: 'app-search-set-current',
@@ -9,10 +10,11 @@ import { SearchSetService } from '../../services/search-set.service';
 })
 export class SearchSetCurrentComponent {
 
-  constructor(public searchSetService: SearchSetService) { }
+  constructor(public searchSetAddService: SearchSetAddService)
+  { }
 
   onRemove(videoToRemove: IVideo) {
-    if (confirm(`Are you sure you would remove ${videoToRemove.name} from this Search Set?`)) {
+    if (confirm(`Are you sure you want to remove ${videoToRemove.name} from this Search Set?`)) {
 
     }
   }

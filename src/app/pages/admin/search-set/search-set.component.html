@@ -1,21 +1,26 @@
 <section class="search-set">
   <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
-        <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)" (paginationClick)="onPaginationClick($event)"
-          (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-list-nav>
-      </div>
-      <div class="col-12 col-md-8 col-lg-9 col-xl-10">
-        <section class="search-set-content">
-          <div class="row">
-            <div class="col-6">
-              <app-search-set-current></app-search-set-current>
-            </div>
-            <div class="col-6">
-              <app-search-set-search></app-search-set-search>
-            </div>
-          </div>
-        </section>
+    <div class="row">
+      <div class="col">
+        <div class="vq-widget">
+          <h1 class="vq-title">Search Sets</h1>
+          <p class="lead">View a Search Set by clicking a name below or create a new Search Set by clicking the Add Button.</p>
+          <button type="button" class="btn btn-primary" routerLink="/search-sets/add">Add</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let set of searchSetService.searchSets">
+                <td>{{set.name}}</td>
+                <td>{{set.duration}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
