@@ -1,25 +1,44 @@
 <section class="search-set">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="vq-widget">
-          <h1 class="vq-title">Search Sets</h1>
-          <p class="lead">View a Search Set by clicking a name below or create a new Search Set by clicking the Add Button.</p>
-          <button type="button" class="btn btn-primary" routerLink="/search-sets/add">Add</button>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let set of searchSetService.searchSets">
-                <td>{{set.name}}</td>
-                <td>{{set.duration}}</td>
-              </tr>
-            </tbody>
-          </table>
+
+      </div>
+    </div>
+  </div> -->
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
+        <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)" (paginationClick)="onPaginationClick($event)"
+          (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-list-nav>
+      </div>
+      <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+        <div class="search-set-content">
+          <button type="button" class="btn btn btn-warning btn-sm" routerLink="/search-sets/add">Add New</button>
+          <h1 class="vq-title">{{searchSetService.searchSet?.name}}</h1>
+          <ul>
+            <li><b>Clip Duration: </b>{{searchSetService.searchSet?.duration}}</li>
+            <li><b>Use Dynamic Target Adjustment: </b>{{searchSetService.searchSet?.useDynamicTargetAdjustment ? 'Yes': 'No'}}</li>
+          </ul>
+          <div class="vq-widget">
+            <p class="lead">Videos in Search Set</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>File</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let set of searchSetService.videosInSearchSet">
+                  <td>{{set.id}}</td>
+                  <td>{{set.name}}</td>
+                  <td>{{set.path}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
