@@ -48,6 +48,11 @@ Software development:
 - [Chad Ramos](https://github.com/chad-ramos)
 
 Algorithm development by Frank Torres, Matthew Shreve, Gaurang Ganguli and Hoda Eldardiry.
+
+## Changelog
+
+The Changelog for this project is located at [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 Copyright (C) 2018 Palo Alto Research Center, Inc.
