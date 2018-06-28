@@ -1,11 +1,4 @@
 <section class="search-set">
-  <!-- <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-
-      </div>
-    </div>
-  </div> -->
   <div class="container-fluid">
     <div class="row flex-xl-nowrap">
       <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
@@ -14,6 +7,7 @@
       </div>
       <div class="col-12 col-md-8 col-lg-9 col-xl-10">
         <div class="search-set-content">
+          <button type="button" class="btn btn btn-warning btn-sm" routerLink="/search-sets/add">Add New</button>
           <ng-container *ngIf="!searchSetService.searchSet">
             <div class="empty-state-page">
               <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -21,7 +15,6 @@
             </div>
           </ng-container>
           <div [style.display]="searchSetService.searchSet ? 'block': 'none'">
-            <button type="button" class="btn btn btn-warning btn-sm" routerLink="/search-sets/add">Add New</button>
             <h1 class="vq-title">{{searchSetService.searchSet?.name}}</h1>
             <ul>
               <li>
