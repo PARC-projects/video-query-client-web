@@ -41,7 +41,9 @@
                   <tr *ngFor="let set of searchSetService.videosInSearchSet">
                     <td>{{set.id}}</td>
                     <td>{{set.name}}</td>
-                    <td>{{set.path}}</td>
+                    <td>
+                      <span class="video-link" (click)="onPathClick(set.path)">{{set.path}}</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -51,11 +53,11 @@
       </div>
     </div>
   </div>
+  <app-modal>
+    <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+      <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+    </video>
+  </app-modal>
   <app-loader [show]="loading"></app-loader>
 </section>
-<app-modal>
 
-</app-modal>
-<video controls align="center" #videoPlayer [style.display]="matchService.videoSrc ? 'block' : 'none'">
-  <source src="{{matchService.videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
-</video>

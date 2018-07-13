@@ -27,9 +27,18 @@ button {
 }
 
 .lead {
-    padding: 0.5 0 0.25rem;
+    padding: 0.5rem 0 0.25rem;
 }
 
 table.table {
     margin: 0;
+}
+
+.video-link {
+  color: map-get($parc-colors, "orange");
+  cursor: pointer;
+  &:hover {
+    transition: 0.25 color;
+    color: darken(map-get($parc-colors, "orange"), 10%);
+  }
 }
