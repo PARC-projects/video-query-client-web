@@ -1,6 +1,7 @@
-import { Component} from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../search-set-add.service';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-search-set-search',
@@ -8,6 +9,7 @@ import { SearchSetAddService } from '../../search-set-add.service';
   styleUrls: ['./search-set-search.component.scss']
 })
 export class SearchSetSearchComponent {
+  @Output() pathClick: EventEmitter<string> = new EventEmitter();
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -15,5 +17,8 @@ export class SearchSetSearchComponent {
     if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
 
     }
+  }
+  onPathClick(path: string): void {
+    this.pathClick.emit(`${environment.fileStoreRoot}${path}`);
   }
 }

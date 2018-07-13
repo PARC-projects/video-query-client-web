@@ -26,7 +26,9 @@
     <tbody class="table">
       <tr *ngFor="let video of searchSetAddService.videos">
         <td>{{video.name}}</td>
-        <td>{{video.path}}</td>
+        <td>
+          <span class="video-link" (click)="onPathClick(video.path)">{{video.path}}</span>
+        </td>
         <td (click)="onAdd(video)">
           <i class="fa fa-plus"></i>
         </td>

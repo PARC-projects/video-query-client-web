@@ -2,11 +2,21 @@
 table {
     width: 100%;
     i {
-        color: lighten(theme-color("success"), 10%);
+        color: lighten(map-get($parc-colors, "orange"), 10%);
         cursor: pointer;
         &:hover {
             transition: 0.25s all;
-            color: theme-color("success")
+            color: map-get($parc-colors, "orange");
         }
     }
 }
+
+.video-link {
+  color: map-get($parc-colors, "orange");
+  cursor: pointer;
+  &:hover {
+    transition: 0.25 color;
+    color: darken(map-get($parc-colors, "orange"), 10%);
+  }
+}
+

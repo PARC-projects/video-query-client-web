@@ -12,8 +12,15 @@
         <app-search-set-current></app-search-set-current>
       </div>
       <div class="col-6">
-        <app-search-set-search></app-search-set-search>
+        <app-search-set-search (pathClick)="onPathClick($event)"></app-search-set-search>
       </div>
     </div>
   </div>
+  <app-modal>
+    <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+      <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+    </video>
+  </app-modal>
 </section>
+<!-- TODO: Consider the UI block on the search component and not the parent -->
+<app-loader [show]="loading"></app-loader>
