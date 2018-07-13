@@ -66,6 +66,7 @@ import { ChartSelectionComponent } from './pages/existing-query/components/chart
 import { QueryHeaderComponent } from './pages/existing-query/components/query-header/query-header.component';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
 import { ListNavComponent } from './components/list-nav/list-nav.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 const appRoutes: Routes = [
@@ -105,7 +106,8 @@ const appRoutes: Routes = [
     ListNavComponent,
     SearchSetSearchComponent,
     SearchSetCurrentComponent,
-    SearchSetAddComponent
+    SearchSetAddComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -53,3 +53,9 @@
   </div>
   <app-loader [show]="loading"></app-loader>
 </section>
+<app-modal>
+
+</app-modal>
+<video controls align="center" #videoPlayer [style.display]="matchService.videoSrc ? 'block' : 'none'">
+  <source src="{{matchService.videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+</video>
