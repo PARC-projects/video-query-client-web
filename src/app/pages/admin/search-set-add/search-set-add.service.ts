@@ -63,7 +63,13 @@ export class SearchSetAddService {
       });
   }
 
-  addVideoToSearchSet(newVideo: IVideo){
-
+  isVideoInCurrentSearchSet(id: number): boolean {
+    for (let i = 0; i < this.videosInSearchSet.length; i++) {
+      const element = this.videosInSearchSet[i];
+      if (id === element.id) {
+        return true;
+      }
+    }
+    return false;
   }
 }
