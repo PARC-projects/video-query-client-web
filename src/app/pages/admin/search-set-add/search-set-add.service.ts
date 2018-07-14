@@ -8,18 +8,18 @@ import { SearchSetRepository } from '../../../repositories/search-set.repository
   providedIn: 'root'
 })
 export class SearchSetAddService {
+  // /**
+  //  * All available search sets based on pagination
+  //  */
+  // searchSets: ISearchSet[];
   /**
-   * All available search sets based on pagination
-   */
-  searchSets: ISearchSet[];
-  /**
-   * Current selected search set
+   * New Search Set
    */
   searchSet: ISearchSet;
   /**
    * Current videos in selected search set
    */
-  videosInSearchSet: IVideo[];
+  videosInSearchSet = [] as IVideo[];
   /**
    * All videos base on pagination and filters
    */
@@ -35,12 +35,7 @@ export class SearchSetAddService {
   ) { }
 
   initialize() {
-    return this.searchSetRepository.getAll()
-      .toPromise()
-      .then((resp: ISearchSetResponse) => {
-        this.searchSets = resp.results;
-        return this.getVideos();
-      });
+    return this.getVideos();
   }
 
   getVideos() {
@@ -66,5 +61,9 @@ export class SearchSetAddService {
       .then((resp: IVideo[]) => {
         this.videosInSearchSet = resp;
       });
+  }
+
+  addVideoToSearchSet(newVideo: IVideo){
+
   }
 }

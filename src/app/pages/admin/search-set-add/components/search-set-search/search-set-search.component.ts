@@ -15,9 +15,10 @@ export class SearchSetSearchComponent {
 
   onAdd(videoToAdd: IVideo) {
     if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
-
+      this.searchSetAddService.videosInSearchSet.push(videoToAdd);
     }
   }
+
   onPathClick(path: string): void {
     this.pathClick.emit(`${environment.fileStoreRoot}${path}`);
   }
