@@ -63,13 +63,14 @@ export class SearchSetAddService {
       });
   }
 
-  isVideoInCurrentSearchSet(id: number): boolean {
-    for (let i = 0; i < this.videosInSearchSet.length; i++) {
-      const element = this.videosInSearchSet[i];
-      if (id === element.id) {
-        return true;
-      }
+  isVideoInCurrentSearchSet(video: IVideo): boolean {
+    return this.videosInSearchSet.indexOf(video) > -1;
+  }
+
+  removeVideoFromSearchSet(video: IVideo): void {
+    const index = this.videosInSearchSet.indexOf(video);
+    if (index > -1) {
+      this.videosInSearchSet.splice(index, 1);
     }
-    return false;
   }
 }

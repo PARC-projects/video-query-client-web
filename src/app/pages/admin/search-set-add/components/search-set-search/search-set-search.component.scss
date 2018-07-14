@@ -2,11 +2,11 @@
 table {
     width: 100%;
     i {
-        color: lighten(map-get($parc-colors, "orange"), 10%);
+        color: lighten(map-get($theme-colors, "success"), 10%);
         cursor: pointer;
         &:hover {
             transition: 0.25s all;
-            color: map-get($parc-colors, "orange");
+            color: map-get($theme-colors, "success");
         }
     }
 }

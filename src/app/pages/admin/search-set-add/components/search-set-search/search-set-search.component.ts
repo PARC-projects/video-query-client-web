@@ -15,7 +15,7 @@ export class SearchSetSearchComponent {
 
   onAdd(videoToAdd: IVideo) {
     if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
-      if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd.id)) {
+      if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd)) {
         alert(`This video is already in the current Search Set.`);
         return;
       }
