@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SearchSetAddService } from './search-set-add.service';
+import { SearchSetAddService } from './services/search-set-add.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 
 @Component({
@@ -28,6 +28,15 @@ export class SearchSetAddComponent implements OnInit {
   onPathClick(path: string) {
     this.videoSrc = path;
     this.modalComponent.open();
+  }
+
+  onSave() {
+    this.loading = true;
+    this.searchSetAddService.addSearchSet()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(this.handleError);
   }
 
   private handleError(): void {

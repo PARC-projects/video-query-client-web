@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
-import { SearchSetAddService } from '../../search-set-add.service';
+import { SearchSetAddService } from '../../services/search-set-add.service';
 
 @Component({
   selector: 'app-search-set-current',

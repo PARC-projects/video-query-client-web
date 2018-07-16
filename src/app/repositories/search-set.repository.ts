@@ -44,6 +44,14 @@ export class SearchSetRepository {
     );
   }
 
+  add(searchSet: ISearchSet): Observable<ISearchSet> {
+    return this.http.post(API_URL + '/search-sets/', searchSet).pipe(
+      map((resp: ISearchSet) => {
+        return resp || {} as ISearchSet;
+      }),
+      catchError(this.handleError));
+  }
+
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
     return throwError(error);

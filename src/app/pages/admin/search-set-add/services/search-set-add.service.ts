@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { IVideoResponse, IVideo } from '../../../models/video.model';
-import { ISearchSet, ISearchSetResponse } from '../../../models/search-set.model';
-import { VideoRepository } from '../../../repositories/video.repository';
-import { SearchSetRepository } from '../../../repositories/search-set.repository';
+import { IVideoResponse, IVideo } from '../../../../models/video.model';
+import { ISearchSet } from '../../../../models/search-set.model';
+import { VideoRepository } from '../../../../repositories/video.repository';
+import { SearchSetRepository } from '../../../../repositories/search-set.repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchSetAddService {
-  // /**
-  //  * All available search sets based on pagination
-  //  */
-  // searchSets: ISearchSet[];
+
   /**
    * New Search Set
    */
-  searchSet: ISearchSet;
+  searchSet = {
+    videos: []
+  } as ISearchSet;
   /**
    * Current videos in selected search set
    */
@@ -24,10 +23,6 @@ export class SearchSetAddService {
    * All videos base on pagination and filters
    */
   videos: IVideo[];
-
-  form = {
-
-  } as ISearchSet;
 
   constructor(
     private searchSetRepository: SearchSetRepository,
@@ -61,6 +56,14 @@ export class SearchSetAddService {
       .then((resp: IVideo[]) => {
         this.videosInSearchSet = resp;
       });
+  }
+
+  addSearchSet() {
+    this.videosInSearchSet.forEach(video => {
+      this.searchSet.videos.push(video.id);
+    });
+    return this.searchSetRepository.add(this.searchSet)
+      .toPromise();
   }
 
   isVideoInCurrentSearchSet(video: IVideo): boolean {

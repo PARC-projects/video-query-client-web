@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, OnChanges } from '@angular/core';
 import { IMatchView } from '../../../../models/match.model';
-import { ExistingQueryService } from '../../../../pages/existing-query/services/existing-query.service';
+import { ExistingQueryService } from '../../services/existing-query.service';
 import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
 
 export interface IValidationClick {

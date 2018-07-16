@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
-import { SearchSetAddService } from '../../search-set-add.service';
+import { SearchSetAddService } from '../../services/search-set-add.service';
 import { environment } from '../../../../../../environments/environment';
 
 @Component({

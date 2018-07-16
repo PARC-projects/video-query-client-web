@@ -1,4 +1,5 @@
 import { IPagination } from './pagination';
+import { IVideo } from './video.model';
 
 export interface ISearchSetResponse {
   results: ISearchSet[];
@@ -10,4 +11,5 @@ export interface ISearchSet  {
   name: string;
   duration: number;
   useDynamicTargetAdjustment: boolean;
+  videos?: number[];
 }

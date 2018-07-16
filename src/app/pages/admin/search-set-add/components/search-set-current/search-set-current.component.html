@@ -1,21 +1,21 @@
 <div class="vq-widget">
-  <h4>{{searchSetAddService.form.name}}</h4>
+  <h4>{{searchSetAddService.searchSet.name}}</h4>
   <div class="row">
     <div class="col">
       <label for="searchSetName">Name</label>
-      <input type="text" class="form-control" id="searchSetName" aria-describedby="searchSetNameHelp" [(ngModel)]="searchSetAddService.form.name" >
+      <input type="text" class="form-control" id="searchSetName" aria-describedby="searchSetNameHelp" [(ngModel)]="searchSetAddService.searchSet.name" >
       <small id="searchSetNameHelp" class="form-text text-muted">Name Identifier</small>
     </div>
     <div class="col">
       <label for="searchSetDuration">Duration</label>
-      <input type="text" class="form-control" id="searchSetDuration" aria-describedby="searchSetDurationHelp">
+      <input type="text" class="form-control" id="searchSetDuration" aria-describedby="searchSetDurationHelp" [(ngModel)]="searchSetAddService.searchSet.duration">
       <small id="searchSetDurationHelp" class="form-text text-muted">Duration of clips</small>
     </div>
   </div>
   <br>
   <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="customCheck1">
-    <label class="custom-control-label" for="customCheck1">Dynamic target adjustment</label>&nbsp;
+    <input type="checkbox" class="custom-control-input" [(ngModel)]="searchSetAddService.searchSet.useDynamicTargetAdjustment">
+    <label class="custom-control-label">Dynamic target adjustment</label>&nbsp;
     <i matTooltip="Let the algorithms know whether to “average” the features of all validated matches in each round and have that be the new reference."
       class="vq-info-tooltip fa fa-question"></i>
   </div>
