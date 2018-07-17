@@ -25,14 +25,17 @@ export class SearchSetService {
    * All videos base on pagination and filters
    */
   videos: IVideo[];
+
   listNavConfig: IListNavConfig;
+  searchTerm: string;
+  perPage = 10;
 
   constructor(
     private searchSetRepository: SearchSetRepository
   ) { }
 
-  initialize() {
-    return this.searchSetRepository.getAll()
+  initialize(page?: number) {
+    return this.searchSetRepository.getAll(page, this.searchTerm, this.perPage)
       .toPromise()
       .then((resp: ISearchSetResponse) => {
         this.searchSets = resp.results;

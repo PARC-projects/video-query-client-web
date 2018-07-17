@@ -13,6 +13,9 @@ export class SearchSetComponent implements OnInit {
   showModal = false;
   videoSrc = '';
 
+
+  private timeout: NodeJS.Timer;
+
   @ViewChild(ModalComponent) private modalComponent: ModalComponent;
 
   constructor(public searchSetService: SearchSetService) { }
@@ -26,15 +29,20 @@ export class SearchSetComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onSearch($event) {
-    console.log(1);
+  onSearch(searchTerm: string) {
+    const self = this;
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.searchSetService.searchTerm = searchTerm;
+      this.searchSetService.initialize(1);
+    }, 500);
   }
 
-  onPerPageSelection($event) {
+  onPerPageSelection(perPageSelectedValue: number) {
     console.log(2);
   }
 
-  onPaginationClick(): void {
+  onPaginationClick(pageNumber: number): void {
     console.log(4);
   }
 

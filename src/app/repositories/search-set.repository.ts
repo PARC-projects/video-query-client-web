@@ -17,8 +17,16 @@ export class SearchSetRepository {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<ISearchSetResponse> {
-    return this.http.get(`${API_URL}/search-sets/`).pipe(
+  getAll(page?: number, search?: string, perPage = 10): Observable<ISearchSetResponse> {
+    let url = `${API_URL}/search-sets/?page_size=${perPage}`;
+    if (page) {
+      url = url + `&page=${page}`;
+      if (search) {
+        url = url + `&search=${search}`;
+      }
+    }
+
+    return this.http.get(url).pipe(
       map((resp: ISearchSetResponse) => {
         return resp || {} as ISearchSetResponse;
       }),
