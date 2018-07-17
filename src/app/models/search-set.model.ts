@@ -1,4 +1,4 @@
-import { IPagination } from './pagination';;
+import { IPagination } from './pagination';
 
 export interface ISearchSetResponse {
   results: ISearchSet[];
@@ -9,7 +9,7 @@ export interface ISearchSet  {
   id: number;
   name: string;
   duration: number;
-  useDynamicTargetAdjustment?: boolean;
+  useDynamicTargetAdjustment: boolean;
 
   /**
    * Collection of FKs

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchSetAddService } from './services/search-set-add.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
+import { Router } from '@angular/router';
+import { AlertService, AlertType } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-search-set-add',
@@ -14,7 +16,11 @@ export class SearchSetAddComponent implements OnInit {
 
   @ViewChild(ModalComponent) private modalComponent: ModalComponent;
 
-  constructor(private searchSetAddService: SearchSetAddService) { }
+  constructor(
+    private alertService: AlertService,
+    private router: Router,
+    private searchSetAddService: SearchSetAddService
+  ) { }
 
   ngOnInit() {
     this.loading = true;
@@ -35,6 +41,11 @@ export class SearchSetAddComponent implements OnInit {
     this.searchSetAddService.addSearchSet()
       .then(() => {
         this.loading = false;
+        this.alertService.setAlert(
+          `"${this.searchSetAddService.searchSet.name}": has been added.`,
+          AlertType.Success
+        );
+        this.router.navigate(['search-sets']);
       })
       .catch(this.handleError);
   }
