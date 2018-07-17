@@ -26,11 +26,6 @@
             <i class="fa fa-database"></i> &nbsp;Existing
           </a>
         </li>
-        <!-- <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
-          <a class="nav-link" [href]="apiUrl" target="_blank" title="API">
-            <i class="fa fa-cubes"></i> &nbsp;API
-          </a>
-        </li> -->
         <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
           <a class="nav-link" routerLink="search-sets" title="Search Sets" (click)="currentPage = 'search-sets'">
             <i class="fa fa-tasks"></i> &nbsp;Search Sets
@@ -54,26 +49,4 @@
       </ul>
     </div>
   </nav>
-  <!-- <section class="sub-nav" *ngIf="currentPage === 'help'">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section> -->
 </section>
