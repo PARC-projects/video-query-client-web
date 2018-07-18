@@ -13,7 +13,7 @@ export class SearchSetComponent implements OnInit {
   showModal = false;
   videoSrc = '';
 
-  private timeout: NodeJS.Timer;
+  private timeout: any;
 
   @ViewChild(ModalComponent) private modalComponent: ModalComponent;
 

@@ -19,3 +19,7 @@ table {
         color: darken(map-get($parc-colors, "orange"), 10%);
     }
 }
+
+.vq-pagination {
+    margin: 0.5rem 0 0;
+}

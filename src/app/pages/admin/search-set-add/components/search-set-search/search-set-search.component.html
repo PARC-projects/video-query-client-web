@@ -35,4 +35,7 @@
       </tr>
     </tbody>
   </table>
+  <section class="vq-pagination">
+    <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+  </section>
 </div>

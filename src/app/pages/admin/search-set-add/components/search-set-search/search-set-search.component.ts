@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { IVideo } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../services/search-set-add.service';
 import { environment } from '../../../../../../environments/environment';
+import { IPagination } from '../../../../../models/pagination';
 
 @Component({
   selector: 'app-search-set-search',
@@ -9,7 +10,10 @@ import { environment } from '../../../../../../environments/environment';
   styleUrls: ['./search-set-search.component.scss']
 })
 export class SearchSetSearchComponent {
+  @Input() pagination: IPagination;
   @Output() pathClick: EventEmitter<string> = new EventEmitter();
+  @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
+  @Output() paginationClick: EventEmitter<number> = new EventEmitter();
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -25,5 +29,13 @@ export class SearchSetSearchComponent {
 
   onPathClick(path: string): void {
     this.pathClick.emit(`${environment.fileStoreRoot}${path}`);
+  }
+
+  onPerPageSelection(perPageSelectedValue: number): void {
+    this.perPageSelection.emit();
+  }
+
+  onPaginationClick(): void {
+    this.paginationClick.emit();
   }
 }

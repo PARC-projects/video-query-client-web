@@ -43,7 +43,6 @@ export class ListNavComponent implements OnInit {
   }
 
   onSearch(search: string): void {
-    const self = this;
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.searchTerm = search;

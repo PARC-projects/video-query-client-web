@@ -3,12 +3,12 @@ import { IVideoResponse, IVideo } from '../../../../models/video.model';
 import { ISearchSet } from '../../../../models/search-set.model';
 import { VideoRepository } from '../../../../repositories/video.repository';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
+import { IPagination } from '../../../../models/pagination';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchSetAddService {
-
   /**
    * New Search Set
    */
@@ -16,29 +16,36 @@ export class SearchSetAddService {
     useDynamicTargetAdjustment: false,
     videos: []
   } as ISearchSet;
+
   /**
    * Current videos in selected search set
    */
   videosInSearchSet = [] as IVideo[];
+
   /**
    * All videos base on pagination and filters
    */
   videos: IVideo[];
+
+  paginationConfig: IPagination;
+  searchTerm: string;
+  perPage = 10;
 
   constructor(
     private searchSetRepository: SearchSetRepository,
     private videoRepository: VideoRepository
   ) { }
 
-  initialize() {
-    return this.getVideos();
+  initialize(page?: number) {
+    return this.getVideos(page);
   }
 
-  getVideos() {
+  getVideos(page?: number) {
     return this.videoRepository.getAll()
       .toPromise()
       .then((resp: IVideoResponse) => {
         this.videos = resp.results;
+        this.paginationConfig = resp.pagination;
       });
   }
 

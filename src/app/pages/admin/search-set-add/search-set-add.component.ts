@@ -36,6 +36,15 @@ export class SearchSetAddComponent implements OnInit {
     this.modalComponent.open();
   }
 
+  onPerPageSelection(perPageSelectedValue: number) {
+    this.searchSetAddService.perPage = perPageSelectedValue;
+    this.searchSetAddService.initialize(1);
+  }
+
+  onPaginationClick(pageNumber: number): void {
+    this.searchSetAddService.initialize(pageNumber);
+  }
+
   onSave() {
     this.loading = true;
     this.searchSetAddService.addSearchSet()
