@@ -37,6 +37,7 @@ export class SearchSetAddComponent implements OnInit {
   }
 
   onPerPageSelection(perPageSelectedValue: number) {
+    console.log(perPageSelectedValue);
     this.searchSetAddService.perPage = perPageSelectedValue;
     this.searchSetAddService.initialize(1);
   }

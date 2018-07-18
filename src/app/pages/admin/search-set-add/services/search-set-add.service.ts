@@ -41,7 +41,7 @@ export class SearchSetAddService {
   }
 
   getVideos(page?: number) {
-    return this.videoRepository.getAll()
+    return this.videoRepository.getAll(page, this.searchTerm, this.perPage)
       .toPromise()
       .then((resp: IVideoResponse) => {
         this.videos = resp.results;

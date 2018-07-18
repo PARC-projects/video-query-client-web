@@ -32,7 +32,7 @@ export class SearchSetSearchComponent {
   }
 
   onPerPageSelection(perPageSelectedValue: number): void {
-    this.perPageSelection.emit();
+    this.perPageSelection.emit(perPageSelectedValue);
   }
 
   onPaginationClick(): void {
