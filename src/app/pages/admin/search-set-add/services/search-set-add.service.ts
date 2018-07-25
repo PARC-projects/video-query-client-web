@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IVideoResponse, IVideo } from '../../../../models/video.model';
-import { ISearchSet } from '../../../../models/search-set.model';
+import { ISearchSet, ISearchSetResponse } from '../../../../models/search-set.model';
 import { VideoRepository } from '../../../../repositories/video.repository';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
 import { IPagination } from '../../../../models/pagination';
@@ -30,6 +30,8 @@ export class SearchSetAddService {
   paginationConfig: IPagination;
   searchTerm: string;
   perPage = 10;
+  selectedSearchSet: ISearchSet;
+  searchSets: ISearchSet[];
 
   constructor(
     private searchSetRepository: SearchSetRepository,
@@ -37,7 +39,10 @@ export class SearchSetAddService {
   ) { }
 
   initialize(page?: number) {
-    return this.getVideos(page);
+    return this.getVideos(page)
+      .then(() => {
+        return this.getSearchSets();
+      });
   }
 
   getVideos(page?: number) {
@@ -49,12 +54,11 @@ export class SearchSetAddService {
       });
   }
 
-  getById(id: number) {
-    return this.searchSetRepository.getById(id)
+  getSearchSets(): Promise<void> {
+    return this.searchSetRepository.getAll()
       .toPromise()
-      .then((resp: ISearchSet) => {
-        this.searchSet = resp;
-        return this.getVideosInSelectedSearchSet(id);
+      .then((resp: ISearchSetResponse) => {
+        this.searchSets = resp.results;
       });
   }
 

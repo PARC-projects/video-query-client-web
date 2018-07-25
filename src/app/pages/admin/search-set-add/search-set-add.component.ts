@@ -60,6 +60,14 @@ export class SearchSetAddComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  onSelectedSearchSet(searchSetId: number): void {
+    console.log(searchSetId);
+  }
+
+  onSearchTermUpdated(term: string): void {
+    console.log(term);
+  }
+
   private handleError(): void {
     this.loading = false;
   }

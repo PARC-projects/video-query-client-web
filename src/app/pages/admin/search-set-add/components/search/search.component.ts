@@ -3,6 +3,7 @@ import { IVideo } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../services/search-set-add.service';
 import { environment } from '../../../../../../environments/environment';
 import { IPagination } from '../../../../../models/pagination';
+import { ISearchSet } from '../../../../../models/search-set.model';
 
 @Component({
   selector: 'app-search-set-search',
@@ -17,7 +18,7 @@ export class SearchComponent {
   @Output() searchSetSelection: EventEmitter<number> = new EventEmitter();
   @Output() searchTermUpdated: EventEmitter<string> = new EventEmitter();
 
-  public searchTerm: string;
+
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -43,8 +44,8 @@ export class SearchComponent {
     this.paginationClick.emit(pageNumber);
   }
 
-  onSelectedSearchSet(searchSetId: number): void {
-    this.searchSetSelection.emit(searchSetId);
+  onSelectedSearchSet(): void {
+    this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
   }
 
   onSearchTermUpdated(term: string): void {
