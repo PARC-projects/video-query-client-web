@@ -6,10 +6,10 @@ import { IPagination } from '../../../../../models/pagination';
 
 @Component({
   selector: 'app-search-set-search',
-  templateUrl: './search-set-search.component.html',
-  styleUrls: ['./search-set-search.component.scss']
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class SearchSetSearchComponent {
+export class SearchComponent {
   @Input() pagination: IPagination;
   @Output() pathClick: EventEmitter<string> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();

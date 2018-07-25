@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchSetCurrentComponent } from './search-set-current.component';
+import { CurrentComponent } from './current.component';
 
-describe('SearchSetCurrentComponent', () => {
-  let component: SearchSetCurrentComponent;
-  let fixture: ComponentFixture<SearchSetCurrentComponent>;
+describe('CurrentComponent', () => {
+  let component: CurrentComponent;
+  let fixture: ComponentFixture<CurrentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchSetCurrentComponent ]
+      declarations: [ CurrentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchSetCurrentComponent);
+    fixture = TestBed.createComponent(CurrentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

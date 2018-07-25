@@ -24,8 +24,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { HelpComponent } from './pages/help/help.component';
 import { SearchSetComponent } from './pages/admin/search-set/search-set.component';
 import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
-import { SearchSetSearchComponent } from './pages/admin/search-set-add/components/search-set-search/search-set-search.component';
-import { SearchSetCurrentComponent } from './pages/admin/search-set-add/components/search-set-current/search-set-current.component';
+import { SearchComponent } from './pages/admin/search-set-add/components/search/search.component';
+import { CurrentComponent } from './pages/admin/search-set-add/components/current/current.component';
 
 /**
  * Repositories
@@ -104,8 +104,8 @@ const appRoutes: Routes = [
     HelpComponent,
     SearchSetComponent,
     ListNavComponent,
-    SearchSetSearchComponent,
-    SearchSetCurrentComponent,
+    SearchComponent,
+    CurrentComponent,
     SearchSetAddComponent,
     ModalComponent
   ],
