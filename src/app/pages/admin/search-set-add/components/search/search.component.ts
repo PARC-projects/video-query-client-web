@@ -14,6 +14,10 @@ export class SearchComponent {
   @Output() pathClick: EventEmitter<string> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
+  @Output() searchSetSelection: EventEmitter<number> = new EventEmitter();
+  @Output() searchTermUpdated: EventEmitter<string> = new EventEmitter();
+
+  public searchTerm: string;
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -37,5 +41,13 @@ export class SearchComponent {
 
   onPaginationClick(pageNumber: number): void {
     this.paginationClick.emit(pageNumber);
+  }
+
+  onSelectedSearchSet(searchSetId: number): void {
+    this.searchSetSelection.emit(searchSetId);
+  }
+
+  onSearchTermUpdated(term: string): void {
+    this.searchTermUpdated.emit(term);
   }
 }
