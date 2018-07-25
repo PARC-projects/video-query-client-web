@@ -45,6 +45,7 @@ export class SearchComponent {
   }
 
   onSelectedSearchSet(): void {
+    console.log(this.searchSetAddService.selectedSearchSet);
     this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
   }
 
