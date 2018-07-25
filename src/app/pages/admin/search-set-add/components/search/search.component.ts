@@ -15,10 +15,6 @@ export class SearchComponent {
   @Output() pathClick: EventEmitter<string> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
-  @Output() searchSetSelection: EventEmitter<number> = new EventEmitter();
-  @Output() searchTermUpdated: EventEmitter<string> = new EventEmitter();
-
-
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -45,11 +41,10 @@ export class SearchComponent {
   }
 
   onSelectedSearchSet(): void {
-    console.log(this.searchSetAddService.selectedSearchSet);
     this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
   }
 
   onSearchTermUpdated(term: string): void {
-    this.searchTermUpdated.emit(term);
+    console.log(term);
   }
 }

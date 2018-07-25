@@ -11,13 +11,18 @@ const API_URL = environment.apiUrl;
 export class VideoRepository {
   constructor(private http: HttpClient) { }
 
-  getAll(page?: number, search?: string, perPage = 10): Observable<IVideoResponse> {
+  getAll(page?: number, search?: string, perPage = 10, searchSetId?: number): Observable<IVideoResponse> {
     let url = `${API_URL}/videos/?page_size=${perPage}`;
     if (page) {
       url = url + `&page=${page}`;
-      if (search) {
-        url = url + `&search=${search}`;
-      }
+    }
+
+    if (search) {
+      url = url + `&search=${search}`;
+    }
+
+    if (searchSetId) {
+      url = url + `&searchSetId=${searchSetId}`;
     }
 
     return this.http.get(url).pipe(
