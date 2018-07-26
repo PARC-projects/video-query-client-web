@@ -12,7 +12,7 @@
         <app-search-set-current></app-search-set-current>
       </div>
       <div class="col-6">
-        <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (selectedSearchSet)="onSelectedSearchSet($event)"(pathClick)="onPathClick($event)" (paginationClick)="onPaginationClick($event)"
+        <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)" (paginationClick)="onPaginationClick($event)"
         (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-search-set-search>
       </div>
     </div>
