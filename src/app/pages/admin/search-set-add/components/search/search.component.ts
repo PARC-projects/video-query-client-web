@@ -46,6 +46,7 @@ export class SearchComponent {
 
   onSearchTermUpdated(term: string): void {
     this.searchSetAddService.searchTerm = term;
-    this.searchSetAddService.getVideos(this.searchSetAddService.paginationConfig.currentPage);
+    this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
+    // this.searchSetAddService.getVideos(this.searchSetAddService.paginationConfig.currentPage);
   }
 }

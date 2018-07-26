@@ -64,7 +64,7 @@ export class SearchSetAddService {
   }
 
   getVideosInSelectedSearchSet(id: number) {
-    return this.searchSetRepository.getVideosInSearchSet(id)
+    return this.searchSetRepository.getVideosInSearchSet(id, this.searchTerm)
       .toPromise()
       .then((resp: IVideo[]) => {
         this.videosInSearchSet = resp;

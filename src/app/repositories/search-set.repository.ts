@@ -43,8 +43,14 @@ export class SearchSetRepository {
     );
   }
 
-  getVideosInSearchSet(searchSetId: number): Observable<IVideo[]> {
-    return this.http.get(`${API_URL}/search-sets/${searchSetId}/videos/`).pipe(
+  getVideosInSearchSet(searchSetId: number, searchTerm?: string): Observable<IVideo[]> {
+    let url = `${API_URL}/search-sets/${searchSetId}/videos/`;
+
+    if (searchTerm) {
+      url = url + `?searchTerm=${searchTerm}`;
+    }
+
+    return this.http.get(url).pipe(
       map((resp: IVideo[]) => {
         return resp || [] as IVideo[];
       }),
