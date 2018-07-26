@@ -14,7 +14,7 @@
         </div>
         <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
           <div class="form-group">
-            <label for="usename">Username</label>
+            <label for="username">Username</label>
             <input type="text" required class="form-control" id="username" placeholder="Enter username" [(ngModel)]="loginRequest.username"
               name="username" #username="ngModel" [disabled]="loading">
             <div *ngIf="username.invalid && (username.dirty || username.touched)">

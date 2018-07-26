@@ -13,6 +13,8 @@ export class SearchSetAddService {
    * New Search Set
    */
   searchSet = {
+    name: '',
+    duration: 0,
     useDynamicTargetAdjustment: false,
     videos: []
   } as ISearchSet;
