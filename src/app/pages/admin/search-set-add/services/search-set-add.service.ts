@@ -46,8 +46,7 @@ export class SearchSetAddService {
   }
 
   getVideos(page?: number) {
-    const filterSearchSetId = this.selectedSearchSet ? this.selectedSearchSet.id : null;
-    return this.videoRepository.getAll(page, this.searchTerm, this.perPage, filterSearchSetId)
+    return this.videoRepository.getAll(page, this.searchTerm, this.perPage)
       .toPromise()
       .then((resp: IVideoResponse) => {
         this.videos = resp.results;
@@ -67,7 +66,7 @@ export class SearchSetAddService {
     return this.searchSetRepository.getVideosInSearchSet(id, this.searchTerm)
       .toPromise()
       .then((resp: IVideo[]) => {
-        this.videosInSearchSet = resp;
+        this.videos = resp;
       });
   }
 

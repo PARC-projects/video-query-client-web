@@ -59,12 +59,20 @@ export class SearchSetAddComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onSelectedSearchSet(searchSetId: number): void {
-    console.log(searchSetId);
+  onSelectedSearchSet(): void {
+    if (this.searchSetAddService.selectedSearchSet) {
+      this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
+      return;
+    }
+    this.searchSetAddService.getVideos();
   }
 
-  onSearchTermUpdated(term: string): void {
-    console.log(term);
+  onSearchTermUpdated(): void {
+    if (this.searchSetAddService.selectedSearchSet) {
+      this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
+      return;
+    }
+    this.searchSetAddService.getVideos();
   }
 
   private handleError(): void {

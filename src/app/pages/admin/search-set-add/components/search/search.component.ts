@@ -3,7 +3,6 @@ import { IVideo } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../services/search-set-add.service';
 import { environment } from '../../../../../../environments/environment';
 import { IPagination } from '../../../../../models/pagination';
-import { ISearchSet } from '../../../../../models/search-set.model';
 
 @Component({
   selector: 'app-search-set-search',
@@ -15,6 +14,10 @@ export class SearchComponent {
   @Output() pathClick: EventEmitter<string> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
+  @Output() selectedSearchSet: EventEmitter<void> = new EventEmitter();
+  @Output() searchTermUpdated: EventEmitter<void> = new EventEmitter();
+
+  private timeout: any;
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
@@ -41,12 +44,14 @@ export class SearchComponent {
   }
 
   onSelectedSearchSet(): void {
-    this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
+    this.selectedSearchSet.emit();
   }
 
   onSearchTermUpdated(term: string): void {
-    this.searchSetAddService.searchTerm = term;
-    this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
-    // this.searchSetAddService.getVideos(this.searchSetAddService.paginationConfig.currentPage);
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.searchSetAddService.searchTerm = term;
+      this.searchTermUpdated.emit();
+    }, 500);
   }
 }

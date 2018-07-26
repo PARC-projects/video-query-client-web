@@ -11,6 +11,7 @@
       <label for="searchSet">Search Set</label>
       <select class="form-control" required id="searchSet" name="searchSet" [(ngModel)]="searchSetAddService.selectedSearchSet"
         (ngModelChange)="onSelectedSearchSet()">
+        <option [ngValue]="null">-- clear --</option>
         <option *ngFor="let searchSet of searchSetAddService.searchSets" [ngValue]="searchSet">{{searchSet.name}}</option>
       </select>
       <small id="searchSetHelp" class="form-text text-muted">Filter videos by Search Set.</small>

@@ -13,7 +13,7 @@
       </div>
       <div class="col-6">
         <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)" (paginationClick)="onPaginationClick($event)"
-        (perPageSelection)="onPerPageSelection($event)" (search)="onSearch($event)"></app-search-set-search>
+        (perPageSelection)="onPerPageSelection($event)" (searchTermUpdated)="onSearchTermUpdated()" (selectedSearchSet)="onSelectedSearchSet()"></app-search-set-search>
       </div>
     </div>
   </div>
