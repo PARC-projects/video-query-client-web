@@ -4,6 +4,8 @@ import { ISearchSet, ISearchSetResponse } from '../../../../models/search-set.mo
 import { VideoRepository } from '../../../../repositories/video.repository';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
 import { IPagination } from '../../../../models/pagination';
+import { AlertService, AlertType } from '../../../../services/alert.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,8 @@ export class SearchSetAddService {
    * New Search Set
    */
   searchSet = {
-    name: '',
-    duration: 0,
     useDynamicTargetAdjustment: false,
-    videos: []
+    videos: [] // Collection of keys
   } as ISearchSet;
 
   /**
@@ -36,6 +36,7 @@ export class SearchSetAddService {
   searchSets: ISearchSet[];
 
   constructor(
+    private alertService: AlertService,
     private searchSetRepository: SearchSetRepository,
     private videoRepository: VideoRepository
   ) { }
@@ -77,7 +78,20 @@ export class SearchSetAddService {
       this.searchSet.videos.push(video.id);
     });
     return this.searchSetRepository.add(this.searchSet)
-      .toPromise();
+      .toPromise()
+      .then(() => {
+        this.videosInSearchSet = [];
+        this.searchSet = {
+          useDynamicTargetAdjustment: false,
+          videos: [] // Collection of keys
+        } as ISearchSet;
+      })
+      .catch((resp: HttpErrorResponse) => {
+        if (resp.error['name']) {
+          return Promise.reject(`The name "${this.searchSet.name}" is already being used. Please provide a new name and try again`);
+        }
+        return Promise.reject('Bad Request');
+      });
   }
 
   isVideoInCurrentSearchSet(video: IVideo): boolean {

@@ -48,12 +48,12 @@ export class SearchSetAddComponent implements OnInit {
   onSave() {
     this.loading = true;
 
-    if (this.searchSetAddService.searchSet.videos.length < 1) {
+    if (this.searchSetAddService.videosInSearchSet.length < 1) {
       return this.handleEmptyVideosValidation();
     }
 
     this.searchSetAddService.addSearchSet()
-      .then(() => {
+      .then((resp) => {
         this.loading = false;
         this.alertService.setAlert(
           `"${this.searchSetAddService.searchSet.name}": has been added.`,
@@ -61,7 +61,10 @@ export class SearchSetAddComponent implements OnInit {
         );
         this.router.navigate(['search-sets']);
       })
-      .catch(this.handleError);
+      .catch((message: string) => {
+        this.alertService.setAlert(message, AlertType.Warning);
+        this.loading = false;
+      });
   }
 
   onSelectedSearchSet(): void {
@@ -73,7 +76,7 @@ export class SearchSetAddComponent implements OnInit {
   }
 
   private handleEmptyVideosValidation() {
-    this.alertService.setAlert(`"Please add a video to your Search Set before saving it.`, AlertType.Warning);
+    this.alertService.setAlert(`Please add a video to your Search Set before saving it.`, AlertType.Warning);
     this.loading = false;
   }
 
