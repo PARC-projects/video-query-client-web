@@ -23,7 +23,7 @@
           <label for="searchSetDuration">Duration</label>
           <input type="text" class="form-control" id="searchSetDuration" required [(ngModel)]="searchSetAddService.searchSet.duration"
             name="searchSetDuration" #searchSetDuration="ngModel" pattern="^[0-9]\d*$">
-          <small id="searchSetDurationHelp" class="form-text text-muted">Duration of clips</small>
+          <small id="searchSetDurationHelp" class="form-text text-muted">Duration of clips in seconds</small>
           <div *ngIf="searchSetDuration.invalid && (searchSetDuration.dirty || searchSetDuration.touched)">
             <div *ngIf="searchSetDuration.errors.required" class="vq-invalid-feedback">
               Duration is required.

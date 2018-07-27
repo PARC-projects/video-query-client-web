@@ -64,25 +64,34 @@ export class SearchSetAddComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  onSelectedSearchSet(): void {
+    this.handleSearchEvent();
+  }
+
+  onSearchTermUpdated(): void {
+    this.handleSearchEvent();
+  }
+
   private handleEmptyVideosValidation() {
     this.alertService.setAlert(`"Please add a video to your Search Set before saving it.`, AlertType.Warning);
     this.loading = false;
   }
 
-  onSelectedSearchSet(): void {
+  private handleSearchEvent(): void {
+    this.loading = true;
     if (this.searchSetAddService.selectedSearchSet) {
-      this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
+      this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id)
+        .then(() => {
+          this.loading = false;
+        })
+        .catch(this.handleError);
       return;
     }
-    this.searchSetAddService.getVideos();
-  }
-
-  onSearchTermUpdated(): void {
-    if (this.searchSetAddService.selectedSearchSet) {
-      this.searchSetAddService.getVideosInSelectedSearchSet(this.searchSetAddService.selectedSearchSet.id);
-      return;
-    }
-    this.searchSetAddService.getVideos();
+    this.searchSetAddService.getVideos()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(this.handleError);
   }
 
   private handleError(): void {
