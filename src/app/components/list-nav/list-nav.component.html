@@ -1,0 +1,17 @@
+<section class="list-nav-content">
+  <app-chart-header [title]="config?.title" [disableRefresh]="true" [tooltip]="config?.tooltip">
+  </app-chart-header>
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control" id="searchInput" placeholder="Search..." [ngModel]="searchTerm" (ngModelChange)="onSearch($event)">
+    </div>
+  </div>
+  <div class="list-group">
+    <a *ngFor="let node of config?.data" [ngClass]="{'active': node.id === currentId}" class="list-group-item list-group-item-action"
+      (click)="onClick(node.id)">{{node[config.displayPropertyName]}}</a>
+  </div>
+  <section class="vq-pagination">
+    <app-pagination [pagination]="config?.pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+  </section>
+  <app-loader [show]="loading"></app-loader>
+</section>

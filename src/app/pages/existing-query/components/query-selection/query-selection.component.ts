@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { IQueryResponse, IQuery } from '../../../../models/query.model';
 import { QueryRepository } from '../../../../repositories/query.repository';
+import { IListNavConfig } from '../../../../components/list-nav/list-nav.component';
 
 @Component({
   selector: 'app-query-selection',
@@ -10,11 +11,11 @@ import { QueryRepository } from '../../../../repositories/query.repository';
 export class QuerySelectionComponent implements OnInit {
   @Output() queryClick: EventEmitter<number> = new EventEmitter();
 
-  queries: IQueryResponse;
   currentQueryId: number;
   loading = false;
   searchTerm: string;
   perPage = 10;
+  listNavConfig: IListNavConfig;
 
   private timeout: any;
 
@@ -44,8 +45,8 @@ export class QuerySelectionComponent implements OnInit {
     }, 500);
   }
 
-  onQueryClick(query: IQuery): void {
-    this.currentQueryId = query.id;
+  onSelected(id: number): void {
+    this.currentQueryId = id;
     this.queryClick.emit(this.currentQueryId);
   }
 
@@ -54,7 +55,13 @@ export class QuerySelectionComponent implements OnInit {
     return this.queryRepository.getAll(page, this.searchTerm, this.perPage)
       .toPromise()
       .then((resp: IQueryResponse) => {
-        this.queries = resp;
+        this.listNavConfig = {
+          data: resp.results,
+          title: 'Queries',
+          tooltip: 'Select a query to review.',
+          displayPropertyName: 'name',
+          pagination: resp.pagination
+        } as IListNavConfig;
         this.loading = false;
       })
       .catch(() => {

@@ -11,10 +11,19 @@ const API_URL = environment.apiUrl;
 export class VideoRepository {
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<IVideoResponse[]> {
-    return this.http.get(API_URL + '/videos/').pipe(
-      map((resp: IVideoResponse[]) => {
-        return resp || [] as IVideoResponse[];
+  getAll(page?: number, search?: string, perPage = 10): Observable<IVideoResponse> {
+    let url = `${API_URL}/videos/?page_size=${perPage}`;
+    if (page) {
+      url = url + `&page=${page}`;
+    }
+
+    if (search) {
+      url = url + `&search=${search}`;
+    }
+
+    return this.http.get(url).pipe(
+      map((resp: IVideoResponse) => {
+        return resp || {} as IVideoResponse;
       }),
       catchError(this.handleError)
     );

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ResultsListChartService } from './results-list-chart.service';
 import { IMatch } from '../../../../models/match.model';
-import { ExistingQueryService } from '../../../../pages/existing-query/services/existing-query.service';
+import { ExistingQueryService } from '../../services/existing-query.service';
 import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
 
 @Component({

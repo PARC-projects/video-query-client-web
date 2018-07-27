@@ -1,0 +1,25 @@
+@import "../../../../../../custom";
+table {
+    width: 100%;
+    i {
+        color: lighten(map-get($theme-colors, "success"), 10%);
+        cursor: pointer;
+        &:hover {
+            transition: 0.25s all;
+            color: map-get($theme-colors, "success");
+        }
+    }
+}
+
+.video-link {
+    color: map-get($parc-colors, "orange");
+    cursor: pointer;
+    &:hover {
+        transition: 0.25 color;
+        color: darken(map-get($parc-colors, "orange"), 10%);
+    }
+}
+
+.vq-pagination {
+    margin: 0.5rem 0 0;
+}

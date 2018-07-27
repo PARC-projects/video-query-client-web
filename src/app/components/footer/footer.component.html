@@ -19,9 +19,19 @@
           Existing Query
         </a>
       </li>
-      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
+      <!-- <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
         <a [href]="apiUrl" target="_blank" title="API">
           API
+        </a>
+      </li> -->
+      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
+        <a routerLink="/search-sets" title="Search Sets">
+          Search Sets
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://github.com/PARC-projects/video-query-home/wiki" title="Video Query Wiki">
+          Help
         </a>
       </li>
       <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
@@ -32,7 +42,7 @@
     </ul>
     <ul class="list-inline social">
       <li class="list-inline-item">
-        <a href="https://github.com/PARC-projects/video-query" title="Video Query Github">
+        <a href="https://github.com/PARC-projects/video-query-home" title="Video Query On Github">
           <i class="fa fa-github fa-2x"></i>
         </a>
       </li>

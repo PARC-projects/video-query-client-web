@@ -1,0 +1,44 @@
+@import "../../../../custom";
+.search-set {
+    background: gray("100");
+}
+
+.list-nav {
+    background: color("white");
+}
+
+.search-set-content {
+    padding: 1rem 0;
+}
+
+button {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+.empty-state-page {
+    text-align: center;
+    color: gray("600");
+    margin: 10rem 0 0;
+    i {
+        font-size: 15rem;
+    }
+}
+
+.lead {
+    padding: 0.5rem 0 0.25rem;
+}
+
+table.table {
+    margin: 0;
+}
+
+.video-link {
+  color: map-get($parc-colors, "orange");
+  cursor: pointer;
+  &:hover {
+    transition: 0.25 color;
+    color: darken(map-get($parc-colors, "orange"), 10%);
+  }
+}

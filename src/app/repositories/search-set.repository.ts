@@ -17,8 +17,16 @@ export class SearchSetRepository {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<ISearchSetResponse> {
-    return this.http.get(`${API_URL}/search-sets/`).pipe(
+  getAll(page?: number, search?: string, perPage = 10): Observable<ISearchSetResponse> {
+    let url = `${API_URL}/search-sets/?page_size=${perPage}`;
+    if (page) {
+      url = url + `&page=${page}`;
+      if (search) {
+        url = url + `&search=${search}`;
+      }
+    }
+
+    return this.http.get(url).pipe(
       map((resp: ISearchSetResponse) => {
         return resp || {} as ISearchSetResponse;
       }),
@@ -35,13 +43,27 @@ export class SearchSetRepository {
     );
   }
 
-  getVideosInSearchSet(searchSetId: number): Observable<IVideo[]> {
-    return this.http.get(`${API_URL}/search-sets/${searchSetId}/videos/`).pipe(
+  getVideosInSearchSet(searchSetId: number, searchTerm?: string): Observable<IVideo[]> {
+    let url = `${API_URL}/search-sets/${searchSetId}/videos/`;
+
+    if (searchTerm) {
+      url = url + `?searchTerm=${searchTerm}`;
+    }
+
+    return this.http.get(url).pipe(
       map((resp: IVideo[]) => {
         return resp || [] as IVideo[];
       }),
       catchError(this.handleError)
     );
+  }
+
+  add(searchSet: ISearchSet): Observable<ISearchSet> {
+    return this.http.post(API_URL + '/search-sets/', searchSet).pipe(
+      map((resp: ISearchSet) => {
+        return resp || {} as ISearchSet;
+      }),
+      catchError(this.handleError));
   }
 
   private handleError(error: Response | any) {
