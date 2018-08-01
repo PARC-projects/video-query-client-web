@@ -55,18 +55,11 @@ import { ChartHeaderComponent } from './pages/existing-query/charts/chart-header
 /**
  * Components
  */
-import { AlertComponent } from './components/alert/alert.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavComponent } from './components/nav/nav.component';
-import { HeaderComponent } from './components/header/header.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { QuerySelectionComponent } from './pages/existing-query/components/query-selection/query-selection.component';
 import { ChartSelectionComponent } from './pages/existing-query/components/chart-selection/chart-selection.component';
 import { QueryHeaderComponent } from './pages/existing-query/components/query-header/query-header.component';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
-import { ListNavComponent } from './components/list-nav/list-nav.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { ComponentsModule } from './components/components.module';
 
 
 const appRoutes: Routes = [
@@ -87,29 +80,22 @@ const appRoutes: Routes = [
     HomeComponent,
     NewQueryComponent,
     ExistingQueryComponent,
-    LoaderComponent,
-    HeaderComponent,
-    AlertComponent,
-    NavComponent,
-    FooterComponent,
     ResultsListChartComponent,
     ChartOneComponent,
     ChartTwoComponent,
     ReferenceVideoComponent,
-    PaginationComponent,
     QuerySelectionComponent,
     ChartSelectionComponent,
     QueryHeaderComponent,
     ChartHeaderComponent,
     HelpComponent,
     SearchSetComponent,
-    ListNavComponent,
     SearchComponent,
     CurrentComponent,
-    SearchSetAddComponent,
-    ModalComponent
+    SearchSetAddComponent
   ],
   imports: [
+    ComponentsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
