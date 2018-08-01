@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaginationComponent } from './pagination/pagination.component';
   imports: [
     FormsModule,
     BrowserModule,
+    RouterModule,
     MatTooltipModule,
     BrowserAnimationsModule
   ],

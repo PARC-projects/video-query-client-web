@@ -28,17 +28,6 @@ import { SearchComponent } from './pages/admin/search-set-add/components/search/
 import { CurrentComponent } from './pages/admin/search-set-add/components/current/current.component';
 
 /**
- * Repositories
- */
-import { SearchSetRepository } from './repositories/search-set.repository';
-import { QueryRepository } from './repositories/query.repository';
-import { SignatureRepository } from './repositories/signature.repository';
-import { VideoRepository } from './repositories/video.repository';
-import { UserRepository } from './repositories/user.repository';
-import { QueryResultRepository } from './repositories/query-result.repository';
-import { MatchRepository } from './repositories/match.repository';
-
-/**
  * Services
  */
 import { AlertService } from './services/alert.service';
@@ -61,6 +50,7 @@ import { QueryHeaderComponent } from './pages/existing-query/components/query-he
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
 import { ComponentsModule } from './components/components.module';
 import { RepositoryModule } from './repositories/repository.module';
+import { PageModule } from './pages/page.module';
 
 
 const appRoutes: Routes = [
@@ -76,28 +66,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ReferenceTimeValidatorDirective,
-    HomeComponent,
-    NewQueryComponent,
-    ExistingQueryComponent,
-    ResultsListChartComponent,
-    ChartOneComponent,
-    ChartTwoComponent,
-    ReferenceVideoComponent,
-    QuerySelectionComponent,
-    ChartSelectionComponent,
-    QueryHeaderComponent,
-    ChartHeaderComponent,
-    HelpComponent,
-    SearchSetComponent,
-    SearchComponent,
-    CurrentComponent,
-    SearchSetAddComponent
+    ReferenceTimeValidatorDirective
   ],
   imports: [
     ComponentsModule,
     RepositoryModule,
+    PageModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
