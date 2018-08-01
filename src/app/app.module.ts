@@ -60,6 +60,7 @@ import { ChartSelectionComponent } from './pages/existing-query/components/chart
 import { QueryHeaderComponent } from './pages/existing-query/components/query-header/query-header.component';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
 import { ComponentsModule } from './components/components.module';
+import { RepositoryModule } from './repositories/repository.module';
 
 
 const appRoutes: Routes = [
@@ -96,6 +97,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     ComponentsModule,
+    RepositoryModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -108,19 +110,7 @@ const appRoutes: Routes = [
   providers: [
     AuthenticationGuard,
     AuthenticationService,
-    AlertService,
-    SearchSetRepository,
-    QueryRepository,
-    QueryResultRepository,
-    MatchRepository,
-    SignatureRepository,
-    VideoRepository,
-    UserRepository,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
