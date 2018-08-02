@@ -1,12 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { SignatureRepository } from './signature.repository';
 import { UserRepository } from './user.repository';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserRepository', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserRepository]
+      providers: [UserRepository],
+      imports: [HttpClientTestingModule]
     });
   });
 

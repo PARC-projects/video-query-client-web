@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExistingQueryComponent } from './existing-query.component';
+// import { ExistingQueryComponent } from './existing-query.component';
 
-describe('ExistingQueryComponent', () => {
-  let component: ExistingQueryComponent;
-  let fixture: ComponentFixture<ExistingQueryComponent>;
+// describe('ExistingQueryComponent', () => {
+//   let component: ExistingQueryComponent;
+//   let fixture: ComponentFixture<ExistingQueryComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ExistingQueryComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ ExistingQueryComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ExistingQueryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(ExistingQueryComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

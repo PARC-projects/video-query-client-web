@@ -10,7 +10,7 @@ import { SearchSetComponent } from './pages/admin/search-set/search-set.componen
 import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'new-query', component: NewQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'existing-query', component: ExistingQueryComponent, canActivate: [AuthenticationGuard] },

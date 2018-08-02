@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UserRepository, ILoginRequest } from '../repositories/user.repository';
-import { IToken } from '../models/user.model';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 
 @Injectable()

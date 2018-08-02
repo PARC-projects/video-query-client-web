@@ -14,9 +14,8 @@ export interface IListNavConfig {
   templateUrl: './list-nav.component.html',
   styleUrls: ['./list-nav.component.scss']
 })
-export class ListNavComponent implements OnInit {
+export class ListNavComponent {
   @Input() config: IListNavConfig;
-
   @Output() selected: EventEmitter<number> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
@@ -27,11 +26,6 @@ export class ListNavComponent implements OnInit {
   searchTerm: string;
   perPage = 10;
   private timeout: any;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   onPerPageSelection(perPageSelectedValue: number): void {
     this.perPage = perPageSelectedValue;

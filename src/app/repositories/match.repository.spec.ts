@@ -1,10 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { MatchRepository } from './match.repository';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MatchRepository', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MatchRepository]
+      providers: [MatchRepository],
+      imports: [HttpClientTestingModule]
     });
   });
 

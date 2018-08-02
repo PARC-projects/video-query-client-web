@@ -1,10 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { SearchSetRepository } from './search-set.repository';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SearchSetRepository', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SearchSetRepository]
+      providers: [SearchSetRepository],
+      imports: [HttpClientTestingModule]
     });
   });
 
