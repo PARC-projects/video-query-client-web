@@ -13,8 +13,8 @@ export enum AlertType {
 
 @Injectable()
 export class AlertService {
-  text = 'Hello!';
-  type = AlertType.Primary;
+  text: string;
+  type: AlertType;
   show = false;
 
   setAlert(text: string, type: AlertType): void {
