@@ -1,10 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { QueryRepository } from './query.repository';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('QueryRepository', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [QueryRepository]
+      providers: [QueryRepository],
+      imports: [HttpClientTestingModule]
     });
   });
 

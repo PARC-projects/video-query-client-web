@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuerySelectionComponent } from './query-selection.component';
+// import { QuerySelectionComponent } from './query-selection.component';
 
-describe('QuerySelectionComponent', () => {
-  let component: QuerySelectionComponent;
-  let fixture: ComponentFixture<QuerySelectionComponent>;
+// describe('QuerySelectionComponent', () => {
+//   let component: QuerySelectionComponent;
+//   let fixture: ComponentFixture<QuerySelectionComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ QuerySelectionComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ QuerySelectionComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(QuerySelectionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(QuerySelectionComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

@@ -5,6 +5,7 @@
     "Truthy",
     "VALIDATORS",
     "codelyzer",
+    "compat",
     "dataset",
     "datasets",
     "describedby",
