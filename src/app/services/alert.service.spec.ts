@@ -9,7 +9,7 @@ describe('AlertService', () => {
     TestBed.configureTestingModule({
       providers: [AlertService]
     });
-    alertService = new AlertService();
+    alertService = TestBed.get(AlertService);
   });
 
   it('should be created', inject([AlertService], (service: AlertService) => {

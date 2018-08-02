@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" [ngClass]="{'show':isCollapsed}">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <ul class="navbar-nav" *ngIf="authenticationService.checkLogin()">
+      <ul class="navbar-nav" *ngIf="authenticationService.isLoggedIn()">
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': currentPage=== 'home'}" routerLink="/home" (click)="currentPage = 'home'">
             <i class="fa fa-home"></i> &nbsp;Home
