@@ -21,10 +21,18 @@
                 <b>Id: </b>{{searchSetService.searchSet?.id}}
               </li>
               <li>
-                <b>Clip Duration: </b>{{searchSetService.searchSet?.duration}}
+                <b>Clip Duration (s): </b>{{searchSetService.searchSet?.duration}}
               </li>
               <li>
-                <b>Use Dynamic Target Adjustment: </b>{{searchSetService.searchSet?.useDynamicTargetAdjustment ? 'Yes': 'No'}}
+                <b>Use Dynamic Target Adjustment (
+                  <i matTooltip="When selected, the target will be updated in each round by setting it equal to
+                                 an average over all validated matches. When not selected, the reference clip will
+                                 remain the target in all query rounds."
+                    class="vq-info-tooltip fa fa-question">
+                  </i>
+                  ):
+                </b>
+                {{searchSetService.searchSet?.useDynamicTargetAdjustment ? 'Yes': 'No'}}
               </li>
             </ul>
             <div class="vq-widget">

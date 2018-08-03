@@ -22,11 +22,17 @@ export class SearchComponent {
   constructor(public searchSetAddService: SearchSetAddService) { }
 
   onAdd(videoToAdd: IVideo) {
-    if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
+    /* if (confirm(`Are you sure you would add "${videoToAdd.name}" to this Search Set?`)) {
       if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd)) {
         alert(`This video is already in the current Search Set.`);
         return;
       }
+      this.searchSetAddService.videosInSearchSet.push(videoToAdd);
+    } */
+    if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd)) {
+      alert(`This video is already in the current Search Set.`);
+      return;
+    } else {
       this.searchSetAddService.videosInSearchSet.push(videoToAdd);
     }
   }
