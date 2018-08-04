@@ -29,13 +29,7 @@ describe('AlertComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display if message available', () => {
-    alertService.setAlert('test', AlertType.Danger);
-    fixture.detectChanges();
 
-    const deAlert = fixture.debugElement.query(By.css('.alert'));
-    expect(deAlert).toBeTruthy(deAlert !== null);
-  });
 
   it('should not display if message not available', () => {
     fixture.detectChanges();
@@ -50,7 +44,7 @@ describe('AlertComponent', () => {
     fixture.detectChanges();
 
     let deAlert = fixture.debugElement.query(By.css('.alert'));
-    expect(deAlert).toBeTruthy(deAlert !== null);
+    expect(deAlert !== null).toBeTruthy();
 
     fixture.debugElement.query(By.css('button')).nativeElement.click();
     fixture.detectChanges();
@@ -61,11 +55,29 @@ describe('AlertComponent', () => {
   });
 
 
-  it('should render message', () => {
-    alertService.setAlert('test', AlertType.Danger);
-    fixture.detectChanges();
+  describe('setAlert', () => {
+    it('should apply "alert-danger" as css class ', () => {
+      alertService.setAlert('test', AlertType.Danger);
+      fixture.detectChanges();
 
-    const deAlert = fixture.debugElement.query(By.css('.alert'));
-    expect(deAlert.nativeElement.textContent).toContain('test');
+      const deAlert = fixture.debugElement.query(By.css('.alert'));
+      expect(deAlert.classes[AlertType.Danger]).toBeTruthy();
+    });
+
+    it('should display if message available', () => {
+      alertService.setAlert('test', AlertType.Danger);
+      fixture.detectChanges();
+
+      const deAlert = fixture.debugElement.query(By.css('.alert'));
+      expect(deAlert !== null).toBeTruthy();
+    });
+
+    it('should render message', () => {
+      alertService.setAlert('test', AlertType.Danger);
+      fixture.detectChanges();
+
+      const deAlert = fixture.debugElement.query(By.css('.alert'));
+      expect(deAlert.nativeElement.textContent).toContain('test');
+    });
   });
 });
