@@ -1,4 +1,4 @@
-# Video Query Client https://travis-ci.org/PARC-projects/video-query-client-web.svg?branch=master
+# Video Query Client [![Build Status](https://travis-ci.org/PARC-projects/video-query-client-web.svg?branch=master)](https://travis-ci.org/PARC-projects/video-query-client-web.svg?branch=master)
 
 Home page for Video Query project: **[Video Query Home](https://github.com/PARC-projects/video-query-home)**
 
