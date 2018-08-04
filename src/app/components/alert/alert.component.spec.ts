@@ -52,11 +52,10 @@ describe('AlertComponent', () => {
     let deAlert = fixture.debugElement.query(By.css('.alert'));
     expect(deAlert).toBeTruthy(deAlert !== null);
 
-    const submitEl = fixture.debugElement.query(By.css('button')).nativeElement.click();
-    // const button = fixture.debugElement.query(By.css('button')).nativeElement.click();
+    fixture.debugElement.query(By.css('button')).nativeElement.click();
+    fixture.detectChanges();
 
     deAlert = fixture.debugElement.query(By.css('.alert'));
-    fixture.detectChanges();
 
     expect(deAlert).toBeNull();
   });
