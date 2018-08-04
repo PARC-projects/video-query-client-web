@@ -15,6 +15,7 @@ export class PaginationComponent {
   onPaginationClick(page: number) {
     this.paginationClick.emit(page);
   }
+
   onPerPageSelected() {
     this.perPageSelected.emit(this.perPage);
   }

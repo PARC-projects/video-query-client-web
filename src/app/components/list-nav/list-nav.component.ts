@@ -32,8 +32,8 @@ export class ListNavComponent {
     this.perPageSelection.emit(this.perPage);
   }
 
-  onPaginationClick(): void {
-    this.paginationClick.emit(this.perPage);
+  onPaginationClick(pageClicked: number): void {
+    this.paginationClick.emit(pageClicked);
   }
 
   onSearch(search: string): void {
