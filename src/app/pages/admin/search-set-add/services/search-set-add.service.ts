@@ -15,7 +15,6 @@ export class SearchSetAddService {
    * New Search Set
    */
   searchSet = {
-    useDynamicTargetAdjustment: false,
     videos: [] // Collection of keys
   } as ISearchSet;
 
@@ -81,10 +80,9 @@ export class SearchSetAddService {
       .toPromise()
       .then(() => {
         this.videosInSearchSet = [];
-        this.searchSet = {
-          useDynamicTargetAdjustment: false,
+        /* this.searchSet = {
           videos: [] // Collection of keys
-        } as ISearchSet;
+        } as ISearchSet; */
       })
       .catch((resp: HttpErrorResponse) => {
         if (resp.error['name']) {

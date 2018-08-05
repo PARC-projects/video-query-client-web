@@ -3,6 +3,7 @@ import { SearchSetAddService } from './services/search-set-add.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { Router } from '@angular/router';
 import { AlertService, AlertType } from '../../../services/alert.service';
+import { ISearchSet } from '../../../models/search-set.model';
 
 @Component({
   selector: 'app-search-set-add',
@@ -59,6 +60,9 @@ export class SearchSetAddComponent implements OnInit {
           `"${this.searchSetAddService.searchSet.name}": has been added.`,
           AlertType.Success
         );
+        this.searchSetAddService.searchSet = {
+          videos: [] // Collection of keys
+        } as ISearchSet;
         this.router.navigate(['search-sets']);
       })
       .catch((message: string) => {

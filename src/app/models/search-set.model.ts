@@ -9,7 +9,6 @@ export interface ISearchSet  {
   id: number;
   name: string;
   duration: number;
-  useDynamicTargetAdjustment: boolean;
 
   /**
    * Collection of FKs

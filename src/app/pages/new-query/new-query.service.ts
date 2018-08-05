@@ -26,7 +26,8 @@ export class NewQueryService {
     reference_time_seconds: 0,
     reference_time_hours: 0,
     reference_time_minutes: 0,
-    max_matches_for_review: 10
+    max_matches_for_review: 10,
+    use_dynamic_target_adjustment: false
   } as IQueryForm;
 
   constructor(

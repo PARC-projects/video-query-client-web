@@ -29,6 +29,7 @@ export interface IQuery {
   notes: string;
   reference_clip_image: string;
   search_set_to_query: number;
+  use_dynamic_target_adjustment: boolean;
   video: number;
   process_state: ProcessState;
 }
