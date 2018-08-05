@@ -15,7 +15,6 @@ export class SearchSetAddService {
    * New Search Set
    */
   searchSet = {
-    useDynamicTargetAdjustment: false,
     videos: [] // Collection of keys
   } as ISearchSet;
 
@@ -82,7 +81,6 @@ export class SearchSetAddService {
       .then(() => {
         this.videosInSearchSet = [];
         this.searchSet = {
-          useDynamicTargetAdjustment: false,
           videos: [] // Collection of keys
         } as ISearchSet;
       })

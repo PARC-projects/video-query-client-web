@@ -3,6 +3,7 @@ import { SearchSetAddService } from './services/search-set-add.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { Router } from '@angular/router';
 import { AlertService, AlertType } from '../../../services/alert.service';
+import { ISearchSet } from '../../../models/search-set.model';
 
 @Component({
   selector: 'app-search-set-add',
@@ -53,7 +54,7 @@ export class SearchSetAddComponent implements OnInit {
     }
 
     this.searchSetAddService.addSearchSet()
-      .then((resp) => {
+      .then(() => {
         this.loading = false;
         this.alertService.setAlert(
           `"${this.searchSetAddService.searchSet.name}": has been added.`,
