@@ -72,7 +72,7 @@ export class SearchSetAddService {
       });
   }
 
-  addSearchSet() {
+  addSearchSet(): Promise<string> {
     this.videosInSearchSet.forEach(video => {
       this.searchSet.videos.push(video.id);
     });
