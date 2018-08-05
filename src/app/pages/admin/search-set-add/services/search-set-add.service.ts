@@ -72,17 +72,15 @@ export class SearchSetAddService {
       });
   }
 
-  addSearchSet() {
+  addSearchSet(): Promise<ISearchSet> {
     this.videosInSearchSet.forEach(video => {
       this.searchSet.videos.push(video.id);
     });
     return this.searchSetRepository.add(this.searchSet)
       .toPromise()
-      .then(() => {
-        this.videosInSearchSet = [];
-        this.searchSet = {
-          videos: [] // Collection of keys
-        } as ISearchSet;
+      .then((resp: ISearchSet) => {
+        this.resetState();
+        return resp;
       })
       .catch((resp: HttpErrorResponse) => {
         if (resp.error['name']) {
@@ -101,5 +99,12 @@ export class SearchSetAddService {
     if (index > -1) {
       this.videosInSearchSet.splice(index, 1);
     }
+  }
+
+  private resetState() {
+    this.videosInSearchSet = [];
+    this.searchSet = {
+      videos: [] // Collection of keys
+    } as ISearchSet;
   }
 }
