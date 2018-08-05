@@ -72,16 +72,15 @@ export class SearchSetAddService {
       });
   }
 
-  addSearchSet(): Promise<string> {
+  addSearchSet(): Promise<ISearchSet> {
     this.videosInSearchSet.forEach(video => {
       this.searchSet.videos.push(video.id);
     });
     return this.searchSetRepository.add(this.searchSet)
       .toPromise()
-      .then(() => {
-        const cacheName = this.searchSet.name;
+      .then((resp: ISearchSet) => {
         this.resetState();
-        return cacheName;
+        return resp;
       })
       .catch((resp: HttpErrorResponse) => {
         if (resp.error['name']) {
