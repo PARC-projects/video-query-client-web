@@ -79,10 +79,9 @@ export class SearchSetAddService {
     return this.searchSetRepository.add(this.searchSet)
       .toPromise()
       .then(() => {
-        this.videosInSearchSet = [];
-        this.searchSet = {
-          videos: [] // Collection of keys
-        } as ISearchSet;
+        const cacheName = this.searchSet.name;
+        this.resetState();
+        return cacheName;
       })
       .catch((resp: HttpErrorResponse) => {
         if (resp.error['name']) {
@@ -101,5 +100,12 @@ export class SearchSetAddService {
     if (index > -1) {
       this.videosInSearchSet.splice(index, 1);
     }
+  }
+
+  private resetState() {
+    this.videosInSearchSet = [];
+    this.searchSet = {
+      videos: [] // Collection of keys
+    } as ISearchSet;
   }
 }
