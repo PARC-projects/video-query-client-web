@@ -54,15 +54,12 @@ export class SearchSetAddComponent implements OnInit {
     }
 
     this.searchSetAddService.addSearchSet()
-      .then((resp) => {
+      .then(() => {
         this.loading = false;
         this.alertService.setAlert(
           `"${this.searchSetAddService.searchSet.name}": has been added.`,
           AlertType.Success
         );
-        this.searchSetAddService.searchSet = {
-          videos: [] // Collection of keys
-        } as ISearchSet;
         this.router.navigate(['search-sets']);
       })
       .catch((message: string) => {

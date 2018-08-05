@@ -80,9 +80,9 @@ export class SearchSetAddService {
       .toPromise()
       .then(() => {
         this.videosInSearchSet = [];
-        /* this.searchSet = {
+        this.searchSet = {
           videos: [] // Collection of keys
-        } as ISearchSet; */
+        } as ISearchSet;
       })
       .catch((resp: HttpErrorResponse) => {
         if (resp.error['name']) {
