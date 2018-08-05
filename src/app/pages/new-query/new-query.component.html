@@ -86,33 +86,15 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group custom-control custom-checkbox">
-              <!-- Default unchecked for use_dynamic_target_adjustment -->
-              <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
-                     [(ngModel)]="newQueryService.form.use_dynamic_target_adjustment"
-                     name="queryDynamic">
+              <input type="checkbox" class="custom-control-input" id="defaultUnchecked" [(ngModel)]="newQueryService.form.use_dynamic_target_adjustment"
+                name="queryDynamic">
               <label class="custom-control-label" for="defaultUnchecked"> Dynamic target adjustment
-                (
                 <i matTooltip="Let the algorithms know whether to “average” the features of all validated matches in each round and have that become the new target.
-                               If not selected, the reference clip remains the target in each round."
-                   class="vq-info-tooltip fa fa-question">
+                               If not selected, the reference clip remains the target in each round." class="vq-info-tooltip fa fa-question">
                 </i>
-                )
               </label>
-
             </div>
-            <!--<div class="form-group">
-                <b>Use Dynamic Target Adjustment (
-                  <i matTooltip="When selected, the target will be updated in each round by setting it equal to
-                                 an average over all validated matches. When not selected, the reference clip will
-                                 remain the target in all query rounds."
-                    class="vq-info-tooltip fa fa-question">
-                  </i>
-                  ):
-                </b>
-                {{newQueryService.searchSet?.use_dynamic_target_adjustment ? 'Yes': 'No'}}
-            </div> -->
           </fieldset>
           <div class="form-group">
             <label for="name">Query name:</label>
