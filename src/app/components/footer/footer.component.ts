@@ -8,10 +8,10 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-
   mailToAddress = environment.mailToAddress;
   apiUrl = environment.apiUrl;
   adminUrl = this.apiUrl + '/admin';
+
   constructor(public authenticationService: AuthenticationService) {
   }
 }

@@ -19,11 +19,6 @@
           Existing Query
         </a>
       </li>
-      <!-- <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
-        <a [href]="apiUrl" target="_blank" title="API">
-          API
-        </a>
-      </li> -->
       <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
         <a routerLink="/search-sets" title="Search Sets">
           Search Sets
