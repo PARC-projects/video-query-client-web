@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" [ngClass]="{'show':isCollapsed}">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <ul class="navbar-nav" *ngIf="authenticationService.isLoggedIn()">
+      <ul class="navbar-nav logged-in-navigation" *ngIf="authenticationService.isLoggedIn()">
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': currentPage=== 'home'}" routerLink="/home" (click)="currentPage = 'home'">
             <i class="fa fa-home"></i> &nbsp;Home
@@ -26,7 +26,7 @@
             <i class="fa fa-database"></i> &nbsp;Existing
           </a>
         </li>
-        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+        <li class="nav-item" class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
           <a class="nav-link" routerLink="search-sets" title="Search Sets" (click)="currentPage = 'search-sets'">
             <i class="fa fa-tasks"></i> &nbsp;Search Sets
           </a>
@@ -36,7 +36,7 @@
             <i class="fa fa-question-circle-o"></i> &nbsp;Help
           </a>
         </li>
-        <li class="nav-item" *ngIf="authenticationService.getCurrentToken().is_staff">
+        <li class="nav-item" class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
           <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
             <i class="fa fa-lock"></i> &nbsp;Admin
           </a>
