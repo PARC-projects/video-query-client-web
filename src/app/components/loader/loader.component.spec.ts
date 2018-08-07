@@ -23,7 +23,7 @@ describe('LoaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should  not display if @Input show = false', () => {
+  it('should not display if show = false', () => {
     component.show = false;
     fixture.detectChanges();
 
@@ -32,7 +32,7 @@ describe('LoaderComponent', () => {
     expect(deAlert).toBeNull();
   });
 
-  it('should   display if @Input show = true', () => {
+  it('should display if show = true', () => {
     component.show = true;
     fixture.detectChanges();
 
