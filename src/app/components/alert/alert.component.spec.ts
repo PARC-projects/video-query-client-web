@@ -30,7 +30,6 @@ describe('AlertComponent', () => {
   });
 
 
-
   it('should not display if message not available', () => {
     fixture.detectChanges();
 

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { By } from '@angular/platform-browser';
 import { LoaderComponent } from './loader.component';
 
 describe('LoaderComponent', () => {
@@ -8,9 +8,9 @@ describe('LoaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoaderComponent ]
+      declarations: [LoaderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +21,23 @@ describe('LoaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should  not display if @Input show = false', () => {
+    component.show = false;
+    fixture.detectChanges();
+
+    const deAlert = fixture.debugElement.query(By.css('section'));
+
+    expect(deAlert).toBeNull();
+  });
+
+  it('should   display if @Input show = true', () => {
+    component.show = true;
+    fixture.detectChanges();
+
+    const deAlert = fixture.debugElement.query(By.css('section'));
+
+    expect(deAlert).toBeTruthy();
   });
 });
