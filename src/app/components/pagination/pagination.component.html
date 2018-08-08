@@ -1,21 +1,21 @@
 <div class="clearfix" *ngIf="pagination">
   <div class="float-left">
-    <nav class="">
+    <nav>
       <ul class="pagination pagination-sm">
-        <li class="page-item " [ngClass]="{ 'disabled': !pagination?.previousPage} " (click)="onPaginationClick(pagination?.previousPage) ">
-          <a class="page-link ">&#x3C;</a>
+        <li class="page-item previous-arrow" [ngClass]="{'disabled': !pagination?.previousPage}" (click)="onPaginationClick(pagination?.previousPage)">
+          <a class="page-link">&#x3C;</a>
         </li>
-        <li class="page-item " *ngIf="pagination?.previousPage " (click)="onPaginationClick(pagination?.previousPage) ">
-          <a class="page-link ">{{pagination?.previousPage}}</a>
+        <li class="page-item previous" *ngIf="pagination?.previousPage" (click)="onPaginationClick(pagination?.previousPage)">
+          <a class="page-link">{{pagination?.previousPage}}</a>
         </li>
-        <li class="page-item active " (click)="onPaginationClick(pagination?.currentPage) ">
-          <a class="page-link ">{{pagination?.currentPage}}</a>
+        <li class="page-item active current" (click)="onPaginationClick(pagination?.currentPage) ">
+          <a class="page-link">{{pagination?.currentPage}}</a>
         </li>
-        <li class="page-item " *ngIf="pagination?.nextPage " (click)="onPaginationClick(pagination?.nextPage) ">
-          <a class="page-link ">{{pagination?.nextPage}}</a>
+        <li class="page-item next" *ngIf="pagination?.nextPage" (click)="onPaginationClick(pagination?.nextPage)">
+          <a class="page-link">{{pagination?.nextPage}}</a>
         </li>
-        <li class="page-item " [ngClass]="{ 'disabled': !pagination?.nextPage} " (click)="onPaginationClick(pagination?.nextPage) ">
-          <a class="page-link ">&#x3E;</a>
+        <li class="page-item next-arrow" [ngClass]="{'disabled': !pagination?.nextPage}" (click)="onPaginationClick(pagination?.nextPage)">
+          <a class="page-link">&#x3E;</a>
         </li>
       </ul>
     </nav>
@@ -23,7 +23,7 @@
   <div class="float-right">
     <div class="form-inline">
       <label class="form-text text-muted my-1 mr-2 per-page">Per Page</label>
-      <select class="custom-select custom-select-sm"[(ngModel)]="perPage" (ngModelChange)="onPerPageSelected($event)">
+      <select class="custom-select custom-select-sm" [(ngModel)]="perPage" (ngModelChange)="onPerPageSelected($event)">
         <option selected value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
