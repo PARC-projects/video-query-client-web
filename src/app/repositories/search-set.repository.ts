@@ -17,7 +17,7 @@ export class SearchSetRepository {
 
   constructor(private http: HttpClient) { }
 
-  getAll(page?: number, search?: string, perPage = 10): Observable<ISearchSetResponse> {
+  getAll(page?: number, search?: string, perPage?: number): Observable<ISearchSetResponse> {
     let url = `${API_URL}/search-sets`;
 
     if (perPage) {
