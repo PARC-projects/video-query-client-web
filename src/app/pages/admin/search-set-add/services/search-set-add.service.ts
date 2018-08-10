@@ -15,7 +15,8 @@ export class SearchSetAddService {
    * New Search Set
    */
   searchSet = {
-    videos: [] // Collection of keys
+    videos: [], // Collection of keys
+    duration: 10
   } as ISearchSet;
 
   /**
@@ -104,7 +105,8 @@ export class SearchSetAddService {
   private resetState() {
     this.videosInSearchSet = [];
     this.searchSet = {
-      videos: [] // Collection of keys
+      videos: [], // Collection of keys
+      duration: 10
     } as ISearchSet;
   }
 }
