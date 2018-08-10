@@ -1,12 +1,7 @@
 @import "../../../../../../custom";
 table {
     width: 100%;
-    i {
-        color: lighten(theme-color("danger"), 20%);
-        cursor: pointer;
-        &:hover {
-            transition: 0.25s all;
-            color: theme-color("danger")
-        }
-    }
+}
+.save-btn {
+  margin-bottom: 5.5px;
 }

@@ -2,7 +2,7 @@
   <form #newForm="ngForm">
     <header class="clearfix">
       <h4 class="float-left">{{searchSetAddService.searchSet.name}}</h4>
-      <button type="button" class="btn btn-warning btn-sm float-right" (click)="onSave()" [disabled]="newForm.invalid">Save</button>
+      <button type="button" class="btn btn-warning btn-sm float-right save-btn" (click)="onSave()" [disabled]="newForm.invalid">Save</button>
     </header>
     <div class="row">
       <div class="col">
@@ -36,7 +36,6 @@
       </div>
     </div>
   </form>
-  <hr>
   <table>
     <thead>
       <tr>
@@ -50,7 +49,7 @@
         <td>{{video.name}}</td>
         <td>{{video.path}}</td>
         <td (click)="onRemove(video)">
-          <i class="fa fa-times"></i>
+          <button type="button" class="float-right btn btn-danger btn-sm">Delete</button>
         </td>
       </tr>
     </tbody>
