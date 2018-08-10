@@ -13,9 +13,7 @@ export class CurrentComponent {
   constructor(public searchSetAddService: SearchSetAddService) { }
 
   onRemove(videoToRemove: IVideo) {
-    if (confirm(`Are you sure you want to remove ${videoToRemove.name} from this Search Set?`)) {
-      this.searchSetAddService.removeVideoFromSearchSet(videoToRemove);
-    }
+    this.searchSetAddService.removeVideoFromSearchSet(videoToRemove);
   }
 
   onSave() {
