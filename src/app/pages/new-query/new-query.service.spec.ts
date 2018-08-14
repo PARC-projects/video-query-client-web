@@ -3,7 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewQueryService, IQueryForm } from './new-query.service';
 import { QueryRepository } from '../../repositories/query.repository';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
-
+import { environment } from '../../../environments/environment';
+import { IVideo } from '../../models/video.model';
 
 describe('NewQueryService', () => {
   let newQueryService: NewQueryService;
@@ -27,8 +28,29 @@ describe('NewQueryService', () => {
       reference_time_minutes: 0,
       max_matches_for_review: 10,
       use_dynamic_target_adjustment: false,
-      current_video_length: 1000000
+      current_video_length: 1000000,
+      video: 1
     } as IQueryForm;
+
+    newQueryService.videos = [
+      {
+        id: 1,
+        path: 'help.mp4'
+      } as IVideo
+    ] as IVideo[];
+
+    environment.fileStoreRoot = 'assets/videos/';
+  });
+
+  describe('getVideoPathBasedOnId', () => {
+    it('should return assets/videos/help.mp4 when form.video = 1', () => {
+      expect(newQueryService.getVideoPathBasedOnId()).toEqual('assets/videos/help.mp4');
+    });
+
+    it('should return an empty string when form.video is not found', () => {
+      newQueryService.form.video = 10;
+      expect(newQueryService.getVideoPathBasedOnId()).toEqual('');
+    });
   });
 
   describe('getCurrentReferenceTimeInSeconds', () => {
