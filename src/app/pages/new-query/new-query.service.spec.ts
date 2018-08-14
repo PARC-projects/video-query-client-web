@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 import { IVideo } from '../../models/video.model';
 
 describe('NewQueryService', () => {
-  let newQueryService: NewQueryService;
+  let sut: NewQueryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,9 +18,9 @@ describe('NewQueryService', () => {
         QueryRepository
       ]
     });
-    newQueryService = TestBed.get(NewQueryService);
+    sut = TestBed.get(NewQueryService);
 
-    newQueryService.form = {
+    sut.form = {
       name: '',
       reference_time: '00:00:00',
       reference_time_seconds: 0,
@@ -32,7 +32,7 @@ describe('NewQueryService', () => {
       video: 1
     } as IQueryForm;
 
-    newQueryService.videos = [
+    sut.videos = [
       {
         id: 1,
         path: 'help.mp4'
@@ -42,60 +42,64 @@ describe('NewQueryService', () => {
     environment.fileStoreRoot = 'assets/videos/';
   });
 
+  it('should create', () => {
+    expect(sut).toBeTruthy();
+  });
+
   describe('getVideoPathBasedOnId', () => {
     it('should return assets/videos/help.mp4 when form.video = 1', () => {
-      expect(newQueryService.getVideoPathBasedOnId()).toEqual('assets/videos/help.mp4');
+      expect(sut.getVideoPathBasedOnId()).toEqual('assets/videos/help.mp4');
     });
 
     it('should return an empty string when form.video is not found', () => {
-      newQueryService.form.video = 10;
-      expect(newQueryService.getVideoPathBasedOnId()).toEqual('');
+      sut.form.video = 10;
+      expect(sut.getVideoPathBasedOnId()).toEqual('');
     });
   });
 
   describe('getCurrentReferenceTimeInSeconds', () => {
     it('should return 3600 when reference_time_hours = 1', () => {
-      newQueryService.form.reference_time_hours = 1;
+      sut.form.reference_time_hours = 1;
 
-      expect(newQueryService.getCurrentReferenceTimeInSeconds()).toEqual(3600);
+      expect(sut.getCurrentReferenceTimeInSeconds()).toEqual(3600);
     });
 
     it('should return 300 when reference_time_minutes = 5', () => {
-      newQueryService.form.reference_time_minutes = 5;
+      sut.form.reference_time_minutes = 5;
 
-      expect(newQueryService.getCurrentReferenceTimeInSeconds()).toEqual(300);
+      expect(sut.getCurrentReferenceTimeInSeconds()).toEqual(300);
     });
 
     it('should return 15 when reference_time_seconds = 15', () => {
-      newQueryService.form.reference_time_seconds = 15;
+      sut.form.reference_time_seconds = 15;
 
-      expect(newQueryService.getCurrentReferenceTimeInSeconds()).toEqual(15);
+      expect(sut.getCurrentReferenceTimeInSeconds()).toEqual(15);
     });
 
     it('should return 0 if total time is greater then current_video_length', () => {
-      newQueryService.form.reference_time_seconds = newQueryService.form.current_video_length + 1;
+      sut.form.reference_time_seconds = sut.form.current_video_length + 1;
 
-      expect(newQueryService.getCurrentReferenceTimeInSeconds()).toEqual(0);
+      expect(sut.getCurrentReferenceTimeInSeconds()).toEqual(0);
     });
   });
 
   describe('getFormattedReferenceTime', () => {
     it('should return 01:00:00 when reference_time_hours = 1', () => {
-      newQueryService.form.reference_time_hours = 1;
+      sut.form.reference_time_hours = 1;
 
-      expect(newQueryService.getFormattedReferenceTime()).toEqual('01:00:00');
+      expect(sut.getFormattedReferenceTime()).toEqual('01:00:00');
     });
 
     it('should return 00:05:00 when reference_time_minutes = 5', () => {
-      newQueryService.form.reference_time_minutes = 5;
+      sut.form.reference_time_minutes = 5;
 
-      expect(newQueryService.getFormattedReferenceTime()).toEqual('00:05:00');
+      expect(sut.getFormattedReferenceTime()).toEqual('00:05:00');
     });
 
     it('should return 00:00:15 when reference_time_seconds = 15', () => {
-      newQueryService.form.reference_time_seconds = 15;
+      sut.form.reference_time_seconds = 15;
 
-      expect(newQueryService.getFormattedReferenceTime()).toEqual('00:00:15');
+      expect(sut.getFormattedReferenceTime()).toEqual('00:00:15');
     });
   });
 });
