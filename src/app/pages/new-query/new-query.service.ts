@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IVideo, IVideoResponse } from '../../models/video.model';
-import { VideoRepository } from '../../repositories/video.repository';
+import { IVideo } from '../../models/video.model';
 import { IQuery, ProcessState, IQueryResponse } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
-import { Observable } from 'rxjs';
 import { ISearchSetResponse, ISearchSet } from '../../models/search-set.model';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
 import { environment } from '../../../environments/environment';
 
-interface IQueryForm extends IQuery {
+export interface IQueryForm extends IQuery {
   reference_time_seconds: number;
   reference_time_minutes: number;
   reference_time_hours: number;
@@ -31,7 +29,6 @@ export class NewQueryService {
   } as IQueryForm;
 
   constructor(
-    private videoRepository: VideoRepository,
     private searchSetRepository: SearchSetRepository,
     private queryRepository: QueryRepository
   ) {
