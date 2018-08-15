@@ -16,6 +16,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg">
+                  {{existingQueryService.currentQuery.process_state}}
                   <app-query-header [query]="existingQueryService.currentQuery" [isEditable]="isQueryDisabled() || disabled" (resetQuery)="onResetQuery()"
                     (revisionSubmit)="onRevisionSubmit()" (finalizeSubmit)="onFinalizeSubmit()"></app-query-header>
                 </div>
@@ -30,12 +31,30 @@
                   <app-reference-video [isEditable]="disabled" [videoSrc]="existingQueryService.videoSrc" (resetCurrentActiveMatch)="onResetCurrentActiveMatch()"></app-reference-video>
                 </div>
               </div>
-              <div class="row" *ngIf="isQueryDisabled() && !canvasLoading ">
+              <div class="row" *ngIf="isProcessing()">
                 <div class="col-lg ">
                   <div class="processing-state-page ">
                     <i class="fa fa-wrench " aria-hidden="true "></i>
                     <h4>This Query is currently being processed!</h4>
                     <p class="lead ">Please check back later for results.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="existingQueryService.currentQuery.process_state === 6  && !canvasLoading">
+                <div class="col-lg ">
+                  <div class="processing-state-page ">
+                    <i class="fa fa-wrench " aria-hidden="true "></i>
+                    <h4>This Query is currently being Finalized!</h4>
+                    <p class="lead ">Please check back later for results.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="existingQueryService.currentQuery.process_state === 7  && !canvasLoading">
+                <div class="col-lg ">
+                  <div class="processing-state-page ">
+                    <i class="fa fa-wrench " aria-hidden="true "></i>
+                    <h4>This Query has been Finalized!</h4>
+                    <p class="lead ">Some Link</p>
                   </div>
                 </div>
               </div>

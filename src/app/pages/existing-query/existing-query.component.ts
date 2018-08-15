@@ -117,6 +117,13 @@ export class ExistingQueryComponent implements OnInit {
     return this.existingQueryService.currentQuery.process_state !== 4;
   }
 
+  isProcessing(): boolean {
+    return (this.existingQueryService.currentQuery.process_state === 1
+      || this.existingQueryService.currentQuery.process_state === 2
+      || this.existingQueryService.currentQuery.process_state === 3)
+      && !this.canvasLoading;
+  }
+
   private buildChart(chartVersion: number) {
     if (this.isQueryDisabled()) {
       return;
