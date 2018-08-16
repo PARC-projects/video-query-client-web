@@ -75,7 +75,7 @@ export class ExistingQueryComponent implements OnInit {
     this.canvasLoading = true;
     this.matchService.submitRevision(this.existingQueryService.currentQuery.id)
       .then(() => {
-        return this.existingQueryService.updateQuery();
+        return this.existingQueryService.updateQueryNote();
       })
       .then(() => {
         this.alertService.setAlert(message, AlertType.Success);
