@@ -32,17 +32,26 @@
               </div>
               <div class="row" *ngIf="isProcessing()">
                 <div class="col-lg ">
-                  <div class="processing-state-page ">
-                    <i class="fa fa-wrench " aria-hidden="true "></i>
+                  <div class="processing-state-page">
+                    <i class="fa fa-wrench" aria-hidden="true "></i>
                     <h4>"{{existingQueryService.currentQuery.name}}" is currently being processed!</h4>
                     <p class="lead ">Please check back later for results.</p>
                   </div>
                 </div>
               </div>
+              <div class="row" *ngIf="existingQueryService.currentQuery.process_state === 5  && !canvasLoading">
+                <div class="col-lg ">
+                  <div class="processing-state-page">
+                    <i class="fa fa-exclamation-circle error-color" aria-hidden="true "></i>
+                    <h4>"{{existingQueryService.currentQuery.name}}" is currently an Erroneous state!</h4>
+                    <p class="lead ">Please check back later for updates.</p>
+                  </div>
+                </div>
+              </div>
               <div class="row" *ngIf="existingQueryService.currentQuery.process_state === 6  && !canvasLoading">
                 <div class="col-lg ">
-                  <div class="processing-state-page ">
-                    <i class="fa fa-hourglass-half " aria-hidden="true "></i>
+                  <div class="processing-state-page">
+                    <i class="fa fa-hourglass-half" aria-hidden="true "></i>
                     <h4>"{{existingQueryService.currentQuery.name}}" is currently being Finalized!</h4>
                     <p class="lead ">Please check back later for results.</p>
                   </div>
@@ -50,8 +59,8 @@
               </div>
               <div class="row" *ngIf="existingQueryService.currentQuery.process_state === 7  && !canvasLoading">
                 <div class="col-lg ">
-                  <div class="processing-state-page ">
-                    <i class="fa fa-check " aria-hidden="true "></i>
+                  <div class="processing-state-page">
+                    <i class="fa fa-check success-color" aria-hidden="true "></i>
                     <h4>"{{existingQueryService.currentQuery.name}}" has been Finalized!</h4>
                     <p class="lead ">Some Link</p>
                   </div>
