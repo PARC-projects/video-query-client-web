@@ -102,13 +102,12 @@ export class ExistingQueryComponent implements OnInit {
    * Emitter: app-query-header
    */
   onFinalizeSubmit(): void {
-    if (confirm(`Are you sure you would like to this query to be finalized?`)) {
+    if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
       this.canvasLoading = true;
       this.existingQueryService.updateQueryStateToProcessFinalized()
         .then(() => {
-          const message = `"${this.existingQueryService.currentQuery.name}":
-        has been submitted for to be finalized. This feature is still in development.`;
-          this.alertService.setAlert(message, AlertType.Info);
+          const message = `"${this.existingQueryService.currentQuery.name}": has been submitted for to be finalized`;
+          this.alertService.setAlert(message, AlertType.Success);
           this.canvasLoading = false;
         })
         .catch(() => {
