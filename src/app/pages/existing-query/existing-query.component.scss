@@ -28,10 +28,18 @@
         font-size: 15rem;
     }
     h4 {
-      margin: 1rem 0 0;
+        margin: 1rem 0 0;
     }
 }
 
 .chart-switch a {
     color: gray("300");
+}
+
+.error-color {
+    color: theme-color("danger");
+}
+
+.success-color {
+  color: theme-color("success");
 }
