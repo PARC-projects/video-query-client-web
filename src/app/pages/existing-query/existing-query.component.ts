@@ -102,9 +102,12 @@ export class ExistingQueryComponent implements OnInit {
    * Emitter: app-query-header
    */
   onFinalizeSubmit(): void {
-    const message = `"${this.existingQueryService.currentQuery.name}":
-    has been submitted for to be finalized. This feature is still in development.`;
-    this.alertService.setAlert(message, AlertType.Info);
+    this.existingQueryService.updateQueryStateToProcessFinalized()
+      .then(() => {
+        const message = `"${this.existingQueryService.currentQuery.name}":
+        has been submitted for to be finalized. This feature is still in development.`;
+        this.alertService.setAlert(message, AlertType.Info);
+      });
   }
 
   /**
