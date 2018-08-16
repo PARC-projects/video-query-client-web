@@ -7,7 +7,10 @@ export enum ProcessState {
   Submitted = 1,
   Revised = 2,
   Processing,
-  Processed
+  Processed,
+  Error,
+  ProcessFinalized,
+  Finalized
 }
 
 /**

@@ -73,6 +73,12 @@ export class QueryRepository {
       catchError(this.handleError));
   }
 
+  updateState(id: number, state: number): Observable<void> {
+    return this.http.patch(API_URL + `/queries/${id}/`, { 'notes': state }).pipe(
+      map(() => { }),
+      catchError(this.handleError));
+  }
+
   private handleError(error: Response | any) {
     console.error('QueryRepository::handleError', error);
     return throwError(error);

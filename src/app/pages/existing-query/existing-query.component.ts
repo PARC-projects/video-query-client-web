@@ -27,7 +27,6 @@ export class ExistingQueryComponent implements OnInit {
 
   @ViewChild(ChartOneComponent) private chartOne: ChartOneComponent;
   @ViewChild(ChartTwoComponent) private chartTwo: ChartTwoComponent;
-  @ViewChild(ResultsListChartComponent) private resultsListChart: ResultsListChartComponent;
 
   private sub: Subscription;
 
@@ -99,6 +98,9 @@ export class ExistingQueryComponent implements OnInit {
     }
   }
 
+  /**
+   * Emitter: app-query-header
+   */
   onFinalizeSubmit(): void {
     const message = `"${this.existingQueryService.currentQuery.name}":
     has been submitted for to be finalized. This feature is still in development.`;
