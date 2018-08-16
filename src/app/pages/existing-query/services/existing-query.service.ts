@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IQuery, IQueryView } from '../../../models/query.model';
+import { IQuery, IQueryView, ProcessState } from '../../../models/query.model';
 import { QueryRepository } from '../../../repositories/query.repository';
-import { MatchRepository } from '../../../repositories/match.repository';
 import { VideoRepository } from '../../../repositories/video.repository';
 import { IVideo } from '../../../models/video.model';
 import { ISearchSet } from '../../../models/search-set.model';
@@ -68,8 +67,14 @@ export class ExistingQueryService {
       });
   }
 
-  updateQuery(): Promise<void> {
+  updateQueryNote(): Promise<void> {
     return this.queryRepository.updateNote(this.currentQuery.id, this.currentQuery.notes)
+      .toPromise();
+  }
+
+  updateQueryStateToProcessFinalized(): Promise<void> {
+    this.currentQuery.process_state = ProcessState.ProcessFinalized;
+    return this.queryRepository.updateState(this.currentQuery.id, this.currentQuery.process_state)
       .toPromise();
   }
 }

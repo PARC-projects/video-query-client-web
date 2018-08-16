@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { IQueryResponse, IQuery } from '../models/query.model';
+import { IQueryResponse, IQuery, ProcessState } from '../models/query.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AlertService } from '../services/alert.service';
@@ -69,6 +69,12 @@ export class QueryRepository {
 
   updateNote(id: number, note: string): Observable<void> {
     return this.http.patch(API_URL + `/queries/${id}/`, { 'notes': note }).pipe(
+      map(() => { }),
+      catchError(this.handleError));
+  }
+
+  updateState(id: number, state: ProcessState): Observable<void> {
+    return this.http.patch(API_URL + `/queries/${id}/`, { 'process_state': state }).pipe(
       map(() => { }),
       catchError(this.handleError));
   }

@@ -27,7 +27,6 @@ export class ExistingQueryComponent implements OnInit {
 
   @ViewChild(ChartOneComponent) private chartOne: ChartOneComponent;
   @ViewChild(ChartTwoComponent) private chartTwo: ChartTwoComponent;
-  @ViewChild(ResultsListChartComponent) private resultsListChart: ResultsListChartComponent;
 
   private sub: Subscription;
 
@@ -76,7 +75,7 @@ export class ExistingQueryComponent implements OnInit {
     this.canvasLoading = true;
     this.matchService.submitRevision(this.existingQueryService.currentQuery.id)
       .then(() => {
-        return this.existingQueryService.updateQuery();
+        return this.existingQueryService.updateQueryNote();
       })
       .then(() => {
         this.alertService.setAlert(message, AlertType.Success);
@@ -99,10 +98,22 @@ export class ExistingQueryComponent implements OnInit {
     }
   }
 
+  /**
+   * Emitter: app-query-header
+   */
   onFinalizeSubmit(): void {
-    const message = `"${this.existingQueryService.currentQuery.name}":
-    has been submitted for to be finalized. This feature is still in development.`;
-    this.alertService.setAlert(message, AlertType.Info);
+    if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
+      this.canvasLoading = true;
+      this.existingQueryService.updateQueryStateToProcessFinalized()
+        .then(() => {
+          const message = `"${this.existingQueryService.currentQuery.name}": has been submitted for to be finalized`;
+          this.alertService.setAlert(message, AlertType.Success);
+          this.canvasLoading = false;
+        })
+        .catch(() => {
+          this.canvasLoading = false;
+        });
+    }
   }
 
   /**
@@ -115,6 +126,13 @@ export class ExistingQueryComponent implements OnInit {
 
   isQueryDisabled(): boolean {
     return this.existingQueryService.currentQuery.process_state !== 4;
+  }
+
+  isProcessing(): boolean {
+    return (this.existingQueryService.currentQuery.process_state === 1
+      || this.existingQueryService.currentQuery.process_state === 2
+      || this.existingQueryService.currentQuery.process_state === 3)
+      && !this.canvasLoading;
   }
 
   private buildChart(chartVersion: number) {
