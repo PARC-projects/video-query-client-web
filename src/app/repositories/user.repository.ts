@@ -5,8 +5,6 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { IToken } from '../models/user.model';
 
-const API_URL = environment.apiUrl;
-
 export interface ILoginRequest {
   username: string;
   password: string;
@@ -18,7 +16,7 @@ export class UserRepository {
   constructor(private http: HttpClient) { }
 
   login(loginModel: ILoginRequest): Observable<IToken> {
-    return this.http.post(`${API_URL}/api-token-auth/`, loginModel).pipe(
+    return this.http.post(`${environment.apiUrl}/api-token-auth/`, loginModel).pipe(
       map((resp: IToken) => {
         return resp || {} as IToken;
       }),

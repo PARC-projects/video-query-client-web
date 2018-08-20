@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+
 import { IQueryResponse, IQuery, ProcessState } from '../models/query.model';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { AlertService } from '../services/alert.service';
 import { IQueryResult } from '../models/query-result.model';
 import { IMatch } from '../models/match.model';
-
-const API_URL = environment.apiUrl;
 
 @Injectable()
 export class QueryRepository {
@@ -17,7 +15,7 @@ export class QueryRepository {
   ) { }
 
   getById(id: number): Observable<IQuery> {
-    return this.http.get(`${API_URL}/queries/${id}/`).pipe(
+    return this.http.get(`${environment.apiUrl}/queries/${id}/`).pipe(
       map((resp: IQuery) => {
         return resp || {} as IQuery;
       }),
@@ -26,7 +24,7 @@ export class QueryRepository {
   }
 
   getAll(page?: number, search?: string, perPage = 10): Observable<IQueryResponse> {
-    let url = `${API_URL}/queries/?page_size=${perPage}`;
+    let url = `${environment.apiUrl}/queries/?page_size=${perPage}`;
     if (page) {
       url = url + `&page=${page}`;
       if (search) {
@@ -43,7 +41,7 @@ export class QueryRepository {
   }
 
   add(query: IQuery): Observable<IQueryResponse> {
-    return this.http.post(API_URL + '/queries/', query).pipe(
+    return this.http.post(environment.apiUrl + '/queries/', query).pipe(
       map((resp: IQueryResponse) => {
         return resp || {} as IQueryResponse;
       }),
@@ -51,7 +49,7 @@ export class QueryRepository {
   }
 
   getLatestQueryResult(id: number): Observable<IQueryResult> {
-    return this.http.get(`${API_URL}/queries/${id}/query_result/`).pipe(
+    return this.http.get(`${environment.apiUrl}/queries/${id}/query_result/`).pipe(
       map((resp: IQueryResult) => {
         return resp || {} as IQueryResult;
       }),
@@ -59,7 +57,7 @@ export class QueryRepository {
   }
 
   getLatestMatches(id: number): Observable<IMatch[]> {
-    return this.http.get(`${API_URL}/queries/${id}/matches/`).pipe(
+    return this.http.get(`${environment.apiUrl}/queries/${id}/matches/`).pipe(
       map((resp: IMatch[]) => {
         return resp || [] as IMatch[];
       }),
@@ -68,13 +66,13 @@ export class QueryRepository {
   }
 
   updateNote(id: number, note: string): Observable<void> {
-    return this.http.patch(API_URL + `/queries/${id}/`, { 'notes': note }).pipe(
+    return this.http.patch(environment.apiUrl + `/queries/${id}/`, { 'notes': note }).pipe(
       map(() => { }),
       catchError(this.handleError));
   }
 
   updateState(id: number, state: ProcessState): Observable<void> {
-    return this.http.patch(API_URL + `/queries/${id}/`, { 'process_state': state }).pipe(
+    return this.http.patch(environment.apiUrl + `/queries/${id}/`, { 'process_state': state }).pipe(
       map(() => { }),
       catchError(this.handleError));
   }
