@@ -30,6 +30,9 @@
     h4 {
         margin: 1rem 0 0;
     }
+    .fa-download {
+        font-size: 1rem;
+    }
 }
 
 .chart-switch a {
@@ -41,5 +44,5 @@
 }
 
 .success-color {
-  color: theme-color("success");
+    color: theme-color("success");
 }

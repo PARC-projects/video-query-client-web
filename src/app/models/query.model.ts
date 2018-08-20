@@ -35,6 +35,7 @@ export interface IQuery {
   use_dynamic_target_adjustment: boolean;
   video: number;
   process_state: ProcessState;
+  final_report_file: string;
 }
 
 /**
