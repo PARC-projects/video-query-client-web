@@ -8,11 +8,22 @@ import { SearchSetRepository } from '../../repositories/search-set.repository';
 import { QueryRepository } from '../../repositories/query.repository';
 import { AlertService } from '../../services/alert.service';
 import { NewQueryService } from './new-query.service';
+import { ISearchSetResponse } from '../../models/search-set.model';
+import { LoaderComponent } from '../../components/loader/loader.component';
+
+class MockNewQueryService extends NewQueryService {
+  init() {
+    this.searchSets = {
+      results: []
+    } as ISearchSetResponse;
+    return Promise.resolve();
+  }
+}
 
 describe('NewQueryComponent', () => {
   let component: NewQueryComponent;
+  let loaderComponent: LoaderComponent;
   let fixture: ComponentFixture<NewQueryComponent>;
-  let newQueryService: NewQueryService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,29 +34,32 @@ describe('NewQueryComponent', () => {
       ],
       declarations: [NewQueryComponent],
       providers: [
-        NewQueryService,
         AlertService,
         QueryRepository,
         SearchSetRepository
       ]
     })
+      .overrideComponent(NewQueryComponent, {
+        set: {
+          providers: [
+            {
+              provide: NewQueryService,
+              useClass: MockNewQueryService
+            }
+          ]
+        }
+      })
       .compileComponents();
-
-    newQueryService = TestBed.get(NewQueryService);
-
-    const mockNewQueryService = {
-      init: (): Promise<void> => {
-        return Promise.resolve();
-      }
-    };
-
-    spyOn(newQueryService, 'init')
-      .and.callFake(mockNewQueryService.init);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewQueryComponent);
     component = fixture.componentInstance;
+
+    const loaderFixture  = TestBed.createComponent(LoaderComponent);
+    loaderComponent = loaderFixture.componentInstance;
+    loaderComponent.show = false;
+
     fixture.detectChanges();
   });
 
