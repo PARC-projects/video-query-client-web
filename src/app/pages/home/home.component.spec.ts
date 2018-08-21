@@ -1,31 +1,41 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { RouterTestingModule } from '@angular/router/testing';
-// import { HomeComponent } from './home.component';
-// import { appRoutes } from '../../routing.module';
-// import { FormsModule } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
-// describe('HomeComponent', () => {
-//   let component: HomeComponent;
-//   let fixture: ComponentFixture<HomeComponent>;
+import { HomeComponent } from './home.component';
+import { HeaderComponent } from '../../components/header/header.component';
+import { QueryRepository } from '../../repositories/query.repository';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ HomeComponent ],
-//       imports: [
-//         FormsModule,
-//         RouterTestingModule.withRoutes(appRoutes)
-//       ]
-//     })
-//     .compileComponents();
-//   }));
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(HomeComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        HomeComponent,
+        HeaderComponent
+      ],
+      imports: [
+        HttpClientTestingModule,
+        FormsModule,
+        RouterTestingModule
+      ],
+      providers: [
+        QueryRepository
+      ]
+    })
+      .compileComponents();
+  }));
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
