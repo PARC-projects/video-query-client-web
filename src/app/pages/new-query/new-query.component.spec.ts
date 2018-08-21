@@ -13,6 +13,7 @@ describe('NewQueryComponent', () => {
   let component: NewQueryComponent;
   let fixture: ComponentFixture<NewQueryComponent>;
   let newQueryService: NewQueryService;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -22,6 +23,7 @@ describe('NewQueryComponent', () => {
       ],
       declarations: [NewQueryComponent],
       providers: [
+        NewQueryService,
         AlertService,
         QueryRepository,
         SearchSetRepository
