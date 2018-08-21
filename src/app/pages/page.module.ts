@@ -16,7 +16,6 @@ import { QuerySelectionComponent } from './existing-query/components/query-selec
 import { ChartSelectionComponent } from './existing-query/components/chart-selection/chart-selection.component';
 import { QueryHeaderComponent } from './existing-query/components/query-header/query-header.component';
 import { ChartHeaderComponent } from './existing-query/charts/chart-header/chart-header.component';
-import { HelpComponent } from './help/help.component';
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
@@ -38,7 +37,6 @@ import { ComponentsModule } from '../components/components.module';
     ChartSelectionComponent,
     QueryHeaderComponent,
     ChartHeaderComponent,
-    HelpComponent,
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,

@@ -7,11 +7,12 @@ import { ComponentsModule } from '../../components/components.module';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
 import { QueryRepository } from '../../repositories/query.repository';
 import { AlertService } from '../../services/alert.service';
+import { NewQueryService } from './new-query.service';
 
 describe('NewQueryComponent', () => {
   let component: NewQueryComponent;
   let fixture: ComponentFixture<NewQueryComponent>;
-
+  let newQueryService: NewQueryService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -27,6 +28,17 @@ describe('NewQueryComponent', () => {
       ]
     })
       .compileComponents();
+
+    newQueryService = TestBed.get(NewQueryService);
+
+    const mockNewQueryService = {
+      init: (): Promise<void> => {
+        return Promise.resolve();
+      }
+    };
+
+    spyOn(newQueryService, 'init')
+      .and.callFake(mockNewQueryService.init);
   }));
 
   beforeEach(() => {
