@@ -17,7 +17,7 @@ describe('SearchComponent', () => {
       declarations: [
         SearchComponent,
         PaginationComponent
-       ],
+      ],
       imports: [
         FormsModule,
         HttpClientTestingModule
@@ -28,7 +28,7 @@ describe('SearchComponent', () => {
         VideoRepository
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
