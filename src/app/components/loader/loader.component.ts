@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent {
-  @Input() show = true;
+  @Input() show = false;
 }

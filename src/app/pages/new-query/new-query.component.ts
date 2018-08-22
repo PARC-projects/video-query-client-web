@@ -61,7 +61,10 @@ export class NewQueryComponent implements OnInit {
         this.referenceVideosAreLoading = false;
         this.mainFormDisabled = false;
       })
-      .catch(this.handleError);
+      .catch(() => {
+        this.loading = false;
+        this.handleError();
+      });
   }
 
   onReferenceSelect() {
