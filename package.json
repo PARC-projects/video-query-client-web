@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test:headless": "ng test --single-run --progress false --browser ChromeHeadless",
+    "test:headless": "ng test --watch false --progress false --browser ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
