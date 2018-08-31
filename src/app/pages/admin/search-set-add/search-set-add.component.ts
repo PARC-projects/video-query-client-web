@@ -20,7 +20,7 @@ export class SearchSetAddComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private router: Router,
-    private searchSetAddService: SearchSetAddService
+    public searchSetAddService: SearchSetAddService
   ) { }
 
   ngOnInit() {
