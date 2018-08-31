@@ -9,13 +9,10 @@ branches:
    only:
       - master
 
-addons:
-  chrome: stable
-
 script:
-  - npm run test:headless
   - npm run lint
-  # - bg build --prod
+  - npm run test:headless
+  - npm run build
 
 cache:
   directories:
