@@ -34,16 +34,16 @@
             <span class="font-weight-bold">Clip duration: </span>{{query?.search_set_to_query_object?.duration}} s
           </li>
           <li>
-            <span class="font-weight-bold">Dynamic target adjustment: </span>{{query?.use_dynamic_target_adjustment}}
+            <span class="font-weight-bold">Target bootstrapping: </span>{{query?.use_dynamic_target_adjustment}}
           </li>
           <li>
             <span class="font-weight-bold">
-              Matches to review (
+              Matches to review
               <i matTooltip="Maximum number of matches the user wants to review for this query.
               The app will select a random sampling of matches and near matches
               that does not exceed this number. "
               class="vq-info-tooltip fa fa-question"></i>
-              ):
+              :
             </span>{{query?.max_matches_for_review}}
           </li>
         </ul>

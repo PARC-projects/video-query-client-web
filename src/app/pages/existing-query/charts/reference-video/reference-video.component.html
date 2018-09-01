@@ -28,7 +28,7 @@
       </div>
       <div class="col-sm">
         <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === null" class="btn btn-block btn-secondary"
-          (click)="onValidationClicked()">Remove</button>
+          (click)="onValidationClicked(null)">Remove</button>
       </div>
     </div>
   </div>
