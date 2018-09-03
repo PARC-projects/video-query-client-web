@@ -35,7 +35,7 @@ export class ExistingQueryMatchService {
 
   setActiveMatch(activeMatch: IMatch): void {
     // const url = 'https://s3-us-west-1.amazonaws.com/elasticbeanstalk-us-west-1-326964612130/S06NDS_Sample_120406_1451_00186_Forward.mp4';
-    this.videoSrc = `${environment.fileStoreRoot}${activeMatch.match_video_path}#t=${activeMatch.match_video_start_time}`;
+    this.videoSrc = `${environment.fileStoreRoot}${activeMatch.match_video_path}#t=${activeMatch.match_video_time_span}`;
     this.matches.forEach((match: IMatchView, i: number) => {
       if (activeMatch.id === match.id) {
         match.is_active = true;
@@ -46,7 +46,12 @@ export class ExistingQueryMatchService {
     });
   }
 
-  setValidation(state: boolean): void {
+  /**
+   * Set user validation state for derived match.
+   * @param state Nullable boolean. If true user states this is a match.
+   * If false use states this is not a match.  If null, user states they are undecided.
+   */
+  setValidation(state?: boolean): void {
     for (let i = 0; i < this.matches.length; i++) {
       if (this.matches[i].id === this.getActiveMatch().id) {
         this.activeIndex = i;
