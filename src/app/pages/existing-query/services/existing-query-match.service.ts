@@ -46,7 +46,12 @@ export class ExistingQueryMatchService {
     });
   }
 
-  setValidation(state: boolean): void {
+  /**
+   * Set user validation state for derived match.
+   * @param state Nullable boolean. If true user states this is a match.
+   * If false use states this is not a match.  If null, user states they are undecided.
+   */
+  setValidation(state?: boolean): void {
     for (let i = 0; i < this.matches.length; i++) {
       if (this.matches[i].id === this.getActiveMatch().id) {
         this.activeIndex = i;

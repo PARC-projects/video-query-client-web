@@ -53,6 +53,11 @@ export class ReferenceVideoComponent implements OnInit {
     }, false);
   }
 
+  /**
+   * Set user validation state for derived match.
+   * @param state Nullable boolean. If true user states this is a match.
+   * If false use states this is not a match.  If null, user states they are undecided.
+   */
   onValidationClicked(state?: boolean): void {
     this.matchService.setValidation(state);
   }
