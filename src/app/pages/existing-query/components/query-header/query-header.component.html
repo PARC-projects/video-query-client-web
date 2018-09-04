@@ -25,7 +25,7 @@
             <span class="font-weight-bold">Dataset: </span>{{query?.search_set_to_query_object?.name}}
           </li>
           <li>
-            <span class="font-weight-bold">Video: </span>{{query?.video_object?.name}}
+            <span class="font-weight-bold">Video: </span>{{getFormattedName(query?.video_object?.name)}}
           </li>
           <li>
             <span class="font-weight-bold">Reference time: </span>{{query?.reference_time}}
