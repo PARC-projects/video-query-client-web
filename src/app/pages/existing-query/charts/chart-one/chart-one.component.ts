@@ -1,13 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, EventEmitter, Output, HostListener } from '@angular/core';
-import { Element } from '@angular/compiler';
-import { IMatch, IMatchView } from '../../../../models/match.model';
-import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
-import { ExistingQueryService } from '../../services/existing-query.service';
-
+import { Component, OnInit, ElementRef, ViewChild, Input} from '@angular/core';
+import * as d3 from 'd3'; // TODO: Drop in favor of explicit import
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import * as d3 from 'd3'; // TODO: Drop in favor of explicit import
+import { IMatch, IMatchView } from '../../../../models/match.model';
+import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
+import { ExistingQueryService } from '../../services/existing-query.service';
 
 @Component({
   selector: 'app-chart-one',
@@ -51,7 +49,7 @@ export class ChartOneComponent implements OnInit {
 
     fromEvent(window, 'resize')
       .pipe(debounceTime(100))
-      .subscribe((event) => {
+      .subscribe(() => {
         this.buildChart();
       });
   }
@@ -101,7 +99,7 @@ export class ChartOneComponent implements OnInit {
 
   private drawFilters() {
     const filter = this.parentGroupElement.append('defs').append('filter').attr('id', 'glow');
-    const feGaussianBlur = filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur');
+    filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur');
     const feMerge = filter.append('feMerge');
     feMerge.append('feMergeNode').attr('in', 'coloredBlur');
     feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
@@ -250,8 +248,8 @@ export class ChartOneComponent implements OnInit {
 
   private flipUiStateOfActiveCircle(state?: boolean): void {
     const self = this;
-    const circles = d3.selectAll('.matchCircle')
-      .style('fill', (d: IMatch, i, l) => {
+    d3.selectAll('.matchCircle')
+      .style('fill', (d: IMatch) => {
         if (d.id === self.matchService.getActiveMatch().id) {
           d.user_match = state;
         }
@@ -279,7 +277,7 @@ export class ChartOneComponent implements OnInit {
     this.tooltip.style('left', d3.event.pageX + 10 + 'px')
       .style('top', d3.event.pageY - 40 + 'px')
       .style('display', 'inline-block')
-      .html(data.score);
+      .html(data.score.toFixed(2));
   }
 
   private hideTooltip(): void {
