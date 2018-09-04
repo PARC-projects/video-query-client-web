@@ -20,6 +20,7 @@
     "opentype",
     "polyfills",
     "prebuilt",
+    "progressbar",
     "styleext",
     "unstyled",
     "webfont",
