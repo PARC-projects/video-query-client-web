@@ -24,4 +24,8 @@ export class QueryHeaderComponent {
   onFinalizeSubmit(): void {
     this.finalizeSubmit.emit();
   }
+
+  getFormattedName(name: string, length = 25): string {
+    return name.length > length ? name.slice(0, length) + '..' : name;
+  }
 }
