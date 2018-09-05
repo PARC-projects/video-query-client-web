@@ -26,6 +26,9 @@ export class QueryHeaderComponent {
   }
 
   getFormattedName(name: string, length = 25): string {
+    if (!name) {
+      return name;
+    }
     return name.length > length ? name.slice(0, length) + '..' : name;
   }
 }
