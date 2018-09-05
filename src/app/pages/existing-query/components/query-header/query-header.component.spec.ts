@@ -5,7 +5,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { QueryHeaderComponent } from './query-header.component';
 import { ChartHeaderComponent } from '../../charts/chart-header/chart-header.component';
 
-fdescribe('QueryHeaderComponent', () => {
+describe('QueryHeaderComponent', () => {
   let component: QueryHeaderComponent;
   let fixture: ComponentFixture<QueryHeaderComponent>;
 

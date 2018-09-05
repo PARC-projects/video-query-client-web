@@ -7,7 +7,7 @@ import { IQueryView } from '../../../../models/query.model';
   styleUrls: ['./query-header.component.scss']
 })
 export class QueryHeaderComponent {
-  @Input() query: IQueryView;
+  @Input() query = { notes: '' } as IQueryView;
   @Input() isEditable: boolean;
   @Output() resetQuery: EventEmitter<void> = new EventEmitter();
   @Output() revisionSubmit: EventEmitter<void> = new EventEmitter();
