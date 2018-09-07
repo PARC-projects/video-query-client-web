@@ -8,7 +8,7 @@
       <li class="list-group-item list-group-item-action clearfix" (click)="onMatchClick(match)" [ngClass]="getMatchListClasses(match)"
         *ngFor="let match of matchService.matches">
         <div class="float-left match-score">
-          {{match.score}}
+          {{match.score | number:'1.1-2'}}
         </div>
         <div class="float-left match-score-progress">
           <div class="progress">
