@@ -7,7 +7,7 @@ import { IQueryView } from '../../../../models/query.model';
   styleUrls: ['./query-header.component.scss']
 })
 export class QueryHeaderComponent {
-  @Input() query = { notes: '' } as IQueryView;
+  @Input() query: IQueryView;
   @Input() isEditable: boolean;
   @Output() resetQuery: EventEmitter<void> = new EventEmitter();
   @Output() revisionSubmit: EventEmitter<void> = new EventEmitter();
@@ -23,12 +23,5 @@ export class QueryHeaderComponent {
 
   onFinalizeSubmit(): void {
     this.finalizeSubmit.emit();
-  }
-
-  getFormattedName(name: string, length = 25): string {
-    if (!name) {
-      return name;
-    }
-    return name.length > length ? name.slice(0, length) + '..' : name;
   }
 }

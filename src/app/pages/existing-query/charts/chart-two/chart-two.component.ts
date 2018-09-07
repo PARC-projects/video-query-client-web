@@ -1,12 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
-
+import { IMatch, IMatchView } from '../../../../models/match.model';
+import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
 // TODO: Drop in favor of explicit import
 import * as d3 from 'd3';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-
-import { IMatch, IMatchView } from '../../../../models/match.model';
-import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
 
 interface IMatchChartOne extends IMatch {
   x: number;
@@ -157,8 +155,8 @@ export class ChartTwoComponent implements OnInit {
 
   private flipUiStateOfActiveCircle(state?: boolean): void {
     const self = this;
-    d3.selectAll('.dot')
-      .style('fill', (d: IMatch) => {
+    const circles = d3.selectAll('.dot')
+      .style('fill', (d: IMatch, i, l) => {
         if (d.id === self.matchService.getActiveMatch().id) {
           d.user_match = state;
         }
@@ -221,7 +219,7 @@ export class ChartTwoComponent implements OnInit {
     this.tooltip.style('left', d3.event.pageX + 10 + 'px')
       .style('top', d3.event.pageY - 40 + 'px')
       .style('display', 'inline-block')
-      .html(data.score.toFixed(2));
+      .html(data.score);
   }
 
   private hideTooltip(): void {
