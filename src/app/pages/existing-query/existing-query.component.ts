@@ -106,7 +106,7 @@ export class ExistingQueryComponent implements OnInit {
       this.canvasLoading = true;
       this.existingQueryService.updateQueryStateToProcessFinalized()
         .then(() => {
-          const message = `"${this.existingQueryService.currentQuery.name}": has been submitted for to be finalized`;
+          const message = `"${this.existingQueryService.currentQuery.name}": has been submitted to be finalized`;
           this.alertService.setAlert(message, AlertType.Success);
           this.canvasLoading = false;
         })
