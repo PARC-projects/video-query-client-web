@@ -105,17 +105,17 @@ export class ExistingQueryComponent implements OnInit {
     if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
       this.canvasLoading = true;
       this.matchService.submitRevision(this.existingQueryService.currentQuery.id)
-      .then(() => {
-        this.existingQueryService.updateQueryStateToProcessFinalized()
-          .then(() => {
-            const message = `"${this.existingQueryService.currentQuery.name}": has been submitted to be finalized`;
-            this.alertService.setAlert(message, AlertType.Success);
-            this.canvasLoading = false;
-          })
-          .catch(() => {
-            this.canvasLoading = false;
-          });
-      });
+        .then(() => {
+          return this.existingQueryService.updateQueryStateToProcessFinalized();
+        })
+        .then(() => {
+          const message = `"${this.existingQueryService.currentQuery.name}": has been submitted to be finalized`;
+          this.alertService.setAlert(message, AlertType.Success);
+          this.canvasLoading = false;
+        })
+        .catch(() => {
+          this.canvasLoading = false;
+        });
     }
   }
 
