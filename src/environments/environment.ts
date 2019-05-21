@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000',
+  apiUrl: 'https://video-query-api.parc.team',
   confirmQueryChart: 1,
-  mailToAddress: 'test@test.com',
+  mailToAddress: 'video_query_admin@parc.com',
   fileStoreRoot: 'assets/videos/'
 };
