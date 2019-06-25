@@ -18,10 +18,12 @@
     "lcovonly",
     "mixins",
     "opentype",
+    "packagr",
     "polyfills",
     "prebuilt",
     "progressbar",
     "styleext",
+    "tslib",
     "unstyled",
     "webfont",
     "woff"

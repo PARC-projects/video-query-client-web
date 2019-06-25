@@ -20,7 +20,7 @@ $fa-font-path: "./assets/fonts" !default;
 }
 
 .form-control.ng-invalid.ng-touched {
-    @extend .form-control.is-invalid;
+    @extend .form-control, .is-invalid;
 }
 
 .vq-tooltip {
