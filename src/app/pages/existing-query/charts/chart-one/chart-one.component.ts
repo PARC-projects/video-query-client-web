@@ -14,7 +14,7 @@ import { ExistingQueryService } from '../../services/existing-query.service';
 })
 export class ChartOneComponent implements OnInit {
   @Input() isEditable: boolean;
-  @ViewChild('chart') chartElm: ElementRef;
+  @ViewChild('chart', { static: true }) chartElm: ElementRef;
 
   private red = '#f44455';
   private green = '#6cc788';

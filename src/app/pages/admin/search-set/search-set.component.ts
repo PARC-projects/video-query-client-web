@@ -15,7 +15,7 @@ export class SearchSetComponent implements OnInit {
 
   private timeout: any;
 
-  @ViewChild(ModalComponent) private modalComponent: ModalComponent;
+  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
   constructor(public searchSetService: SearchSetService) { }
 

@@ -20,7 +20,7 @@ interface IMatchChartOne extends IMatch {
 })
 export class ChartTwoComponent implements OnInit {
   @Input() isEditable: boolean;
-  @ViewChild('chart') chartElm: ElementRef;
+  @ViewChild('chart', { static: true }) chartElm: ElementRef;
 
   private tooltip = d3.select('body').append('div').attr('class', 'vq-tooltip');
   private validationClickedSubscription: any;  // TODO: Strongly type
