@@ -17,7 +17,7 @@ export class ReferenceVideoComponent implements OnInit {
   loading = false;
   @Input() videoSrc: string;
   @Input() isEditable: boolean;
-  @ViewChild('videoPlayer') videoPlayer: any;  // TODO: Strongly type
+  @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
   @Output() resetCurrentActiveMatch: EventEmitter<number> = new EventEmitter();
 
   private matchClickedSubscription: any;  // TODO: Strongly type

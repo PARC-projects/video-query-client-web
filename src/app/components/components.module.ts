@@ -8,7 +8,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { NavComponent } from './nav/nav.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatTooltipModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';

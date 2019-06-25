@@ -19,7 +19,7 @@ export class NewQueryComponent implements OnInit {
   videoSrc: string;
   currentVideoLength: number;
 
-  @ViewChild('videoPlayer') videoPlayer: any;  // TODO: Strongly type
+  @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
 
   constructor(
     private alertService: AlertService,
