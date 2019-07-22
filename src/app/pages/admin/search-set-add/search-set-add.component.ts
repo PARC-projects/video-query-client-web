@@ -15,7 +15,7 @@ export class SearchSetAddComponent implements OnInit {
   showModal = false;
   videoSrc = '';
 
-  @ViewChild(ModalComponent) private modalComponent: ModalComponent;
+  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
   constructor(
     private alertService: AlertService,

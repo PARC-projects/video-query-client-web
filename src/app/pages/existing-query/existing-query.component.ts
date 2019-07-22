@@ -25,8 +25,8 @@ export class ExistingQueryComponent implements OnInit {
   chartVersion = CONFIRM_QUERY_CHART;
   disabled = false;
 
-  @ViewChild(ChartOneComponent) private chartOne: ChartOneComponent;
-  @ViewChild(ChartTwoComponent) private chartTwo: ChartTwoComponent;
+  @ViewChild(ChartOneComponent, { static: false }) private chartOne: ChartOneComponent;
+  @ViewChild(ChartTwoComponent, { static: false }) private chartTwo: ChartTwoComponent;
 
   private sub: Subscription;
 
