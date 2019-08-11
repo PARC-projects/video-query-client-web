@@ -5,21 +5,13 @@
       <div class="row">
         <div class="col-lg">
           <i class="fa fa-plus"></i>
-          <p>Create a new query to search for similarities in video actions.</p>
+          <p>Execute a new search for video similarities by creating and submitting a new query.</p>
           <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">New Query</button>
         </div>
         <div class="col-lg">
           <i class="fa fa-database"></i>
           <p>Already submitted a video for search? View potential matches and submit revisions.</p>
           <button class="btn btn-warning" [routerLink]="['/existing-query']" routerLinkActive="active">Existing Queries</button>
-        </div>
-        <div class="col-lg">
-          <i class="fa fa-question-circle-o"></i>
-          <p>Learn more about how this application works and how similarities are computed.</p>
-            <a class="btn btn-warning" href="https://github.com/PARC-projects/video-query-home/wiki"
-               target="_blank" title="Video Query Wiki"> Learn More
-            </a>
-           <!-- <button class="btn btn-warning" [routerLink]="['/help']" routerLinkActive="active"> Learn More </button> -->
         </div>
       </div>
     </div>

@@ -4,15 +4,15 @@
       <h4 class="font-weight-light">{{query?.name}}</h4>
     </div>
     <div class="float-right">
-      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onResetQuery()">
+      <div *ngIf="!isEditable" class="actions">
+        <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onResetQuery()">
           Reset
         </button>
-        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onRevisionSubmit()">
-          Submit
+        <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onRevisionSubmit()">
+          Refine
         </button>
-        <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onFinalizeSubmit()">
-          Finalize
+        <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onFinalizeSubmit()">
+          Produce Final Report
         </button>
       </div>
     </div>
