@@ -4,7 +4,7 @@
       <h4 class="font-weight-light">{{query?.name}}</h4>
     </div>
     <div class="float-right">
-      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" *ngIf="!isEditable">
         <button type="button" class="btn btn-warning" [disabled]="isEditable" (click)="onResetQuery()">
           Reset
         </button>
