@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import * as d3 from 'd3'; // TODO: Drop in favor of explicit import
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -128,8 +128,8 @@ export class ChartOneComponent implements OnInit {
       .enter()
       .append('circle')
       .attr('class', 'gridCircle')
-      .attr('r', d => this.radius / this.levels * d)
-      .style('fill', (d, i: number) => {
+      .attr('r', (d: number) => this.radius / this.levels * d)
+      .style('fill', (d: any, i: number) => {
         if (i === 0) {
           return this.green;
         }
@@ -142,9 +142,9 @@ export class ChartOneComponent implements OnInit {
       .enter()
       .append('circle')
       .attr('class', 'gridCircle')
-      .attr('r', d => this.radius / this.levels * d)
+      .attr('r', (d: number) => this.radius / this.levels * d)
       .attr('fill', 'none')
-      .style('stroke', (d, i: number) => {
+      .style('stroke', (d: any, i: number) => {
         if (i === 0) {
           return this.green;
         }
@@ -160,12 +160,12 @@ export class ChartOneComponent implements OnInit {
       .enter().append('text')
       .attr('class', 'axisLabel')
       .attr('x', 6)
-      .attr('y', d => -d * this.radius / this.levels)
+      .attr('y', (d: number) => -d * this.radius / this.levels)
       .attr('dy', '0.5rem')
       .style('font-size', '10px')
       .style('font-size', '10px')
       .attr('fill', '#737373')
-      .text(d => {
+      .text((d: number) => {
         return Math.round(this.maxValue * d / this.levels * 100) / 100;
       });
   }
@@ -184,8 +184,8 @@ export class ChartOneComponent implements OnInit {
     axis.append('line')
       .attr('x1', 0)
       .attr('y1', 0)
-      .attr('x2', (d, i) => this.rScale(this.maxValue * 1.1) * Math.cos(this.angleSlice * i - Math.PI / 2))
-      .attr('y2', (d, i) => this.rScale(this.maxValue * 1.1) * Math.sin(this.angleSlice * i - Math.PI / 2))
+      .attr('x2', (d: any, i: number) => this.rScale(this.maxValue * 1.1) * Math.cos(this.angleSlice * i - Math.PI / 2))
+      .attr('y2', (d: any, i: number) => this.rScale(this.maxValue * 1.1) * Math.sin(this.angleSlice * i - Math.PI / 2))
       .attr('class', 'line')
       .style('stroke', 'white')
       .style('stroke-width', '2px');
@@ -199,9 +199,9 @@ export class ChartOneComponent implements OnInit {
       .data(this.matchService.matches)
       .enter()
       .append('circle')
-      .on('click', function (d: IMatchView, i, l) {
+      .on('click', function (d: IMatchView, i: any, l: { forEach: (arg0: (element: any) => void) => void; }) {
         self.matchService.setActiveMatch(d);
-        l.forEach(element => {
+        l.forEach((element: any) => {
           d3.select(element).attr('r', self.dotRadius);
         });
         d3.select(this).attr('r', self.dotRadius * 2);

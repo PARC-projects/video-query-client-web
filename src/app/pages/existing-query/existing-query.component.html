@@ -16,18 +16,23 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg">
-                  <app-query-header [query]="existingQueryService.currentQuery" [isEditable]="isQueryDisabled() || disabled" (resetQuery)="onResetQuery()"
+                  <app-query-header [query]="existingQueryService.currentQuery"
+                    [isEditable]="isQueryDisabled() || disabled" (resetQuery)="onResetQuery()"
                     (revisionSubmit)="onRevisionSubmit()" (finalizeSubmit)="onFinalizeSubmit()"></app-query-header>
                 </div>
               </div>
               <div class="row" [hidden]="isQueryDisabled()">
                 <div class="col-lg-6">
-                  <app-chart-one *ngIf="chartVersion === 1" [isEditable]="disabled"></app-chart-one>
-                  <app-chart-two *ngIf="chartVersion === 2" [isEditable]="disabled"></app-chart-two>
-                  <app-results-list-chart *ngIf="chartVersion === 3" [isEditable]="disabled"></app-results-list-chart>
+                  <div class="vq-widget">
+                    <app-chart-one *ngIf="chartVersion === 1" [isEditable]="disabled"></app-chart-one>
+                    <app-chart-two *ngIf="chartVersion === 2" [isEditable]="disabled"></app-chart-two>
+                    <app-results-list-chart *ngIf="chartVersion === 3" [isEditable]="disabled"></app-results-list-chart>
+                    <app-chart-selection *ngIf="!isQueryDisabled() "></app-chart-selection>
+                  </div>
                 </div>
                 <div class="col-lg-6">
-                  <app-reference-video [isEditable]="disabled" [videoSrc]="existingQueryService.videoSrc" (resetCurrentActiveMatch)="onResetCurrentActiveMatch()"></app-reference-video>
+                  <app-reference-video [isEditable]="disabled" [videoSrc]="existingQueryService.videoSrc"
+                    (resetCurrentActiveMatch)="onResetCurrentActiveMatch()"></app-reference-video>
                 </div>
               </div>
               <div class="row" *ngIf="isProcessing()">
@@ -63,16 +68,10 @@
                     <i class="fa fa-check success-color" aria-hidden="true "></i>
                     <h4>"{{existingQueryService.currentQuery.name}}" has been Finalized!</h4>
                     <br>
-                    <a class="lead" [attr.href]="existingQueryService.currentQuery.final_report_file"><i class="fa fa-download"></i>
+                    <a class="lead" [attr.href]="existingQueryService.currentQuery.final_report_file"><i
+                        class="fa fa-download"></i>
                       Download</a>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="container-fluid">
-              <div class="row" [hidden]="isQueryDisabled()">
-                <div class="col-12 col-lg-6">
-                  <app-chart-selection *ngIf="!isQueryDisabled() "></app-chart-selection>
                 </div>
               </div>
             </div>
