@@ -1,10 +1,11 @@
 @import "../../../../../custom";
 
 .matches-container {
-  height: 517px;
+  height: 509px;
   overflow-x: hidden;
   overflow-y: auto;
   border: 1px solid gray("200");
+  margin: 0 0 0.5rem;
 
   .list-group-item:first-child {
     border-top-left-radius: 0;
