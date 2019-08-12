@@ -67,7 +67,6 @@ export class ResultsListChartComponent {
 
   private getMatchCriterion() {
     return this.existingQueryService.currentQuery.query_result ?
-      this.existingQueryService.currentQuery.query_result.match_criterion :
-      0;
+      this.existingQueryService.currentQuery.query_result.match_criterion : 0;
   }
 }

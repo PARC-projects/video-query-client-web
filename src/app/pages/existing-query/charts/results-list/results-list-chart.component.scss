@@ -1,60 +1,75 @@
 @import "../../../../../custom";
+
 .matches-container {
-    height: 535px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border: 1px solid gray("200");
-    .list-group-item:first-child {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+  height: 509px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid gray("200");
+  margin: 0 0 0.5rem;
+
+  .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .list-group-item.active {
+    background: gray("300");
+    color: theme-color("dark");
+  }
+
+  .list-group-item-null-user {
+    border-right-width: 0.5rem;
+    border-right-color: gray("600");
+  }
+
+  .list-group-item-valid {
+    border-left-width: 0.5rem;
+    border-left-color: theme-color("success");
+  }
+
+  .list-group-item-invalid {
+    border-left-width: 0.5rem;
+    border-left-color: theme-color("danger");
+  }
+
+  .list-group-item-valid-user {
+    border-right-width: 0.5rem;
+    border-right-color: theme-color("success");
+  }
+
+  .list-group-item-invalid-user {
+    border-right-width: 0.5rem;
+    border-right-color: theme-color("danger");
+  }
+
+  .match-score {
+    width: 25%;
+  }
+
+  .match-score-progress {
+    width: 75%;
+    padding: 4px 0 0;
+
+    .progress {
+      position: relative;
+
+      .progress-bar {
+        // background: theme-color("success");
+        //background: linear-gradient(to right, theme-color("warning") 0%, theme-color("success") 50%) !important;
+      }
+
+      .threshold {
+        position: absolute;
+        width: 3px;
+        height: 1rem;
+        margin-left: 50%;
+        background: theme-color("danger");
+      }
     }
-    .list-group-item:last-child {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-    .list-group-item.active {
-        background: gray("300");
-        color: theme-color("dark");
-    }
-    .list-group-item-null-user {
-        border-right-width: 0.5rem;
-        border-right-color: gray("600");
-    }
-    .list-group-item-valid {
-        border-left-width: 0.5rem;
-        border-left-color: theme-color("success");
-    }
-    .list-group-item-invalid {
-        border-left-width: 0.5rem;
-        border-left-color: theme-color("danger");
-    }
-    .list-group-item-valid-user {
-        border-right-width: 0.5rem;
-        border-right-color: theme-color("success");
-    }
-    .list-group-item-invalid-user {
-        border-right-width: 0.5rem;
-        border-right-color: theme-color("danger");
-    }
-    .match-score {
-        width: 25%;
-    }
-    .match-score-progress {
-        width: 75%;
-        padding: 4px 0 0;
-        .progress {
-            position: relative;
-            .progress-bar {
-                // background: theme-color("success");
-                //background: linear-gradient(to right, theme-color("warning") 0%, theme-color("success") 50%) !important;
-            }
-            .threshold {
-                position: absolute;
-                width: 3px;
-                height: 1rem;
-                margin-left: 50%;
-                background: theme-color("danger");
-            }
-        }
-    }
+  }
 }
