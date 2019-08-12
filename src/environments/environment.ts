@@ -7,6 +7,6 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000',
   confirmQueryChart: 1,
-  mailToAddress: 'video_query_admin@parc.com',
-  fileStoreRoot: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/'
+  mailToAddress: 'test@test.com',
+  fileStoreRoot: 'assets/videos/'
 };
