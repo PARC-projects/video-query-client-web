@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { IMatchView } from '../../../../models/match.model';
 import { ExistingQueryService } from '../../services/existing-query.service';
 import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
@@ -17,7 +17,7 @@ export class ReferenceVideoComponent implements OnInit {
   loading = false;
   @Input() videoSrc: string;
   @Input() isEditable: boolean;
-  @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
+  @ViewChild('videoPlayer', { static: true }) videoPlayer: ElementRef;  // TODO: Strongly type
   @Output() resetCurrentActiveMatch: EventEmitter<number> = new EventEmitter();
 
   private matchClickedSubscription: any;  // TODO: Strongly type
@@ -40,6 +40,7 @@ export class ReferenceVideoComponent implements OnInit {
     }
     if (confirm(`Are you sure you would like to reset the currently selected match?`)) {
       this.resetCurrentActiveMatch.emit();
+      this.videoPlayer.nativeElement.load();
     }
   }
 

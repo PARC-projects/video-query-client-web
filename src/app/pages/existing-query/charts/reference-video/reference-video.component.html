@@ -12,23 +12,29 @@
       </div>
     </ng-container>
     <video controls align="center" #videoPlayer [style.display]="matchService.videoSrc ? 'block' : 'none'">
-      <source src="{{matchService.videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+      <source [src]="matchService.videoSrc" type="video/mp4"> Your browser does not support the video tag.
     </video>
     <app-loader [show]="loading"></app-loader>
   </div>
   <div class="container">
     <div class="row ">
       <div class="col-sm">
-        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === false" class="btn btn-block btn-secondary"
-          [ngClass]="{'btn-danger' : matchService.getActiveMatch()?.user_match === false}" (click)="onValidationClicked(false)">Invalid</button>
+        <button type="button"
+          [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === false"
+          class="btn btn-block btn-secondary"
+          [ngClass]="{'btn-danger' : matchService.getActiveMatch()?.user_match === false}"
+          (click)="onValidationClicked(false)">Invalid</button>
       </div>
       <div class="col-sm">
-        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match" class="btn btn-block btn-secondary"
-          [ngClass]="{'btn-success' : matchService.getActiveMatch()?.user_match}" (click)="onValidationClicked(true)">Valid</button>
+        <button type="button"
+          [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match"
+          class="btn btn-block btn-secondary" [ngClass]="{'btn-success' : matchService.getActiveMatch()?.user_match}"
+          (click)="onValidationClicked(true)">Valid</button>
       </div>
       <div class="col-sm">
-        <button type="button" [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === null" class="btn btn-block btn-secondary"
-          (click)="onValidationClicked(null)">Remove</button>
+        <button type="button"
+          [disabled]="isEditable || !matchService.videoSrc || this.loading || existingQueryService.disabled || matchService.getActiveMatch()?.user_match === null"
+          class="btn btn-block btn-secondary" (click)="onValidationClicked(null)">Remove</button>
       </div>
     </div>
   </div>
