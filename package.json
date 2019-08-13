@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod",
-    "build:prod:flat": "ng build --prod",
+    "build:prod": "ng build --prod"
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
