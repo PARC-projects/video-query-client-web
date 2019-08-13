@@ -22,7 +22,7 @@ For detailed instruction on how to utilize this repository, please have a look a
   - [Example](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example)
 
 ## Sample Video
-We provide an [Example](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example)
+We provide an [Example](https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example#example)
 that uses the video "sample.mp4" in the file_store/videos asset folder. This video was downloaded from YouTube.
 The license information for this video is contained in `file_store/videos/sample.mp4-license-info.txt`,
 with a screen shot of the YouTube page at the date and time of download provided as 
