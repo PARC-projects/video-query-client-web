@@ -4,14 +4,22 @@
     <div class="container">
       <div class="row">
         <div class="col-lg">
+          <i class="fa fa-video-camera"></i>
+          <p>Manage existing search sets and view associated videos or create a new set.</p>
+          <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">Search
+            Sets</button>
+        </div>
+        <div class="col-lg">
           <i class="fa fa-plus"></i>
           <p>Execute a new search for video similarities by creating and submitting a new query.</p>
-          <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">New Query</button>
+          <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">New
+            Query</button>
         </div>
         <div class="col-lg">
           <i class="fa fa-database"></i>
           <p>Already submitted a video for search? View potential matches and submit revisions.</p>
-          <button class="btn btn-warning" [routerLink]="['/existing-query']" routerLinkActive="active">Existing Queries</button>
+          <button class="btn btn-warning" [routerLink]="['/existing-query']" routerLinkActive="active">Existing
+            Queries</button>
         </div>
       </div>
     </div>

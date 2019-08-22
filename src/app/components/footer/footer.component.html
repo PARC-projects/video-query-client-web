@@ -5,33 +5,8 @@
     </h5>
     <ul class="list-inline pages">
       <li class="list-inline-item">
-        <a routerLink="/home" title="Home">
-          Home
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a routerLink="/new-query" title="New Query">
-          New Query
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a routerLink="/existing-query" title="Existing Query">
-          Existing Query
-        </a>
-      </li>
-      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
-        <a routerLink="/search-sets" title="Search Sets">
-          Search Sets
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example#example" title="Video Query Wiki">
-          Help
-        </a>
-      </li>
-      <li class="list-inline-item" *ngIf="authenticationService.getCurrentToken()?.is_staff">
-        <a [href]="adminUrl" target="_blank" title="Admin">
-          Admin
+        <a routerLink="https://github.com/PARC-projects/video-query-home/wiki" title="Video Query Wiki">
+          Learn More
         </a>
       </li>
     </ul>
