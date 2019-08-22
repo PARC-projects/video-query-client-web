@@ -3,21 +3,19 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <label for="filterName">Video Name</label>
+        <label for="filterName">Filter videos by name</label>
         <input type="text" class="form-control" id="searchInput" placeholder="Search..." [ngModel]="searchSetAddService.searchTerm"
           (ngModelChange)="onSearchTermUpdated($event)">
-        <small id="filterNameHelp" class="form-text text-muted">Filter videos by name.</small>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
-        <label for="searchSet">Search Set</label>
+        <label for="searchSet">Filter videos by Search Set</label>
         <select class="form-control" required id="searchSet" name="searchSet" [(ngModel)]="searchSetAddService.selectedSearchSet"
           (ngModelChange)="onSelectedSearchSet()">
           <option [ngValue]="null">-- clear --</option>
           <option *ngFor="let searchSet of searchSetAddService.searchSets" [ngValue]="searchSet">{{searchSet.name}}</option>
         </select>
-        <small id="searchSetHelp" class="form-text text-muted">Filter videos by Search Set.</small>
       </div>
     </div>
   </div>
