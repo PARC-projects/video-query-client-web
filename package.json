@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build",
-    "build:prod": "ng build --prod=true",
-    "build:prod:flat": "ng build --prod=true",
+    "start": "ng serve",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,8 +21,7 @@
     "@angular/router": "^8.2.1",
     "rxjs": "^6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1",
-    "express": "^4.17.1"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.1",
