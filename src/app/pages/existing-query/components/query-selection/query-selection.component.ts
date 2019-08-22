@@ -57,7 +57,7 @@ export class QuerySelectionComponent implements OnInit {
       .then((resp: IQueryResponse) => {
         this.listNavConfig = {
           data: resp.results,
-          title: 'Queries',
+          title: 'Existing Queries',
           tooltip: 'Select a query to review.',
           displayPropertyName: 'name',
           pagination: resp.pagination
