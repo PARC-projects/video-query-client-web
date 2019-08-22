@@ -18,17 +18,17 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': currentPage === 'new-query'}" routerLink="/new-query" (click)="currentPage = 'new-query'">
-            <i class="fa fa-plus-square"></i> &nbsp;New
+            <i class="fa fa-plus-square"></i> &nbsp;Create Query
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': currentPage=== 'existing-query'}" routerLink="/existing-query" (click)="currentPage = 'existing-query'">
-            <i class="fa fa-database"></i> &nbsp;Existing
+            <i class="fa fa-database"></i> &nbsp;Existing Queries
           </a>
         </li>
         <li class="nav-item" class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
           <a class="nav-link" routerLink="search-sets" title="Search Sets" (click)="currentPage = 'search-sets'">
-            <i class="fa fa-tasks"></i> &nbsp;Search Sets
+            <i class="fa fa-video-camera"></i> &nbsp;Search Sets
           </a>
         </li>
         <li class="nav-item">
