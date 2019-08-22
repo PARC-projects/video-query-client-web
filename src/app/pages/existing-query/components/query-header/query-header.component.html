@@ -5,14 +5,14 @@
     </div>
     <div class="float-right">
       <div *ngIf="!isEditable" class="actions">
-        <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onResetQuery()">
-          Reset
-        </button>
         <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onRevisionSubmit()">
-          Refine
+          Submit & Update
         </button>
         <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onFinalizeSubmit()">
           Produce Final Report
+        </button>
+        <button type="button" class="btn btn-warning btn-sm" [disabled]="isEditable" (click)="onResetQuery()">
+          Reset
         </button>
       </div>
     </div>
