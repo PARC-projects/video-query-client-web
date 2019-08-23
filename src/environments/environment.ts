@@ -8,5 +8,8 @@ export const environment = {
   apiUrl: 'http://localhost:8000',
   confirmQueryChart: 1,
   mailToAddress: 'test@test.com',
-  fileStoreRoot: 'assets/videos/'
+  fileStoreRoot: 'assets/videos/',
+  externalSource: {
+    root: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/'
+  }
 };
