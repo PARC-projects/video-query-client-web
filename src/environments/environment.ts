@@ -3,6 +3,10 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+enum AuthenticationTypeEnum {
+  HeaderToken
+}
+
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000',
@@ -10,6 +14,13 @@ export const environment = {
   mailToAddress: 'test@test.com',
   fileStoreRoot: 'assets/videos/',
   externalSource: {
-    root: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/'
+    root: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/',
+    authentication: {
+      type: AuthenticationTypeEnum.HeaderToken,
+      header: {
+        name: 'Video-Query',
+        value: 'i-am-a-token'
+      }
+    }
   }
 };

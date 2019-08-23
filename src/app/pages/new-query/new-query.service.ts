@@ -28,25 +28,30 @@ export class NewQueryService {
     use_dynamic_target_adjustment: false
   } as IQueryForm;
 
+  showAuthentication: boolean;
+
   constructor(
     private searchSetRepository: SearchSetRepository,
     private queryRepository: QueryRepository
-  ) {
-  }
+  ) { }
 
-  init(): Promise<void> {
-    return this.searchSetRepository.getAll()
-      .toPromise()
-      .then((resp: ISearchSetResponse) => {
-        this.searchSets = resp;
-      });
+  async init(): Promise<void> {
+    const resp = await this.searchSetRepository.getAll()
+      .toPromise();
+    this.searchSets = resp;
   }
 
   getVideosInSelectedSearchSet(): Promise<void> {
+    this.showAuthentication = false;
     return this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id)
       .toPromise()
       .then((resp: IVideo[]) => {
         this.videos = resp;
+        this.videos.forEach(video => {
+          if (video.external_source) {
+            this.showAuthentication = true;
+          }
+        });
       });
   }
 

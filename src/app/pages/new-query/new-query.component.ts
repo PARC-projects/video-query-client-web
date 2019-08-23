@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NewQueryService } from './new-query.service';
 import { AlertService, AlertType } from '../../services/alert.service';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-new-query-page',
@@ -20,6 +21,7 @@ export class NewQueryComponent implements OnInit {
   currentVideoLength: number;
 
   @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
+  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
   constructor(
     private alertService: AlertService,
@@ -60,6 +62,9 @@ export class NewQueryComponent implements OnInit {
       .then(() => {
         this.referenceVideosAreLoading = false;
         this.mainFormDisabled = false;
+        if (this.newQueryService.showAuthentication) {
+          this.modalComponent.open();
+        }
       })
       .catch(() => {
         this.loading = false;
