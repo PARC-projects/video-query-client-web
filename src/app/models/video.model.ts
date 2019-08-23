@@ -9,5 +9,5 @@ export interface IVideo {
   id: number;
   name: string;
   path: string;
-  web_source: boolean;
+  external_source: boolean;
 }
