@@ -41,31 +41,32 @@ export class NewQueryService {
     this.searchSets = resp;
   }
 
-  getVideosInSelectedSearchSet(): Promise<void> {
-    this.showAuthentication = false;
-    return this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id)
-      .toPromise()
-      .then((resp: IVideo[]) => {
-        this.videos = resp;
-        this.videos.forEach(video => {
-          if (video.external_source) {
-            this.showAuthentication = true;
-          }
-        });
-      });
+  async getVideosInSelectedSearchSet(): Promise<void> {
+    const resp = await this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id)
+      .toPromise();
+    this.videos = resp;
   }
 
-  getVideoPathBasedOnId(): string {
+  getVideoPathBasedOnIdAndSetAuthenticationState(): string {
+    let url = '';
+    this.showAuthentication = false;
     for (let i = 0; i < this.videos.length; i++) {
       const video = this.videos[i];
+
       if (video.id === this.form.video) {
         if (video.external_source) {
-          return `${environment.externalSource.root}${video.path}`;
+          this.showAuthentication = true;
         }
-        return `${environment.fileStoreRoot}${video.path}`;
+
+        if (video.external_source) {
+          url =  `${environment.externalSource.root}${video.path}`;
+          break;
+        }
+
+        url =  `${environment.fileStoreRoot}${video.path}`;
       }
     }
-    return '';
+    return url;
   }
 
   submitForm(): Promise<IQueryResponse> {

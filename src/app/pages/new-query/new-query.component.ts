@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NewQueryService } from './new-query.service';
 import { AlertService, AlertType } from '../../services/alert.service';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-new-query-page',
@@ -19,6 +20,10 @@ export class NewQueryComponent implements OnInit {
   referenceVideosAreLoading = false;
   videoSrc: string;
   currentVideoLength: number;
+  environment = environment;
+
+  // TODO: This will need to be dynamic in the case of multiple external sources being used.
+  authToken: string;
 
   @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
@@ -62,9 +67,6 @@ export class NewQueryComponent implements OnInit {
       .then(() => {
         this.referenceVideosAreLoading = false;
         this.mainFormDisabled = false;
-        if (this.newQueryService.showAuthentication) {
-          this.modalComponent.open();
-        }
       })
       .catch(() => {
         this.loading = false;
@@ -74,13 +76,23 @@ export class NewQueryComponent implements OnInit {
 
   onReferenceSelect() {
     this.videoLoading = true;
-    const url = this.newQueryService.getVideoPathBasedOnId();
+
+    const url = this.newQueryService.getVideoPathBasedOnIdAndSetAuthenticationState();
+
+    if (this.newQueryService.showAuthentication) {
+      this.modalComponent.open();
+    }
+
     this.videoSrc = url + '#t=' + this.newQueryService.form.reference_time;
     this.videoPlayer.nativeElement.addEventListener('loadeddata', () => {
       this.videoLoading = false;
       this.newQueryService.form.current_video_length = this.videoPlayer.nativeElement.duration;
     }, false);
     this.videoPlayer.nativeElement.load();
+  }
+
+  onAuthSubmit() {
+
   }
 
   adjustVideoTime(secondsInvalid: boolean, MinutesInvalid: boolean, hoursInvalid: boolean) {

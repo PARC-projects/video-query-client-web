@@ -17,6 +17,7 @@ export const environment = {
     root: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/',
     authentication: {
       type: AuthenticationTypeEnum.HeaderToken,
+      uiMessage: 'This video comes from the Acme System and requires a token to access. Please provide the token assigned to you below.',
       header: {
         name: 'Video-Query',
         value: 'i-am-a-token'
