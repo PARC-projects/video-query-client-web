@@ -54,6 +54,9 @@ export class NewQueryService {
     for (let i = 0; i < this.videos.length; i++) {
       const video = this.videos[i];
       if (video.id === this.form.video) {
+        if (video.external_source) {
+          return `${environment.externalSource.root}${video.path}`;
+        }
         return `${environment.fileStoreRoot}${video.path}`;
       }
     }
@@ -87,8 +90,8 @@ export class NewQueryService {
 
   getFormattedReferenceTime(): string {
     return `${this.leftPad(this.form.reference_time_hours)}:` +
-    `${this.leftPad(this.form.reference_time_minutes)}:` +
-    `${this.leftPad(this.form.reference_time_seconds)}`;
+      `${this.leftPad(this.form.reference_time_minutes)}:` +
+      `${this.leftPad(this.form.reference_time_seconds)}`;
   }
 
   private leftPad(originalNumber: number): string {
