@@ -197,7 +197,8 @@
                 <ng-container *ngSwitchCase="1">
                   <div class="empty-state">
                     <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
-                    <p>Unauthorized To View This Video</p>
+                    <p>Unauthorized To View This Video.</p>
+                    <button type="submit" class="btn btn-warning btn-sm" (click)="onAuthorize()">Authorize</button>
                   </div>
                 </ng-container>
               </ng-container>
@@ -221,7 +222,7 @@
         <label for="exampleInputEmail1">Token</label>
         <input type="input" class="form-control" placeholder="Enter token..." [(ngModel)]="authToken"
           [ngModelOptions]="{standalone: true}">
-        <button type="submit" class="btn btn-primary right" (click)="onAuthSubmit()">Submit</button>
+        <button type="submit" class="btn btn-warning float-right" [disabled]="authToken.length < 1" (click)="onAuthSubmit()">Submit</button>
       </div>
     </form>
   </app-modal>
