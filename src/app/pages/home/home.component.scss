@@ -1,20 +1,24 @@
 @import "../../../custom";
+
 .home-content {
-    padding: 4rem 0;
+  padding: 4rem 0;
 }
 
 .bullets {
-    text-align: center;
-    i {
-        display: block;
-        font-size: 4rem;
-        color: map-get($parc-colors, "primary");
-        margin: 0 0 1.25rem;
-    }
-    p {
-        margin: 0 0 2rem;
-    }
-    button {
-        margin: 0 0 2rem;
-    }
+  text-align: center;
+
+  i {
+    display: block;
+    font-size: 4rem;
+    color: map-get($parc-colors, "primary");
+    margin: 0 0 1.25rem;
+  }
+
+  p {
+    margin: 0 0 2rem;
+  }
+
+  button {
+    margin: 0 0 2rem;
+  }
 }

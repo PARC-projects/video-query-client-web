@@ -15,8 +15,8 @@
         <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" required class="form-control" id="username" placeholder="Enter username" [(ngModel)]="loginRequest.username"
-              name="username" #username="ngModel" [disabled]="loading">
+            <input type="text" required class="form-control" id="username" placeholder="Enter username"
+              [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
             <div *ngIf="username.invalid && (username.dirty || username.touched)">
               <div *ngIf="username.errors.required" class="vq-invalid-feedback">
                 Username is required.
@@ -25,8 +25,8 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" required class="form-control" id="password" placeholder="Enter password" [(ngModel)]="loginRequest.password"
-              name="password" #password="ngModel" [disabled]="loading">
+            <input type="password" required class="form-control" id="password" placeholder="Enter password"
+              [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
             <div *ngIf="password.invalid && (password.dirty || password.touched)">
               <div *ngIf="password.errors.required" class="vq-invalid-feedback">
                 Password is required.

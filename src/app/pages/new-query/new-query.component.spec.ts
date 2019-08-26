@@ -56,7 +56,7 @@ describe('NewQueryComponent', () => {
     fixture = TestBed.createComponent(NewQueryComponent);
     component = fixture.componentInstance;
 
-    const loaderFixture  = TestBed.createComponent(LoaderComponent);
+    const loaderFixture = TestBed.createComponent(LoaderComponent);
     loaderComponent = loaderFixture.componentInstance;
     loaderComponent.show = false;
 
