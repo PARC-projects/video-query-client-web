@@ -21,7 +21,8 @@ export const environment = {
       header: {
         name: 'Video-Query',
         value: 'i-am-a-token'
-      }
+      },
+      authEndpoint: 'https://stac.vtti.vt.edu/api/collections'
     }
   }
 };

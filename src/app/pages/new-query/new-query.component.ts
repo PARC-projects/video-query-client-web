@@ -4,6 +4,13 @@ import { AlertService, AlertType } from '../../services/alert.service';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { environment } from '../../../environments/environment';
 
+
+enum VideoDisplayStateEnum {
+  Empty,
+  Unauthorized,
+  Valid
+}
+
 @Component({
   selector: 'app-new-query-page',
   templateUrl: './new-query.component.html',
@@ -19,6 +26,7 @@ export class NewQueryComponent implements OnInit {
   mainFormDisabled = false;
   referenceVideosAreLoading = false;
   videoSrc: string;
+  videoDisplayState = VideoDisplayStateEnum.Empty;
   currentVideoLength: number;
   environment = environment;
 
@@ -63,6 +71,7 @@ export class NewQueryComponent implements OnInit {
   onSelectedSearchSet() {
     this.referenceVideosAreLoading = true;
     this.newQueryService.form.video = null;
+    this.videoDisplayState = VideoDisplayStateEnum.Empty;
     this.newQueryService.getVideosInSelectedSearchSet()
       .then(() => {
         this.referenceVideosAreLoading = false;
@@ -77,11 +86,17 @@ export class NewQueryComponent implements OnInit {
   onReferenceSelect() {
     this.videoLoading = true;
 
+    // TODO: A bit of a code smell. Abstract the two intents of the service call.
     const url = this.newQueryService.getVideoPathBasedOnIdAndSetAuthenticationState();
 
     if (this.newQueryService.showAuthentication) {
       this.modalComponent.open();
+      this.videoDisplayState = VideoDisplayStateEnum.Unauthorized;
+      this.videoLoading = false;
+      return;
     }
+
+    this.videoDisplayState = VideoDisplayStateEnum.Valid;
 
     this.videoSrc = url + '#t=' + this.newQueryService.form.reference_time;
     this.videoPlayer.nativeElement.addEventListener('loadeddata', () => {

@@ -185,13 +185,24 @@
         <div class="video-container">
           <div class="vq-widget">
             <div class="video-content">
-              <ng-container *ngIf="!videoSrc">
-                <div class="empty-state">
-                  <i class="fa fa-hand-o-left fa-4x" aria-hidden="true"></i>
-                  <p>Select A Reference Video</p>
-                </div>
+              <ng-container [ngSwitch]="videoDisplayState">
+                <!-- Empty -->
+                <ng-container *ngSwitchCase="0">
+                  <div class="empty-state">
+                    <i class="fa fa-hand-o-left fa-4x" aria-hidden="true"></i>
+                    <p>Select A Reference Video</p>
+                  </div>
+                </ng-container>
+                <!-- Unauthorized -->
+                <ng-container *ngSwitchCase="1">
+                  <div class="empty-state">
+                    <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
+                    <p>Unauthorized To View This Video</p>
+                  </div>
+                </ng-container>
               </ng-container>
-              <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+              <video controls align="center" #videoPlayer
+                [style.display]="videoSrc && videoDisplayState == 2 ? 'block' : 'none'">
                 <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
               </video>
               <app-loader [show]="videoLoading"></app-loader>
