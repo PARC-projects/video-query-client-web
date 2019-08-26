@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ChartOneComponent } from './charts/chart-one/chart-one.component';
 import { ChartTwoComponent } from './charts/chart-two/chart-two.component';
-import { ResultsListChartComponent } from './charts/results-list/results-list-chart.component';
 import { AlertService, AlertType } from '../../services/alert.service';
 import { ExistingQueryService } from './services/existing-query.service';
 import { ExistingQueryMatchService } from './services/existing-query-match.service';

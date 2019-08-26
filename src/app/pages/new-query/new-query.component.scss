@@ -1,51 +1,64 @@
 @import "../../../custom";
+
 .new-query-content {
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
 
 .video-container {
-    margin: 19px 0 0;
-    .video-content {
-        background: theme-color("dark");
-        min-height: 482px;
-        margin: 0.5rem 0 0;
-        position: relative;
-        .empty-state {
-            padding: 9rem 0 0;
-            text-align: center;
-            color: gray("400");
-            font-size: 2rem;
-            font-weight: 300;
-        }
-        video {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 1rem;
-        }
+  margin: 19px 0 0;
+
+  .video-content {
+    background: theme-color("dark");
+    min-height: 482px;
+    margin: 0.5rem 0 0;
+    position: relative;
+
+    .empty-state {
+      padding: 9rem 0 0;
+      text-align: center;
+      color: gray("400");
+      font-size: 2rem;
+      font-weight: 300;
     }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 1rem;
+    }
+  }
 }
 
 fieldset.vq-fieldset-border {
-    border: 1px solid gray("300");
-    padding: 0 1rem 0.5rem 1rem;
-    margin-bottom: 1rem;
-    legend {
-        width: inherit;
-        padding: 0 10px;
-        border-bottom: none;
-        i {
-            font-size: 1rem;
-            cursor: pointer;
-            color: gray("500");
-            &:hover {
-                transition: color 0.5s;
-                color: map-get($map: $parc-colors, $key: "orange")
-            }
-        }
+  border: 1px solid gray("300");
+  padding: 0 1rem 0.5rem 1rem;
+  margin-bottom: 1rem;
+
+  legend {
+    width: inherit;
+    padding: 0 10px;
+    border-bottom: none;
+
+    i {
+      font-size: 1rem;
+      cursor: pointer;
+      color: gray("500");
+
+      &:hover {
+        transition: color 0.5s;
+        color: map-get($map: $parc-colors, $key: "orange")
+      }
     }
+  }
+}
+
+.header-token-auth-modal {
+  button {
+    margin: 1rem 0 0;
+  }
 }

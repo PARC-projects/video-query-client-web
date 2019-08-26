@@ -28,36 +28,45 @@ export class NewQueryService {
     use_dynamic_target_adjustment: false
   } as IQueryForm;
 
+  showAuthentication: boolean;
+
   constructor(
     private searchSetRepository: SearchSetRepository,
     private queryRepository: QueryRepository
-  ) {
+  ) { }
+
+  async init(): Promise<void> {
+    const resp = await this.searchSetRepository.getAll()
+      .toPromise();
+    this.searchSets = resp;
   }
 
-  init(): Promise<void> {
-    return this.searchSetRepository.getAll()
-      .toPromise()
-      .then((resp: ISearchSetResponse) => {
-        this.searchSets = resp;
-      });
+  async getVideosInSelectedSearchSet(): Promise<void> {
+    const resp = await this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id)
+      .toPromise();
+    this.videos = resp;
   }
 
-  getVideosInSelectedSearchSet(): Promise<void> {
-    return this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id)
-      .toPromise()
-      .then((resp: IVideo[]) => {
-        this.videos = resp;
-      });
-  }
-
-  getVideoPathBasedOnId(): string {
+  getVideoPathBasedOnIdAndSetAuthenticationState(): string {
+    let url = '';
+    this.showAuthentication = false;
     for (let i = 0; i < this.videos.length; i++) {
       const video = this.videos[i];
+
       if (video.id === this.form.video) {
-        return `${environment.fileStoreRoot}${video.path}`;
+        if (video.external_source) {
+          this.showAuthentication = true;
+        }
+
+        if (video.external_source) {
+          url =  `${environment.externalSource.root}${video.path}`;
+          break;
+        }
+
+        url =  `${environment.fileStoreRoot}${video.path}`;
       }
     }
-    return '';
+    return url;
   }
 
   submitForm(): Promise<IQueryResponse> {
@@ -87,8 +96,8 @@ export class NewQueryService {
 
   getFormattedReferenceTime(): string {
     return `${this.leftPad(this.form.reference_time_hours)}:` +
-    `${this.leftPad(this.form.reference_time_minutes)}:` +
-    `${this.leftPad(this.form.reference_time_seconds)}`;
+      `${this.leftPad(this.form.reference_time_minutes)}:` +
+      `${this.leftPad(this.form.reference_time_seconds)}`;
   }
 
   private leftPad(originalNumber: number): string {
