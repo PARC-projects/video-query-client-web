@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { SearchSetAddService } from './services/search-set-add.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
-import { Router } from '@angular/router';
 import { AlertService, AlertType } from '../../../services/alert.service';
 import { ISearchSet } from '../../../models/search-set.model';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
+import { IVideo } from 'src/app/models/video.model';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-search-set-add',
@@ -14,7 +18,9 @@ export class SearchSetAddComponent implements OnInit {
   loading = false;
   showModal = false;
   videoSrc = '';
+  showVideo = false;
 
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
   constructor(
@@ -32,8 +38,31 @@ export class SearchSetAddComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onPathClick(path: string) {
-    this.videoSrc = path;
+  onPathClick(video: IVideo) {
+    this.videoSrc = `${environment.fileStoreRoot}${video.path}`;
+    this.showVideo = false;
+    if (video.external_source) {
+      this.videoSrc = `${environment.externalSource.root}${video.path}`;
+
+      if (this.tokenAuthComponent.authToken.toLowerCase() === 'parc') {
+        this.modalComponent.open();
+        this.showVideo = true;
+        return;
+      }
+
+      this.tokenAuthComponent.open();
+
+      return;
+    }
+
+    this.showVideo = true;
+    this.modalComponent.open();
+  }
+
+  onTokenAuthSubmit() {
+    if (this.tokenAuthComponent.authToken.toLowerCase() === 'parc') {
+      this.showVideo = true;
+    }
     this.modalComponent.open();
   }
 

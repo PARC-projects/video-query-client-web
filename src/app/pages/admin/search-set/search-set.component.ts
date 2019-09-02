@@ -74,6 +74,7 @@ export class SearchSetComponent implements OnInit {
       return;
     }
 
+    this.showVideo = true;
     this.modalComponent.open();
   }
 
@@ -82,7 +83,6 @@ export class SearchSetComponent implements OnInit {
       this.showVideo = true;
     }
     this.modalComponent.open();
-
   }
 
   private handleError(): void {

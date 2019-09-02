@@ -31,7 +31,7 @@
       <tr *ngFor="let video of searchSetAddService.videos">
         <td>{{video.name}}</td>
         <td>
-          <span class="video-link" (click)="onPathClick(video.path)">{{video.path}}</span>
+          <span class="video-link" (click)="onPathClick(video)">{{video.path}}</span>
         </td>
         <td (click)="onAdd(video)">
           <button type="button" class="float-right btn btn-success btn-sm">Add</button>

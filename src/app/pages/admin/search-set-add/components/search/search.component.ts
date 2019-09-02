@@ -11,7 +11,7 @@ import { IPagination } from '../../../../../models/pagination';
 })
 export class SearchComponent {
   @Input() pagination: IPagination;
-  @Output() pathClick: EventEmitter<string> = new EventEmitter();
+  @Output() pathClick: EventEmitter<IVideo> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
   @Output() selectedSearchSet: EventEmitter<void> = new EventEmitter();
@@ -30,8 +30,8 @@ export class SearchComponent {
     }
   }
 
-  onPathClick(path: string): void {
-    this.pathClick.emit(`${environment.fileStoreRoot}${path}`);
+  onPathClick(video: IVideo): void {
+    this.pathClick.emit(video);
   }
 
   onPerPageSelection(perPageSelectedValue: number): void {
