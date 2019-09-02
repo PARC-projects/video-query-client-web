@@ -221,7 +221,7 @@ export class ChartTwoComponent implements OnInit {
     this.tooltip.style('left', d3.event.pageX + 10 + 'px')
       .style('top', d3.event.pageY - 40 + 'px')
       .style('display', 'inline-block')
-      .html(data.score.toFixed(2));
+      .html('Score : ' + data.score.toFixed(2) + '<br/>Video : ' +  data.match_video_path + '<br/>Time : ' + data.reference_time);
   }
 
   private hideTooltip(): void {
