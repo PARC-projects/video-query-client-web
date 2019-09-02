@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef }
 import { IMatchView } from '../../../../models/match.model';
 import { ExistingQueryService } from '../../services/existing-query.service';
 import { ExistingQueryMatchService } from '../../services/existing-query-match.service';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
 
 export interface IValidationClick {
   state: boolean;
@@ -15,9 +16,13 @@ export interface IValidationClick {
 })
 export class ReferenceVideoComponent implements OnInit {
   loading = false;
+  isAuthenticated: boolean;
+
+  @ViewChild('videoPlayer', { static: true }) videoPlayer: ElementRef;  // TODO: Strongly type
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
+
   @Input() videoSrc: string;
   @Input() isEditable: boolean;
-  @ViewChild('videoPlayer', { static: true }) videoPlayer: ElementRef;  // TODO: Strongly type
   @Output() resetCurrentActiveMatch: EventEmitter<number> = new EventEmitter();
 
   private matchClickedSubscription: any;  // TODO: Strongly type
@@ -52,6 +57,16 @@ export class ReferenceVideoComponent implements OnInit {
       this.currentState.state = undefined;
       this.currentState.id = item.id;
     }, false);
+  }
+
+  onAuthorize() {
+    this.tokenAuthComponent.open();
+  }
+
+  onTokenAuthSubmit() {
+    if (this.tokenAuthComponent.authToken.toLowerCase() === 'parc') {
+      this.isAuthenticated = true;
+    }
   }
 
   /**

@@ -7,6 +7,7 @@ import { ChartTwoComponent } from './charts/chart-two/chart-two.component';
 import { AlertService, AlertType } from '../../services/alert.service';
 import { ExistingQueryService } from './services/existing-query.service';
 import { ExistingQueryMatchService } from './services/existing-query-match.service';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
 
 const CONFIRM_QUERY_CHART = environment.confirmQueryChart;
 
@@ -23,6 +24,7 @@ export class ExistingQueryComponent implements OnInit {
   canvasLoading = false;
   chartVersion = CONFIRM_QUERY_CHART;
   disabled = false;
+
 
   @ViewChild(ChartOneComponent, { static: false }) private chartOne: ChartOneComponent;
   @ViewChild(ChartTwoComponent, { static: false }) private chartTwo: ChartTwoComponent;
