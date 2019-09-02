@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -10,6 +10,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class TokenAuthComponent {
 
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
+  @Output() submit: EventEmitter<void> = new EventEmitter();
 
   environment = environment;
 
@@ -18,5 +19,10 @@ export class TokenAuthComponent {
 
   open(): void {
     this.modalComponent.open();
+  }
+
+  onAuthSubmit(): void {
+    this.modalComponent.close();
+    this.submit.emit();
   }
 }

@@ -13,6 +13,7 @@ export class SearchSetComponent implements OnInit {
   loading = false;
   showModal = false;
   videoSrc = '';
+  showVideo = false;
 
   private timeout: any;
 
@@ -58,10 +59,30 @@ export class SearchSetComponent implements OnInit {
 
   onPathClick(path: string, externalSource = false) {
     this.videoSrc = `${environment.fileStoreRoot}${path}`;
+    this.showVideo = false;
     if (externalSource) {
+      this.videoSrc = `${environment.externalSource.root}${path}`;
+
+      if (this.tokenAuthComponent.authToken.toLowerCase() === 'parc') {
+        this.modalComponent.open();
+        this.showVideo = true;
+        return;
+      }
+
       this.tokenAuthComponent.open();
+
+      return;
+    }
+
+    this.modalComponent.open();
+  }
+
+  onTokenAuthSubmit() {
+    if (this.tokenAuthComponent.authToken.toLowerCase() === 'parc') {
+      this.showVideo = true;
     }
     this.modalComponent.open();
+
   }
 
   private handleError(): void {

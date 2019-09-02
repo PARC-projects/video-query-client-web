@@ -52,10 +52,14 @@
     </div>
   </div>
   <app-modal>
-    <video controls align="center" #videoPlayer [style.display]="videoSrc ? 'block' : 'none'">
+    <div class="empty-state" *ngIf="!showVideo">
+      <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
+      <p>You are not authorized to view this view.</p>
+    </div>
+    <video controls align="center" #videoPlayer [style.display]="videoSrc && showVideo ? 'block' : 'none'">
       <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
     </video>
   </app-modal>
-  <app-token-auth></app-token-auth>
+  <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
   <app-loader [show]="loading"></app-loader>
 </section>
