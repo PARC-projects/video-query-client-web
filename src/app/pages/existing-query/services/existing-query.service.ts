@@ -22,49 +22,33 @@ export class ExistingQueryService {
     private searchSetRepository: SearchSetRepository
   ) { }
 
-  getCurrentQuery(queryId: number): Promise<IQuery> {
-    return this.queryRepository.getById(queryId)
-      .toPromise()
-      .then((resp: IQuery) => {
-        this.currentQuery = resp as IQueryView;
-        this.cachedNotes = this.currentQuery.notes;
-      })
-      .then(() => {
-        return this.getSearchSet();
-      })
-      .then(() => {
-        return this.getVideo();
-      })
-      .then(() => {
-        return this.getResult();
-      })
-      .then(() => {
-        return this.currentQuery;
-      });
+  async getCurrentQuery(queryId: number): Promise<IQuery> {
+    const resp = await this.queryRepository.getById(queryId)
+      .toPromise();
+    this.currentQuery = (resp as IQueryView);
+    this.cachedNotes = this.currentQuery.notes;
+    await this.getSearchSet();
+    await this.getVideo();
+    await this.getResult();
+    return this.currentQuery;
   }
 
-  getSearchSet(): Promise<void> {
-    return this.searchSetRepository.getById(this.currentQuery.search_set_to_query)
-      .toPromise()
-      .then((resp: ISearchSet) => {
-        this.currentQuery.search_set_to_query_object = resp as ISearchSet;
-      });
+  async getSearchSet(): Promise<void> {
+    const resp = await this.searchSetRepository.getById(this.currentQuery.search_set_to_query)
+      .toPromise();
+    this.currentQuery.search_set_to_query_object = (resp as ISearchSet);
   }
 
-  getVideo(): Promise<void> {
-    return this.videoRepository.getById(this.currentQuery.video)
-      .toPromise()
-      .then((resp: IVideo) => {
-        this.currentQuery.video_object = resp as IVideo;
-      });
+  async getVideo(): Promise<void> {
+    const resp = await this.videoRepository.getById(this.currentQuery.video)
+      .toPromise();
+    this.currentQuery.video_object = (resp as IVideo);
   }
 
-  getResult(): Promise<void> {
-    return this.queryRepository.getLatestQueryResult(this.currentQuery.id)
-      .toPromise()
-      .then((resp: IQueryResult) => {
-        this.currentQuery.query_result = resp as IQueryResult;
-      });
+  async getResult(): Promise<void> {
+    const resp = await this.queryRepository.getLatestQueryResult(this.currentQuery.id)
+      .toPromise();
+    this.currentQuery.query_result = (resp as IQueryResult);
   }
 
   updateQueryNote(): Promise<void> {

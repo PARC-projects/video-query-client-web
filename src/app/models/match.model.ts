@@ -15,6 +15,7 @@ export interface IMatch extends IPagination {
   user_match?: boolean;
   query_id: number;
   match_video_time_span: number;
+  reference_video_external_source: boolean;
 }
 
 export interface IMatchView extends IMatch {

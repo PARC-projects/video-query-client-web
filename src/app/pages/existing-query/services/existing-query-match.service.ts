@@ -34,8 +34,12 @@ export class ExistingQueryMatchService {
   }
 
   setActiveMatch(activeMatch: IMatch): void {
-    // const url = 'https://s3-us-west-1.amazonaws.com/elasticbeanstalk-us-west-1-326964612130/S06NDS_Sample_120406_1451_00186_Forward.mp4';
     this.videoSrc = `${environment.fileStoreRoot}${activeMatch.match_video_path}#t=${activeMatch.match_video_time_span}`;
+
+    if (activeMatch.reference_video_external_source) {
+      this.videoSrc = `${environment.externalSource.root}${activeMatch.match_video_path}#t=${activeMatch.match_video_time_span}`;
+    }
+
     this.matches.forEach((match: IMatchView, i: number) => {
       if (activeMatch.id === match.id) {
         match.is_active = true;
