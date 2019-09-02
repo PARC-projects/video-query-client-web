@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchSetService } from './services/search-set.service';
 import { environment } from '../../../../environments/environment';
 import { ModalComponent } from '../../../components/modal/modal.component';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
 
 @Component({
   selector: 'app-search-set',
@@ -15,6 +16,7 @@ export class SearchSetComponent implements OnInit {
 
   private timeout: any;
 
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
   constructor(public searchSetService: SearchSetService) { }
@@ -54,8 +56,11 @@ export class SearchSetComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onPathClick(path: string) {
+  onPathClick(path: string, externalSource = false) {
     this.videoSrc = `${environment.fileStoreRoot}${path}`;
+    if (externalSource) {
+      this.tokenAuthComponent.open();
+    }
     this.modalComponent.open();
   }
 
