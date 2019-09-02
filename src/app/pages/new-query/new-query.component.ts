@@ -4,7 +4,6 @@ import { AlertService, AlertType } from '../../services/alert.service';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { environment } from '../../../environments/environment';
 
-
 enum VideoDisplayStateEnum {
   Empty,
   Unauthorized,

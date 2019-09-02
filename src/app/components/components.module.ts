@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { RouterModule } from '@angular/router';
+import { TokenAuthComponent } from './token-auth/token-auth.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     LoaderComponent,
     ModalComponent,
     NavComponent,
-    PaginationComponent
+    PaginationComponent,
+    TokenAuthComponent
   ],
   imports: [
     FormsModule,
@@ -40,7 +42,8 @@ import { RouterModule } from '@angular/router';
     LoaderComponent,
     ModalComponent,
     NavComponent,
-    PaginationComponent
+    PaginationComponent,
+    TokenAuthComponent
   ]
 })
 export class ComponentsModule { }

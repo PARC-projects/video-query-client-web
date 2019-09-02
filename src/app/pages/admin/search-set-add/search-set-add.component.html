@@ -11,8 +11,10 @@
         <app-search-set-current (saveClicked)="onSave()"></app-search-set-current>
       </div>
       <div class="col-6">
-        <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)" (paginationClick)="onPaginationClick($event)"
-        (perPageSelection)="onPerPageSelection($event)" (searchTermUpdated)="onSearchTermUpdated()" (selectedSearchSet)="onSelectedSearchSet()"></app-search-set-search>
+        <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)"
+          (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
+          (searchTermUpdated)="onSearchTermUpdated()" (selectedSearchSet)="onSelectedSearchSet()">
+        </app-search-set-search>
       </div>
     </div>
   </div>
