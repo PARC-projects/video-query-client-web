@@ -22,6 +22,8 @@ export class ChartTwoComponent implements OnInit {
   @Input() isEditable: boolean;
   @ViewChild('chart', { static: true }) chartElm: ElementRef;
 
+  private red = '#f44455';
+  private green = '#6cc788';
   private tooltip = d3.select('body').append('div').attr('class', 'vq-tooltip');
   private validationClickedSubscription: any;  // TODO: Strongly type
   private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
@@ -152,7 +154,16 @@ export class ChartTwoComponent implements OnInit {
           return 'red';
         }
       })
-      .style('stroke-width', 2);
+      .style('stroke-width', 2)
+      .style('fill', (d: IMatch) => {
+        if (d.user_match) {
+          return this.green;
+        }
+        if (d.user_match === false) {
+          return this.red;
+        }
+        return '#ccc';
+      });
   }
 
   private flipUiStateOfActiveCircle(state?: boolean): void {
@@ -163,10 +174,10 @@ export class ChartTwoComponent implements OnInit {
           d.user_match = state;
         }
         if (d.user_match) {
-          return 'green';
+          return this.green;
         }
         if (d.user_match === false) {
-          return 'red';
+          return this.red;
         }
         return '#ccc';
       });
