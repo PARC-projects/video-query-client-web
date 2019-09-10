@@ -12,6 +12,7 @@ export class NavComponent {
   apiUrl = environment.apiUrl;
   adminUrl = this.apiUrl + '/admin';
   currentPage = 'home';
+
   constructor(public authenticationService: AuthenticationService) {
   }
 }
