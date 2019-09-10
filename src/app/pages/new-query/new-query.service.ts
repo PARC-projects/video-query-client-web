@@ -59,11 +59,11 @@ export class NewQueryService {
         }
 
         if (video.external_source) {
-          url =  `${environment.externalSource.root}${video.path}`;
+          url = `${environment.externalSource.root}${video.path}`;
           break;
         }
 
-        url =  `${environment.fileStoreRoot}${video.path}`;
+        url = `${environment.fileStoreRoot}${video.path}`;
       }
     }
     return url;

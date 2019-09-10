@@ -130,6 +130,17 @@ export class NewQueryComponent implements OnInit {
       this.newQueryService.form.current_video_length = this.videoPlayer.nativeElement.duration;
     }, false);
     this.videoPlayer.nativeElement.load();
+    this.onSeek();
+  }
+
+  private onSeek() {
+    this.videoPlayer.nativeElement.addEventListener('seeking', () => {
+      let time = this.videoPlayer.nativeElement.currentTime;
+      this.newQueryService.form.reference_time_hours = Math.floor(time / 3600);
+      time = time - this.newQueryService.form.reference_time_hours * 3600;
+      this.newQueryService.form.reference_time_minutes = Math.floor(time / 60);
+      this.newQueryService.form.reference_time_seconds = Math.floor(time - this.newQueryService.form.reference_time_minutes * 60);
+    }, false);
   }
 
   private handleError(): void {

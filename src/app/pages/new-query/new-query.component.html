@@ -222,7 +222,8 @@
         <label>Token</label>
         <input type="input" class="form-control" placeholder="Enter token..." [(ngModel)]="authToken"
           [ngModelOptions]="{standalone: true}">
-        <button type="submit" class="btn btn-warning float-right" [disabled]="authToken.length < 1" (click)="onAuthSubmit()">Submit</button>
+        <button type="submit" class="btn btn-warning float-right" [disabled]="authToken.length < 1"
+          (click)="onAuthSubmit()">Submit</button>
       </div>
     </form>
   </app-modal>
