@@ -3,7 +3,7 @@
   <section class="bullets">
     <div class="container">
       <div class="row">
-        <div class="col-lg">
+        <div class="col-lg" *ngIf="authenticationService.getCurrentToken().is_staff">
           <i class="fa fa-video-camera"></i>
           <p>Manage existing search sets and view associated videos or create a new set.</p>
           <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">Search
