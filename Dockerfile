@@ -4,4 +4,4 @@ LABEL version="1.0"
 COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /usr/share/nginx/html
-COPY dist/my-angular-app/ .
+COPY dist/video-query/ .
