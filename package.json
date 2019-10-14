@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "build:docker": "ng build --prod && docker image build -t video-query .",
-    "start:docker": "docker run -p 3000:80 --rm video-query",
+    "build:docker": "ng build --prod && docker-compose build",
+    "start:docker": "docker-compose up",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
