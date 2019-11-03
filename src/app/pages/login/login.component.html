@@ -1,9 +1,10 @@
-<app-header></app-header>
-<section class="login-form-container">
+<section class="login-form-container d-flex align-items-center min-vh-100">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <h2 class="font-weight-light text-center">Login
+        <h1 class="text-center">Agile Video Query</h1>
+        <p class="text-center">Interactive Search Tool For Similar Video Snippets</p>
+        <h2 class="text-center">Login
           <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
         </h2>
         <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -14,8 +15,7 @@
         </div>
         <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
           <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" required class="form-control" id="username" placeholder="Enter username"
+            <input type="text" required class="form-control" id="username" placeholder="Username"
               [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
             <div *ngIf="username.invalid && (username.dirty || username.touched)">
               <div *ngIf="username.errors.required" class="vq-invalid-feedback">
@@ -24,8 +24,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" required class="form-control" id="password" placeholder="Enter password"
+            <input type="password" required class="form-control" id="password" placeholder="Password"
               [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
             <div *ngIf="password.invalid && (password.dirty || password.touched)">
               <div *ngIf="password.errors.required" class="vq-invalid-feedback">
@@ -40,4 +39,5 @@
       </div>
     </div>
   </div>
+  <!-- <app-footer></app-footer> -->
 </section>
