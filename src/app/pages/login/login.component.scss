@@ -1,3 +1,28 @@
-// .login-form-container {
-//   padding: 2rem 0 6rem;
-// }
+@import "../../../custom";
+
+h2 {
+  margin: 5rem 0 2.5rem;
+}
+
+button.login {
+  margin-top: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+p.sub {
+  color: map-get($parc-colors, "orange");
+}
+
+footer {
+  margin-top: 3rem;
+}
+
+.meta {
+  margin-top: 4rem;
+  font-size: 12px;
+  color: #B3B4B4;
+  p {
+    margin: 0
+  }
+}

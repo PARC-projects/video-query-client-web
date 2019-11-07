@@ -1,9 +1,9 @@
-<section class="login-form-container d-flex align-items-center min-vh-100">
-  <div class="container">
+<section class="d-flex align-items-center min-vh-100">
+  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <h1 class="text-center">Agile Video Query</h1>
-        <p class="text-center">Interactive Search Tool For Similar Video Snippets</p>
+        <p class="text-center sub">Interactive Search Tool For Similar Video Snippets</p>
         <h2 class="text-center">Login
           <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
         </h2>
@@ -13,31 +13,69 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
-          <div class="form-group">
-            <input type="text" required class="form-control" id="username" placeholder="Username"
-              [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
-            <div *ngIf="username.invalid && (username.dirty || username.touched)">
-              <div *ngIf="username.errors.required" class="vq-invalid-feedback">
-                Username is required.
-              </div>
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
+                <div class="form-group">
+                  <input type="text" required class="form-control" id="username" placeholder="Username"
+                    [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
+                  <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <div *ngIf="username.errors.required" class="vq-invalid-feedback">
+                      Username is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="password" required class="form-control" id="password" placeholder="Password"
+                    [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors.required" class="vq-invalid-feedback">
+                      Password is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-warning text-center login" [disabled]="loginFrom.invalid || loading">Log
+                    In</button>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="form-group">
-            <input type="password" required class="form-control" id="password" placeholder="Password"
-              [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)">
-              <div *ngIf="password.errors.required" class="vq-invalid-feedback">
-                Password is required.
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <button class="btn btn-warning text-center" [disabled]="loginFrom.invalid || loading">Login</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
+    <!-- <div class="row">
+      <div class="col-lg">
+        <footer class="text-center">
+          <ul class="list-inline pages">
+            <li class="list-inline-item">
+              <a href="https://github.com/PARC-projects/video-query-home/wiki" title="Video Query Wiki">
+                Learn More
+              </a>
+            </li>
+          </ul>
+          <ul class="list-inline social">
+            <li class="list-inline-item">
+              <a href="https://github.com/PARC-projects/video-query-home" title="Video Query On Github">
+                <i class="fa fa-github fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a [href]="'mailto:' + mailToAddress" title="Video Query Contact">
+                <i class="fa fa-envelope-o fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="meta">
+            <p> Designed and built by
+              <a href="https://parc.com" title="Parc">Parc</a>.
+              <p> &copy; 2019 - Code licensed under a
+                <a href="https://github.com/PARC-projects/video-query/blob/master/LICENSE.md"
+                  title="Video Query License">Aladdin Free Public</a> license.</p>
+          </div>
+        </footer>
+      </div>
+    </div> -->
   </div>
-  <!-- <app-footer></app-footer> -->
 </section>
