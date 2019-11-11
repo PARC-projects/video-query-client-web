@@ -1,6 +1,10 @@
-<app-header></app-header>
 <section class="home-content">
-  <section class="bullets">
+  <div class="d-flex  min-vh-100">
+    <div class="p-2 navigation">Flex item 2</div>
+    <div class="p-2 flex-grow-1">Flex item 3</div>
+  </div>
+
+  <!-- <section class="bullets">
     <div class="container">
       <div class="row">
         <div class="col-lg" *ngIf="authenticationService.getCurrentToken().is_staff">
@@ -23,6 +27,6 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </section>
 <app-onboarding-modal></app-onboarding-modal>

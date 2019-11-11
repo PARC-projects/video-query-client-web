@@ -2,9 +2,10 @@ $parc-colors: ("primary": #205469,
   "dark": #052331,
   "black": #373737,
   "orange": #F26722,
-  "light-gray": #D5D5D5,
+  "light-gray": #f2f2f2,
   "medium-gray": #B3B4B4,
-  "dark-gray": #373737);
+  "dark-gray": #373737,
+  "ting-light-blue": #B3E1E7);
 
 $theme-colors: ("primary": map-get($parc-colors, "primary"),
   "dark": map-get($parc-colors, "dark"),
@@ -19,7 +20,7 @@ $theme-colors: ("primary": map-get($parc-colors, "primary"),
 
 // Override
 $black: map-get($parc-colors, "black");
-$body-bg: map-get($parc-colors, "dark");
+$body-bg: map-get($parc-colors, "light-gray");
 
 // Optional
 @import "../node_modules/bootstrap/scss/root";
