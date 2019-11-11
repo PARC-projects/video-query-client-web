@@ -20,4 +20,8 @@ export class OnboardingModalComponent implements OnInit {
   nextPage() {
     this.currentPage++;
   }
+
+  closeOnboarding() {
+    this.modalComponent.close();
+  }
 }
