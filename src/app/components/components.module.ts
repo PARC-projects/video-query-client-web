@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { RouterModule } from '@angular/router';
 import { TokenAuthComponent } from './token-auth/token-auth.component';
+import { OnboardingModalComponent } from './onboarding-modal/onboarding-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TokenAuthComponent } from './token-auth/token-auth.component';
     ModalComponent,
     NavComponent,
     PaginationComponent,
-    TokenAuthComponent
+    TokenAuthComponent,
+    OnboardingModalComponent
   ],
   imports: [
     FormsModule,
@@ -43,7 +45,8 @@ import { TokenAuthComponent } from './token-auth/token-auth.component';
     ModalComponent,
     NavComponent,
     PaginationComponent,
-    TokenAuthComponent
+    TokenAuthComponent,
+    OnboardingModalComponent
   ]
 })
 export class ComponentsModule { }

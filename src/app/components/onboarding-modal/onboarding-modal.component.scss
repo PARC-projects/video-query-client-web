@@ -1,0 +1,79 @@
+@import "../../../custom";
+
+.onboarding-container {
+  padding: 1rem;
+}
+
+.next-link {
+  margin: 1.5rem 0 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: map-get($parc-colors, "orange");
+}
+
+.page-1-container {
+  .sub-header {
+    font-size: 1.5rem;
+    padding: 0 20%;
+    margin: 3rem 0;
+  }
+
+  h6 {
+    color: map-get($parc-colors, "orange");
+  }
+}
+
+.page-2-container {
+  h2 {
+    margin: 0 0 6rem;
+  }
+
+  .illustration {
+    background-color: map-get($parc-colors, "light-gray");
+    height: 200px;
+
+    p {
+      margin: 0;
+      font-size: 2rem;
+      height: 100%;
+    }
+  }
+
+  .copy-container {
+    margin: 1rem 0 2rem;
+  }
+
+  .circle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #fff;
+    background-color: map-get($theme-colors, "success");
+  }
+}
+
+.page-3-container {
+  .illustration {
+    background-color: map-get($parc-colors, "light-gray");
+    height: 275px;
+    width: 500px;
+    margin: 5rem auto 1rem auto;
+
+    p {
+      margin: 0;
+      font-size: 2rem;
+      height: 100%;
+    }
+  }
+
+  p {
+    margin: 0 0 6rem;
+  }
+
+  button {
+    margin: 0 0 1rem;
+  }
+}

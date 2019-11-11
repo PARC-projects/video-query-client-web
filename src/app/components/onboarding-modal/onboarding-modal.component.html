@@ -1,0 +1,106 @@
+<app-modal>
+  <div class="onboarding-container" [ngSwitch]="currentPage">
+    <div class="page-1-container" *ngSwitchCase="1">
+      <h2 class="text-center">Welcome</h2>
+      <p class="sub-header text-center">You will be collaborating with AI to define actions in a reference clip to
+        generate matches
+        of similar action in a collection of videos you specified.</p>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h6>Reference Video Clip</h6>
+            <div class="container-fluid">
+              <div class="row no-gutters">
+                <div class="col">1</div>
+                <div class="col">2</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h6>Matched Video Clips From Your Collection</h6>
+            <div class="container-fluid">
+              <div class="row no-gutters">
+                <div class="col">1</div>
+                <div class="col">2</div>
+              </div>
+              <div class="row no-gutters">
+                <div class="col">3</div>
+                <div class="col">4</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="next-link text-center" (click)="nextPage()">How it works <i class="fa fa-arrow-right"
+          aria-hidden="true"></i></p>
+    </div>
+    <div class="page-2-container" *ngSwitchCase="2">
+      <h2 class="text-center">How This Works</h2>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="illustration">
+              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">1</div>
+              </div>
+              <div class="p-2">
+                <p>Have your video collections provisioned to the database. Select a reference video clip and a
+                  collection of videos to search for similarities.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="illustration">
+              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">2</div>
+              </div>
+              <div class="p-2">
+                <p>The algorithm will generate match samples for you to grade until you think samples reflect what you
+                  are looking for.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="illustration">
+              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">3</div>
+              </div>
+              <div class="p-2">
+                <p>Get a report with the timestamps on matched videos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="next-link text-center" (click)="nextPage()">Video Selection <i class="fa fa-arrow-right"
+          aria-hidden="true"></i></p>
+    </div>
+    <div class="page-3-container  text-center" *ngSwitchCase="3">
+      <h2 class="text-center">Video Selection</h2>
+      <div class="illustration">
+        <p class="d-flex align-items-center justify-content-center">Illustration</p>
+      </div>
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <div class="col-10">
+            <p>You will select a time in a video that shows the type of action of action of interest to you. The program
+              will
+              use the 10 seconds around the time you choose as the reference clip. This reference clip will be compared
+              with
+              other clips in your video collection.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning">I got it and I know I can click on "help" to see this again</button>
+    </div>
+  </div>
+</app-modal>

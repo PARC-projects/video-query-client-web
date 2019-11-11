@@ -1,5 +1,16 @@
-$parc-colors: ("primary": #205469, "dark": #052331, "black": #373737, "orange": #F26722);
-$theme-colors: ("primary": map-get($parc-colors, "primary"), "dark": map-get($parc-colors, "dark"), "danger": #BE2326, "success": #A8BC38, "warning": map-get($parc-colors, "orange"));
+$parc-colors: ("primary": #205469,
+  "dark": #052331,
+  "black": #373737,
+  "orange": #F26722,
+  "light-gray": #D5D5D5,
+  "medium-gray": #B3B4B4,
+  "dark-gray": #373737);
+
+$theme-colors: ("primary": map-get($parc-colors, "primary"),
+  "dark": map-get($parc-colors, "dark"),
+  "danger": #BE2326,
+  "success": #A8BC38,
+  "warning": map-get($parc-colors, "orange"));
 
 // Required
 @import "../node_modules/bootstrap/scss/functions";
