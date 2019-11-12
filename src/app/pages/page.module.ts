@@ -13,15 +13,20 @@ import { ResultsListChartComponent } from './existing-query/charts/results-list/
 import { ChartOneComponent } from './existing-query/charts/chart-one/chart-one.component';
 import { ChartTwoComponent } from './existing-query/charts/chart-two/chart-two.component';
 import { ReferenceVideoComponent } from './existing-query/charts/reference-video/reference-video.component';
-import { QuerySelectionComponent } from './existing-query/components/query-selection/query-selection.component';
 import { ChartSelectionComponent } from './existing-query/components/chart-selection/chart-selection.component';
-import { QueryHeaderComponent } from './existing-query/components/query-header/query-header.component';
-import { ChartHeaderComponent } from './existing-query/charts/chart-header/chart-header.component';
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
 import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
+
+/**
+ * Existing Query
+ */
+import { QueryComponent } from './existing-query/components/query/query.component';
+import { QueryHeaderComponent } from './existing-query/components/query-header/query-header.component';
+import { ChartHeaderComponent } from './existing-query/charts/chart-header/chart-header.component';
+import { QuerySelectionComponent } from './existing-query/components/query-selection/query-selection.component';
 
 
 @NgModule({
@@ -34,6 +39,7 @@ import { ComponentsModule } from '../components/components.module';
     ChartOneComponent,
     ChartTwoComponent,
     ReferenceVideoComponent,
+    QueryComponent,
     QuerySelectionComponent,
     ChartSelectionComponent,
     QueryHeaderComponent,

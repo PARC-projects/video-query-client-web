@@ -1,8 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="query-container" *ngFor="let node of results">
-        s
+<div class="query-container bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- <pre>{{query|json}}</pre> -->
+        <h4>{{query.name}}</h4>
+        <p class="state-text">{{stateText}}</p>
+        <p class="view-notes-link m-0">View Notes</p>
+      </div>
+      <div class="col-md-auto">
+        <table class="table table-borderless table-responsive">
+          <tbody>
+            <tr>
+              <td>Dataset</td>
+              <td></td>
+              <td>Clip duration</td>
+              <td>{{query.clip_duration}} seconds</td>
+            </tr>
+            <tr>
+              <td>Video</td>
+              <td></td>
+              <td>Target bootstrapping</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Reference time</td>
+              <td>{{query.reference_time}}</td>
+              <td>Matches to review</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-auto">
+        <button class="btn btn-primary">{{buttonText}}</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,29 @@
+@import "../../../../../custom";
+
+.query-container {
+  margin: 0 0 2rem;
+  padding: 1rem;
+}
+
+table {
+  font-size: 14px;
+}
+
+table tr td:nth-child(odd) {
+  color: map-get($parc-colors, "medium-gray");
+}
+
+.table td {
+  padding: 0.25rem 0.75rem;
+}
+
+.state-text {
+  color: map-get($theme-colors, "danger");
+  font-weight: bold;
+}
+
+.view-notes-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: map-get($parc-colors, "medium-gray");
+}

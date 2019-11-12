@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { IQueryResponse, IQuery } from '../../../../models/query.model';
+import { IQueryResponse } from '../../../../models/query.model';
 import { QueryRepository } from '../../../../repositories/query.repository';
 import { IListNavConfig } from '../../../../components/list-nav/list-nav.component';
 

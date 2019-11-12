@@ -7,7 +7,8 @@ import { ChartTwoComponent } from './charts/chart-two/chart-two.component';
 import { AlertService, AlertType } from '../../services/alert.service';
 import { ExistingQueryService } from './services/existing-query.service';
 import { ExistingQueryMatchService } from './services/existing-query-match.service';
-import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
+import { QueryRepository } from 'src/app/repositories/query.repository';
+import { IQueryResponse, IQuery } from 'src/app/models/query.model';
 
 const CONFIRM_QUERY_CHART = environment.confirmQueryChart;
 
@@ -25,6 +26,9 @@ export class ExistingQueryComponent implements OnInit {
   chartVersion = CONFIRM_QUERY_CHART;
   disabled = false;
 
+  queries = [] as IQuery[];
+  searchTerm: string;
+  perPage = 10;
 
   @ViewChild(ChartOneComponent, { static: false }) private chartOne: ChartOneComponent;
   @ViewChild(ChartTwoComponent, { static: false }) private chartTwo: ChartTwoComponent;
@@ -35,7 +39,8 @@ export class ExistingQueryComponent implements OnInit {
     public existingQueryService: ExistingQueryService,
     public matchService: ExistingQueryMatchService,
     private activatedRoute: ActivatedRoute,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private queryRepository: QueryRepository
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +50,18 @@ export class ExistingQueryComponent implements OnInit {
         if (paramMap.params['chartVersion']) {
           this.chartVersion = parseInt(paramMap.params['chartVersion'], 10);
         }
+      });
+
+    this.getQueries();
+  }
+
+  private getQueries(page?: number): Promise<void> {
+    return this.queryRepository.getAll(page, this.searchTerm, this.perPage)
+      .toPromise()
+      .then((resp: IQueryResponse) => {
+        this.queries = resp.results;
+      })
+      .catch(() => {
       });
   }
 
