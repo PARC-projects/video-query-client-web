@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(ChartTwoComponent, { static: false }) private chartTwo: ChartTwoComponent;
 
   private sub: Subscription;
+  private timeout: any;
 
   constructor(
     public existingQueryService: ExistingQueryService,
@@ -42,6 +43,14 @@ export class HomeComponent implements OnInit {
     private alertService: AlertService,
     private queryRepository: QueryRepository
   ) { }
+
+
+  onSearch(search: string): void {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.searchTerm = search;
+    }, 500);
+  }
 
   ngOnInit(): void {
     this.sub = this.activatedRoute.queryParamMap
@@ -66,25 +75,6 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * Emitter: app-query-selection
-   */
-  onQueryClick(clickedQueryId: number): void {
-    this.canvasLoading = true;
-    this.matchService.getMatches(clickedQueryId)
-      .then(() => {
-        return this.existingQueryService.getCurrentQuery(clickedQueryId);
-      })
-      .then(() => {
-        this.buildChart(this.chartVersion);
-        this.canvasLoading = false;
-        this.disabled = false;
-      })
-      .catch(() => {
-        this.canvasLoading = false;
-      });
-  }
-
-  /**
    * Emitter: app-query-header
    */
   onRevisionSubmit(): void {
@@ -105,16 +95,6 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  /**
-   * Emitter: app-query-header
-   */
-  onResetQuery(): void {
-    const name = this.existingQueryService.currentQuery.name;
-    if (confirm(`Are you sure you would like to reset the state of "${name}" to when it was loaded?`)) {
-      this.onQueryClick(this.existingQueryService.currentQuery.id);
-      this.buildChart(this.chartVersion);
-    }
-  }
 
   /**
    * Emitter: app-query-header
@@ -134,40 +114,6 @@ export class HomeComponent implements OnInit {
         .catch(() => {
           this.canvasLoading = false;
         });
-    }
-  }
-
-  /**
-   * Emitter: app-results-list-chart
-   */
-  onResetCurrentActiveMatch() {
-    this.matchService.resetCurrentActiveMatch();
-    this.buildChart(this.chartVersion);
-  }
-
-  isQueryDisabled(): boolean {
-    return this.existingQueryService.currentQuery.process_state !== 4;
-  }
-
-  isProcessing(): boolean {
-    return (this.existingQueryService.currentQuery.process_state === 1
-      || this.existingQueryService.currentQuery.process_state === 2
-      || this.existingQueryService.currentQuery.process_state === 3)
-      && !this.canvasLoading;
-  }
-
-  private buildChart(chartVersion: number) {
-    if (this.isQueryDisabled()) {
-      return;
-    }
-    this.chartVersion = chartVersion;
-    switch (this.chartVersion) {
-      case 1:
-        this.chartOne.buildChart();
-        break;
-      case 2:
-        this.chartTwo.buildChart();
-        break;
     }
   }
 }
