@@ -26,7 +26,7 @@
             </div>
           </div>
           <ng-container class="query-container" *ngFor="let query of queries">
-            <app-query [query]="query"></app-query>
+            <app-queries-node [query]="query"></app-queries-node>
           </ng-container>
           <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
             (perPageSelected)="onPerPageSelection($event)"></app-pagination>

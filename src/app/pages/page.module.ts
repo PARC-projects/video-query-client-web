@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginComponent } from './login/login.component';
 import { NewQueryComponent } from './new-query/new-query.component';
 import { ResultsListChartComponent } from './home/charts/results-list/results-list-chart.component';
 import { ChartOneComponent } from './home/charts/chart-one/chart-one.component';
@@ -19,22 +18,39 @@ import { ComponentsModule } from '../components/components.module';
 import { ChartHeaderComponent } from './home/charts/chart-header/chart-header.component';
 
 /**
+ * Login
+ */
+import { LoginComponent } from './login/login.component';
+
+/**
  * Home
  */
 import { HomeComponent } from './home/home.component';
-import { QueryComponent } from './home/components/query/query.component';
+import { QueriesNodeComponent } from './home/components/queries-node/queries-node.component';
+
+/**
+ * Query
+ */
+import { QueryComponent } from './query/query.component';
 
 
 @NgModule({
   declarations: [
+    // Login
     LoginComponent,
+
+    // Home
     HomeComponent,
+    QueriesNodeComponent,
+
+    // Query
+    QueryComponent,
+
     NewQueryComponent,
     ResultsListChartComponent,
     ChartOneComponent,
     ChartTwoComponent,
     ReferenceVideoComponent,
-    QueryComponent,
     ChartHeaderComponent,
     SearchSetComponent,
     SearchComponent,

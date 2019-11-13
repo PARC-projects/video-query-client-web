@@ -52,6 +52,12 @@ button.disabled {
 .btn-light-orange.disabled {
   background-color: map-get($parc-colors, "light-orange");
   border-color: map-get($parc-colors, "light-orange");
+
+  &:hover {
+    background-color: darken(map-get($parc-colors, "light-orange"), 10%);
+    border-color: darken(map-get($parc-colors, "light-orange"), 10%);
+
+  }
 }
 
 .text-light-orange {

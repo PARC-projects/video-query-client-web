@@ -3,11 +3,11 @@ import { IQuery, ProcessState } from 'src/app/models/query.model';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
-  selector: 'app-query',
-  templateUrl: './query.component.html',
-  styleUrls: ['./query.component.scss']
+  selector: 'app-queries-node',
+  templateUrl: './queries-node.component.html',
+  styleUrls: ['./queries-node.component.scss']
 })
-export class QueryComponent implements OnInit {
+export class QueriesNodeComponent implements OnInit {
 
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
   @Input() query: IQuery;
