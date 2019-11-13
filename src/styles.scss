@@ -2,16 +2,23 @@ $fa-font-path: "./assets/fonts" !default;
 @import "custom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
-.vq-widget {
-    background: color("white");
-    padding: 0.5rem 1rem 1rem;
-    margin: 0 0 1rem;
-    box-shadow: 0 0 1px rgba(0, 0, 0, .15);
-    width: 100%;
+
+.text-parc-orange {
+  color: map-get($parc-colors, "orange");
 }
 
-.vq-title {
-    @extend .font-weight-light;
+.input-group.muted {
+  margin: 0;
+
+  .input-group-text {
+    border-right: none;
+    background-color: map-get($parc-colors, "light-gray");
+  }
+
+  input.form-control {
+    background-color: map-get($parc-colors, "light-gray");
+    border-left: none;
+  }
 }
 
 .vq-invalid-feedback {
@@ -19,38 +26,51 @@ $fa-font-path: "./assets/fonts" !default;
     display: block;
 }
 
-.form-control.ng-invalid.ng-touched {
-    @extend .form-control, .is-invalid;
-}
 
-.vq-tooltip {
-    position: absolute;
-    text-align: center;
-    font-size: 14px;
-    padding: 0.5rem;
-    pointer-events: none;
-    display: none;
-    background-color: rgba(gray("800"), 0.85);
-    color: color('white');
-    border-radius: 2px;
-}
+// .form-control.ng-invalid.ng-touched {
+//     @extend .form-control, .is-invalid;
+// }
 
-.vq-info-tooltip {
-    color: lighten(theme-color("primary"), 20%) !important;
-    &:hover {
-        transition: 0.25s all;
-        color: theme-color("primary")
-    }
-}
+// .vq-widget {
+//     background: color("white");
+//     padding: 0.5rem 1rem 1rem;
+//     margin: 0 0 1rem;
+//     box-shadow: 0 0 1px rgba(0, 0, 0, .15);
+//     width: 100%;
+// }
 
-.mat-tooltip {
-    font-size: 11pt !important;
-}
+// .vq-title {
+//     @extend .font-weight-light;
+// }
 
-.form-control.small {
-    width: 50%;
-}
+// .vq-tooltip {
+//     position: absolute;
+//     text-align: center;
+//     font-size: 14px;
+//     padding: 0.5rem;
+//     pointer-events: none;
+//     display: none;
+//     background-color: rgba(gray("800"), 0.85);
+//     color: color('white');
+//     border-radius: 2px;
+// }
 
-.fa-refresh {
-    margin-right: 4pt;
-}
+// .vq-info-tooltip {
+//     color: lighten(theme-color("primary"), 20%) !important;
+//     &:hover {
+//         transition: 0.25s all;
+//         color: theme-color("primary")
+//     }
+// }
+
+// .mat-tooltip {
+//     font-size: 11pt !important;
+// }
+
+// .form-control.small {
+//     width: 50%;
+// }
+
+// .fa-refresh {
+//     margin-right: 4pt;
+// }

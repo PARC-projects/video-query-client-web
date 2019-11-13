@@ -2,9 +2,10 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <h1 class="text-center">Agile Video Query</h1>
-        <p class="text-center sub">Interactive Search Tool For Similar Video Snippets</p>
-        <h2 class="text-center">Login
+        <h1 class="text-center font-weight-bold">Agile Video Query</h1>
+        <p class="text-center sub font-weight-bold text-parc-orange">Interactive Search Tool For Similar Video Snippets
+        </p>
+        <h2 class="text-center font-weight-bold">Login
           <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
         </h2>
         <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -18,8 +19,14 @@
             <div class="col-lg-6">
               <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
                 <div class="form-group">
-                  <input type="text" required class="form-control" id="username" placeholder="Username"
-                    [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
+                  <div class="input-group muted">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-user-o"
+                          aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" required class="form-control" id="username" placeholder="Username"
+                      [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
+                  </div>
                   <div *ngIf="username.invalid && (username.dirty || username.touched)">
                     <div *ngIf="username.errors.required" class="vq-invalid-feedback">
                       Username is required.
@@ -27,8 +34,14 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="password" required class="form-control" id="password" placeholder="Password"
-                    [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
+                  <div class="input-group muted">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
+                          aria-hidden="true"></i></span>
+                    </div>
+                    <input type="password" required class="form-control" id="password" placeholder="Password"
+                      [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
+                  </div>
                   <div *ngIf="password.invalid && (password.dirty || password.touched)">
                     <div *ngIf="password.errors.required" class="vq-invalid-feedback">
                       Password is required.
