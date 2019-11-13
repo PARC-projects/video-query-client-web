@@ -2,31 +2,30 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <!-- <pre>{{query|json}}</pre> -->
         <h4>{{query.name}}</h4>
         <p class="state-text" [ngClass]="stateColor">{{stateText}}</p>
-        <p class="view-notes-link m-0">View Notes</p>
+        <p class="view-notes-link m-0" (click)="openNotes()">View Notes</p>
       </div>
       <div class="col-md-auto">
         <table class="table table-borderless table-responsive">
           <tbody>
             <tr>
               <td>Dataset</td>
-              <td></td>
+              <td>{{query.dataset}}</td>
               <td>Clip duration</td>
               <td>{{query.clip_duration}} seconds</td>
             </tr>
             <tr>
               <td>Video</td>
-              <td></td>
+              <td>{{query.video_name}}</td>
               <td>Target bootstrapping</td>
-              <td></td>
+              <td>{{query.use_dynamic_target_adjustment}}</td>
             </tr>
             <tr>
               <td>Reference time</td>
               <td>{{query.reference_time}}</td>
               <td>Matches to review</td>
-              <td></td>
+              <td>{{query.max_matches_for_review}}</td>
             </tr>
           </tbody>
         </table>
@@ -37,3 +36,6 @@
     </div>
   </div>
 </div>
+<app-modal>
+  {{query.notes}}
+</app-modal>

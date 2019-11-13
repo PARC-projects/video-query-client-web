@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IQuery, ProcessState } from 'src/app/models/query.model';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-query',
@@ -7,6 +8,8 @@ import { IQuery, ProcessState } from 'src/app/models/query.model';
   styleUrls: ['./query.component.scss']
 })
 export class QueryComponent implements OnInit {
+
+  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
   @Input() query: IQuery;
 
   get buttonText(): string {
@@ -77,5 +80,9 @@ export class QueryComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  openNotes() {
+    this.modalComponent.open();
   }
 }

@@ -9,6 +9,7 @@ import { ExistingQueryService } from './services/existing-query.service';
 import { ExistingQueryMatchService } from './services/existing-query-match.service';
 import { QueryRepository } from 'src/app/repositories/query.repository';
 import { IQueryResponse, IQuery } from 'src/app/models/query.model';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 const CONFIRM_QUERY_CHART = environment.confirmQueryChart;
 
