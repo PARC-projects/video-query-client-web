@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.searchTerm = search;
+      this.getQueries(1);
     }, 500);
   }
 
