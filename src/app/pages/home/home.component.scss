@@ -14,10 +14,16 @@ header {
 
 .input-group {
   margin: 0 0 1rem;
-}
 
-input.form-control {
-  background-color: map-get($parc-colors, "light-gray");
+  .input-group-text {
+    border-right: none;
+    background-color: map-get($parc-colors, "light-gray");
+  }
+
+  input.form-control {
+    background-color: map-get($parc-colors, "light-gray");
+    border-left: none;
+  }
 }
 
 ::ng-deep app-onboarding-modal .modal-dialog {

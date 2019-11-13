@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col">
           <header class="d-flex justify-content-start">
-            <h1>My Queries</h1>
+            <h1><strong>My Queries</strong></h1>
             <div class="d-flex align-items-center">
-              <button class="btn btn-warning">Create New Query</button>
+              <button class="btn btn-warning" routerLink="/new-query">Create New Query</button>
             </div>
           </header>
           <div class="input-group">
@@ -30,7 +30,7 @@
           </ng-container>
           <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
             (perPageSelected)="onPerPageSelection($event)"></app-pagination>
-            <app-loader [show]="isLoading"></app-loader>
+          <app-loader [show]="isLoading"></app-loader>
         </div>
       </div>
     </div>
