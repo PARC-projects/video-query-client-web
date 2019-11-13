@@ -3,8 +3,7 @@
 
 .navigation {
   background: map-get($parc-colors, "dark");
-  position: relative;
-
+  position: fixed;
   ul {
     margin: 0;
     text-align: center;

@@ -1,16 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ChartOneComponent } from './charts/chart-one/chart-one.component';
-import { ChartTwoComponent } from './charts/chart-two/chart-two.component';
 import { AlertService, AlertType } from '../../services/alert.service';
 import { ExistingQueryService } from './services/existing-query.service';
 import { ExistingQueryMatchService } from './services/existing-query-match.service';
 import { QueryRepository } from 'src/app/repositories/query.repository';
 import { IQueryResponse, IQuery } from 'src/app/models/query.model';
-
-const CONFIRM_QUERY_CHART = environment.confirmQueryChart;
+import { IPagination } from 'src/app/models/pagination';
 
 @Component({
   selector: 'app-existing-query-page',
@@ -23,27 +18,20 @@ const CONFIRM_QUERY_CHART = environment.confirmQueryChart;
 })
 export class HomeComponent implements OnInit {
   canvasLoading = false;
-  chartVersion = CONFIRM_QUERY_CHART;
-  disabled = false;
 
   queries = [] as IQuery[];
+  pagination: IPagination;
   searchTerm: string;
   perPage = 10;
 
-  @ViewChild(ChartOneComponent, { static: false }) private chartOne: ChartOneComponent;
-  @ViewChild(ChartTwoComponent, { static: false }) private chartTwo: ChartTwoComponent;
-
-  private sub: Subscription;
   private timeout: any;
 
   constructor(
     public existingQueryService: ExistingQueryService,
     public matchService: ExistingQueryMatchService,
-    private activatedRoute: ActivatedRoute,
     private alertService: AlertService,
     private queryRepository: QueryRepository
   ) { }
-
 
   onSearch(search: string): void {
     clearTimeout(this.timeout);
@@ -53,15 +41,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.queryParamMap
-      .subscribe((paramMap: any) => {
-        // TODO: Strongly-type ^
-        if (paramMap.params['chartVersion']) {
-          this.chartVersion = parseInt(paramMap.params['chartVersion'], 10);
-        }
-      });
-
     this.getQueries();
+  }
+
+
+  onPerPageSelection(perPageSelectedValue: number): void {
+    this.perPage = perPageSelectedValue;
+  }
+
+  onPaginationClick(pageClicked: number): void {
   }
 
   private getQueries(page?: number): Promise<void> {
@@ -69,6 +57,7 @@ export class HomeComponent implements OnInit {
       .toPromise()
       .then((resp: IQueryResponse) => {
         this.queries = resp.results;
+        this.pagination = resp.pagination;
       })
       .catch(() => {
       });
@@ -88,7 +77,6 @@ export class HomeComponent implements OnInit {
       .then(() => {
         this.alertService.setAlert(message, AlertType.Success);
         this.canvasLoading = false;
-        this.disabled = true;
       })
       .catch(() => {
         this.canvasLoading = false;
