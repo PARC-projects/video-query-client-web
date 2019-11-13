@@ -4,7 +4,7 @@
       <div class="col">
         <!-- <pre>{{query|json}}</pre> -->
         <h4>{{query.name}}</h4>
-        <p class="state-text">{{stateText}}</p>
+        <p class="state-text" [ngClass]="stateColor">{{stateText}}</p>
         <p class="view-notes-link m-0">View Notes</p>
       </div>
       <div class="col-md-auto">
@@ -32,7 +32,7 @@
         </table>
       </div>
       <div class="col-md-auto">
-        <button class="btn btn-primary">{{buttonText}}</button>
+        <button class="btn btn-primary" [ngClass]="buttonColor">{{buttonText}}</button>
       </div>
     </div>
   </div>

@@ -27,3 +27,17 @@ table tr td:nth-child(odd) {
   text-decoration: underline;
   color: map-get($parc-colors, "medium-gray");
 }
+
+button, .btn-success {
+  color: #fff;
+  min-width: 150px;
+}
+
+button.disabled {
+  cursor: no-drop;
+}
+
+.btn-light-secondary, .btn-light-secondary.disabled {
+  background-color: map-get($parc-colors, "medium-gray");
+  border-color: map-get($parc-colors, "medium-gray");
+}
