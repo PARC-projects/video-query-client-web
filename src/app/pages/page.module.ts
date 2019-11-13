@@ -6,14 +6,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 import { NewQueryComponent } from './new-query/new-query.component';
-import { ExistingQueryComponent } from './existing-query/existing-query.component';
-import { ResultsListChartComponent } from './existing-query/charts/results-list/results-list-chart.component';
-import { ChartOneComponent } from './existing-query/charts/chart-one/chart-one.component';
-import { ChartTwoComponent } from './existing-query/charts/chart-two/chart-two.component';
-import { ReferenceVideoComponent } from './existing-query/charts/reference-video/reference-video.component';
-import { ChartSelectionComponent } from './existing-query/components/chart-selection/chart-selection.component';
+import { ResultsListChartComponent } from './home/charts/results-list/results-list-chart.component';
+import { ChartOneComponent } from './home/charts/chart-one/chart-one.component';
+import { ChartTwoComponent } from './home/charts/chart-two/chart-two.component';
+import { ReferenceVideoComponent } from './home/charts/reference-video/reference-video.component';
+import { ChartSelectionComponent } from './home/components/chart-selection/chart-selection.component';
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
@@ -21,12 +19,13 @@ import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.com
 import { ComponentsModule } from '../components/components.module';
 
 /**
- * Existing Query
+ * Home
  */
-import { QueryComponent } from './existing-query/components/query/query.component';
-import { QueryHeaderComponent } from './existing-query/components/query-header/query-header.component';
-import { ChartHeaderComponent } from './existing-query/charts/chart-header/chart-header.component';
-import { QuerySelectionComponent } from './existing-query/components/query-selection/query-selection.component';
+import { HomeComponent } from './home/home.component';
+import { QueryComponent } from './home/components/query/query.component';
+import { QueryHeaderComponent } from './home/components/query-header/query-header.component';
+import { ChartHeaderComponent } from './home/charts/chart-header/chart-header.component';
+import { QuerySelectionComponent } from './home/components/query-selection/query-selection.component';
 
 
 @NgModule({
@@ -34,7 +33,6 @@ import { QuerySelectionComponent } from './existing-query/components/query-selec
     LoginComponent,
     HomeComponent,
     NewQueryComponent,
-    ExistingQueryComponent,
     ResultsListChartComponent,
     ChartOneComponent,
     ChartTwoComponent,

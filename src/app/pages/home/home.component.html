@@ -1,7 +1,18 @@
 <section class="home-content">
   <div class="d-flex min-vh-100">
     <app-nav></app-nav>
-    <div class="p-2 flex-grow-1">Flex item 3</div>
+    <div class="p-2 flex-grow-1">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <ng-container class="query-container" *ngFor="let query of queries">
+              <app-query [query]="query"></app-query>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+<app-loader [show]="canvasLoading"></app-loader>
 <!-- <app-onboarding-modal></app-onboarding-modal> -->
