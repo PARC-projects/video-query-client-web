@@ -44,6 +44,17 @@ button.disabled {
   border-color: map-get($parc-colors, "medium-gray");
 }
 
+.btn-light-orange,
+.btn-light-orange.disabled {
+  background-color: map-get($parc-colors, "light-orange");
+  border-color: map-get($parc-colors, "light-orange");
+}
+
+.text-light-orange {
+  color: map-get($parc-colors, "light-orange");
+}
+
+
 ::ng-deep textarea {
   min-width: 800px;
   min-height: 200px

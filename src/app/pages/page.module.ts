@@ -11,21 +11,18 @@ import { ResultsListChartComponent } from './home/charts/results-list/results-li
 import { ChartOneComponent } from './home/charts/chart-one/chart-one.component';
 import { ChartTwoComponent } from './home/charts/chart-two/chart-two.component';
 import { ReferenceVideoComponent } from './home/charts/reference-video/reference-video.component';
-import { ChartSelectionComponent } from './home/components/chart-selection/chart-selection.component';
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
 import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
+import { ChartHeaderComponent } from './home/charts/chart-header/chart-header.component';
 
 /**
  * Home
  */
 import { HomeComponent } from './home/home.component';
 import { QueryComponent } from './home/components/query/query.component';
-import { QueryHeaderComponent } from './home/components/query-header/query-header.component';
-import { ChartHeaderComponent } from './home/charts/chart-header/chart-header.component';
-import { QuerySelectionComponent } from './home/components/query-selection/query-selection.component';
 
 
 @NgModule({
@@ -38,9 +35,6 @@ import { QuerySelectionComponent } from './home/components/query-selection/query
     ChartTwoComponent,
     ReferenceVideoComponent,
     QueryComponent,
-    QuerySelectionComponent,
-    ChartSelectionComponent,
-    QueryHeaderComponent,
     ChartHeaderComponent,
     SearchSetComponent,
     SearchComponent,

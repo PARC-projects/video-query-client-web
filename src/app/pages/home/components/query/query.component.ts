@@ -51,7 +51,7 @@ export class QueryComponent implements OnInit {
       case ProcessState.Processing:
         return 'btn-secondary btn-light-secondary disabled';
       case ProcessState.Processed:
-        return 'btn-warning';
+        return 'btn-light-orange';
       case ProcessState.Error:
         return 'btn-danger';
       case ProcessState.Finalized:
@@ -68,7 +68,7 @@ export class QueryComponent implements OnInit {
       case ProcessState.Processing:
         return 'text-fuchsia';
       case ProcessState.Processed:
-        return 'text-warning';
+        return 'text-light-orange';
       case ProcessState.Error:
         return 'text-danger';
       case ProcessState.Finalized:
