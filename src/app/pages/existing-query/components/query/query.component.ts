@@ -24,7 +24,6 @@ export class QueryComponent implements OnInit {
       case ProcessState.Finalized:
       case ProcessState.ProcessFinalized:
         return 'Download Report';
-
     }
   }
 
@@ -67,13 +66,13 @@ export class QueryComponent implements OnInit {
       case ProcessState.Submitted:
       case ProcessState.Revised:
       case ProcessState.Processing:
-        return 'text-secondary';
+        return 'text-fuchsia';
       case ProcessState.Processed:
         return 'text-warning';
       case ProcessState.Error:
         return 'text-danger';
       case ProcessState.Finalized:
-        return 'text-secondary';
+        return 'text-fuchsia';
       case ProcessState.ProcessFinalized:
         return 'text-success';
     }

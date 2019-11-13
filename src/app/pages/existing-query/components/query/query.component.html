@@ -37,5 +37,6 @@
   </div>
 </div>
 <app-modal>
-  {{query.notes}}
+  <p>Edit as desired. Edits will be saved</p>
+  <textarea class="form-control" [(ngModel)]="query.notes" [disabled]="isEditable" id="notes"></textarea>
 </app-modal>

@@ -5,7 +5,8 @@ $parc-colors: ("primary": #205469,
   "light-gray": #f2f2f2,
   "medium-gray": #B3B4B4,
   "dark-gray": #373737,
-  "ting-light-blue": #B3E1E7);
+  "ting-light-blue": #B3E1E7,
+  "ting-fuchsia": #ed247c);
 
 $theme-colors: ("primary": map-get($parc-colors, "primary"),
   "dark": map-get($parc-colors, "dark"),
