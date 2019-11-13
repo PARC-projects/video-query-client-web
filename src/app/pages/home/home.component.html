@@ -28,12 +28,12 @@
           <ng-container class="query-container" *ngFor="let query of queries">
             <app-query [query]="query"></app-query>
           </ng-container>
-          <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)" (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+          <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
+            (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+            <app-loader [show]="isLoading"></app-loader>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<app-loader [show]="canvasLoading"></app-loader>
 <!-- <app-onboarding-modal></app-onboarding-modal> -->

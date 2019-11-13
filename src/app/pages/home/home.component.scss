@@ -19,3 +19,12 @@ header {
 input.form-control {
   background-color: map-get($parc-colors, "light-gray");
 }
+
+::ng-deep app-onboarding-modal .modal-dialog {
+  min-width: 800px;
+}
+
+::ng-deep app-pagination {
+  margin: 0 0 3rem;
+  display: block;
+}
