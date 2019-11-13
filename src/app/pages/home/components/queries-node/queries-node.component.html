@@ -31,7 +31,17 @@
         </table>
       </div>
       <div class="col-md-auto">
-        <button class="btn btn-primary" [ngClass]="buttonColor">{{buttonText}}</button>
+        <ng-container [ngSwitch]="stateButton">
+          <ng-container *ngSwitchCase="1">
+            <button class="btn btn-primary" [ngClass]="buttonColor">{{buttonText}}</button>
+          </ng-container>
+          <ng-container *ngSwitchCase="2">
+            <button class="btn btn-primary" [ngClass]="buttonColor" routerLink="/query">{{buttonText}}</button>
+          </ng-container>
+          <ng-container *ngSwitchCase="3">
+            <a class="btn btn-primary" [ngClass]="buttonColor" [href]="query.final_report_url">{{buttonText}}</a>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </div>
