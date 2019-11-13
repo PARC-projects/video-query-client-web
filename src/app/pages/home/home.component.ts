@@ -46,10 +46,11 @@ export class HomeComponent implements OnInit {
 
 
   onPerPageSelection(perPageSelectedValue: number): void {
-    this.perPage = perPageSelectedValue;
+    this.pagination.count = perPageSelectedValue;
   }
 
   onPaginationClick(pageClicked: number): void {
+    this.getQueries(pageClicked);
   }
 
   private getQueries(page?: number): Promise<void> {
