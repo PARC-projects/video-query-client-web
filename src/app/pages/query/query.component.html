@@ -3,6 +3,20 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <header>
+          <h1 class="font-weight-bold">Review Match Samples</h1>
+          <p>Give the computer feedback if the match samples are good matches. Continue until the matches seem accurate.
+          </p>
+        </header>
+        <section class="bg-white matches-container">
+          <h3>Select correct matches</h3>
+        </section>
+        <section class="bg-white comments-container">
+          <h3>Comments <span>(Optional)</span></h3>
+          <div class="form-group  mb-0">
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+        </section>
         <pre>{{queryService.currentQuery|json}}</pre>
       </div>
     </div>

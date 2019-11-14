@@ -1,0 +1,23 @@
+@import "../../../custom";
+
+h3 {
+  margin: 0 0 1.5rem;
+  span {
+    color: map-get($parc-colors, "medium-gray");
+  }
+}
+
+header {
+  margin: 3rem 0 1.5rem 0;
+}
+
+.comments-container,
+.matches-container {
+  padding: 1.5rem;
+  margin: 0 0 2rem;
+}
+
+.matches-container {
+  min-height: 300px;
+}
+
