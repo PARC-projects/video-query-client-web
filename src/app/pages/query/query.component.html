@@ -10,6 +10,20 @@
         </header>
         <section class="bg-white matches-container">
           <h3>Select correct matches</h3>
+          <div class="row">
+            <ng-container *ngFor="let match of queryMatchService.matches">
+              <div class="match col-3">
+                <div class="video">
+
+                </div>
+                <div class="meta  d-flex flex-row">
+                  <div>
+                    <div class="circle"> &#10003;</div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
         </section>
         <section class="bg-white comments-container">
           <h3>Comments <span>(Optional)</span></h3>
@@ -17,6 +31,7 @@
             <textarea class="form-control" rows="3"></textarea>
           </div>
         </section>
+        <pre>{{queryMatchService.matches|json}}</pre>
         <pre>{{queryService.currentQuery|json}}</pre>
       </div>
     </div>

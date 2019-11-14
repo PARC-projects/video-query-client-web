@@ -18,14 +18,12 @@ export class QueryMatchService {
     private queryRepository: QueryRepository
   ) { }
 
-  getMatches(queryId: number): Promise<void> {
-    return this.queryRepository.getLatestMatches(queryId)
-      .toPromise()
-      .then((resp: IMatch[]) => {
-        this.videoSrc = null;
-        this.matches = resp as IMatchView[];
-        this.matchCache = JSON.parse(JSON.stringify(this.matches)) as IMatchView[];
-      });
+  async getMatches(queryId: number): Promise<void> {
+    const resp = await this.queryRepository.getLatestMatches(queryId)
+      .toPromise();
+    this.videoSrc = null;
+    this.matches = (resp as IMatchView[]);
+    this.matchCache = (JSON.parse(JSON.stringify(this.matches)) as IMatchView[]);
   }
 
   submitRevision(queryId): Promise<IMatch> {

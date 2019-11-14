@@ -16,11 +16,13 @@ export class QueryComponent implements OnInit {
 
   isLoading = false;
   constructor(private route: ActivatedRoute,
+    public queryMatchService: QueryMatchService,
     public queryService: QueryService) { }
 
   async ngOnInit() {
     this.isLoading = true;
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
+    await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
     this.isLoading = false;
   }
 }

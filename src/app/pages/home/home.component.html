@@ -16,13 +16,6 @@
           <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
             (ngModelChange)="onSearch($event)">
         </div>
-        <div class="queries-pagination">
-          <div class="container">
-            <div class="row">
-              <div class="col"></div>
-            </div>
-          </div>
-        </div>
         <ng-container class="query-container" *ngFor="let query of queries">
           <app-queries-node [query]="query"></app-queries-node>
         </ng-container>

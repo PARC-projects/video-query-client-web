@@ -2,6 +2,7 @@
 
 h3 {
   margin: 0 0 1.5rem;
+
   span {
     color: map-get($parc-colors, "medium-gray");
   }
@@ -21,3 +22,17 @@ header {
   min-height: 300px;
 }
 
+.match {
+  margin: 0 0 1rem;
+}
+
+.circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  background-color: map-get($theme-colors, "success");
+}
