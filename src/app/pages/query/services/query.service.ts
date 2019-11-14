@@ -9,7 +9,7 @@ import { IQueryResult } from '../../../models/query-result.model';
 
 
 @Injectable()
-export class ExistingQueryService {
+export class QueryService {
   currentQuery = {} as IQueryView;
   videoSrc: string;
   disabled: false;

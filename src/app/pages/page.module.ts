@@ -6,16 +6,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NewQueryComponent } from './new-query/new-query.component';
-import { ResultsListChartComponent } from './home/charts/results-list/results-list-chart.component';
-import { ChartOneComponent } from './home/charts/chart-one/chart-one.component';
-import { ChartTwoComponent } from './home/charts/chart-two/chart-two.component';
-import { ReferenceVideoComponent } from './home/charts/reference-video/reference-video.component';
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
 import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
-import { ChartHeaderComponent } from './home/charts/chart-header/chart-header.component';
 
 /**
  * Login

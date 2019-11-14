@@ -5,7 +5,7 @@ import { MatchRepository } from '../../../repositories/match.repository';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
-export class ExistingQueryMatchService {
+export class QueryMatchService {
   validationClicked: EventEmitter<boolean> = new EventEmitter();
   matchClicked: EventEmitter<IMatchView> = new EventEmitter();
   matches: IMatchView[];
