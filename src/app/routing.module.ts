@@ -11,7 +11,7 @@ import { QueryComponent } from './pages/query/query.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
-  { path: 'query', component: QueryComponent, canActivate: [AuthenticationGuard] },
+  { path: 'query/:id', component: QueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'new-query', component: NewQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
   { path: 'search-sets/add', component: SearchSetAddComponent, canActivate: [AuthenticationGuard] },

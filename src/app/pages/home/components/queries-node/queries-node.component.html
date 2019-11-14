@@ -36,7 +36,7 @@
             <button class="btn btn-primary" [ngClass]="buttonColor">{{buttonText}}</button>
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <button class="btn btn-primary" [ngClass]="buttonColor" routerLink="/query">{{buttonText}}</button>
+            <button class="btn btn-primary" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</button>
           </ng-container>
           <ng-container *ngSwitchCase="3">
             <a class="btn btn-primary" [ngClass]="buttonColor" [href]="query.final_report_url">{{buttonText}}</a>
@@ -47,6 +47,6 @@
   </div>
 </div>
 <app-modal>
-  <h5>Edit as desired. Edits will be saved</h5>
-  <textarea class="form-control" [(ngModel)]="query.notes" [disabled]="isEditable" id="notes"></textarea>
+  <h5>Notes</h5>
+  <p>{{query.notes}}</p>
 </app-modal>

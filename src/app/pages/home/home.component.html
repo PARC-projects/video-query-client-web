@@ -1,37 +1,34 @@
-<div class="d-flex min-vh-100">
+<div class="min-vh-100">
   <app-nav></app-nav>
-  <div class="flex-grow-1">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <header class="d-flex justify-content-start">
-            <h1><strong>My Queries</strong></h1>
-            <div class="d-flex align-items-center">
-              <button class="btn btn-warning" routerLink="/new-query">Create New Query</button>
-            </div>
-          </header>
-          <div class="input-group muted">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search"
-                  aria-hidden="true"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
-              (ngModelChange)="onSearch($event)">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header class="d-flex justify-content-start">
+          <h1><strong>My Queries</strong></h1>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-warning" routerLink="/new-query">Create New Query</button>
           </div>
-          <div class="queries-pagination">
-            <div class="container">
-              <div class="row">
-                <div class="col"></div>
-              </div>
-            </div>
+        </header>
+        <div class="input-group muted">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search" aria-hidden="true"></i></span>
           </div>
-          <ng-container class="query-container" *ngFor="let query of queries">
-            <app-queries-node [query]="query"></app-queries-node>
-          </ng-container>
-          <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
-            (perPageSelected)="onPerPageSelection($event)"></app-pagination>
-          <app-loader [show]="isLoading"></app-loader>
+          <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
+            (ngModelChange)="onSearch($event)">
         </div>
+        <div class="queries-pagination">
+          <div class="container">
+            <div class="row">
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+        <ng-container class="query-container" *ngFor="let query of queries">
+          <app-queries-node [query]="query"></app-queries-node>
+        </ng-container>
+        <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
+          (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+        <app-loader [show]="isLoading"></app-loader>
       </div>
     </div>
   </div>

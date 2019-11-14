@@ -8,16 +8,19 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.scss'],
   providers: [
-    QueryService
+    QueryService,
+    QueryMatchService
   ]
 })
 export class QueryComponent implements OnInit {
 
-  private idFromRouteParameter = '';
+  isLoading = false;
+  constructor(private route: ActivatedRoute,
+    public queryService: QueryService) { }
 
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.idFromRouteParameter = this.route.snapshot.paramMap.get('id');
+  async ngOnInit() {
+    this.isLoading = true;
+    await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
+    this.isLoading = false;
   }
 }

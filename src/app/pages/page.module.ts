@@ -5,12 +5,17 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NewQueryComponent } from './new-query/new-query.component';
+
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
 import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
+
+/**
+ * New
+ */
+import { NewQueryComponent } from './new-query/new-query.component';
 
 /**
  * Login
@@ -41,12 +46,9 @@ import { QueryComponent } from './query/query.component';
     // Query
     QueryComponent,
 
+    // New QUery
     NewQueryComponent,
-    ResultsListChartComponent,
-    ChartOneComponent,
-    ChartTwoComponent,
-    ReferenceVideoComponent,
-    ChartHeaderComponent,
+
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,
