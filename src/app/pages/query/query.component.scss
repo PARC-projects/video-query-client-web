@@ -30,11 +30,11 @@ header {
 
 .video {
   margin: 0 0 0.5rem;
-}
 
-video {
-  width: 100%;
-  display: block;
+  video {
+    width: 100%;
+    display: block;
+  }
 }
 
 .circle {
@@ -44,6 +44,20 @@ video {
   font-size: 1rem;
   line-height: 2rem;
   text-align: center;
+  color: map-get($parc-colors, "dark-gray");
+  border: map-get($parc-colors, "dark-gray") 1px solid;
+  cursor: pointer;
+}
+
+.circle.is-match {
   color: #fff;
   background-color: map-get($theme-colors, "success");
+  border: map-get($parc-colors, "success") 1px solid;
+}
+
+.video-meta {
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
 }

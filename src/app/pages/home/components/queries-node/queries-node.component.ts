@@ -49,13 +49,13 @@ export class QueriesNodeComponent implements OnInit {
       case ProcessState.Submitted:
       case ProcessState.Revised:
       case ProcessState.Processing:
-        return 'btn-secondary btn-light-secondary disabled';
+        return 'btn-light-secondary disabled';
       case ProcessState.Processed:
         return 'btn-light-orange';
       case ProcessState.Error:
         return 'btn-danger';
       case ProcessState.ProcessFinalized:
-        return 'btn-secondary btn-light-secondary disabled';
+        return 'btn-light-secondary disabled';
       case ProcessState.Finalized:
         return 'btn-success';
     }

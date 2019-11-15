@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <h4>{{query.name}}</h4>
-        <p class="state-text" [ngClass]="stateColor">{{stateText}}</p>
+        <p class="font-weight-bold" [ngClass]="stateColor">{{stateText}}</p>
         <p class="view-notes-link m-0" (click)="openNotes()">View Notes</p>
       </div>
       <div class="col-md-auto">
@@ -33,13 +33,13 @@
       <div class="col-md-auto">
         <ng-container [ngSwitch]="stateButton">
           <ng-container *ngSwitchCase="1">
-            <button class="btn btn-primary" [ngClass]="buttonColor">{{buttonText}}</button>
+            <button class="btn" [ngClass]="buttonColor">{{buttonText}}</button>
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <button class="btn btn-primary" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</button>
+            <button class="btn" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</button>
           </ng-container>
           <ng-container *ngSwitchCase="3">
-            <a class="btn btn-primary" [ngClass]="buttonColor" [href]="query.final_report_url">{{buttonText}}</a>
+            <a class="btn" [ngClass]="buttonColor" [href]="query.final_report_url">{{buttonText}}</a>
           </ng-container>
         </ng-container>
       </div>

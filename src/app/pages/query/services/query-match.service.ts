@@ -1,17 +1,13 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { IMatchView, IMatch } from '../../../models/match.model';
+import { Injectable } from '@angular/core';
+import { IMatch } from '../../../models/match.model';
 import { QueryRepository } from '../../../repositories/query.repository';
 import { MatchRepository } from '../../../repositories/match.repository';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class QueryMatchService {
-  validationClicked: EventEmitter<boolean> = new EventEmitter();
-  matchClicked: EventEmitter<IMatchView> = new EventEmitter();
-  matches: IMatchView[];
-  matchCache: IMatchView[];
+  matches: IMatch[];
   activeIndex: number;
-  videoSrc: string;
 
   constructor(
     private matchRepository: MatchRepository,
@@ -21,9 +17,7 @@ export class QueryMatchService {
   async getMatches(queryId: number): Promise<void> {
     const resp = await this.queryRepository.getLatestMatches(queryId)
       .toPromise();
-    this.videoSrc = null;
-    this.matches = (resp as IMatchView[]);
-    this.matchCache = (JSON.parse(JSON.stringify(this.matches)) as IMatchView[]);
+    this.matches = (resp as IMatch[]);
   }
 
   submitRevision(queryId): Promise<IMatch> {
@@ -31,29 +25,12 @@ export class QueryMatchService {
       .toPromise();
   }
 
-  setActiveMatch(activeMatch: IMatch): void {
-    this.videoSrc = `${environment.fileStoreRoot}${activeMatch.match_video_path}#t=${activeMatch.match_video_time_span}`;
-
-    if (activeMatch.reference_video_external_source) {
-      this.videoSrc = `${environment.externalSource.root}${activeMatch.match_video_path}#t=${activeMatch.match_video_time_span}`;
-    }
-
-    this.matches.forEach((match: IMatchView, i: number) => {
-      if (activeMatch.id === match.id) {
-        match.is_active = true;
-        this.activeIndex = i;
-        this.matchClicked.emit(this.getActiveMatch());
-        return;
-      }
-    });
-  }
-
-  getFormattedVideoUrl(match: IMatchView): string {
+  getFormattedVideoUrl(match: IMatch): string {
     if (match.reference_video_external_source) {
-      return `${environment.externalSource.root}${match.match_video_path}`;
+      return `${environment.externalSource.root}${match.match_video_path}#t=${match.reference_start_time}`;
     }
 
-    return `${environment.fileStoreRoot}${match.match_video_path}`;
+    return `${environment.fileStoreRoot}${match.match_video_path}#t=${match.reference_start_time}`;
   }
 
   /**
@@ -61,30 +38,7 @@ export class QueryMatchService {
    * @param state Nullable boolean. If true user states this is a match.
    * If false use states this is not a match.  If null, user states they are undecided.
    */
-  setValidation(state?: boolean): void {
-    for (let i = 0; i < this.matches.length; i++) {
-      if (this.matches[i].id === this.getActiveMatch().id) {
-        this.activeIndex = i;
-        this.matches[i].user_match = state;
-        this.validationClicked.emit(state);
-        return;
-      }
-    }
-  }
-
-  getActiveMatch(): IMatchView {
-    if (this.matches && this.activeIndex !== undefined) {
-      return this.matches[this.activeIndex];
-    }
-  }
-
-  resetMatches(): void {
-    this.matches = JSON.parse(JSON.stringify(this.matchCache));
-    this.videoSrc = null;
-    this.activeIndex = null;
-  }
-
-  resetCurrentActiveMatch(): void {
-    this.matches[this.activeIndex] = JSON.parse(JSON.stringify(this.matchCache[this.activeIndex]));
+  setValidation(match: IMatch): void {
+    match.user_match = !match.user_match;
   }
 }

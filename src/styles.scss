@@ -3,8 +3,16 @@ $fa-font-path: "./assets/fonts" !default;
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
-.text-parc-orange {
+p.text-parc-orange {
   color: map-get($parc-colors, "orange");
+}
+
+p.text-light-orange {
+  color: map-get($parc-colors, "light-orange");
+}
+
+p.text-fuchsia {
+  color: map-get($parc-colors, "ting-fuchsia");
 }
 
 .input-group.muted {
@@ -22,8 +30,37 @@ $fa-font-path: "./assets/fonts" !default;
 }
 
 .vq-invalid-feedback {
-    @extend .invalid-feedback;
-    display: block;
+  @extend .invalid-feedback;
+  display: block;
+}
+
+button.btn {
+  border-radius: 0 !important; // Overrides bootstrap nested component scope =(
+}
+
+
+button.btn.disabled {
+  cursor: no-drop !important; // Overrides bootstrap nested component scope =(
+}
+
+button.btn.btn-light-orange,
+button.btn.btn-light-orange.disabled {
+  background-color: map-get($parc-colors, "light-orange");
+  border-color: map-get($parc-colors, "light-orange");
+  color: #fff;
+
+  &:hover {
+    background-color: darken(map-get($parc-colors, "light-orange"), 10%);
+    border-color: darken(map-get($parc-colors, "light-orange"), 10%);
+    color: #fff;
+  }
+}
+
+button.btn.btn-light-secondary,
+button.btn.btn-light-secondary.disabled {
+  background-color: map-get($parc-colors, "medium-gray");
+  border-color: map-get($parc-colors, "medium-gray");
+  color: #fff;
 }
 
 
