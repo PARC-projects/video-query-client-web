@@ -48,6 +48,14 @@ export class QueryMatchService {
     });
   }
 
+  getFormattedVideoUrl(match: IMatchView): string {
+    if (match.reference_video_external_source) {
+      return `${environment.externalSource.root}${match.match_video_path}`;
+    }
+
+    return `${environment.fileStoreRoot}${match.match_video_path}`;
+  }
+
   /**
    * Set user validation state for derived match.
    * @param state Nullable boolean. If true user states this is a match.

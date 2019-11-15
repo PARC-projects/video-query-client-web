@@ -18,12 +18,23 @@ header {
   margin: 0 0 2rem;
 }
 
-.matches-container {
-  min-height: 300px;
+.matches-nested-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .match {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.video {
+  margin: 0 0 0.5rem;
+}
+
+video {
+  width: 100%;
+  display: block;
 }
 
 .circle {

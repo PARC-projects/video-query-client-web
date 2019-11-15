@@ -11,7 +11,6 @@ import { IQueryResult } from '../../../models/query-result.model';
 @Injectable()
 export class QueryService {
   currentQuery = {} as IQueryView;
-  videoSrc: string;
   disabled: false;
 
   private cachedNotes: string; // We cache query notes on load for when the user wants to reset the state of the query.
