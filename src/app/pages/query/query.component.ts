@@ -15,8 +15,7 @@ import { IMatch } from 'src/app/models/match.model';
 })
 export class QueryComponent implements OnInit {
 
-
-  @ViewChildren('videoPlayer') components: QueryList<ElementRef>;
+  @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
 
   isLoading = false;
 
@@ -35,6 +34,7 @@ export class QueryComponent implements OnInit {
     this.components.forEach(element => {
       const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
       if (attributeId === match.id) {
+        this.stopVideo(element.nativeElement, match);
         element.nativeElement.play();
       }
     });
@@ -43,11 +43,20 @@ export class QueryComponent implements OnInit {
   videoMouseLeave(match: IMatch) {
     this.components.forEach(element => {
       const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      console.log(attributeId + ' ' + match.id);
       if (attributeId === match.id) {
-        element.nativeElement.pause();
-        element.nativeElement.currentTime = match.match_video_time_span.split(',')[0];
+        this.stopVideo(element.nativeElement, match);
       }
     });
+  }
+
+  async resetQuery() {
+    if (confirm(`Are you sure you would like to reset the state of "${this.queryService.currentQuery.name}" to when it was loaded?`)) {
+      await this.ngOnInit();
+    }
+  }
+
+  private stopVideo(video: HTMLVideoElement, match: IMatch) {
+    video.pause();
+    video.currentTime = Number(match.match_video_time_span.split(',')[0]);
   }
 }

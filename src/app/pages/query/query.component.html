@@ -15,7 +15,7 @@
               <ng-container *ngFor="let match of queryMatchService.matches">
                 <div class="match col-3">
                   <div class="video">
-                    <video align="center" #videoPlayer [attr.data-message-id]="match.id">
+                    <video align="center" #videoPlayer [attr.data-message-id]="match.id" >
                       <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
                       not support the video tag.
                     </video>
@@ -48,7 +48,7 @@
         </section>
         <section class="d-flex flex-row bd-highlight mb-5">
           <div class="mr-2 bd-highlight">
-            <button class="btn btn-warning">Roll Back</button>
+            <button class="btn btn-warning" (click)="resetQuery()">Roll Back</button>
           </div>
           <div class="mr-2 bd-highlight">
             <button class="btn btn-warning">Submit Matches</button>
