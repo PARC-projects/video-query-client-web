@@ -15,10 +15,15 @@
               <ng-container *ngFor="let match of queryMatchService.matches">
                 <div class="match col-3">
                   <div class="video">
-                    <video controls align="center" #videoPlayer>
+                    <video align="center" #videoPlayer [attr.data-message-id]="match.id">
                       <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
                       not support the video tag.
                     </video>
+                    <div class="overlay" (mouseover)="videoMouseOver(match)" (mouseleave)="videoMouseLeave(match)">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                      </div>
+                    </div>
                   </div>
                   <div class="meta d-flex flex-row">
                     <div>
@@ -36,7 +41,7 @@
           </div>
         </section>
         <section class="bg-white comments-container">
-          <h3>Comments <span>(Optional)</span></h3>
+          <h3>Notes <span>(Optional)</span></h3>
           <div class="form-group  mb-0">
             <textarea class="form-control" rows="3"></textarea>
           </div>
