@@ -30,7 +30,7 @@
                       <div class="circle" [ngClass]="{'is-match': match.user_match}"
                         (click)="queryMatchService.setValidation(match)"> &#10003;</div>
                     </div>
-                    <div class="pl-2 video-meta" [ngClass]="{'font-weight-bold': !match.user_match}">
+                    <div class="pl-2 video-meta" [ngClass]="{'font-weight-bold': match.user_match === null}">
                       <p>{{match.match_video_name}}</p>
                       <p>{{match.reference_start_time}}</p>
                     </div>
