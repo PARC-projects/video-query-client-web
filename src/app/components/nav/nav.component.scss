@@ -1,5 +1,8 @@
 @import "../../../custom";
 
+:host {
+  max-width: 80px;
+}
 
 .navigation {
   background: map-get($parc-colors, "dark");

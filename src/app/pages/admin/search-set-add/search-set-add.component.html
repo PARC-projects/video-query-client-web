@@ -1,33 +1,36 @@
-<section class="search-set-add">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <h1 class="vq-title">Add Search Set</h1>
-        <p class="lead">Complete the new Search Set form and submit it by clicking the save button to the right.</p>
+<div class="min-vh-100">
+  <app-nav></app-nav>
+  <section class="search-set-add navigation-offset">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1 class="vq-title">Add Search Set</h1>
+          <p class="lead">Complete the new Search Set form and submit it by clicking the save button to the right.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <app-search-set-current (saveClicked)="onSave()"></app-search-set-current>
+        </div>
+        <div class="col-6">
+          <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)"
+            (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
+            (searchTermUpdated)="onSearchTermUpdated()" (selectedSearchSet)="onSelectedSearchSet()">
+          </app-search-set-search>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-6">
-        <app-search-set-current (saveClicked)="onSave()"></app-search-set-current>
+    <app-modal>
+      <div class="empty-state" *ngIf="!showVideo">
+        <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
+        <p>You are not authorized to view this view.</p>
       </div>
-      <div class="col-6">
-        <app-search-set-search [pagination]="searchSetAddService.paginationConfig" (pathClick)="onPathClick($event)"
-          (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
-          (searchTermUpdated)="onSearchTermUpdated()" (selectedSearchSet)="onSelectedSearchSet()">
-        </app-search-set-search>
-      </div>
-    </div>
-  </div>
-  <app-modal>
-    <div class="empty-state" *ngIf="!showVideo">
-      <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
-      <p>You are not authorized to view this view.</p>
-    </div>
-    <video controls align="center" #videoPlayer [style.display]="videoSrc && showVideo ? 'block' : 'none'">
-      <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
-    </video>
-  </app-modal>
-  <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
-</section>
-<!-- TODO: Consider the UI block on the search component and not the parent -->
-<app-loader [show]="loading"></app-loader>
+      <video controls align="center" #videoPlayer [style.display]="videoSrc && showVideo ? 'block' : 'none'">
+        <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+      </video>
+    </app-modal>
+    <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
+  </section>
+  <!-- TODO: Consider the UI block on the search component and not the parent -->
+  <app-loader [show]="loading"></app-loader>
+</div>

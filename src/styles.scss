@@ -3,6 +3,11 @@ $fa-font-path: "./assets/fonts" !default;
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
+
+.navigation-offset {
+  padding-left: 80px;
+}
+
 p.text-parc-orange {
   color: map-get($parc-colors, "orange");
 }
@@ -38,7 +43,6 @@ button.btn {
   border-radius: 0 !important; // Overrides bootstrap nested component scope =(
 }
 
-
 button.btn.disabled {
   cursor: no-drop !important; // Overrides bootstrap nested component scope =(
 }
@@ -63,17 +67,16 @@ button.btn.btn-light-secondary.disabled {
   color: #fff;
 }
 
+.vq-widget {
+  background: color("white");
+  padding: 0.5rem 1rem 1rem;
+  margin: 0 0 1rem;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .15);
+  width: 100%;
+}
 
 // .form-control.ng-invalid.ng-touched {
 //     @extend .form-control, .is-invalid;
-// }
-
-// .vq-widget {
-//     background: color("white");
-//     padding: 0.5rem 1rem 1rem;
-//     margin: 0 0 1rem;
-//     box-shadow: 0 0 1px rgba(0, 0, 0, .15);
-//     width: 100%;
 // }
 
 // .vq-title {

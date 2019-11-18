@@ -1,65 +1,69 @@
-<section class="search-set">
-  <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
-        <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)"
-          (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
-          (search)="onSearch($event)"></app-list-nav>
-      </div>
-      <div class="col-12 col-md-8 col-lg-9 col-xl-10">
-        <div class="search-set-content">
-          <button type="button" class="btn btn-warning btn-sm" routerLink="/search-sets/add">Add New</button>
-          <ng-container *ngIf="!searchSetService.searchSet">
-            <div class="empty-state-page">
-              <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-              <h4>Select A Search Set</h4>
-            </div>
-          </ng-container>
-          <div [style.display]="searchSetService.searchSet ? 'block': 'none'">
-            <h1 class="vq-title">{{searchSetService.searchSet?.name}}</h1>
-            <ul>
-              <li>
-                <b>Id: </b>{{searchSetService.searchSet?.id}}
-              </li>
-              <li>
-                <b>Clip Duration (s): </b>{{searchSetService.searchSet?.duration}}
-              </li>
-            </ul>
-            <div class="vq-widget">
-              <p class="lead">Videos in Search Set</p>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>File</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let set of searchSetService.videosInSearchSet">
-                    <td>{{set.id}}</td>
-                    <td>{{set.name}}</td>
-                    <td>
-                      <span class="video-link" (click)="onPathClick(set.path, set.external_source)">{{set.path}}</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+<div class="min-vh-100">
+  <app-nav></app-nav>
+  <section class="search-set navigation-offset">
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
+          <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)"
+            (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
+            (search)="onSearch($event)"></app-list-nav>
+        </div>
+        <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+          <div class="search-set-content">
+            <button type="button" class="btn btn-warning btn-sm" routerLink="/search-sets/add">Add New</button>
+            <ng-container *ngIf="!searchSetService.searchSet">
+              <div class="empty-state-page">
+                <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+                <h4>Select A Search Set</h4>
+              </div>
+            </ng-container>
+            <div [style.display]="searchSetService.searchSet ? 'block': 'none'">
+              <h1 class="vq-title">{{searchSetService.searchSet?.name}}</h1>
+              <ul>
+                <li>
+                  <b>Id: </b>{{searchSetService.searchSet?.id}}
+                </li>
+                <li>
+                  <b>Clip Duration (s): </b>{{searchSetService.searchSet?.duration}}
+                </li>
+              </ul>
+              <div class="vq-widget">
+                <p class="lead">Videos in Search Set</p>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>File</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let set of searchSetService.videosInSearchSet">
+                      <td>{{set.id}}</td>
+                      <td>{{set.name}}</td>
+                      <td>
+                        <span class="video-link"
+                          (click)="onPathClick(set.path, set.external_source)">{{set.path}}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <app-modal>
-    <div class="empty-state" *ngIf="!showVideo">
-      <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
-      <p>You are not authorized to view this view.</p>
-    </div>
-    <video controls align="center" #videoPlayer [style.display]="videoSrc && showVideo ? 'block' : 'none'">
-      <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
-    </video>
-  </app-modal>
-  <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
-  <app-loader [show]="loading"></app-loader>
-</section>
+    <app-modal>
+      <div class="empty-state" *ngIf="!showVideo">
+        <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
+        <p>You are not authorized to view this view.</p>
+      </div>
+      <video controls align="center" #videoPlayer [style.display]="videoSrc && showVideo ? 'block' : 'none'">
+        <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+      </video>
+    </app-modal>
+    <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
+    <app-loader [show]="loading"></app-loader>
+  </section>
+</div>

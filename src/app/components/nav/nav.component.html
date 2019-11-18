@@ -16,7 +16,10 @@
       </a>
     </li>
     <li class="d-flex align-items-center justify-content-center">
-      <i class="fa fa-video-camera " aria-hidden="true"></i>
+      <a class="nav-link" [ngClass]="{'active': currentPage === 'search-sets'}" routerLink="/search-sets"
+        (click)="currentPage = 'search-sets'">
+        <i class="fa fa-video-camera " aria-hidden="true"></i>
+      </a>
     </li>
     <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
       <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
