@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IMatch } from '../../../models/match.model';
+import { IMatch, IMatchView } from '../../../models/match.model';
 import { QueryRepository } from '../../../repositories/query.repository';
 import { MatchRepository } from '../../../repositories/match.repository';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class QueryMatchService {
-  matches: IMatch[];
+  matches: IMatchView[];
   activeIndex: number;
 
   constructor(
@@ -17,7 +17,10 @@ export class QueryMatchService {
   async getMatches(queryId: number): Promise<void> {
     const resp = await this.queryRepository.getLatestMatches(queryId)
       .toPromise();
-    this.matches = (resp as IMatch[]);
+    this.matches = (resp as IMatchView[]);
+    this.matches.forEach(match => {
+      match.is_loading = true;
+    });
   }
 
   submitRevision(queryId: number): Promise<IMatch> {

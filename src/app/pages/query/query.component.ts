@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
 import { IMatch } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-query',
@@ -15,11 +16,13 @@ import { AlertService, AlertType } from 'src/app/services/alert.service';
     QueryMatchService
   ]
 })
-export class QueryComponent implements OnInit {
+export class QueryComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
 
   isLoading = false;
+
+  private matchInitChanges: Subscription;
 
   constructor(private route: ActivatedRoute,
     public queryMatchService: QueryMatchService,
@@ -30,7 +33,14 @@ export class QueryComponent implements OnInit {
     this.isLoading = true;
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
     await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
+    this.matchInitChanges = this.components.changes.subscribe(() => {
+        this.setVideoLoadState();
+        this.matchInitChanges.unsubscribe();
+    });
     this.isLoading = false;
+  }
+
+  ngAfterViewInit() {
   }
 
   videoMouseOver(match: IMatch) {
@@ -73,6 +83,25 @@ export class QueryComponent implements OnInit {
         .catch(() => {
           this.isLoading = false;
         });
+    }
+  }
+
+  private setVideoLoadState() {
+    this.components.forEach(video => {
+      video.nativeElement.addEventListener('loadeddata', () => {
+        console.log('in');
+        this.setMatchingMatchToLoadingFalse(video);
+      }, false);
+    });
+  }
+
+  private setMatchingMatchToLoadingFalse(video: ElementRef<HTMLVideoElement>) {
+    for (const match of this.queryMatchService.matches) {
+      const attributeId = Number(video.nativeElement.getAttribute('data-message-id'));
+      if (attributeId === match.id) {
+        match.is_loading = false;
+        break;
+      }
     }
   }
 

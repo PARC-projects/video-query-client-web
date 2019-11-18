@@ -21,7 +21,5 @@ export interface IMatch extends IPagination {
 }
 
 export interface IMatchView extends IMatch {
-  is_active: boolean;
-  x: number;
-  y: number;
+  is_loading: boolean;
 }
