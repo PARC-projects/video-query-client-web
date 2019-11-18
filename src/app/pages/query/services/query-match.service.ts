@@ -20,7 +20,7 @@ export class QueryMatchService {
     this.matches = (resp as IMatch[]);
   }
 
-  submitRevision(queryId): Promise<IMatch> {
+  submitRevision(queryId: number): Promise<IMatch> {
     return this.matchRepository.saveMatches(this.matches, queryId)
       .toPromise();
   }

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
-import { ActivatedRoute } from '@angular/router';
 import { IMatch } from 'src/app/models/match.model';
+import { AlertService, AlertType } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-query',
@@ -21,7 +23,8 @@ export class QueryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     public queryMatchService: QueryMatchService,
-    public queryService: QueryService) { }
+    public queryService: QueryService,
+    private alertService: AlertService) { }
 
   async ngOnInit() {
     this.isLoading = true;
@@ -49,9 +52,27 @@ export class QueryComponent implements OnInit {
     });
   }
 
-  async resetQuery() {
+  async rollBack() {
     if (confirm(`Are you sure you would like to reset the state of "${this.queryService.currentQuery.name}" to when it was loaded?`)) {
       await this.ngOnInit();
+    }
+  }
+
+  submitMatches(): void {
+    if (confirm(`Are you sure you would like to submit matches for "${this.queryService.currentQuery.name}"?`)) {
+      this.isLoading = true;
+      this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+        .then(() => {
+          return this.queryService.updateQueryStateToProcessFinalized();
+        })
+        .then(() => {
+          const message = `"${this.queryService.currentQuery.name}": has been submitted`;
+          this.alertService.setAlert(message, AlertType.Success);
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
     }
   }
 
