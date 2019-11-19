@@ -55,9 +55,10 @@ export class QueryService {
       .toPromise();
   }
 
-  updateQueryStateToProcessFinalized(): Promise<void> {
+  async updateQueryStateToProcessFinalized(): Promise<void> {
     this.currentQuery.process_state = ProcessState.ProcessFinalized;
-    return this.queryRepository.updateState(this.currentQuery.id, this.currentQuery.process_state)
+    await this.queryRepository.updateState(this.currentQuery.id, this.currentQuery.process_state)
       .toPromise();
+    return this.updateQueryNote();
   }
 }

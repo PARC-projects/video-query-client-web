@@ -5,7 +5,8 @@ import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
 import { IMatch } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-query',
@@ -22,20 +23,22 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
 
+  private timeout: any;
   private matchInitChanges: Subscription;
 
   constructor(private route: ActivatedRoute,
     public queryMatchService: QueryMatchService,
     public queryService: QueryService,
-    private alertService: AlertService) { }
+    private alertService: AlertService) {
+  }
 
   async ngOnInit() {
     this.isLoading = true;
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
     await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
     this.matchInitChanges = this.components.changes.subscribe(() => {
-        this.setVideoLoadState();
-        this.matchInitChanges.unsubscribe();
+      this.setVideoLoadState();
+      this.matchInitChanges.unsubscribe();
     });
     this.isLoading = false;
   }
@@ -86,10 +89,25 @@ export class QueryComponent implements OnInit, AfterViewInit {
     }
   }
 
+  noteChanged(note: string): void {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.isLoading = true;
+      this.queryService.currentQuery.notes = note;
+      this.queryService.updateQueryNote()
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    }, 500);
+  }
+
+
   private setVideoLoadState() {
     this.components.forEach(video => {
       video.nativeElement.addEventListener('loadeddata', () => {
-        console.log('in');
         this.setMatchingMatchToLoadingFalse(video);
       }, false);
     });
