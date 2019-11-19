@@ -45,7 +45,8 @@
         <section class="bg-white comments-container">
           <h3>Notes <span>(Optional)</span></h3>
           <div class="form-group  mb-0">
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" [(ngModel)]="queryService.currentQuery.notes" [disabled]="isEditable"
+              id="notes"></textarea>
           </div>
         </section>
         <section class="d-flex flex-row bd-highlight mb-5">
