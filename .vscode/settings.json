@@ -24,6 +24,7 @@
     "packagr",
     "polyfills",
     "prebuilt",
+    "prepend",
     "progressbar",
     "styleext",
     "tslib",
