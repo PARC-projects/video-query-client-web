@@ -3,6 +3,9 @@
 .query-container {
   margin: 0 0 2rem;
   padding: 1rem;
+
+  border: 1px darken(map-get($parc-colors, "light-gray"), 5%) solid;
+  border-radius: 0.25rem;
 }
 
 table {
