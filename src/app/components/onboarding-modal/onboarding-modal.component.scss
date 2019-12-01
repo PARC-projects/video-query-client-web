@@ -20,9 +20,9 @@ img {
 .page-1-container {
   .sub-header {
     font-size: 2rem;
-    padding: 0 20%;
-    margin: 3rem 0;
-    color: map-get($parc-colors, "medium-gray");
+    padding: 0 15%;
+    margin: 2rem 0 3rem;
+    color: darken(map-get($parc-colors, "medium-gray"), 20%);
     line-height: 1.25;
   }
 
@@ -32,6 +32,12 @@ img {
 
   .next-link {
     margin-top: 3rem;
+  }
+
+  .mark-img {
+    margin: 1rem auto 0;
+    max-height: 180px;
+    width: auto;
   }
 
 }
