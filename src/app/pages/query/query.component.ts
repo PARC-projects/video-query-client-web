@@ -66,6 +66,15 @@ export class QueryComponent implements OnInit, AfterViewInit {
     });
   }
 
+  videoClick(match: IMatchView) {
+    this.components.forEach(element => {
+      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
+      if (attributeId === match.id) {
+        element.nativeElement.requestFullscreen();
+      }
+    });
+  }
+
   async rollBack() {
     if (confirm(`Are you sure you would like to reset the state of "${this.queryService.currentQuery.name}" to when it was loaded?`)) {
       await this.ngOnInit();
