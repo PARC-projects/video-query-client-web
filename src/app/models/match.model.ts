@@ -22,4 +22,5 @@ export interface IMatch extends IPagination {
 
 export interface IMatchView extends IMatch {
   is_loading: boolean;
+  is_hovered: boolean;
 }

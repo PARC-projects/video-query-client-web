@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
-import { IMatch } from 'src/app/models/match.model';
+import { IMatch, IMatchView } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { Subscription, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-query',
@@ -46,20 +45,22 @@ export class QueryComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-  videoMouseOver(match: IMatch) {
+  videoMouseOver(match: IMatchView) {
     this.components.forEach(element => {
       const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
       if (attributeId === match.id) {
+        match.is_hovered = true;
         this.stopVideo(element.nativeElement, match);
         element.nativeElement.play();
       }
     });
   }
 
-  videoMouseLeave(match: IMatch) {
+  videoMouseLeave(match: IMatchView) {
     this.components.forEach(element => {
       const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
       if (attributeId === match.id) {
+        match.is_hovered = false;
         this.stopVideo(element.nativeElement, match);
       }
     });

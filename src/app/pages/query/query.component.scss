@@ -42,6 +42,11 @@ header {
     opacity: 0.7;
   }
 
+  video.visited.hovered {
+    opacity: 1;
+    transition: all 0.25s;
+  }
+
   .overlay {
     position: absolute;
     top: 0;
@@ -57,6 +62,13 @@ header {
     .d-flex {
       height: 100%;
     }
+  }
+}
+
+.overlay.hovered {
+  i {
+    opacity: 0;
+    transition: all 0.25s;
   }
 }
 
