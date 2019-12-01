@@ -9,12 +9,23 @@
             <button class="btn btn-warning" routerLink="/new-query">Create New Query</button>
           </div>
         </header>
-        <div class="input-group muted">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <div class="row">
+          <div class="col-9">
+            <div class="input-group muted">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
+                (ngModelChange)="onSearch($event)">
+            </div>
           </div>
-          <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
-            (ngModelChange)="onSearch($event)">
+          <div class="col-3">
+            <div class="form-group">
+              <select class="form-control" id="exampleFormControlSelect2">
+                <option selected="selected">Order By</option>
+              </select>
+            </div>
+          </div>
         </div>
         <ng-container class="query-container" *ngFor="let query of queries">
           <app-queries-node [query]="query"></app-queries-node>
@@ -26,4 +37,4 @@
     </div>
   </div>
 </div>
-<app-onboarding-modal></app-onboarding-modal>
+<!-- <app-onboarding-modal></app-onboarding-modal> -->

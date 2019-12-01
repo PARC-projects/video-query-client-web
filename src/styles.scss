@@ -19,17 +19,33 @@ p.text-fuchsia {
   color: map-get($parc-colors, "ting-fuchsia");
 }
 
-.input-group.muted {
+.input-group.muted{
   margin: 0;
 
   .input-group-text {
     border-right: none;
     background-color: map-get($parc-colors, "light-gray");
+    border-width: 2px;
+    color: map-get($parc-colors, "medium-gray");
   }
 
   input.form-control {
     background-color: map-get($parc-colors, "light-gray");
     border-left: none;
+    border-width: 2px;
+    &::placeholder {
+      color: map-get($parc-colors, "medium-gray")
+    }
+  }
+}
+
+.form-group  select.form-control {
+  background-color: map-get($parc-colors, "light-gray");
+  color: map-get($parc-colors, "medium-gray");
+  border-width: 2px;
+  &:focus {
+    background-color: map-get($parc-colors, "light-gray");
+    color: map-get($parc-colors, "black");
   }
 }
 
