@@ -3,19 +3,19 @@
     <li>
       <div class="circle">HW</div>
     </li>
-    <li [ngClass]="{'active': currentPage === 'home'}" class="d-flex align-items-center justify-content-center">
-      <a class="nav-link" [ngClass]="{'active': currentPage === 'home'}" routerLink="/home"
+    <li [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}" class="d-flex align-items-center justify-content-center">
+      <a class="nav-link" [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}" routerLink="/home"
         (click)="currentPage = 'home'">
         <i class="fa fa-list" aria-hidden="true"></i>
       </a>
     </li>
-    <li [ngClass]="{'active': currentPage=== 'new-query'}" class="d-flex align-items-center justify-content-center">
+    <li [ngClass]="{'active': currentPage === 'new-query'}" class="d-flex align-items-center justify-content-center">
       <a class="nav-link" [ngClass]="{'active': currentPage === 'new-query'}" routerLink="/new-query"
         (click)="currentPage = 'new-query'">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
       </a>
     </li>
-    <li class="d-flex align-items-center justify-content-center">
+    <li [ngClass]="{'active': currentPage === 'search-sets'}" class="d-flex align-items-center justify-content-center">
       <a class="nav-link" [ngClass]="{'active': currentPage === 'search-sets'}" routerLink="/search-sets"
         (click)="currentPage = 'search-sets'">
         <i class="fa fa-video-camera " aria-hidden="true"></i>
