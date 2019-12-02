@@ -1,6 +1,10 @@
 .alert {
     margin: 0;
     border-radius: 0;
+    position: absolute;
+    width: 100%;
+    padding-left: 96px;
+
     button {
         cursor: pointer;
         line-height: 0.75;

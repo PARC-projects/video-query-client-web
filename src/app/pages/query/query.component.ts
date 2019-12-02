@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
@@ -28,7 +28,8 @@ export class QueryComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute,
     public queryMatchService: QueryMatchService,
     public queryService: QueryService,
-    private alertService: AlertService) {
+    private alertService: AlertService,
+    private router: Router) {
   }
 
   async ngOnInit() {
@@ -82,21 +83,21 @@ export class QueryComponent implements OnInit, AfterViewInit {
   }
 
   submitMatches(): void {
-    if (confirm(`Are you sure you would like to submit matches for "${this.queryService.currentQuery.name}"?`)) {
-      this.isLoading = true;
-      this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
-        .then(() => {
-          return this.queryService.updateQueryStateToProcessFinalized();
-        })
-        .then(() => {
-          const message = `"${this.queryService.currentQuery.name}": has been submitted`;
-          this.alertService.setAlert(message, AlertType.Success);
-          this.isLoading = false;
-        })
-        .catch(() => {
-          this.isLoading = false;
-        });
-    }
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    const message = `"${this.queryService.currentQuery.name}": has been submitted for feedback. Check back soon for results.`;
+    this.isLoading = true;
+    this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+      .then(() => {
+        return this.queryService.updateQueryNote();
+      })
+      .then(() => {
+        this.alertService.setAlert(message, AlertType.Success);
+        this.isLoading = false;
+        this.router.navigate(['home']);
+      })
+      .catch(() => {
+        this.isLoading = false;
+      });
   }
 
   submitFinalize(): void {
@@ -110,6 +111,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
           const message = `"${this.queryService.currentQuery.name}": has been submitted to be finalized`;
           this.alertService.setAlert(message, AlertType.Success);
           this.isLoading = false;
+          this.router.navigate(['home']);
         })
         .catch(() => {
           this.isLoading = false;
