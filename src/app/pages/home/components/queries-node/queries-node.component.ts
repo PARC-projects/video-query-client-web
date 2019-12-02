@@ -20,7 +20,7 @@ export class QueriesNodeComponent implements OnInit {
       case ProcessState.Processed:
         return 'Review Matches';
       case ProcessState.Error:
-        return 'Download Report';
+        return 'Error';
       case ProcessState.Finalized:
       case ProcessState.ProcessFinalized:
         return 'Download Report';

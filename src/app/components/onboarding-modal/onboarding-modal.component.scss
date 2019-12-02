@@ -71,7 +71,6 @@ img {
 .page-3-container {
   .illustration {
     background-color: map-get($parc-colors, "light-gray");
-    height: 275px;
     width: 500px;
     margin: 0 auto 1rem auto;
 
@@ -83,7 +82,7 @@ img {
   }
 
   p {
-    margin: 0 0 6rem;
+    margin: 0 0 4rem;
   }
 
   button {
