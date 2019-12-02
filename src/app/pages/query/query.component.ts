@@ -99,6 +99,24 @@ export class QueryComponent implements OnInit, AfterViewInit {
     }
   }
 
+  submitFinalize(): void {
+    if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
+      this.isLoading = true;
+      this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+        .then(() => {
+          return this.queryService.updateQueryStateToProcessFinalized();
+        })
+        .then(() => {
+          const message = `"${this.queryService.currentQuery.name}": has been submitted to be finalized`;
+          this.alertService.setAlert(message, AlertType.Success);
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    }
+  }
+
   noteChanged(note: string): void {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
