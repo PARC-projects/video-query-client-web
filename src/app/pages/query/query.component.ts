@@ -114,7 +114,6 @@ export class QueryComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
-
   private setVideoLoadState() {
     this.components.forEach(video => {
       video.nativeElement.addEventListener('loadeddata', () => {

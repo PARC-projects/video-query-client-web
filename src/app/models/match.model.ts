@@ -18,6 +18,7 @@ export interface IMatch extends IPagination {
   reference_video_external_source: boolean;
   reference_start_time: string;
   match_video_name: string;
+  reference_end_time: string;
 }
 
 export interface IMatchView extends IMatch {

@@ -2,10 +2,8 @@
   <div class="onboarding-container" [ngSwitch]="currentPage">
     <div class="page-1-container" *ngSwitchCase="1">
       <h2 class="text-center font-weight-bold">Welcome</h2>
-      <p class="sub-header text-center">You will be collaborating with AI to define actions in a
-        reference clip to
-        generate matches
-        of similar action in a collection of videos you specified.</p>
+      <p class="sub-header text-center">You will be collaborating with AI to find clips in your collection of videos
+        that are similar to a reference clip that you provide.</p>
       <div class="container">
         <div class="row">
           <div class="col">
@@ -13,10 +11,10 @@
             <div class="container-fluid p-0">
               <div class="row">
                 <div class="col">
-                  <img src="assets\images\onboarding-1.jpg" alt="">
+                  <img src="assets\images\onboarding-1.jpg">
                 </div>
                 <div class="col text-center">
-                  <img src="assets\images\mark.png" alt="" class="mark-img">
+                  <img src="assets\images\mark.png" class="mark-img">
                 </div>
               </div>
             </div>
@@ -26,18 +24,18 @@
             <div class="container-fluid p-0">
               <div class="row mb-3">
                 <div class="col pr-0">
-                  <img src="assets\images\onboarding-2.jpg" alt="">
+                  <img src="assets\images\onboarding-2.jpg">
                 </div>
                 <div class="col">
-                  <img src="assets\images\onboarding-5.jpg" alt="">
+                  <img src="assets\images\onboarding-5.jpg">
                 </div>
               </div>
               <div class="row">
                 <div class="col pr-0">
-                  <img src="assets\images\onboarding-4.jpg" alt="">
+                  <img src="assets\images\onboarding-4.jpg">
                 </div>
                 <div class="col">
-                  <img src="assets\images\onboarding-3.jpg" alt="">
+                  <img src="assets\images\onboarding-3.jpg">
                 </div>
               </div>
             </div>
@@ -53,7 +51,7 @@
         <div class="row">
           <div class="col">
             <div class="illustration">
-              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+              <img src="assets\images\ill-1.png">
             </div>
             <div class="copy-container d-flex flex-row">
               <div>
@@ -61,14 +59,13 @@
               </div>
               <div class="p-2">
                 <p class="font-weight-bold">Have your video collections provisioned to the database. Select a reference
-                  video clip and a
-                  collection of videos to search for similarities.</p>
+                  video clip and a collection of videos to search for similarities.</p>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="illustration">
-              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+              <img src="assets\images\ill-2.png">
             </div>
             <div class="copy-container d-flex flex-row">
               <div>
@@ -83,14 +80,15 @@
           </div>
           <div class="col">
             <div class="illustration">
-              <p class="d-flex align-items-center justify-content-center">Illustration</p>
+              <img src="assets\images\ill-3.png">
             </div>
             <div class="copy-container d-flex flex-row">
               <div>
                 <div class="circle">3</div>
               </div>
               <div class="p-2">
-                <p class="font-weight-bold">Get a report with the timestamps on matched videos.</p>
+                <p class="font-weight-bold">Using the algorithm trained on the samples you graded, get a report of all
+                  matching clips in your collection.</p>
               </div>
             </div>
           </div>
@@ -102,12 +100,13 @@
     <div class="page-3-container  text-center" *ngSwitchCase="3">
       <h2 class="text-center font-weight-bold">Video Selection</h2>
       <div class="illustration">
-        <p class="d-flex align-items-center justify-content-center">Illustration</p>
+          <img src="assets\images\ill-4.png">
       </div>
       <div class="container-fluid">
         <div class="row justify-content-md-center">
           <div class="col-10">
-            <p class="font-weight-bold">You will select a time in a video that shows the type of action of action of interest to you. The program
+            <p class="font-weight-bold">You will select a time in a video that shows the type of action of action of
+              interest to you. The program
               will
               use the 10 seconds around the time you choose as the reference clip. This reference clip will be compared
               with

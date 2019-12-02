@@ -48,18 +48,12 @@ img {
   }
 
   .illustration {
-    background-color: map-get($parc-colors, "light-gray");
     height: 200px;
-
-    p {
-      margin: 0;
-      font-size: 2rem;
-      height: 100%;
-    }
+    margin: 0;
   }
 
   .copy-container {
-    margin: 1rem 0 2rem;
+    margin: 0 0 2rem;
   }
 
   .circle {
@@ -70,7 +64,7 @@ img {
     line-height: 2rem;
     text-align: center;
     color: #fff;
-    background-color: map-get($theme-colors, "success");
+    background-color: map-get($parc-colors, "primary");
   }
 }
 
@@ -79,7 +73,7 @@ img {
     background-color: map-get($parc-colors, "light-gray");
     height: 275px;
     width: 500px;
-    margin: 5rem auto 1rem auto;
+    margin: 0 auto 1rem auto;
 
     p {
       margin: 0;

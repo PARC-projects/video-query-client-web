@@ -30,10 +30,10 @@ export class QueryMatchService {
 
   getFormattedVideoUrl(match: IMatch): string {
     if (match.reference_video_external_source) {
-      return `${environment.externalSource.root}${match.match_video_path}#t=${match.reference_start_time}`;
+      return `${environment.externalSource.root}${match.match_video_path}#t=${match.reference_start_time},${match.reference_end_time}`;
     }
 
-    return `${environment.fileStoreRoot}${match.match_video_path}#t=${match.reference_start_time}`;
+    return `${environment.fileStoreRoot}${match.match_video_path}#t=${match.reference_start_time},${match.reference_end_time}`;
   }
 
   /**
