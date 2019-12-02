@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IQuery, ProcessState } from 'src/app/models/query.model';
-import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-queries-node',
@@ -9,7 +8,7 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 })
 export class QueriesNodeComponent implements OnInit {
 
-  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
+  public showNotes = false;
   @Input() query: IQuery;
 
   get buttonText(): string {
@@ -99,6 +98,6 @@ export class QueriesNodeComponent implements OnInit {
   }
 
   openNotes() {
-    this.modalComponent.open();
+    this.showNotes = !this.showNotes;
   }
 }
