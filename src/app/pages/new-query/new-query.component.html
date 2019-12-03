@@ -142,9 +142,9 @@
                   <div class="row">
                     <div class="col-sm-8">
                       <div class="form-group">
-                        <label for="searchSet">Search Set To Query Against:
-                          <i matTooltip="Search Sets are sets of video clips. The app will search for all matching video clips in the Search Set you choose.
-                     (A new Search Set can be defined in the Admin interface.) "
+                        <label for="searchSet">Video collection To Query Against:
+                          <i matTooltip="Video Collections are sets of video clips. The app will search for all matching video clips in the video collection you choose.
+                     (A new Video Collection can be defined in the Admin interface.) "
                             class="fa fa-question vq-info-tooltip"></i>
                         </label>
                         <select class="form-control" required [disabled]="disabled || !newQueryService.form.video"
@@ -156,7 +156,7 @@
                         </select>
                         <div *ngIf="searchSet.invalid && (searchSet.dirty || searchSet.touched)">
                           <div *ngIf="searchSet.errors.required" class="vq-invalid-feedback">
-                            Search Set To Query Against is required.
+                            Video Collection To Query Against is required.
                           </div>
                         </div>
                       </div>

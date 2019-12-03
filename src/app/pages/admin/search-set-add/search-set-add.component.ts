@@ -106,7 +106,7 @@ export class SearchSetAddComponent implements OnInit {
   }
 
   private handleEmptyVideosValidation() {
-    this.alertService.setAlert(`Please add a video to your Search Set before saving it.`, AlertType.Warning);
+    this.alertService.setAlert(`Please add a video to your Video Collection before saving it.`, AlertType.Warning);
     this.loading = false;
   }
 

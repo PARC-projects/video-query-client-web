@@ -14,7 +14,7 @@
             <ng-container *ngIf="!searchSetService.searchSet">
               <div class="empty-state-page">
                 <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-                <h4>Select A Search Set</h4>
+                <h4>Select A Video Collection</h4>
               </div>
             </ng-container>
             <div [style.display]="searchSetService.searchSet ? 'block': 'none'">
@@ -28,7 +28,7 @@
                 </li>
               </ul>
               <div class="vq-widget">
-                <p class="lead">Videos in Search Set</p>
+                <p class="lead">Videos in Video Collection</p>
                 <table class="table">
                   <thead>
                     <tr>

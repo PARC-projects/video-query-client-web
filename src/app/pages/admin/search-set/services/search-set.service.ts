@@ -41,8 +41,8 @@ export class SearchSetService {
         this.searchSets = resp.results;
         this.listNavConfig = {
           data: this.searchSets,
-          title: 'Search Sets',
-          tooltip: 'Select a Search Set to review.',
+          title: 'Video Collections',
+          tooltip: 'Select a Video Collection to review.',
           displayPropertyName: 'name',
           pagination: resp.pagination
         } as IListNavConfig;
