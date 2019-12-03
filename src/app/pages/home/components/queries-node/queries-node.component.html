@@ -40,7 +40,7 @@
             <button class="btn" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</button>
           </ng-container>
           <ng-container *ngSwitchCase="3">
-            <a class="btn" [ngClass]="buttonColor" [href]="query.final_report_url">{{buttonText}}</a>
+            <a class="btn" [ngClass]="buttonColor" [href]="query.final_report_file">{{buttonText}}</a>
           </ng-container>
         </ng-container>
       </div>
