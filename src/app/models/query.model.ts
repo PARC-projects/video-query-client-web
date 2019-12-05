@@ -38,6 +38,7 @@ export interface IQuery {
   final_report_file: string;
   video_name: string;
   dataset: string;
+  clip_duration: number;
 }
 
 /**
