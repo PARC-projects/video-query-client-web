@@ -17,7 +17,7 @@
               <td>{{query.clip_duration}} seconds</td>
             </tr>
             <tr>
-              <td>Video</td>
+              <td>Reference Video</td>
               <td>{{query.video_name}}</td>
               <td>Target bootstrapping</td>
               <td>{{query.use_dynamic_target_adjustment}}</td>
@@ -48,7 +48,7 @@
     <div class="row mt-2" *ngIf="showNotes">
       <div class="col">
         <div class="notes">
-          <p class="m-0">{{query.notes}}</p>
+          <textarea class="form-control"  name="notes">{{query.notes}}</textarea>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@
                         class="fa fa-question vq-info-tooltip"></i>
                     </legend>
                     <div class="form-group">
-                      <label for="searchSet">What Set does the reference video exist in?</label>
+                      <label for="searchSet">What Collection does the reference video exist in?</label>
                       <select class="form-control" [disabled]="disabled" id="searchSet"
                         [(ngModel)]="newQueryService.selectedSearchSet" (ngModelChange)="onSelectedSearchSet()"
                         name="selectedSearchSet">
@@ -142,7 +142,7 @@
                   <div class="row">
                     <div class="col-sm-8">
                       <div class="form-group">
-                        <label for="searchSet">Video collection To Query Against:
+                        <label for="searchSet">Video Collection To Query Against:
                           <i matTooltip="Video Collections are sets of video clips. The app will search for all matching video clips in the video collection you choose.
                      (A new Video Collection can be defined in the Admin interface.) "
                             class="fa fa-question vq-info-tooltip"></i>

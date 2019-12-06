@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
  * Home
  */
 import { HomeComponent } from './home/home.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 import { QueriesNodeComponent } from './home/components/queries-node/queries-node.component';
 
 /**
@@ -41,6 +42,7 @@ import { QueryComponent } from './query/query.component';
 
     // Home
     HomeComponent,
+    OnboardingComponent,
     QueriesNodeComponent,
 
     // Query

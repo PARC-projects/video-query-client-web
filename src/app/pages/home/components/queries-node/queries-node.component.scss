@@ -10,6 +10,7 @@
 
 table {
   font-size: 14px;
+  align: left;
 }
 
 table tr td:nth-child(odd) {
@@ -22,6 +23,11 @@ table tr td:nth-child(even) {
 
 .table td {
   padding: 0.25rem 0.75rem;
+  max-width: 15rem;
+  /* overflow-wrap: break-word; */
+  /* text-overflow: ellipsis; */
+  overflow: auto;
+  /* white-space: nowrap; */
 }
 
 .state-text {
