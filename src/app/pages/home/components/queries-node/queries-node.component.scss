@@ -30,6 +30,10 @@ table tr td:nth-child(even) {
   /* white-space: nowrap; */
 }
 
+.button-column {
+  min-width: 180px;
+}
+
 .state-text {
   color: map-get($theme-colors, "danger");
   font-weight: bold;
