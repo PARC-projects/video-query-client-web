@@ -16,7 +16,7 @@
               <ng-container *ngFor="let match of queryMatchService.matches">
                 <div class="match col-3">
                   <div class="video">
-                    <video align="center" #videoPlayer [attr.data-message-id]="match.id"
+                    <video controls controlsList="nodownload" align="center" #videoPlayer [attr.data-message-id]="match.id"
                       [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
                       <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
                       not support the video tag.
@@ -24,14 +24,13 @@
                     <!-- comment out div with hovering
                     <div class="overlay" (click)="videoClick(match)" (mouseover)="videoMouseOver(match)"
                       (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
-                     -->
-                    <div class="overlay" (click)="videoClick(match)"
-                      (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
+                    <div class="overlay">
                       <div class="d-flex align-items-center justify-content-center">
                         <i class="fa fa-play" aria-hidden="true" *ngIf="!match.is_loading"></i>
                         <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="match.is_loading"></i>
                       </div>
                     </div>
+                    -->
                   </div>
                   <div class="meta d-flex flex-row">
                     <div>
