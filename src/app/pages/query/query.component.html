@@ -31,7 +31,9 @@
                   </div>
                   <div class="meta d-flex flex-row">
                     <div>
-                      <div class="circle" [ngClass]="{'is-match': match.user_match}"
+                      <div class="circle"
+                           [ngClass]="{'is-match':
+                           match.user_match || (match.user_match == null && match.is_match) }"
                         (click)="queryMatchService.setValidation(match)"> &#10003;</div>
                     </div>
                     <div class="pl-2 video-meta" [ngClass]="{'font-weight-bold': match.user_match == null}">
