@@ -1,5 +1,5 @@
-<div class="min-vh-100">
-  <app-nav></app-nav>
+<app-nav></app-nav>
+<div class="navigation-offset min-vh-100 d-flex flex-column">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -63,5 +63,6 @@
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
+  <app-loader [show]="isLoading"></app-loader>
 </div>
-<app-loader [show]="isLoading"></app-loader>

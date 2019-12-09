@@ -10,10 +10,6 @@ button.login {
   padding-right: 3rem;
 }
 
-.footer {
-    min-height: calc(100vh - 100px);
-}
-
 .meta {
   margin-top: 4rem;
   font-size: 12px;
@@ -28,4 +24,16 @@ button.login {
 .input-group > .input-group-prepend > .input-group-text {
   border-radius: 0;
   border: 0;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  align-items: end;
+  .grid-item {
+    width: 100%;
+  }
 }

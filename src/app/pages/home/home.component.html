@@ -1,5 +1,5 @@
-<div class="min-vh-100">
-  <app-nav></app-nav>
+<app-nav></app-nav>
+<div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -13,7 +13,8 @@
           <div class="col-9">
             <div class="input-group muted">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search"
+                    aria-hidden="true"></i></span>
               </div>
               <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
                 (ngModelChange)="onSearch($event)">
@@ -37,4 +38,5 @@
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>
