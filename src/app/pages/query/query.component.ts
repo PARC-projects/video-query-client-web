@@ -57,9 +57,9 @@ export class QueryComponent implements OnInit, AfterViewInit {
           playPromise.catch(() => {
             /*
               Swallow failed promise
-              When user scrolls across a video quickly, the pause promise is called
+              When user scrolls across a video quickly, pause() is called
               before a video is every loaded.  Just because we play(), does not mean
-              the video starts play immediately.
+              the video starts playing immediately and for the matter, is loaded.
 
               TODO: Check to see if we can be a bit more elegant about this.
                     Is it possible to query load/play stated.
