@@ -21,7 +21,11 @@
                       <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
                       not support the video tag.
                     </video>
+                    <!-- comment out div with hovering
                     <div class="overlay" (click)="videoClick(match)" (mouseover)="videoMouseOver(match)"
+                      (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
+                     -->
+                    <div class="overlay" (click)="videoClick(match)"
                       (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
                       <div class="d-flex align-items-center justify-content-center">
                         <i class="fa fa-play" aria-hidden="true" *ngIf="!match.is_loading"></i>
