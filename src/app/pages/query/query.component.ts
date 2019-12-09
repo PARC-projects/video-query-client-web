@@ -52,7 +52,20 @@ export class QueryComponent implements OnInit, AfterViewInit {
       if (attributeId === match.id) {
         match.is_hovered = true;
         this.stopVideo(element.nativeElement, match);
-        element.nativeElement.play();
+        const playPromise = element.nativeElement.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            /*
+              Swallow failed promise
+              When user scrolls across a video quickly, the pause promise is called
+              before a video is every loaded.  Just because we play(), does not mean
+              the video starts play immediately.
+
+              TODO: Check to see if we can be a bit more elegant about this.
+                    Is it possible to query load/play stated.
+            */
+          });
+        }
       }
     });
   }
