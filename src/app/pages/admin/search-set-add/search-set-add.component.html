@@ -1,9 +1,11 @@
-<section class="search-set-add">
-  <div class="container-fluid">
+<app-nav></app-nav>
+<section class="search-set-add navigation-offset min-vh-100 d-flex flex-column">
+  <div class=" container-fluid">
     <div class="row">
       <div class="col">
-        <h1 class="vq-title">Add Search Set</h1>
-        <p class="lead">Complete the new Search Set form and submit it by clicking the save button to the right.</p>
+        <h1 class="vq-title">Add Video Collection</h1>
+        <p class="lead">Complete the new Video Collection form and submit it by clicking the save button to the right.
+        </p>
       </div>
     </div>
     <div class="row">
@@ -28,6 +30,7 @@
     </video>
   </app-modal>
   <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
+  <!-- TODO: Consider the UI block on the search component and not the parent -->
+  <app-loader [show]="loading"></app-loader>
+  <app-footer></app-footer>
 </section>
-<!-- TODO: Consider the UI block on the search component and not the parent -->
-<app-loader [show]="loading"></app-loader>

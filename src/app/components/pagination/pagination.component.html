@@ -21,9 +21,9 @@
     </nav>
   </div>
   <div class="float-right">
-    <div class="form-inline">
+    <div class="form-inline form-group">
       <label class="form-text text-muted my-1 mr-2 per-page">Per Page</label>
-      <select class="custom-select custom-select-sm" [(ngModel)]="perPage" (ngModelChange)="onPerPageSelected($event)">
+      <select class="custom-select custom-select-sm form-control" [(ngModel)]="perPage" (ngModelChange)="onPerPageSelected($event)">
         <option selected value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>

@@ -1,0 +1,120 @@
+<app-modal>
+  <div class="onboarding-container" [ngSwitch]="currentPage">
+    <div class="page-1-container" *ngSwitchCase="1">
+      <h2 class="text-center font-weight-bold">Welcome</h2>
+      <p class="sub-header text-center">You will be collaborating with AI to find clips in your collection of videos
+        that are similar to a reference clip that you provide.</p>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h6>Reference Video Clip</h6>
+            <div class="container-fluid p-0">
+              <div class="row">
+                <div class="col">
+                  <img src="assets\images\onboarding-1.jpg">
+                </div>
+                <div class="col text-center">
+                  <img src="assets\images\mark.png" class="mark-img">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h6>Matched Video Clips From Your Collection</h6>
+            <div class="container-fluid p-0">
+              <div class="row mb-3">
+                <div class="col pr-0">
+                  <img src="assets\images\onboarding-2.jpg">
+                </div>
+                <div class="col">
+                  <img src="assets\images\onboarding-5.jpg">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col pr-0">
+                  <img src="assets\images\onboarding-4.jpg">
+                </div>
+                <div class="col">
+                  <img src="assets\images\onboarding-3.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="next-link text-center" (click)="nextPage()">How it works <i class="fa fa-arrow-right"
+          aria-hidden="true"></i></p>
+    </div>
+    <div class="page-2-container" *ngSwitchCase="2">
+      <h2 class="text-center font-weight-bold">How This Works</h2>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="illustration">
+              <img src="assets\images\ill-1.png">
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">1</div>
+              </div>
+              <div class="p-2">
+                <p class="font-weight-bold">Have your video collections provisioned to the database. Select a reference
+                  video clip and a collection of videos to search for similarities.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="illustration">
+              <img src="assets\images\ill-2.png">
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">2</div>
+              </div>
+              <div class="p-2">
+                <p class="font-weight-bold">The algorithm will generate samples for you to grade until you think
+                  the samples reflect the action of interest to you.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="illustration">
+              <img src="assets\images\ill-3.png">
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div>
+                <div class="circle">3</div>
+              </div>
+              <div class="p-2">
+                <p class="font-weight-bold">Get a report of all
+                  matching clips in your collection, using the algorithm trained on the samples you graded.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="next-link text-center" (click)="nextPage()">Video Selection <i class="fa fa-arrow-right"
+          aria-hidden="true"></i></p>
+    </div>
+    <div class="page-3-container  text-center" *ngSwitchCase="3">
+      <h2 class="text-center font-weight-bold">Video Selection</h2>
+      <div class="illustration">
+          <img src="assets\images\ill-4.png">
+      </div>
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <div class="col-10">
+            <p class="font-weight-bold">You will select a time in a video that shows the type of action of
+              interest to you. The program
+              will
+              use the 10 seconds around the time you choose as the reference clip. This reference clip will be compared
+              with
+              other clips in your video collection.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="closeOnboarding()">I got it and I know I can click on "help" to see this
+        again</button>
+    </div>
+  </div>
+</app-modal>

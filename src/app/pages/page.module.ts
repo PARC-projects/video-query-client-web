@@ -5,39 +5,52 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { NewQueryComponent } from './new-query/new-query.component';
-import { ExistingQueryComponent } from './existing-query/existing-query.component';
-import { ResultsListChartComponent } from './existing-query/charts/results-list/results-list-chart.component';
-import { ChartOneComponent } from './existing-query/charts/chart-one/chart-one.component';
-import { ChartTwoComponent } from './existing-query/charts/chart-two/chart-two.component';
-import { ReferenceVideoComponent } from './existing-query/charts/reference-video/reference-video.component';
-import { QuerySelectionComponent } from './existing-query/components/query-selection/query-selection.component';
-import { ChartSelectionComponent } from './existing-query/components/chart-selection/chart-selection.component';
-import { QueryHeaderComponent } from './existing-query/components/query-header/query-header.component';
-import { ChartHeaderComponent } from './existing-query/charts/chart-header/chart-header.component';
+
 import { SearchSetComponent } from './admin/search-set/search-set.component';
 import { SearchComponent } from './admin/search-set-add/components/search/search.component';
 import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
 import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
 
+/**
+ * New
+ */
+import { NewQueryComponent } from './new-query/new-query.component';
+
+/**
+ * Login
+ */
+import { LoginComponent } from './login/login.component';
+
+/**
+ * Home
+ */
+import { HomeComponent } from './home/home.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { QueriesNodeComponent } from './home/components/queries-node/queries-node.component';
+
+/**
+ * Query
+ */
+import { QueryComponent } from './query/query.component';
+
 
 @NgModule({
   declarations: [
+    // Login
     LoginComponent,
+
+    // Home
     HomeComponent,
+    OnboardingComponent,
+    QueriesNodeComponent,
+
+    // Query
+    QueryComponent,
+
+    // New QUery
     NewQueryComponent,
-    ExistingQueryComponent,
-    ResultsListChartComponent,
-    ChartOneComponent,
-    ChartTwoComponent,
-    ReferenceVideoComponent,
-    QuerySelectionComponent,
-    ChartSelectionComponent,
-    QueryHeaderComponent,
-    ChartHeaderComponent,
+
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,

@@ -1,6 +1,7 @@
-<section class="search-set">
+<app-nav></app-nav>
+<section class="search-set navigation-offset min-vh-100 d-flex flex-column">
   <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
+    <div class="row flex-xl-nowrap p-3">
       <div class="col-12 col-md-4 col-lg-3 col-xl-2 list-nav">
         <app-list-nav [config]="searchSetService.listNavConfig" (selected)="onSelected($event)"
           (paginationClick)="onPaginationClick($event)" (perPageSelection)="onPerPageSelection($event)"
@@ -12,7 +13,7 @@
           <ng-container *ngIf="!searchSetService.searchSet">
             <div class="empty-state-page">
               <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-              <h4>Select A Search Set</h4>
+              <h4>Select A Video Collection</h4>
             </div>
           </ng-container>
           <div [style.display]="searchSetService.searchSet ? 'block': 'none'">
@@ -26,7 +27,7 @@
               </li>
             </ul>
             <div class="vq-widget">
-              <p class="lead">Videos in Search Set</p>
+              <p class="lead">Videos in Video Collection</p>
               <table class="table">
                 <thead>
                   <tr>
@@ -61,5 +62,6 @@
     </video>
   </app-modal>
   <app-token-auth (submit)="onTokenAuthSubmit()"></app-token-auth>
-  <app-loader [show]="loading"></app-loader>
+  <app-footer></app-footer>
 </section>
+<app-loader [show]="loading"></app-loader>

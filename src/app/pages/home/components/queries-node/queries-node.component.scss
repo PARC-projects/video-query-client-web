@@ -1,0 +1,58 @@
+@import "../../../../../custom";
+
+.query-container {
+  margin: 0 0 2rem;
+  padding: 1rem;
+
+  border: 1px darken(map-get($parc-colors, "light-gray"), 5%) solid;
+  border-radius: 0.25rem;
+}
+
+table {
+  font-size: 14px;
+  align: left;
+}
+
+table tr td:nth-child(odd) {
+  color: map-get($parc-colors, "medium-gray");
+}
+
+table tr td:nth-child(even) {
+  font-weight: bold;
+}
+
+.table td {
+  padding: 0.25rem 0.75rem;
+  max-width: 15rem;
+  /* overflow-wrap: break-word; */
+  /* text-overflow: ellipsis; */
+  overflow: auto;
+  /* white-space: nowrap; */
+}
+
+.button-column {
+  min-width: 180px;
+}
+
+.state-text {
+  color: map-get($theme-colors, "danger");
+  font-weight: bold;
+}
+
+.view-notes-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: map-get($parc-colors, "medium-gray");
+}
+
+button,
+.btn-success {
+  color: #fff;
+  min-width: 150px;
+}
+
+::ng-deep textarea {
+  min-width: 800px;
+  min-height: 200px
+}
+

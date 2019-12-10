@@ -1,12 +1,28 @@
-$parc-colors: ("primary": #205468, "dark": #262626, "black": #1b1b1b, "orange": #FF6600);
-$theme-colors: ("primary": map-get($parc-colors, "primary"), "dark": map-get($parc-colors, "dark"), "danger": #f44455, "success": #6cc788, "warning": map-get($parc-colors, "orange"));
+$parc-colors: ("primary": #205469,
+  "dark": #052331,
+  "black": #373737,
+  "orange": #F26722,
+  "light-gray": #f2f2f2,
+  "medium-gray": #B3B4B4,
+  "dark-gray": #373737,
+  "ting-light-blue": #B3E1E7,
+  "ting-fuchsia": #ed247c,
+  "light-orange": #FBA919);
+
+$theme-colors: ("primary": map-get($parc-colors, "primary"),
+  "dark": map-get($parc-colors, "dark"),
+  "danger": #BE2326,
+  "success": #A8BC38,
+  "warning": map-get($parc-colors, "orange"));
+
 // Required
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
+
 // Override
 $black: map-get($parc-colors, "black");
-$body-bg: map-get($parc-colors, "dark");
+$body-bg: map-get($parc-colors, "light-gray");
 
 // Optional
 @import "../node_modules/bootstrap/scss/root";

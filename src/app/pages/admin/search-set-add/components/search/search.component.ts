@@ -23,7 +23,7 @@ export class SearchComponent {
 
   onAdd(videoToAdd: IVideo) {
     if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd)) {
-      alert(`This video is already in the current Search Set.`);
+      alert(`This video is already in the current Video Collection.`);
       return;
     } else {
       this.searchSetAddService.videosInSearchSet.push(videoToAdd);

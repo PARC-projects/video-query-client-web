@@ -36,6 +36,9 @@ export interface IQuery {
   video: number;
   process_state: ProcessState;
   final_report_file: string;
+  video_name: string;
+  dataset: string;
+  clip_duration: number;
 }
 
 /**

@@ -2,55 +2,130 @@ $fa-font-path: "./assets/fonts" !default;
 @import "custom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
-.vq-widget {
-    background: color("white");
-    padding: 0.5rem 1rem 1rem;
-    margin: 0 0 1rem;
-    box-shadow: 0 0 1px rgba(0, 0, 0, .15);
-    width: 100%;
+
+.navigation-offset {
+  padding-left: 80px;
 }
 
-.vq-title {
-    @extend .font-weight-light;
+p.text-parc-orange {
+  color: map-get($parc-colors, "orange");
+}
+
+p.text-light-orange {
+  color: map-get($parc-colors, "light-orange");
+}
+
+p.text-fuchsia {
+  color: map-get($parc-colors, "ting-fuchsia");
+}
+
+.input-group.muted{
+  margin: 0;
+
+  .input-group-text {
+    border-right: none;
+    background-color: map-get($parc-colors, "light-gray");
+    border-width: 2px;
+    color: map-get($parc-colors, "medium-gray");
+  }
+
+  input.form-control {
+    background-color: map-get($parc-colors, "light-gray");
+    border-left: none;
+    border-width: 2px;
+    &::placeholder {
+      color: map-get($parc-colors, "medium-gray")
+    }
+  }
+}
+
+.form-group  select.form-control {
+  background-color: map-get($parc-colors, "light-gray");
+  color: map-get($parc-colors, "medium-gray");
+  border-width: 2px;
+  &:focus {
+    background-color: map-get($parc-colors, "light-gray");
+    color: map-get($parc-colors, "black");
+  }
 }
 
 .vq-invalid-feedback {
-    @extend .invalid-feedback;
-    display: block;
+  @extend .invalid-feedback;
+  display: block;
 }
 
-.form-control.ng-invalid.ng-touched {
-    @extend .form-control, .is-invalid;
+button.btn {
+  border-radius: 0 !important; // Overrides bootstrap nested component scope =(
 }
 
-.vq-tooltip {
-    position: absolute;
-    text-align: center;
-    font-size: 14px;
-    padding: 0.5rem;
-    pointer-events: none;
-    display: none;
-    background-color: rgba(gray("800"), 0.85);
-    color: color('white');
-    border-radius: 2px;
+button.btn.disabled {
+  cursor: no-drop !important; // Overrides bootstrap nested component scope =(
 }
 
-.vq-info-tooltip {
-    color: lighten(theme-color("primary"), 20%) !important;
-    &:hover {
-        transition: 0.25s all;
-        color: theme-color("primary")
-    }
+button.btn.btn-light-orange,
+button.btn.btn-light-orange.disabled {
+  background-color: map-get($parc-colors, "light-orange");
+  border-color: map-get($parc-colors, "light-orange");
+  color: #fff;
+
+  &:hover {
+    background-color: darken(map-get($parc-colors, "light-orange"), 10%);
+    border-color: darken(map-get($parc-colors, "light-orange"), 10%);
+    color: #fff;
+  }
 }
 
-.mat-tooltip {
-    font-size: 11pt !important;
+button.btn.btn-light-secondary,
+button.btn.btn-light-secondary.disabled {
+  background-color: map-get($parc-colors, "medium-gray");
+  border-color: map-get($parc-colors, "medium-gray");
+  color: #fff;
 }
 
-.form-control.small {
-    width: 50%;
+.vq-widget {
+  background: color("white");
+  padding: 0.5rem 1rem 1rem;
+  margin: 0 0 1rem;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .15);
+  width: 100%;
 }
 
-.fa-refresh {
-    margin-right: 4pt;
-}
+// .form-control.ng-invalid.ng-touched {
+//     @extend .form-control, .is-invalid;
+// }
+
+// .vq-title {
+//     @extend .font-weight-light;
+// }
+
+// .vq-tooltip {
+//     position: absolute;
+//     text-align: center;
+//     font-size: 14px;
+//     padding: 0.5rem;
+//     pointer-events: none;
+//     display: none;
+//     background-color: rgba(gray("800"), 0.85);
+//     color: color('white');
+//     border-radius: 2px;
+// }
+
+// .vq-info-tooltip {
+//     color: lighten(theme-color("primary"), 20%) !important;
+//     &:hover {
+//         transition: 0.25s all;
+//         color: theme-color("primary")
+//     }
+// }
+
+// .mat-tooltip {
+//     font-size: 11pt !important;
+// }
+
+// .form-control.small {
+//     width: 50%;
+// }
+
+// .fa-refresh {
+//     margin-right: 4pt;
+// }

@@ -1,8 +1,39 @@
-.login-form-container {
-  display: block;
-  padding: 2rem 0 6rem;
+@import "../../../custom";
 
-  h2 {
-    margin: 0 0 2rem;
+h2 {
+  margin: 5rem 0 2.5rem;
+}
+
+button.login {
+  margin-top: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.meta {
+  margin-top: 4rem;
+  font-size: 12px;
+  color: #B3B4B4;
+
+  p {
+    margin: 0
+  }
+}
+
+.input-group>.form-control:not(:first-child),
+.input-group > .input-group-prepend > .input-group-text {
+  border-radius: 0;
+  border: 0;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  align-items: end;
+  .grid-item {
+    width: 100%;
   }
 }

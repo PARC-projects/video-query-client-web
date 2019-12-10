@@ -1,4 +1,46 @@
-<section class=" fixed-top">
+<nav class="navigation min-vh-100">
+  <ul class="list-unstyled">
+    <li>
+      <div class="circle">HW</div>
+    </li>
+    <li [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}" class="d-flex align-items-center justify-content-center">
+      <a class="nav-link" [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}" routerLink="/home"
+        (click)="currentPage = 'home'">
+        <i class="fa fa-list" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li [ngClass]="{'active': currentPage === 'new-query'}" class="d-flex align-items-center justify-content-center">
+      <a class="nav-link" [ngClass]="{'active': currentPage === 'new-query'}" routerLink="/new-query"
+        (click)="currentPage = 'new-query'">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li [ngClass]="{'active': currentPage === 'search-sets'}" class="d-flex align-items-center justify-content-center">
+      <a class="nav-link" [ngClass]="{'active': currentPage === 'search-sets'}" routerLink="/search-sets"
+        (click)="currentPage = 'search-sets'">
+        <i class="fa fa-video-camera " aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
+      <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li>
+      <a class="nav-link" routerLink="/" (click)="currentPage = ''">
+        <i class="fa fa-sign-out"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="help-link">
+    <a href="https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example#example" target="_blank"
+      title="Video Query Wiki">
+      <i class="fa fa-question-circle-o"></i>
+    </a>
+  </div>
+</nav>
+
+<!-- <section class=" fixed-top">
   <nav class="main navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/home">
       Video Query
@@ -17,8 +59,8 @@
           </a>
         </li>
         <li class="nav-item" class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
-            <a class="nav-link" routerLink="search-sets" title="Search Sets" (click)="currentPage = 'search-sets'">
-              <i class="fa fa-video-camera"></i> &nbsp;Search Sets
+            <a class="nav-link" routerLink="search-sets" title="Video Collections" (click)="currentPage = 'search-sets'">
+              <i class="fa fa-video-camera"></i> &nbsp;Video Collections
             </a>
           </li>
         <li class="nav-item">
@@ -49,4 +91,4 @@
       </ul>
     </div>
   </nav>
-</section>
+</section> -->

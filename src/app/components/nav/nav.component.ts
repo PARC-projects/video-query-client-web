@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -13,6 +14,12 @@ export class NavComponent {
   adminUrl = this.apiUrl + '/admin';
   currentPage = 'home';
 
-  constructor(public authenticationService: AuthenticationService) {
+  constructor(public authenticationService: AuthenticationService,
+    private router: Router) {
+    this.currentPage = this.router.url;
+    if (this.currentPage.charAt(0) === '/') {
+      this.currentPage = this.currentPage.substring(1);
+    }
+    this.currentPage = this.currentPage.split('/')[0];
   }
 }

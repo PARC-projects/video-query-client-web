@@ -1,30 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { HomeService } from './home.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { QueryRepository } from 'src/app/repositories/query.repository';
+import { IQuery } from 'src/app/models/query.model';
+import { IPagination } from 'src/app/models/pagination';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-existing-query-page',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [
-    HomeService
-  ]
 })
 export class HomeComponent implements OnInit {
+  isLoading = false;
+  queries = [] as IQuery[];
+  pagination: IPagination;
+  searchTerm: string;
+
+  private timeout: any;
 
   constructor(
-    private router: Router,
-    public homeService: HomeService,
-    public authenticationService: AuthenticationService
+    private queryRepository: QueryRepository
   ) { }
 
-  ngOnInit() {
-    this.homeService.init();
+  ngOnInit(): void {
+    this.getQueries();
   }
 
-  viewExistingQuery() {
-    this.router.navigate(['existing-query']);
+  onSearch(search: string): void {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.searchTerm = search;
+      this.getQueries(1);
+    }, 500);
+  }
+
+  onPerPageSelection(perPageSelectedValue: number): void {
+    this.getQueries(this.pagination.currentPage, perPageSelectedValue);
+  }
+
+  onPaginationClick(pageClicked: number): void {
+    this.getQueries(pageClicked);
+  }
+
+  private async getQueries(page?: number, perPage = 10): Promise<void> {
+    this.isLoading = true;
+
+    const resp = await this.queryRepository.getAll(page, this.searchTerm, perPage)
+      .toPromise();
+
+    this.queries = resp.results;
+    this.pagination = resp.pagination;
+    this.isLoading = false;
   }
 }

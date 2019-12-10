@@ -1,43 +1,84 @@
-<app-header></app-header>
-<section class="login-form-container">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <h2 class="font-weight-light text-center">Login
-          <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
-        </h2>
-        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-          {{errorMessage}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errorMessage = null">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<div class="grid-container min-vh-100 bg-white">
+  <div class="grid-item">
+    <div class=" d-flex align-items-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="col-lg-6">
+                  <h1 class="text-center font-weight-bold">Agile Video Query</h1>
+                  <p class="text-center h5 sub font-weight-bold text-parc-orange">Interactive Search Tool For Similar
+                    Video
+                    Snippets
+                  </p>
+                  <h2 class="text-center font-weight-bold">Login
+                    <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i>
+                  </h2>
+                  <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                        {{errorMessage}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                          (click)="errorMessage = null">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-8">
+                  <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
+                    <div class="form-group">
+                      <div class="input-group muted">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-user-o"
+                              aria-hidden="true"></i></span>
+                        </div>
+                        <input type="text" required class="form-control form-control-lg" id="username"
+                          placeholder="Username" [(ngModel)]="loginRequest.username" name="username" #username="ngModel"
+                          [disabled]="loading">
+                      </div>
+                      <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <div *ngIf="username.errors.required" class="vq-invalid-feedback">
+                          Username is required.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group muted">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
+                              aria-hidden="true"></i></span>
+                        </div>
+                        <input type="password" required class="form-control form-control-lg" id="password"
+                          placeholder="Password" [(ngModel)]="loginRequest.password" name="password" #password="ngModel"
+                          [disabled]="loading">
+                      </div>
+                      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div *ngIf="password.errors.required" class="vq-invalid-feedback">
+                          Password is required.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-warning text-center login" [disabled]="loginFrom.invalid || loading">Log
+                        In</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" required class="form-control" id="username" placeholder="Enter username"
-              [(ngModel)]="loginRequest.username" name="username" #username="ngModel" [disabled]="loading">
-            <div *ngIf="username.invalid && (username.dirty || username.touched)">
-              <div *ngIf="username.errors.required" class="vq-invalid-feedback">
-                Username is required.
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" required class="form-control" id="password" placeholder="Enter password"
-              [(ngModel)]="loginRequest.password" name="password" #password="ngModel" [disabled]="loading">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)">
-              <div *ngIf="password.errors.required" class="vq-invalid-feedback">
-                Password is required.
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <button class="btn btn-warning text-center" [disabled]="loginFrom.invalid || loading">Login</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
-</section>
+  <div class="grid-item">
+    <app-footer></app-footer>
+  </div>
+</div>

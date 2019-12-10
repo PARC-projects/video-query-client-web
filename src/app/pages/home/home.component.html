@@ -1,27 +1,42 @@
-<app-header></app-header>
-<section class="home-content">
-  <section class="bullets">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg" *ngIf="authenticationService.getCurrentToken().is_staff">
-          <i class="fa fa-video-camera"></i>
-          <p>Manage existing search sets and view associated videos or create a new set.</p>
-          <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">Search
-            Sets</button>
+<app-nav></app-nav>
+<div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header class="d-flex justify-content-start">
+          <h1 class="font-weight-bold">My Queries</h1>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-warning" routerLink="/new-query">Create New Query</button>
+          </div>
+        </header>
+        <div class="row">
+          <div class="col-9">
+            <div class="input-group muted">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-search"
+                    aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
+                (ngModelChange)="onSearch($event)">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <select class="form-control" id="exampleFormControlSelect2">
+                <option selected="selected">Order By</option>
+                <option>Query Name</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="col-lg">
-          <i class="fa fa-plus"></i>
-          <p>Execute a new search for video similarities by creating and submitting a new query.</p>
-          <button type="button" class="btn btn-warning" routerLink="/new-query" routerLinkActive="active">New
-            Query</button>
-        </div>
-        <div class="col-lg">
-          <i class="fa fa-database"></i>
-          <p>Already submitted a video for search? View potential matches and submit revisions.</p>
-          <button class="btn btn-warning" [routerLink]="['/existing-query']" routerLinkActive="active">Existing
-            Queries</button>
-        </div>
+        <ng-container class="query-container" *ngFor="let query of queries">
+          <app-queries-node [query]="query"></app-queries-node>
+        </ng-container>
+        <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
+          (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+        <app-loader [show]="isLoading"></app-loader>
       </div>
     </div>
-  </section>
-</section>
+  </div>
+  <app-footer></app-footer>
+</div>
