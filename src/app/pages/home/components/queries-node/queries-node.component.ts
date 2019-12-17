@@ -31,15 +31,15 @@ export class QueriesNodeComponent implements OnInit {
       case ProcessState.Submitted:
       case ProcessState.Revised:
       case ProcessState.Processing:
-        return 'In Progress';
+        return 'Processing Query';
       case ProcessState.Processed:
-        return 'Ready for Review';
+        return 'Ready for Feedback';
       case ProcessState.Error:
         return 'Error';
       case ProcessState.ProcessFinalized:
-        return 'In Progress';
+        return 'Finalizing Query';
       case ProcessState.Finalized:
-        return 'Ready for Download';
+        return 'Ready to Export';
     }
   }
 
