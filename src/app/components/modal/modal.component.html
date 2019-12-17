@@ -1,6 +1,6 @@
 <div class="modal" *ngIf="show">
   <div class="modal-overlay" (click)="close()"></div>
-  <div class="modal-dialog" ng-style="dialogStyle">
+  <div class="modal-dialog" ng-style="dialogStyle"  [ngStyle]="{'width': widthByPercentage}">
     <div class="modal-dialog-content">
       <ng-content></ng-content>
     </div>
