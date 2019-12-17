@@ -7,6 +7,7 @@
 .navigation {
   background: map-get($parc-colors, "dark");
   position: fixed;
+
   ul {
     margin: 0;
     text-align: center;
@@ -42,9 +43,16 @@
     box-sizing: border-box;
     border-right: 6px map-get($parc-colors, "ting-light-blue") solid;
 
-    i {
+    i,
+    svg {
       color: map-get($parc-colors, "ting-light-blue");
       margin-right: -6px;
+    }
+
+    path,
+    circle {
+      fill: map-get($parc-colors, "ting-light-blue");
+      ;
     }
   }
 
@@ -53,4 +61,15 @@
     color: #fff;
     font-size: 2rem;
   }
+
+  svg {
+    height: 32px;
+    width: 32px;
+
+    path,
+    circle {
+      fill: #fff;
+    }
+  }
+
 }
