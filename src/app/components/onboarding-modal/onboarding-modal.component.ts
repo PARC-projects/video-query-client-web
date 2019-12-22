@@ -31,6 +31,10 @@ export class OnboardingModalComponent implements OnInit {
     this.currentPage++;
   }
 
+  backPage() {
+    this.currentPage--;
+  }
+
   closeOnboarding() {
     this.modalComponent.close();
     this.router.navigate([this.dashboardUrl]);
