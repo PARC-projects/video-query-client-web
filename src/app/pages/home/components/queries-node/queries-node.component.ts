@@ -17,7 +17,7 @@ export class QueriesNodeComponent implements OnInit {
       case ProcessState.Revised:
       case ProcessState.Processing:
       case ProcessState.Processed:
-        return 'Review Matches';
+        return 'Train Algorithm';
       case ProcessState.Error:
         return 'Error';
       case ProcessState.Finalized:
