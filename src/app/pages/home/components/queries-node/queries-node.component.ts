@@ -33,7 +33,7 @@ export class QueriesNodeComponent implements OnInit {
       case ProcessState.Processing:
         return 'Processing Query';
       case ProcessState.Processed:
-        return 'Ready for Feedback';
+        return 'Ready to Train  ';
       case ProcessState.Error:
         return 'Error';
       case ProcessState.ProcessFinalized:
