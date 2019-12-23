@@ -1,43 +1,59 @@
 <div class="query-container bg-white">
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-lg-4">
         <h4>{{query.name}}</h4>
         <p class="font-weight-bold" [ngClass]="stateColor">{{stateText}}</p>
         <p class="view-notes-link m-0" (click)="openNotes()" *ngIf="!showNotes">View Notes</p>
         <p class="view-notes-link m-0" (click)="openNotes()" *ngIf="showNotes">Hide Notes</p>
       </div>
-      <div class="col-md-auto">
-        <table class="table table-borderless table-responsive">
-          <tbody>
-            <tr>
-              <td>Dataset</td>
-              <td>{{query.dataset}}</td>
-              <td>Clip duration</td>
-              <td>{{query.clip_duration}} seconds</td>
-            </tr>
-            <tr>
-              <td>Reference Video</td>
-              <td>{{query.video_name}}</td>
-              <td>Target bootstrapping</td>
-              <td>{{query.use_dynamic_target_adjustment}}</td>
-            </tr>
-            <tr>
-              <td>Reference time</td>
-              <td>{{query.reference_time}}</td>
-              <td>Matches to review</td>
-              <td>{{query.max_matches_for_review}}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col p-0">
+            <table class="table table-borderless table-responsive">
+              <tbody>
+                <tr>
+                  <td>Reference Video:</td>
+                  <td class="overflow">{{query.dataset}}</td>
+                </tr>
+                <tr>
+                  <td>Video Collection:</td>
+                  <td class="overflow">{{query.video_name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-auto p-0 mr-4">
+            <table class="table table-borderless table-responsive">
+              <tbody>
+                <tr>
+                  <td>Target bootstrapping:</td>
+                  <td>{{query.use_dynamic_target_adjustment}}</td>
+                </tr>
+                <tr>
+                  <td>Clip duration:</td>
+                  <td>{{query.clip_duration}} seconds</td>
+                </tr>
+                <tr>
+                  <td>Reference time:</td>
+                  <td>{{query.reference_time}}</td>
+                </tr>
+                <tr>
+                  <td>Matches to review:</td>
+                  <td>{{query.max_matches_for_review}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="col-md-auto button-column">
+      <div class="col-lg-2 button-column">
         <ng-container [ngSwitch]="stateButton">
           <ng-container *ngSwitchCase="1">
-            <button class="btn" [ngClass]="buttonColor">{{buttonText}}</button>
+            <a class="btn btn-primary" href="#" [ngClass]="buttonColor">{{buttonText}}</a>
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <button class="btn" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</button>
+            <a class="btn" href="#" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</a>
           </ng-container>
           <ng-container *ngSwitchCase="3">
             <a class="btn" [ngClass]="buttonColor" [href]="query.final_report_file">{{buttonText}}</a>
@@ -48,7 +64,7 @@
     <div class="row mt-2" *ngIf="showNotes">
       <div class="col">
         <div class="notes">
-          <textarea class="form-control"  name="notes">{{query.notes}}</textarea>
+          <textarea class="form-control" name="notes">{{query.notes}}</textarea>
         </div>
       </div>
     </div>
