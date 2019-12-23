@@ -26,6 +26,7 @@ table tr td:nth-child(even) {
   max-width: 15rem;
   font-size: 12px;
   line-break: none;
+
   &.overflow {
     word-break: break-all;
 
@@ -33,7 +34,11 @@ table tr td:nth-child(even) {
 }
 
 .btn {
-  width: 100%;
+  font-size: 15px;
+}
+
+.btn-success {
+  min-width: 0px !important; // Override bootstrap =(
 }
 
 .state-text {

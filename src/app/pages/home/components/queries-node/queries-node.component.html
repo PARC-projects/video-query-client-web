@@ -28,7 +28,8 @@
               <tbody>
                 <tr>
                   <td>Target bootstrapping:</td>
-                  <td>{{query.use_dynamic_target_adjustment}}</td>
+                  <td *ngIf="query.use_dynamic_target_adjustment">yes</td>
+                  <td *ngIf="!query.use_dynamic_target_adjustment">no</td>
                 </tr>
                 <tr>
                   <td>Clip duration:</td>
@@ -50,13 +51,13 @@
       <div class="col-lg-2 button-column">
         <ng-container [ngSwitch]="stateButton">
           <ng-container *ngSwitchCase="1">
-            <a class="btn btn-primary" href="#" [ngClass]="buttonColor">{{buttonText}}</a>
+            <a class="btn btn-block" href="#" [ngClass]="buttonColor">{{buttonText}}</a>
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <a class="btn" href="#" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</a>
+            <a class="btn btn-block" href="#" [ngClass]="buttonColor" routerLink="/query/{{query.id}}">{{buttonText}}</a>
           </ng-container>
           <ng-container *ngSwitchCase="3">
-            <a class="btn" [ngClass]="buttonColor" [href]="query.final_report_file">{{buttonText}}</a>
+            <a class="btn btn-block" [ngClass]="buttonColor" [href]="query.final_report_file">{{buttonText}}</a>
           </ng-container>
         </ng-container>
       </div>
