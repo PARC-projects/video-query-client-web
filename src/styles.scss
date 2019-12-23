@@ -54,16 +54,16 @@ p.text-fuchsia {
   display: block;
 }
 
-button.btn {
+button.btn, a.btn  {
   border-radius: 0 !important; // Overrides bootstrap nested component scope =(
 }
 
-button.btn.disabled {
+button.btn.disabled, a.btn.disabled {
   cursor: no-drop !important; // Overrides bootstrap nested component scope =(
 }
 
-button.btn.btn-light-orange,
-button.btn.btn-light-orange.disabled {
+button.btn.btn-light-orange, a.btn.btn-light-orange,
+button.btn.btn-light-orange.disabled, a.btn.btn-light-orange.disabled  {
   background-color: map-get($parc-colors, "light-orange");
   border-color: map-get($parc-colors, "light-orange");
   color: #fff;
@@ -75,8 +75,8 @@ button.btn.btn-light-orange.disabled {
   }
 }
 
-button.btn.btn-light-secondary,
-button.btn.btn-light-secondary.disabled {
+button.btn.btn-light-secondary, a.btn.btn-light-secondary
+button.btn.btn-light-secondary.disabled, a.btn.btn-light-secondary.disabled {
   background-color: map-get($parc-colors, "medium-gray");
   border-color: map-get($parc-colors, "medium-gray");
   color: #fff;

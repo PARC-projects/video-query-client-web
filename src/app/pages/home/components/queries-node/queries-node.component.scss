@@ -24,14 +24,21 @@ table tr td:nth-child(even) {
 .table td {
   padding: 0.25rem 0.75rem;
   max-width: 15rem;
-  /* overflow-wrap: break-word; */
-  /* text-overflow: ellipsis; */
-  overflow: auto;
-  /* white-space: nowrap; */
+  font-size: 12px;
+  line-break: none;
+
+  &.overflow {
+    word-break: break-all;
+
+  }
 }
 
-.button-column {
-  min-width: 180px;
+.btn {
+  font-size: 15px;
+}
+
+.btn-success {
+  min-width: 0px !important; // Override bootstrap =(
 }
 
 .state-text {
@@ -55,4 +62,3 @@ button,
   min-width: 800px;
   min-height: 200px
 }
-
