@@ -14,42 +14,43 @@
           <h3>Select correct matches</h3>
           <div class="matches-nested-container">
             <div class="row">
-              <ng-container *ngFor="let match of queryMatchService.matches">
-                <div class="match col-3">
-                  <div class="video">
-                    <!-- commented out: video with visible controls
-                    <video controls controlsList="nodownload" align="center" #videoPlayer [attr.data-message-id]="match.id"
-                      [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
-                      <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
-                      not support the video tag.
-                    </video>
-                    -->
-                    <video [attr.data-message-id]="match.id" #videoPlayer
-                      [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
-                      <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser does
-                      not support the video tag.
-                    </video>
-                    <div class="overlay" (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
-                      <div class="d-flex align-items-center justify-content-center">
-                        <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver(match)"
-                           (click)="videoClick(match)" *ngIf="!match.is_loading"></i>
-                        <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="match.is_loading"></i>
+              <div class="col">
+                <div class="videos-container">
+                  <ng-container *ngFor="let match of queryMatchService.matches">
+                    <div class="video-container">
+                      <div class="video">
+                        <video [attr.data-message-id]="match.id" #videoPlayer
+                          [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
+                          <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
+                          does
+                          not support the video tag.
+                        </video>
+                        <div class="overlay" (mouseleave)="videoMouseLeave(match)"
+                          [ngClass]="{'hovered': match.is_hovered}">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver(match)"
+                              (click)="videoClick(match)" *ngIf="!match.is_loading"></i>
+                            <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="match.is_loading"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="meta d-flex flex-column">
+                        <div class="meta-container d-flex flex-row">
+                          <div>
+                            <div class="circle"
+                              [ngClass]="{'is-match': match.user_match || (match.user_match == null && match.is_match)}"
+                              (click)="queryMatchService.setValidation(match)"> &#10003;</div>
+                          </div>
+                          <div class="pl-2 video-meta" [ngClass]="{'font-weight-bold': match.user_match == null}">
+                            <p>{{match.match_video_name}}</p>
+                            <p>{{match.reference_start_time}}</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="meta d-flex flex-row">
-                    <div>
-                      <div class="circle"
-                        [ngClass]="{'is-match': match.user_match || (match.user_match == null && match.is_match)}"
-                        (click)="queryMatchService.setValidation(match)"> &#10003;</div>
-                    </div>
-                    <div class="pl-2 video-meta" [ngClass]="{'font-weight-bold': match.user_match == null}">
-                      <p>{{match.match_video_name}}</p>
-                      <p>{{match.reference_start_time}}</p>
-                    </div>
-                  </div>
+                  </ng-container>
                 </div>
-              </ng-container>
+              </div>
             </div>
           </div>
         </section>
@@ -62,7 +63,7 @@
         </section>
         <section class="d-flex flex-row bd-highlight mb-5">
           <div class="mr-2 bd-highlight">
-            <button class="btn btn-warning" (click)="rollBack()">Reset</button>
+            <a (click)="rollBack()">Reset</a>
           </div>
           <div class="mr-2 bd-highlight">
             <button class="btn btn-warning" (click)="submitMatches()">Update AI model</button>

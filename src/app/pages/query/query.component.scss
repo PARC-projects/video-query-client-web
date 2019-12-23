@@ -18,83 +18,99 @@ header {
   margin: 0 0 2rem;
 }
 
-.matches-nested-container {
-  max-height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+.videos-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-auto-rows: 1fr;
 
-.match {
-  margin: 0 0 1.25rem;
-}
+  .video {
+    margin: 0 0 0.5rem;
+    position: relative;
 
-.video {
-  margin: 0 0 0.5rem;
-  position: relative;
-
-  video {
-    width: 100%;
-    display: block;
-    background-color: map-get($parc-colors, "light-gray");
-  }
-
-  video.visited {
-    opacity: 0.7;
-  }
-
-  video.visited.hovered {
-    opacity: 1;
-    transition: all 0.25s;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-
-    i {
-      color: #fff;
-      font-size: 2rem;
+    video {
+      width: 100%;
+      display: block;
+      background-color: map-get($parc-colors, "light-gray");
     }
 
-    .d-flex {
+    video.visited {
+      opacity: 0.7;
+    }
+
+    video.visited.hovered {
+      opacity: 1;
+      transition: all 0.25s;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      width: 100%;
       height: 100%;
+      cursor: pointer;
+
+      i {
+        color: #fff;
+        font-size: 2rem;
+      }
+
+      .d-flex {
+        height: 100%;
+      }
+    }
+
+    .overlay.hovered {
+      i {
+        opacity: 0;
+        transition: all 0.25s;
+      }
+    }
+  }
+
+  .meta {
+    .circle {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      line-height: 1.75rem;
+      text-align: center;
+      color: map-get($parc-colors, "dark-gray");
+      border: map-get($parc-colors, "dark-gray") 1px solid;
+      cursor: pointer;
+    }
+
+    .circle.is-match {
+      color: #fff;
+      background-color: map-get($theme-colors, "success");
+      border: map-get($parc-colors, "success") 1px solid;
+    }
+
+    .video-meta {
+      p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.25;
+        word-break: break-all;
+      }
     }
   }
 }
 
-.overlay.hovered {
-  i {
-    opacity: 0;
-    transition: all 0.25s;
-  }
-}
-
-.circle {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
+a:not([href]):not([tabindex]) {
+  padding: 6px 12px;
   font-size: 1rem;
-  line-height: 1.75rem;
-  text-align: center;
-  color: map-get($parc-colors, "dark-gray");
-  border: map-get($parc-colors, "dark-gray") 1px solid;
+  display: inline-block;
+  color: map-get($theme-colors, "warning");
+  text-decoration: underline;
   cursor: pointer;
-}
 
-.circle.is-match {
-  color: #fff;
-  background-color: map-get($theme-colors, "success");
-  border: map-get($parc-colors, "success") 1px solid;
-}
-
-.video-meta {
-  p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.25;
+  &:hover {
+    transition: 0.25s all;
+    color: darken(map-get($theme-colors, "warning"), 20%);
+    text-decoration: underline;
+    cursor: pointer;
   }
-  overflow: auto;
 }
