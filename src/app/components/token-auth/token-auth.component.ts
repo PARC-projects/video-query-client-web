@@ -28,18 +28,28 @@ export class TokenAuthComponent {
     this.modalComponent.open();
   }
 
-  onAuthSubmit(): void {
+  async onAuthSubmit(): Promise<void> {
+    const result = await this.authenticate()
+      .toPromise();
+
     this.modalComponent.close();
-    this.submit.emit();
+
+    if (result) {
+      this.submit.emit();
+      return;
+    }
+
+    alert('Invalid Token provided');
   }
 
 
   authenticate(): Observable<boolean> {
     if (environment.externalSource.authentication.developmentToken) {
       if (environment.externalSource.authentication.developmentToken === this.authToken) {
-        return of<boolean>(false);
+        this.authenticationService.setCurrentExternalToken(this.authToken);
+        return of<boolean>(true);
       }
-      return of<boolean>(true);
+      return of<boolean>(false);
     }
 
     // TODO: Call endpoint

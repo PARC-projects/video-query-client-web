@@ -18,12 +18,12 @@ export class AuthenticationService {
     return localStorage.getItem('token') != null;
   }
 
-  setCurrentExternalToken(token: IToken): void {
-    localStorage.setItem('external-token', JSON.stringify(token));
+  setCurrentExternalToken(token: string): void {
+    localStorage.setItem('external-token', token);
   }
 
-  getCurrentExternalToken(): IToken {
-    return JSON.parse(localStorage.getItem('external-token'));
+  getCurrentExternalToken(): string {
+    return localStorage.getItem('external-token');
   }
 
   isExternalLoggedIn(): boolean {
