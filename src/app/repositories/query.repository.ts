@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { IQueryResponse, IQuery, ProcessState } from '../models/query.model';
 import { environment } from '../../environments/environment';
 import { IQueryResult } from '../models/query-result.model';
-import { IMatch } from '../models/match.model';
+import { Match } from '../models/match.model';
 
 @Injectable()
 export class QueryRepository {
@@ -56,10 +56,10 @@ export class QueryRepository {
       catchError(this.handleError));
   }
 
-  getLatestMatches(id: number): Observable<IMatch[]> {
+  getLatestMatches(id: number): Observable<Match[]> {
     return this.http.get(`${environment.apiUrl}/queries/${id}/matches/`).pipe(
-      map((resp: IMatch[]) => {
-        return resp || [] as IMatch[];
+      map((resp: Match[]) => {
+        return resp || [] as Match[];
       }),
       catchError(this.handleError)
     );

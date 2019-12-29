@@ -1,10 +1,10 @@
 import { IPagination } from './pagination';
 
 export interface IMatches extends IPagination {
-  results: IMatch[];
+  results: Match[];
 }
 
-export interface IMatch extends IPagination {
+export class Match {
   id: number;
   score: number;
   query_result_id: number;
@@ -19,9 +19,8 @@ export interface IMatch extends IPagination {
   reference_start_time: string;
   match_video_name: string;
   reference_end_time: string;
-}
 
-export interface IMatchView extends IMatch {
+  // View
   is_loading: boolean;
   is_hovered: boolean;
 }

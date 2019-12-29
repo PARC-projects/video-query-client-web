@@ -49,10 +49,13 @@ export class TokenAuthComponent {
         this.authenticationService.setCurrentExternalToken(this.authToken);
         return of<boolean>(true);
       }
+      this.authenticationService.removeCurrentExternalToken();
       return of<boolean>(false);
     }
 
     // TODO: Call endpoint
+    this.authenticationService.removeCurrentExternalToken();
+    return of<boolean>(false);
   }
 
   private handleError(error: Response | any) {

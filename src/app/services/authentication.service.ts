@@ -26,12 +26,16 @@ export class AuthenticationService {
     return localStorage.getItem('external-token');
   }
 
+  removeCurrentExternalToken(): void {
+    localStorage.removeItem('external-token');
+  }
+
   isExternalLoggedIn(): boolean {
-    return localStorage.getItem('token') != null;
+    return localStorage.getItem('external-token') != null;
   }
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('external-token');
+    this.removeCurrentExternalToken();
   }
 }

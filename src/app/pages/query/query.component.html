@@ -19,12 +19,14 @@
                   <ng-container *ngFor="let match of queryMatchService.matches">
                     <div class="video-container">
                       <div class="video">
-                        <video [attr.data-message-id]="match.id" #videoPlayer
+                        <ng-container *ngIf="match.reference_video_external_source && authenticationService.isExternalLoggedIn()">
+                          <video [attr.data-message-id]="match.id" #videoPlayer
                           [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
-                          <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
-                          does
-                          not support the video tag.
-                        </video>
+                            <source [src]="queryMatchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
+                            does
+                            not support the video tag.
+                          </video>
+                        </ng-container>
                         <div class="overlay" (mouseleave)="videoMouseLeave(match)"
                           [ngClass]="{'hovered': match.is_hovered}">
                           <div class="d-flex align-items-center justify-content-center">

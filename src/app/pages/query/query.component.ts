@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { QueryService } from './services/query.service';
 import { QueryMatchService } from './services/query-match.service';
-import { IMatch, IMatchView } from 'src/app/models/match.model';
+import { Match } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
 import { Subscription } from 'rxjs';
 import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
-import { ifStmt } from '@angular/compiler/src/output/output_ast';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-query',
@@ -33,7 +33,8 @@ export class QueryComponent implements OnInit {
     public queryMatchService: QueryMatchService,
     public queryService: QueryService,
     private alertService: AlertService,
-    private router: Router) {
+    private router: Router,
+    public authenticationService: AuthenticationService) {
   }
 
   async ngOnInit() {
@@ -42,7 +43,7 @@ export class QueryComponent implements OnInit {
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
     await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
 
-    this.showExternalAuthenticationPrompt = this.queryMatchService.matches.some((match: IMatchView) => {
+    this.showExternalAuthenticationPrompt = this.queryMatchService.matches.some((match: Match) => {
       return match.reference_video_external_source;
     });
 
@@ -54,6 +55,7 @@ export class QueryComponent implements OnInit {
       this.setVideoLoadState();
       this.matchInitChanges.unsubscribe();
     });
+
     this.isLoading = false;
   }
 
@@ -61,7 +63,7 @@ export class QueryComponent implements OnInit {
     alert('something');
   }
 
-  videoMouseOver(match: IMatchView) {
+  videoMouseOver(match: Match) {
     this.components.forEach(element => {
       const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
       if (attributeId === match.id) {
@@ -85,7 +87,7 @@ export class QueryComponent implements OnInit {
     });
   }
 
-  videoMouseLeave(match: IMatchView) {
+  videoMouseLeave(match: Match) {
     this.components.forEach(element => {
       if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
         match.is_hovered = false;
@@ -94,7 +96,7 @@ export class QueryComponent implements OnInit {
     });
   }
 
-  videoClick(match: IMatchView) {
+  videoClick(match: Match) {
     this.components.forEach(element => {
       if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
         element.nativeElement.requestFullscreen();
@@ -177,7 +179,7 @@ export class QueryComponent implements OnInit {
     }
   }
 
-  private stopVideo(video: HTMLVideoElement, match: IMatch) {
+  private stopVideo(video: HTMLVideoElement, match: Match) {
     video.pause();
     video.currentTime = Number(match.match_video_time_span.split(',')[0]);
   }
