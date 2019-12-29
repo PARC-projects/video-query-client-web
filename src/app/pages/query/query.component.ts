@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { QueryService } from './services/query.service';
@@ -6,6 +6,8 @@ import { QueryMatchService } from './services/query-match.service';
 import { IMatch, IMatchView } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
 import { Subscription } from 'rxjs';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-query',
@@ -16,11 +18,13 @@ import { Subscription } from 'rxjs';
     QueryMatchService
   ]
 })
-export class QueryComponent implements OnInit, AfterViewInit {
+export class QueryComponent implements OnInit {
 
   @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
 
   isLoading = false;
+  showExternalAuthenticationPrompt: boolean;
 
   private timeout: any;
   private matchInitChanges: Subscription;
@@ -34,8 +38,18 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.isLoading = true;
+
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
     await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
+
+    this.showExternalAuthenticationPrompt = this.queryMatchService.matches.some((match: IMatchView) => {
+      return match.reference_video_external_source;
+    });
+
+    if (this.showExternalAuthenticationPrompt) {
+      this.tokenAuthComponent.open();
+    }
+
     this.matchInitChanges = this.components.changes.subscribe(() => {
       this.setVideoLoadState();
       this.matchInitChanges.unsubscribe();
@@ -43,7 +57,8 @@ export class QueryComponent implements OnInit, AfterViewInit {
     this.isLoading = false;
   }
 
-  ngAfterViewInit() {
+  onAuthTokenSubmit(): void {
+    alert('something');
   }
 
   videoMouseOver(match: IMatchView) {
@@ -72,8 +87,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   videoMouseLeave(match: IMatchView) {
     this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
+      if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
         match.is_hovered = false;
         this.stopVideo(element.nativeElement, match);
       }
@@ -82,8 +96,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   videoClick(match: IMatchView) {
     this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
+      if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
         element.nativeElement.requestFullscreen();
       }
     });
@@ -157,8 +170,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   private setMatchingMatchToLoadingFalse(video: ElementRef<HTMLVideoElement>) {
     for (const match of this.queryMatchService.matches) {
-      const attributeId = Number(video.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
+      if (Number(video.nativeElement.getAttribute('data-message-id')) === match.id) {
         match.is_loading = false;
         break;
       }
