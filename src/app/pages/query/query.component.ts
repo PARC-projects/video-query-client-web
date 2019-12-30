@@ -1,13 +1,12 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { QueryService } from './services/query.service';
-import { QueryMatchService } from './services/query-match.service';
+import { QueryService } from './query.service';
 import { Match } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
 import { Subscription } from 'rxjs';
 import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MatchService } from './match.service';
 
 @Component({
   selector: 'app-query',
@@ -15,7 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./query.component.scss'],
   providers: [
     QueryService,
-    QueryMatchService
+    MatchService
   ]
 })
 export class QueryComponent implements OnInit {
@@ -30,7 +29,7 @@ export class QueryComponent implements OnInit {
   private matchInitChanges: Subscription;
 
   constructor(private route: ActivatedRoute,
-    public queryMatchService: QueryMatchService,
+    public matchService: MatchService,
     public queryService: QueryService,
     private alertService: AlertService,
     private router: Router) {
@@ -40,9 +39,9 @@ export class QueryComponent implements OnInit {
     this.isLoading = true;
 
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
-    await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
+    await this.matchService.getMatches(this.queryService.currentQuery.id);
 
-    this.showExternalAuthenticationPrompt = this.queryMatchService.matches.some((match: Match) => {
+    this.showExternalAuthenticationPrompt = this.matchService.matches.some((match: Match) => {
       return match.reference_video_external_source;
     });
 
@@ -113,7 +112,7 @@ export class QueryComponent implements OnInit {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     const message = `"${this.queryService.currentQuery.name}": has been submitted for feedback. Check back soon for results.`;
     this.isLoading = true;
-    this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+    this.matchService.submitRevision(this.queryService.currentQuery.id)
       .then(() => {
         return this.queryService.updateQueryNote();
       })
@@ -130,7 +129,7 @@ export class QueryComponent implements OnInit {
   submitFinalize(): void {
     if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
       this.isLoading = true;
-      this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+      this.matchService.submitRevision(this.queryService.currentQuery.id)
         .then(() => {
           return this.queryService.updateQueryStateToProcessFinalized();
         })
@@ -170,7 +169,7 @@ export class QueryComponent implements OnInit {
   }
 
   private setMatchingMatchToLoadingFalse(video: ElementRef<HTMLVideoElement>) {
-    for (const match of this.queryMatchService.matches) {
+    for (const match of this.matchService.matches) {
       if (Number(video.nativeElement.getAttribute('data-message-id')) === match.id) {
         match.is_loading = false;
         break;

@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Match } from '../../../models/match.model';
-import { QueryRepository } from '../../../repositories/query.repository';
-import { MatchRepository } from '../../../repositories/match.repository';
-import { environment } from '../../../../environments/environment';
+import { Match } from '../../models/match.model';
+import { MatchRepository } from '../../repositories/match.repository';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class QueryMatchService {
+export class MatchService {
   matches: Match[];
   activeIndex: number;
 
   constructor(
-    private matchRepository: MatchRepository,
-    private queryRepository: QueryRepository
+    private matchRepository: MatchRepository
   ) { }
 
   async getMatches(queryId: number): Promise<void> {
-    this.matches = await this.queryRepository.getLatestMatches(queryId)
+    this.matches = await this.matchRepository.getLatestMatches(queryId)
       .toPromise();
     this.matches.forEach(match => {
       match.is_loading = true;

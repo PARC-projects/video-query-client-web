@@ -11,10 +11,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class QueryRepository {
-  constructor(
-    private injector: Injector,
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getById(id: number): Observable<IQuery> {
     return this.http.get(`${environment.apiUrl}/queries/${id}/`).pipe(
@@ -56,19 +53,6 @@ export class QueryRepository {
         return resp || {} as IQueryResult;
       }),
       catchError(this.handleError));
-  }
-
-  getLatestMatches(id: number): Observable<Match[]> {
-    return this.http.get(`${environment.apiUrl}/queries/${id}/matches/`).pipe(
-      map((resp: Match[]) => {
-        const matches = [] as Match[];
-        resp.forEach(match => {
-          matches.push(new Match(this.injector.get(AuthenticationService)).deserialize(match));
-        });
-        return matches;
-      }),
-      catchError(this.handleError)
-    );
   }
 
   updateNote(id: number, note: string): Observable<void> {

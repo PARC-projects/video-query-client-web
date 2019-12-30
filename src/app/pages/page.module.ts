@@ -33,7 +33,7 @@ import { QueriesNodeComponent } from './home/components/queries-node/queries-nod
  * Query
  */
 import { QueryComponent } from './query/query.component';
-
+import { MatchVideoComponent } from './query/components/match-video/match-video.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import { QueryComponent } from './query/query.component';
 
     // Query
     QueryComponent,
+    MatchVideoComponent,
 
     // New QUery
     NewQueryComponent,

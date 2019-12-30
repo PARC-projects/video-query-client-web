@@ -25,78 +25,7 @@ header {
   grid-row-gap: 1rem;
   grid-auto-rows: 1fr;
 
-  .video {
-    margin: 0 0 0.5rem;
-    position: relative;
 
-    video {
-      width: 100%;
-      display: block;
-      background-color: map-get($parc-colors, "light-gray");
-    }
-
-    video.visited {
-      opacity: 0.7;
-    }
-
-    video.visited.hovered {
-      opacity: 1;
-      transition: all 0.25s;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-
-      i {
-        color: #fff;
-        font-size: 2rem;
-      }
-
-      .d-flex {
-        height: 100%;
-      }
-    }
-
-    .overlay.hovered {
-      i {
-        opacity: 0;
-        transition: all 0.25s;
-      }
-    }
-  }
-
-  .meta {
-    .circle {
-      width: 1.75rem;
-      height: 1.75rem;
-      border-radius: 50%;
-      font-size: 1rem;
-      line-height: 1.75rem;
-      text-align: center;
-      color: map-get($parc-colors, "dark-gray");
-      border: map-get($parc-colors, "dark-gray") 1px solid;
-      cursor: pointer;
-    }
-
-    .circle.is-match {
-      color: #fff;
-      background-color: map-get($theme-colors, "success");
-      border: map-get($parc-colors, "success") 1px solid;
-    }
-
-    .video-meta {
-      p {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.25;
-        word-break: break-all;
-      }
-    }
-  }
 }
 
 a:not([href]):not([tabindex]) {
