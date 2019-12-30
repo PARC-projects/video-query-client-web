@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -7,10 +7,12 @@ import { IQueryResponse, IQuery, ProcessState } from '../models/query.model';
 import { environment } from '../../environments/environment';
 import { IQueryResult } from '../models/query-result.model';
 import { Match } from '../models/match.model';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class QueryRepository {
   constructor(
+    private injector: Injector,
     private http: HttpClient
   ) { }
 
@@ -59,7 +61,11 @@ export class QueryRepository {
   getLatestMatches(id: number): Observable<Match[]> {
     return this.http.get(`${environment.apiUrl}/queries/${id}/matches/`).pipe(
       map((resp: Match[]) => {
-        return resp || [] as Match[];
+        const matches = [] as Match[];
+        resp.forEach(match => {
+          matches.push(new Match(this.injector.get(AuthenticationService)).deserialize(match));
+        });
+        return matches;
       }),
       catchError(this.handleError)
     );

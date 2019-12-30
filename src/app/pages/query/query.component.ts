@@ -33,8 +33,7 @@ export class QueryComponent implements OnInit {
     public queryMatchService: QueryMatchService,
     public queryService: QueryService,
     private alertService: AlertService,
-    private router: Router,
-    public authenticationService: AuthenticationService) {
+    private router: Router) {
   }
 
   async ngOnInit() {

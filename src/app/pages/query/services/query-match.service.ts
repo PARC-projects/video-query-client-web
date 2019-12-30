@@ -15,9 +15,8 @@ export class QueryMatchService {
   ) { }
 
   async getMatches(queryId: number): Promise<void> {
-    const resp = await this.queryRepository.getLatestMatches(queryId)
+    this.matches = await this.queryRepository.getLatestMatches(queryId)
       .toPromise();
-    this.matches = (resp as Match[]);
     this.matches.forEach(match => {
       match.is_loading = true;
     });
