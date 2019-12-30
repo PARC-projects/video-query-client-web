@@ -77,6 +77,11 @@
   text-align: center;
   height: 100%;
   background-color: lighten(map-get($parc-colors, "light-gray"), 2.5%);
+
+  .w-100 {
+    padding: 2rem 0;
+  }
+
   .fa {
     font-size: 2.5rem;
     color: lighten(map-get($parc-colors, "dark-gray"), 25%);
@@ -98,4 +103,3 @@ a:not([href]):not([tabindex]) {
     cursor: pointer;
   }
 }
-

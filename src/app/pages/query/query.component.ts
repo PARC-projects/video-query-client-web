@@ -40,7 +40,7 @@ export class QueryComponent implements OnInit {
     await this.matchService.getMatches(this.queryService.currentQuery.id);
 
     this.showExternalAuthenticationPrompt = this.matchService.matches.some((match: Match) => {
-      return match.reference_video_external_source;
+      return !match.isAuthenticated;
     });
 
     if (this.showExternalAuthenticationPrompt) {
@@ -48,10 +48,6 @@ export class QueryComponent implements OnInit {
     }
 
     this.isLoading = false;
-  }
-
-  onAuthTokenSubmit(wasAuthorized: boolean): void {
-    alert(wasAuthorized);
   }
 
   onAuthorize(): void {
