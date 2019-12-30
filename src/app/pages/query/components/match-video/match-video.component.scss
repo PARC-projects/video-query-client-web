@@ -72,3 +72,30 @@
     }
   }
 }
+
+.empty-video-container {
+  text-align: center;
+  height: 100%;
+  background-color: lighten(map-get($parc-colors, "light-gray"), 2.5%);
+  .fa {
+    font-size: 2.5rem;
+    color: lighten(map-get($parc-colors, "dark-gray"), 25%);
+  }
+}
+
+a:not([href]):not([tabindex]) {
+  padding: 6px 12px;
+  font-size: 1rem;
+  display: inline-block;
+  color: map-get($theme-colors, "warning");
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.25s all;
+    color: darken(map-get($theme-colors, "warning"), 20%);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+

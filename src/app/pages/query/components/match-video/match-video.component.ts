@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, QueryList, ViewChildren, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, QueryList, ViewChildren, AfterViewInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { Match } from 'src/app/models/match.model';
 import { MatchService } from '../../match.service';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,8 @@ export class MatchVideoComponent implements AfterViewInit {
 
   @Input() match: Match;
   @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
+  @Output() authorize: EventEmitter<void> = new EventEmitter();
+
   private videoChange: Subscription;
 
   constructor(public matchService: MatchService) {
@@ -23,6 +25,10 @@ export class MatchVideoComponent implements AfterViewInit {
       this.setVideoLoadState();
       this.videoChange.unsubscribe();
     });
+  }
+
+  onAuthorize() {
+    this.authorize.emit();
   }
 
   videoMouseOver() {

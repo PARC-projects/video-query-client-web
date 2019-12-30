@@ -1,28 +1,16 @@
-<div class="video-container">
-  {{match.isAuthenticated}}
+<div class="video-container" *ngIf="match.isAuthenticated">
   <div class="video">
-    <ng-container *ngIf="match.reference_video_external_source">
-      <video [attr.data-message-id]="match.id" #videoPlayer
-        [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
-        <source [src]="matchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
-        does
-        not support the video tag.
-      </video>
-    </ng-container>
-    <ng-container *ngIf="!match.reference_video_external_source">
-      <video [attr.data-message-id]="match.id" #videoPlayer id="myVideo"
-        [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
-        <source [src]="matchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
-        does
-        not support the video tag.
-      </video>
-    </ng-container>
+    <video [attr.data-message-id]="match.id" #videoPlayer
+      [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
+      <source [src]="matchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
+      does
+      not support the video tag.
+    </video>
     <div class="overlay" (mouseleave)="videoMouseLeave()" [ngClass]="{'hovered': match.is_hovered}">
       <div class="d-flex align-items-center justify-content-center">
         <!-- TODO: is_loading state is bypassed -->
-        <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver()" (click)="videoClick()"
-          *ngIf="match.is_loading"></i>
-        <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="!match.is_loading"></i>
+        <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver()" (click)="videoClick()"></i>
+        <!-- <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="match.is_loading"></i> -->
       </div>
     </div>
   </div>
@@ -36,6 +24,15 @@
         <p>{{match.match_video_name}}</p>
         <p>{{match.reference_start_time}}</p>
       </div>
+    </div>
+  </div>
+</div>
+<div class="empty-video-container text-center" *ngIf="!match.isAuthenticated">
+  <div class="d-flex align-items-center text-center h-100">
+    <div class="w-100">
+      <i aria-hidden="true" class="fa fa-lock fa-4x"></i>
+      <br />
+      <a (click)="onAuthorize()">Authorize</a>
     </div>
   </div>
 </div>

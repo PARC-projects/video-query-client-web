@@ -50,8 +50,12 @@ export class QueryComponent implements OnInit {
     this.isLoading = false;
   }
 
-  onAuthTokenSubmit(): void {
-    alert('something');
+  onAuthTokenSubmit(wasAuthorized: boolean): void {
+    alert(wasAuthorized);
+  }
+
+  onAuthorize(): void {
+    this.tokenAuthComponent.open();
   }
 
   async rollBack() {
