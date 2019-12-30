@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 enum AuthenticationTypeEnum {
-  HeaderToken
+  SingleHeaderToken
 }
 
 export const environment = {
@@ -16,13 +16,14 @@ export const environment = {
   externalSource: {
     root: 'https://elasticbeanstalk-us-west-1-326964612130.s3-us-west-1.amazonaws.com/',
     authentication: {
-      type: AuthenticationTypeEnum.HeaderToken,
+      type: AuthenticationTypeEnum.SingleHeaderToken,
       uiMessage: 'This video comes from the Acme System and requires a token to access. Please provide the token assigned to you below.',
       header: {
         name: 'Video-Query',
         value: 'i-am-a-token'
       },
-      authEndpoint: 'https://stac.vtti.vt.edu/api/collections'
+      authEndpoint: 'https://stac.vtti.vt.edu/api/collections',
+      developmentToken: 'parc'
     }
   }
 };

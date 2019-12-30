@@ -1,7 +1,7 @@
 <app-modal>
   <!-- Potential for different types of authentication; i.e. switch logic -->
   <!-- TODO: abstract into its own component -->
-  <form class="header-token-auth-modal">
+  <div class="header-token-auth-modal">
     <div class="form-group">
       <h5>{{environment.externalSource.authentication.uiMessage}}</h5>
       <label>Token</label>
@@ -10,5 +10,5 @@
       <button type="submit" class="btn btn-warning float-right" [disabled]="authToken.length < 1"
         (click)="onAuthSubmit()">Submit</button>
     </div>
-  </form>
+  </div>
 </app-modal>

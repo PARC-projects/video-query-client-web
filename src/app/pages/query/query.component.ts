@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { QueryService } from './services/query.service';
-import { QueryMatchService } from './services/query-match.service';
-import { IMatch, IMatchView } from 'src/app/models/match.model';
+import { QueryService } from './query.service';
+import { Match } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { Subscription } from 'rxjs';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
+import { MatchService } from './match.service';
 
 @Component({
   selector: 'app-query',
@@ -13,20 +13,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./query.component.scss'],
   providers: [
     QueryService,
-    QueryMatchService
+    MatchService
   ]
 })
-export class QueryComponent implements OnInit, AfterViewInit {
+export class QueryComponent implements OnInit {
 
-  @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
 
   isLoading = false;
+  showExternalAuthenticationPrompt: boolean;
 
   private timeout: any;
-  private matchInitChanges: Subscription;
+
 
   constructor(private route: ActivatedRoute,
-    public queryMatchService: QueryMatchService,
+    public matchService: MatchService,
     public queryService: QueryService,
     private alertService: AlertService,
     private router: Router) {
@@ -34,59 +35,23 @@ export class QueryComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.isLoading = true;
+
     await this.queryService.getCurrentQuery(Number(this.route.snapshot.paramMap.get('id')));
-    await this.queryMatchService.getMatches(this.queryService.currentQuery.id);
-    this.matchInitChanges = this.components.changes.subscribe(() => {
-      this.setVideoLoadState();
-      this.matchInitChanges.unsubscribe();
+    await this.matchService.getMatches(this.queryService.currentQuery.id);
+
+    this.showExternalAuthenticationPrompt = this.matchService.matches.some((match: Match) => {
+      return !match.isAuthenticated;
     });
+
+    if (this.showExternalAuthenticationPrompt) {
+      this.tokenAuthComponent.open();
+    }
+
     this.isLoading = false;
   }
 
-  ngAfterViewInit() {
-  }
-
-  videoMouseOver(match: IMatchView) {
-    this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
-        match.is_hovered = true;
-        this.stopVideo(element.nativeElement, match);
-        const playPromise = element.nativeElement.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            /*
-              Swallow failed promise
-              When user scrolls across a video quickly, pause() is called
-              before a video is every loaded.  Just because we play(), does not mean
-              the video starts playing immediately and for the matter, is loaded.
-
-              TODO: Check to see if we can be a bit more elegant about this.
-                    Is it possible to query load/play stated.
-            */
-          });
-        }
-      }
-    });
-  }
-
-  videoMouseLeave(match: IMatchView) {
-    this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
-        match.is_hovered = false;
-        this.stopVideo(element.nativeElement, match);
-      }
-    });
-  }
-
-  videoClick(match: IMatchView) {
-    this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
-        element.nativeElement.requestFullscreen();
-      }
-    });
+  onAuthorize(): void {
+    this.tokenAuthComponent.open();
   }
 
   async rollBack() {
@@ -99,7 +64,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     const message = `"${this.queryService.currentQuery.name}": has been submitted for feedback. Check back soon for results.`;
     this.isLoading = true;
-    this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+    this.matchService.submitRevision(this.queryService.currentQuery.id)
       .then(() => {
         return this.queryService.updateQueryNote();
       })
@@ -116,7 +81,7 @@ export class QueryComponent implements OnInit, AfterViewInit {
   submitFinalize(): void {
     if (confirm(`Are you sure you would like to send this query to be finalized?`)) {
       this.isLoading = true;
-      this.queryMatchService.submitRevision(this.queryService.currentQuery.id)
+      this.matchService.submitRevision(this.queryService.currentQuery.id)
         .then(() => {
           return this.queryService.updateQueryStateToProcessFinalized();
         })
@@ -145,28 +110,5 @@ export class QueryComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         });
     }, 500);
-  }
-
-  private setVideoLoadState() {
-    this.components.forEach(video => {
-      video.nativeElement.addEventListener('loadeddata', () => {
-        this.setMatchingMatchToLoadingFalse(video);
-      }, false);
-    });
-  }
-
-  private setMatchingMatchToLoadingFalse(video: ElementRef<HTMLVideoElement>) {
-    for (const match of this.queryMatchService.matches) {
-      const attributeId = Number(video.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
-        match.is_loading = false;
-        break;
-      }
-    }
-  }
-
-  private stopVideo(video: HTMLVideoElement, match: IMatch) {
-    video.pause();
-    video.currentTime = Number(match.match_video_time_span.split(',')[0]);
   }
 }

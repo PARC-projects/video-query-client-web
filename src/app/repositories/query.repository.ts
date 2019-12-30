@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -6,13 +6,12 @@ import { map, catchError } from 'rxjs/operators';
 import { IQueryResponse, IQuery, ProcessState } from '../models/query.model';
 import { environment } from '../../environments/environment';
 import { IQueryResult } from '../models/query-result.model';
-import { IMatch } from '../models/match.model';
+import { Match } from '../models/match.model';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class QueryRepository {
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getById(id: number): Observable<IQuery> {
     return this.http.get(`${environment.apiUrl}/queries/${id}/`).pipe(
@@ -54,15 +53,6 @@ export class QueryRepository {
         return resp || {} as IQueryResult;
       }),
       catchError(this.handleError));
-  }
-
-  getLatestMatches(id: number): Observable<IMatch[]> {
-    return this.http.get(`${environment.apiUrl}/queries/${id}/matches/`).pipe(
-      map((resp: IMatch[]) => {
-        return resp || [] as IMatch[];
-      }),
-      catchError(this.handleError)
-    );
   }
 
   updateNote(id: number, note: string): Observable<void> {

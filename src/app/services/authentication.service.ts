@@ -18,7 +18,24 @@ export class AuthenticationService {
     return localStorage.getItem('token') != null;
   }
 
+  setCurrentExternalToken(token: string): void {
+    localStorage.setItem('external-token', token);
+  }
+
+  getCurrentExternalToken(): string {
+    return localStorage.getItem('external-token');
+  }
+
+  removeCurrentExternalToken(): void {
+    localStorage.removeItem('external-token');
+  }
+
+  isExternalLoggedIn(): boolean {
+    return localStorage.getItem('external-token') != null;
+  }
+
   logout() {
     localStorage.removeItem('token');
+    this.removeCurrentExternalToken();
   }
 }
