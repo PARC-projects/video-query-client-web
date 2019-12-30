@@ -10,18 +10,19 @@
       </video>
     </ng-container>
     <ng-container *ngIf="!match.reference_video_external_source">
-      <video [attr.data-message-id]="match.id" #videoPlayer
+      <video [attr.data-message-id]="match.id" #videoPlayer id="myVideo"
         [ngClass]="{'visited': match.user_match !== null, 'hovered': match.is_hovered}">
         <source [src]="matchService.getFormattedVideoUrl(match)" type="video/mp4"> Your browser
         does
         not support the video tag.
       </video>
     </ng-container>
-    <div class="overlay" (mouseleave)="videoMouseLeave(match)" [ngClass]="{'hovered': match.is_hovered}">
+    <div class="overlay" (mouseleave)="videoMouseLeave()" [ngClass]="{'hovered': match.is_hovered}">
       <div class="d-flex align-items-center justify-content-center">
-        <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver(match)" (click)="videoClick(match)"
-          *ngIf="!match.is_loading"></i>
-        <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="match.is_loading"></i>
+        <!-- TODO: is_loading state is bypassed -->
+        <i class="fa fa-play" aria-hidden="true" (mouseover)="videoMouseOver()" (click)="videoClick()"
+          *ngIf="match.is_loading"></i>
+        <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="!match.is_loading"></i>
       </div>
     </div>
   </div>

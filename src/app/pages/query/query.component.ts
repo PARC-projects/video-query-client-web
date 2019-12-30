@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { QueryService } from './query.service';
 import { Match } from 'src/app/models/match.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { Subscription } from 'rxjs';
 import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
 import { MatchService } from './match.service';
 
@@ -19,14 +18,13 @@ import { MatchService } from './match.service';
 })
 export class QueryComponent implements OnInit {
 
-  @ViewChildren('videoPlayer') components: QueryList<ElementRef<HTMLVideoElement>>;
   @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
 
   isLoading = false;
   showExternalAuthenticationPrompt: boolean;
 
   private timeout: any;
-  private matchInitChanges: Subscription;
+
 
   constructor(private route: ActivatedRoute,
     public matchService: MatchService,
@@ -49,57 +47,11 @@ export class QueryComponent implements OnInit {
       this.tokenAuthComponent.open();
     }
 
-    this.matchInitChanges = this.components.changes.subscribe(() => {
-      this.setVideoLoadState();
-      this.matchInitChanges.unsubscribe();
-    });
-
     this.isLoading = false;
   }
 
   onAuthTokenSubmit(): void {
     alert('something');
-  }
-
-  videoMouseOver(match: Match) {
-    this.components.forEach(element => {
-      const attributeId = Number(element.nativeElement.getAttribute('data-message-id'));
-      if (attributeId === match.id) {
-        match.is_hovered = true;
-        this.stopVideo(element.nativeElement, match);
-        const playPromise = element.nativeElement.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            /*
-              Swallow failed promise
-              When user scrolls across a video quickly, pause() is called
-              before a video is every loaded.  Just because we play(), does not mean
-              the video starts playing immediately and for the matter, is loaded.
-
-              TODO: Check to see if we can be a bit more elegant about this.
-                    Is it possible to query load/play stated.
-            */
-          });
-        }
-      }
-    });
-  }
-
-  videoMouseLeave(match: Match) {
-    this.components.forEach(element => {
-      if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
-        match.is_hovered = false;
-        this.stopVideo(element.nativeElement, match);
-      }
-    });
-  }
-
-  videoClick(match: Match) {
-    this.components.forEach(element => {
-      if (Number(element.nativeElement.getAttribute('data-message-id')) === match.id) {
-        element.nativeElement.requestFullscreen();
-      }
-    });
   }
 
   async rollBack() {
@@ -158,27 +110,5 @@ export class QueryComponent implements OnInit {
           this.isLoading = false;
         });
     }, 500);
-  }
-
-  private setVideoLoadState() {
-    this.components.forEach(video => {
-      video.nativeElement.addEventListener('loadeddata', () => {
-        this.setMatchingMatchToLoadingFalse(video);
-      }, false);
-    });
-  }
-
-  private setMatchingMatchToLoadingFalse(video: ElementRef<HTMLVideoElement>) {
-    for (const match of this.matchService.matches) {
-      if (Number(video.nativeElement.getAttribute('data-message-id')) === match.id) {
-        match.is_loading = false;
-        break;
-      }
-    }
-  }
-
-  private stopVideo(video: HTMLVideoElement, match: Match) {
-    video.pause();
-    video.currentTime = Number(match.match_video_time_span.split(',')[0]);
   }
 }
