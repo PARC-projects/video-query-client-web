@@ -58,7 +58,11 @@ export class SearchSetRepository {
 
     return this.http.get(url).pipe(
       map((resp: Video[]) => {
-        return resp || [] as Video[];
+        const videos = [] as Video[];
+        resp.forEach(match => {
+          videos.push(new Video().deserialize(match));
+        });
+        return videos;
       }),
       catchError(this.handleError)
     );
