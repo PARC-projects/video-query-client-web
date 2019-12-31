@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { IVideoResponse, IVideo } from '../models/video.model';
+import { IVideoResponse, Video } from '../models/video.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -29,10 +29,10 @@ export class VideoRepository {
     );
   }
 
-  getById(id: number): Observable<IVideo> {
+  getById(id: number): Observable<Video> {
     return this.http.get(`${API_URL}/videos/${id}/`).pipe(
-      map((resp: IVideo) => {
-        return resp || {} as IVideo;
+      map((resp: Video) => {
+        return resp || {} as Video;
       }),
       catchError(this.handleError)
     );

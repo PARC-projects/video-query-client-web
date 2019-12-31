@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IVideoResponse, IVideo } from '../../../../models/video.model';
+import { IVideoResponse, Video } from '../../../../models/video.model';
 import { ISearchSet, ISearchSetResponse } from '../../../../models/search-set.model';
 import { VideoRepository } from '../../../../repositories/video.repository';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
@@ -22,12 +22,12 @@ export class SearchSetAddService {
   /**
    * Current videos in selected search set
    */
-  videosInSearchSet = [] as IVideo[];
+  videosInSearchSet = [] as Video[];
 
   /**
    * All videos base on pagination and filters
    */
-  videos: IVideo[];
+  videos: Video[];
 
   paginationConfig: IPagination;
   searchTerm: string;
@@ -68,7 +68,7 @@ export class SearchSetAddService {
   getVideosInSelectedSearchSet(id: number) {
     return this.searchSetRepository.getVideosInSearchSet(id, this.searchTerm)
       .toPromise()
-      .then((resp: IVideo[]) => {
+      .then((resp: Video[]) => {
         this.videos = resp;
       });
   }
@@ -91,11 +91,11 @@ export class SearchSetAddService {
       });
   }
 
-  isVideoInCurrentSearchSet(video: IVideo): boolean {
+  isVideoInCurrentSearchSet(video: Video): boolean {
     return this.videosInSearchSet.indexOf(video) > -1;
   }
 
-  removeVideoFromSearchSet(video: IVideo): void {
+  removeVideoFromSearchSet(video: Video): void {
     const index = this.videosInSearchSet.indexOf(video);
     if (index > -1) {
       this.videosInSearchSet.splice(index, 1);

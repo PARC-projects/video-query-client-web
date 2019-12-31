@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IQuery, IQueryView, ProcessState } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { VideoRepository } from '../../repositories/video.repository';
-import { IVideo } from '../../models/video.model';
+import { Video } from '../../models/video.model';
 import { ISearchSet } from '../../models/search-set.model';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
 import { IQueryResult } from '../../models/query-result.model';
@@ -41,7 +41,7 @@ export class QueryService {
   async getVideo(): Promise<void> {
     const resp = await this.videoRepository.getById(this.currentQuery.video)
       .toPromise();
-    this.currentQuery.video_object = (resp as IVideo);
+    this.currentQuery.video_object = (resp as Video);
   }
 
   async getResult(): Promise<void> {

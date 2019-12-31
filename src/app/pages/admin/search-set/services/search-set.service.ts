@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SearchSetRepository } from '../../../../repositories/search-set.repository';
 import { ISearchSet, ISearchSetResponse } from '../../../../models/search-set.model';
 import { IListNavConfig } from '../../../../components/list-nav/list-nav.component';
-import { IVideo, IVideoResponse } from '../../../../models/video.model';
+import { Video, IVideoResponse } from '../../../../models/video.model';
 import { VideoRepository } from '../../../../repositories/video.repository';
 
 @Injectable({
@@ -20,11 +20,11 @@ export class SearchSetService {
   /**
    * Current videos in selected search set
    */
-  videosInSearchSet: IVideo[];
+  videosInSearchSet: Video[];
   /**
    * All videos base on pagination and filters
    */
-  videos: IVideo[];
+  videos: Video[];
 
   listNavConfig: IListNavConfig;
   searchTerm: string;
@@ -61,7 +61,7 @@ export class SearchSetService {
   getVideosInSelectedSearchSet(id: number) {
     return this.searchSetRepository.getVideosInSearchSet(id)
       .toPromise()
-      .then((resp: IVideo[]) => {
+      .then((resp: Video[]) => {
         this.videosInSearchSet = resp;
       });
   }

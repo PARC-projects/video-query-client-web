@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IVideo } from '../../models/video.model';
+import { Video } from '../../models/video.model';
 import { IQuery, ProcessState, IQueryResponse } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { ISearchSetResponse, ISearchSet } from '../../models/search-set.model';
@@ -16,7 +16,7 @@ export interface IQueryForm extends IQuery {
 @Injectable()
 export class NewQueryService {
   searchSets: ISearchSetResponse;
-  videos: IVideo[];
+  videos: Video[];
   selectedSearchSet: ISearchSet;
   form = {
     name: '',

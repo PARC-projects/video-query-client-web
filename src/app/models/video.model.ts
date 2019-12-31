@@ -1,11 +1,11 @@
 import { IPagination } from './pagination';
 
 export interface IVideoResponse {
-  results: IVideo[];
+  results: Video[];
   pagination: IPagination;
 }
 
-export interface IVideo {
+export interface Video {
   id: number;
   name: string;
   path: string;

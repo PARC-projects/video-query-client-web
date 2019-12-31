@@ -228,20 +228,7 @@
           </div>
         </div>
       </div>
-      <app-modal>
-        <!-- Potential for different types of authentication; i.e. switch logic -->
-        <!-- TODO: abstract into its own component -->
-        <form class="header-token-auth-modal">
-          <div class="form-group">
-            <h5>{{environment.externalSource.authentication.uiMessage}}</h5>
-            <label>Token</label>
-            <input type="input" class="form-control" placeholder="Enter token..." [(ngModel)]="authToken"
-              [ngModelOptions]="{standalone: true}">
-            <button type="submit" class="btn btn-warning float-right" [disabled]="authToken.length < 1"
-              (click)="onAuthSubmit()">Submit</button>
-          </div>
-        </form>
-      </app-modal>
+      <app-token-auth (authSubmitted)="onAuthSubmitted($event)"></app-token-auth>
       <app-loader [show]="loading"></app-loader>
     </section>
   </div>

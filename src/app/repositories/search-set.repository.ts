@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { IVideo } from '../models/video.model';
+import { Video } from '../models/video.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ISearchSetResponse, ISearchSet } from '../models/search-set.model';
@@ -49,7 +49,7 @@ export class SearchSetRepository {
     );
   }
 
-  getVideosInSearchSet(searchSetId: number, searchTerm?: string): Observable<IVideo[]> {
+  getVideosInSearchSet(searchSetId: number, searchTerm?: string): Observable<Video[]> {
     let url = `${API_URL}/search-sets/${searchSetId}/videos/`;
 
     if (searchTerm) {
@@ -57,8 +57,8 @@ export class SearchSetRepository {
     }
 
     return this.http.get(url).pipe(
-      map((resp: IVideo[]) => {
-        return resp || [] as IVideo[];
+      map((resp: Video[]) => {
+        return resp || [] as Video[];
       }),
       catchError(this.handleError)
     );

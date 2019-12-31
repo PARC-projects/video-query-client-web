@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class TokenAuthComponent {
 
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
-  @Output() submit = new EventEmitter<boolean>();
+  @Output() authSubmitted = new EventEmitter<boolean>();
 
   environment = environment;
 
@@ -35,7 +35,7 @@ export class TokenAuthComponent {
     this.modalComponent.close();
 
     if (result) {
-      this.submit.emit(result);
+      this.authSubmitted.emit(result);
       return;
     }
 
