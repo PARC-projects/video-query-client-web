@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NewQueryService } from './new-query.service';
 import { AlertService, AlertType } from '../../services/alert.service';
-import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { environment } from '../../../environments/environment';
+import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
 
 enum VideoDisplayStateEnum {
   Empty,
@@ -29,11 +29,8 @@ export class NewQueryComponent implements OnInit {
   currentVideoLength: number;
   environment = environment;
 
-  // TODO: This will need to be dynamic in the case of multiple external sources being used.
-  authToken = '';
-
-  @ViewChild('videoPlayer', { static: true }) videoPlayer: any;  // TODO: Strongly type
-  @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
+  @ViewChild('videoPlayer', { static: true }) videoPlayer: ElementRef<HTMLVideoElement>;
+  @ViewChild(TokenAuthComponent, { static: true }) private tokenAuthComponent: TokenAuthComponent;
 
   constructor(
     private alertService: AlertService,
@@ -70,6 +67,7 @@ export class NewQueryComponent implements OnInit {
   onSelectedSearchSet() {
     this.referenceVideosAreLoading = true;
     this.newQueryService.form.video = null;
+    this.newQueryService.videos = [];
     this.videoDisplayState = VideoDisplayStateEnum.Empty;
     this.newQueryService.getVideosInSelectedSearchSet()
       .then(() => {
@@ -89,18 +87,17 @@ export class NewQueryComponent implements OnInit {
     const url = this.newQueryService.getVideoPathBasedOnIdAndSetAuthenticationState();
     this.videoSrc = url + '#t=' + this.newQueryService.form.reference_time;
 
-    if (this.newQueryService.showAuthentication || this.authToken.toLowerCase() === 'parc') {
+    if (this.newQueryService.showAuthentication) {
       return this.handleUnauthenticatedState();
     }
 
     this.setVideoElementSource();
   }
 
-  onAuthSubmit() {
-    if (this.authToken.toLowerCase() === 'parc') {
+  onAuthSubmitted(authenticated: boolean) {
+    if (authenticated) {
       this.setVideoElementSource();
     }
-    this.modalComponent.close();
   }
 
   onAuthorize() {
@@ -116,11 +113,9 @@ export class NewQueryComponent implements OnInit {
   }
 
   private handleUnauthenticatedState() {
-    this.authToken = '';
-    this.modalComponent.open();
+    this.tokenAuthComponent.open();
     this.videoDisplayState = VideoDisplayStateEnum.Unauthorized;
     this.videoLoading = false;
-    return;
   }
 
   private setVideoElementSource() {

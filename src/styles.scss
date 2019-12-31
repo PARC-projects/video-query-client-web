@@ -39,7 +39,7 @@ p.text-fuchsia {
   }
 }
 
-.form-group  select.form-control {
+.form-group select.form-control.muted {
   background-color: map-get($parc-colors, "light-gray");
   color: map-get($parc-colors, "medium-gray");
   border-width: 2px;

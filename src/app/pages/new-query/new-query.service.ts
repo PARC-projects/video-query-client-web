@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IVideo } from '../../models/video.model';
+import { Video } from '../../models/video.model';
 import { IQuery, ProcessState, IQueryResponse } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { ISearchSetResponse, ISearchSet } from '../../models/search-set.model';
@@ -16,7 +16,7 @@ export interface IQueryForm extends IQuery {
 @Injectable()
 export class NewQueryService {
   searchSets: ISearchSetResponse;
-  videos: IVideo[];
+  videos: Video[];
   selectedSearchSet: ISearchSet;
   form = {
     name: '',
@@ -52,18 +52,10 @@ export class NewQueryService {
     this.showAuthentication = false;
     for (let i = 0; i < this.videos.length; i++) {
       const video = this.videos[i];
-
       if (video.id === this.form.video) {
-        if (video.external_source) {
-          this.showAuthentication = true;
-        }
-
-        if (video.external_source) {
-          url = `${environment.externalSource.root}${video.path}`;
-          break;
-        }
-
-        url = `${environment.fileStoreRoot}${video.path}`;
+        this.showAuthentication = !video.is_authenticated;
+        url = video.full_path;
+        break;
       }
     }
     return url;

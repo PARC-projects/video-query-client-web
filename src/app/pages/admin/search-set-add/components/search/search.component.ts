@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { IVideo } from '../../../../../models/video.model';
+import { Video } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../services/search-set-add.service';
-import { environment } from '../../../../../../environments/environment';
 import { IPagination } from '../../../../../models/pagination';
 
 @Component({
@@ -11,7 +10,7 @@ import { IPagination } from '../../../../../models/pagination';
 })
 export class SearchComponent {
   @Input() pagination: IPagination;
-  @Output() pathClick: EventEmitter<IVideo> = new EventEmitter();
+  @Output() pathClick: EventEmitter<Video> = new EventEmitter();
   @Output() perPageSelection: EventEmitter<number> = new EventEmitter();
   @Output() paginationClick: EventEmitter<number> = new EventEmitter();
   @Output() selectedSearchSet: EventEmitter<void> = new EventEmitter();
@@ -21,7 +20,7 @@ export class SearchComponent {
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
-  onAdd(videoToAdd: IVideo) {
+  onAdd(videoToAdd: Video) {
     if (this.searchSetAddService.isVideoInCurrentSearchSet(videoToAdd)) {
       alert(`This video is already in the current Video Collection.`);
       return;
@@ -30,7 +29,7 @@ export class SearchComponent {
     }
   }
 
-  onPathClick(video: IVideo): void {
+  onPathClick(video: Video): void {
     this.pathClick.emit(video);
   }
 

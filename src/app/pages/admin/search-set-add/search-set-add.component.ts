@@ -6,7 +6,7 @@ import { ModalComponent } from '../../../components/modal/modal.component';
 import { AlertService, AlertType } from '../../../services/alert.service';
 import { ISearchSet } from '../../../models/search-set.model';
 import { TokenAuthComponent } from 'src/app/components/token-auth/token-auth.component';
-import { IVideo } from 'src/app/models/video.model';
+import { Video } from 'src/app/models/video.model';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -38,7 +38,7 @@ export class SearchSetAddComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  onPathClick(video: IVideo) {
+  onPathClick(video: Video) {
     this.videoSrc = `${environment.fileStoreRoot}${video.path}`;
     this.showVideo = false;
     if (video.external_source) {

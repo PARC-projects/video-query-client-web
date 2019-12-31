@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { IVideo } from '../../../../../models/video.model';
+import { Video } from '../../../../../models/video.model';
 import { SearchSetAddService } from '../../services/search-set-add.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class CurrentComponent {
 
   constructor(public searchSetAddService: SearchSetAddService) { }
 
-  onRemove(videoToRemove: IVideo) {
+  onRemove(videoToRemove: Video) {
     this.searchSetAddService.removeVideoFromSearchSet(videoToRemove);
   }
 

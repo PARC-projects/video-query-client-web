@@ -1,5 +1,5 @@
 import { IPagination } from './pagination';
-import { IVideo } from './video.model';
+import { Video } from './video.model';
 import { ISearchSet } from './search-set.model';
 import { IQueryResult } from './query-result.model';
 
@@ -47,7 +47,7 @@ export interface IQuery {
  */
 export interface IQueryView extends IQuery {
   search_set_to_query_object: ISearchSet;
-  video_object: IVideo;
+  video_object: Video;
   query_result: IQueryResult;
 }
 
