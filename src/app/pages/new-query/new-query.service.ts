@@ -52,18 +52,10 @@ export class NewQueryService {
     this.showAuthentication = false;
     for (let i = 0; i < this.videos.length; i++) {
       const video = this.videos[i];
-
       if (video.id === this.form.video) {
-        if (video.external_source) {
-          this.showAuthentication = true;
-        }
-
-        if (video.external_source) {
-          url = `${environment.externalSource.root}${video.path}`;
-          break;
-        }
-
-        url = `${environment.fileStoreRoot}${video.path}`;
+        this.showAuthentication = !video.is_authenticated;
+        url = video.full_path;
+        break;
       }
     }
     return url;

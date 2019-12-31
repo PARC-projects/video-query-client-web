@@ -67,6 +67,7 @@ export class NewQueryComponent implements OnInit {
   onSelectedSearchSet() {
     this.referenceVideosAreLoading = true;
     this.newQueryService.form.video = null;
+    this.newQueryService.videos = [];
     this.videoDisplayState = VideoDisplayStateEnum.Empty;
     this.newQueryService.getVideosInSelectedSearchSet()
       .then(() => {

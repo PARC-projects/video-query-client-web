@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Video } from '../models/video.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ISearchSetResponse, ISearchSet } from '../models/search-set.model';
+import { AuthenticationService } from '../services/authentication.service';
 
 const API_URL = environment.apiUrl;
 
@@ -15,7 +16,8 @@ export interface ISearchSetRepository {
 @Injectable()
 export class SearchSetRepository {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private injector: Injector) { }
 
   getAll(page?: number, search?: string, perPage?: number): Observable<ISearchSetResponse> {
     let url = `${API_URL}/search-sets`;
@@ -60,7 +62,7 @@ export class SearchSetRepository {
       map((resp: Video[]) => {
         const videos = [] as Video[];
         resp.forEach(match => {
-          videos.push(new Video().deserialize(match));
+          videos.push(new Video(this.injector.get(AuthenticationService)).deserialize(match));
         });
         return videos;
       }),
