@@ -6,6 +6,6 @@ export interface IToken {
 }
 
 export class Profile {
-  profile_id: number;
+  id: number;
   bypass_onboarding: boolean;
 }

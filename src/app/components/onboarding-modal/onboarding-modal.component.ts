@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { ProfileRepository } from 'src/app/repositories/profile.repository';
+import { Profile } from 'src/app/models/user.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-onboarding-modal',
@@ -16,7 +19,9 @@ export class OnboardingModalComponent implements OnInit {
 
   private dashboardUrl: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private authService: AuthenticationService,
+    private profileRepository: ProfileRepository) { }
 
   ngOnInit() {
     this.modalComponent.open();
@@ -33,7 +38,16 @@ export class OnboardingModalComponent implements OnInit {
   }
 
   onBypassChecked() {
-    alert('as');
+    const profile = new Profile();
+    profile.id = this.authService.getCurrentToken().profile_id;
+    profile.bypass_onboarding = this.bypassChecked;
+    this.profileRepository.patch(profile)
+      .toPromise()
+      .then((resp: Profile) => {
+        const token = this.authService.getCurrentToken();
+        token.bypass_onboarding = resp.bypass_onboarding;
+        this.authService.setCurrentToken(token);
+      });
   }
 
   closeOnboarding() {

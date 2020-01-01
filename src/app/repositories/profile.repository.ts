@@ -11,14 +11,14 @@ const API_URL = environment.apiUrl;
 export class ProfileRepository {
   constructor(private http: HttpClient) { }
 
-  patch(profile: Profile): Observable<void> {
-    return this.http.patch(`${API_URL}/profile/${profile.profile_id}/`, profile)
-    .pipe(
-      map((resp: Profile) => {
-        console.log(resp);
-      }),
-      catchError(this.handleError)
-    );
+  patch(profile: Profile): Observable<Profile> {
+    return this.http.patch(`${API_URL}/profile/${profile.id}/`, profile)
+      .pipe(
+        map((resp: Profile) => {
+          return resp;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: Response | any) {
