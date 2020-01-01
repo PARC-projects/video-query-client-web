@@ -8,12 +8,9 @@ import { UserRepository } from './user.repository';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
 import { MatchRepository } from './match.repository';
+import { ProfileRepository } from './profile.repository';
 
 @NgModule({
-  declarations: [
-  ],
-  imports: [
-  ],
   providers: [
     SearchSetRepository,
     QueryRepository,
@@ -22,6 +19,7 @@ import { MatchRepository } from './match.repository';
     SignatureRepository,
     VideoRepository,
     UserRepository,
+    ProfileRepository,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
