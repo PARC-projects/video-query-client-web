@@ -8,11 +8,18 @@ import { Component, Input } from '@angular/core';
 export class ModalComponent {
 
   @Input() widthByPercentage = '50%';
+  @Input() blockOverlayClose = false;
 
   show = false;
 
   close(): void {
     this.show = false;
+  }
+
+  overlayClose(): void {
+    if (!this.blockOverlayClose) {
+      this.show = false;
+    }
   }
 
   open(): void {
