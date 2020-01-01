@@ -14,7 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class OnboardingModalComponent implements OnInit {
   @ViewChild(ModalComponent, { static: true }) private modalComponent: ModalComponent;
 
-  public bypassChecked = true;
+  public bypassChecked = false;
   public currentPage = 1;
 
   private dashboardUrl: string;

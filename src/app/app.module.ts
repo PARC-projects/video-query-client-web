@@ -18,7 +18,6 @@ import { PageModule } from './pages/page.module';
 import { ServiceModule } from './services/service.module';
 import { RoutingModule } from './routing.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

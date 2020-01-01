@@ -12,7 +12,7 @@ import { IToken } from '../../models/user.model';
 export class LoginComponent implements OnInit {
   loginRequest = {} as ILoginRequest;
   loading = false;
-  returnUrl: string;
+
   errorMessage: string;
 
   constructor(
@@ -25,9 +25,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/onboarding';
   }
 
   onSubmitForm() {
@@ -38,7 +35,7 @@ export class LoginComponent implements OnInit {
         if (token && token.token) {
           this.authenticationService.setCurrentToken(token);
         }
-        this.router.navigate([this.returnUrl]);
+        this.routeUser(token.bypass_onboarding);
         this.loading = false;
       }, error => {
         // TODO: Parse django for a 404 on bad credentials
@@ -50,5 +47,10 @@ export class LoginComponent implements OnInit {
         }
         this.loading = false;
       });
+  }
+
+  private routeUser(bypass_onboarding: boolean) {
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || bypass_onboarding ? '/home' : '/onboarding';
+    this.router.navigate([returnUrl]);
   }
 }
