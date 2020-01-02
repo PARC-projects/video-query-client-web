@@ -34,19 +34,15 @@ export class MatchVideoComponent implements AfterViewInit {
   videoMouseOver() {
     this.match.is_hovered = true;
     this.stopVideo();
-    const playPromise = this.components.first.nativeElement.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        /*
-          Swallow failed promise
-          When user scrolls across a video quickly, pause() is called
-          before a video is every loaded.  Just because we play(), does not mean
-          the video starts playing immediately and for the matter, is loaded.
+    this.playVideo();
+  }
 
-          TODO: Check to see if we can be a bit more elegant about this.
-                Is it possible to query load/play stated.
-        */
-      });
+  private playVideo() {
+    const playPromise = this.components.first.nativeElement.play();
+    if (playPromise !== undefined) { // Older browser check
+      playPromise
+        .then(() => { })
+        .catch((error) => { });
     }
   }
 
