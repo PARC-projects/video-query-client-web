@@ -41,8 +41,15 @@ export class MatchVideoComponent implements AfterViewInit {
     const playPromise = this.components.first.nativeElement.play();
     if (playPromise !== undefined) { // Older browser check
       playPromise
-        .then(() => { })
-        .catch((error) => { });
+        .then(() => {
+          // Automatic playback started!
+          // Show playing UI.
+        })
+        .catch(() => {
+          // Auto-play was prevented
+          // Show paused UI.
+          this.match.is_hovered = false;
+        });
     }
   }
 
