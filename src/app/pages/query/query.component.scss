@@ -20,10 +20,28 @@ header {
 
 .videos-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
-  grid-auto-rows:  auto;
+  grid-auto-rows: auto;
+}
+
+@include media-breakpoint-up(sm) {
+  .videos-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .videos-container {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .videos-container {
+    grid-template-columns: auto auto auto auto;
+  }
 }
 
 a:not([href]):not([tabindex]) {
