@@ -1,3 +1,22 @@
 <div class="vq-widget-container">
   <h3>Choose video collection to find matches</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col pl-0">
+        <select class="form-control" [(ngModel)]="newQueryService.selectedSearchSet"
+          (ngModelChange)="onSelectedSearchSet()" [disabled]="disableVideoCollectionDropdown">
+          <option [ngValue]="null" disabled selected>Select Video Collection</option>
+          <option *ngFor="let searchSet of newQueryService.searchSets?.results" [ngValue]="searchSet">
+            {{searchSet.name}}</option>
+        </select>
+      </div>
+      <div class="col pr-0">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" [(ngModel)]="disableVideoCollectionDropdown"
+            (ngModelChange)="onSelectNewVideosClicked()">
+          <label class="form-check-label">Select new videos</label>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

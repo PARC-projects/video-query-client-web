@@ -4,7 +4,6 @@ import { Query, ProcessState, QueryResponse } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { ISearchSetResponse, ISearchSet } from '../../models/search-set.model';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
-import { environment } from '../../../environments/environment';
 
 export interface IQueryForm extends Query {
   reference_time_seconds: number;
