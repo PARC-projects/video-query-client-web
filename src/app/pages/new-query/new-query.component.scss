@@ -66,3 +66,20 @@ fieldset.vq-fieldset-border {
     margin: 1rem 0 0;
   }
 }
+
+
+a:not([tabindex]) {
+  margin: 18px 1.25rem;
+  font-size: 14px;
+  display: inline-block;
+  color: map-get($theme-colors, "warning");
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.25s all;
+    color: darken(map-get($theme-colors, "warning"), 20%);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
