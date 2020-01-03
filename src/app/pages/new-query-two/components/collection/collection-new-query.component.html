@@ -19,4 +19,32 @@
       </div>
     </div>
   </div>
+  <section class="new-videos-container" *ngIf="disableVideoCollectionDropdown">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox" class="form-check-input">All</th>
+          <th scope="col">VIDEO NAME</th>
+          <th scope="col">DATE ADDED</th>
+          <th scope="col">VIDEO LENGTH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of newQueryService.videos">
+          <td><input type="checkbox" class="form-check-input"></td>
+          <td> <b (click)="onPathClick(video)">{{video.name}}</b></td>
+          <td>
+            Not Tracked
+          </td>
+          <td>
+            Not Tracked
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <section class="vq-pagination">
+      <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
+        (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+    </section>
+  </section>
 </div>

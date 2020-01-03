@@ -16,10 +16,10 @@ export class CollectionNewQueryTwoComponent implements OnInit {
   }
 
   onSelectedSearchSet(): void {
-
   }
 
-  onSelectNewVideosClicked(): void {
+  async onSelectNewVideosClicked(): Promise<void> {
     this.newQueryService.selectedSearchSet = null;
+    await this.newQueryService.getVideos();
   }
 }
