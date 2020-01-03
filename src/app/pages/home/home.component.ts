@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryRepository } from 'src/app/repositories/query.repository';
-import { IQuery } from 'src/app/models/query.model';
+import { Query } from 'src/app/models/query.model';
 import { IPagination } from 'src/app/models/pagination';
 
 @Component({
@@ -10,7 +10,7 @@ import { IPagination } from 'src/app/models/pagination';
 })
 export class HomeComponent implements OnInit {
   isLoading = false;
-  queries = [] as IQuery[];
+  queries = [] as Query[];
   pagination: IPagination;
   searchTerm: string;
 

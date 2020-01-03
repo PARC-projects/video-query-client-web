@@ -16,15 +16,15 @@ export enum ProcessState {
 /**
  * List contract coming from repository
  */
-export interface IQueryResponse {
+export class QueryResponse {
   pagination: IPagination;
-  results: IQuery[];
+  results: Query[];
 }
 
 /**
  * Contract coming from repository
  */
-export interface IQuery {
+export class Query {
   id: number;
   name: string;
   reference_time: string;
@@ -45,7 +45,7 @@ export interface IQuery {
  * View Model
  * - Existing Query Page
  */
-export interface IQueryView extends IQuery {
+export class QueryView extends Query {
   search_set_to_query_object: ISearchSet;
   video_object: Video;
   query_result: IQueryResult;
