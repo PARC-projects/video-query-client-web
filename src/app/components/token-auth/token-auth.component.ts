@@ -3,7 +3,8 @@ import { environment } from '../../../environments/environment';
 import { ModalComponent } from '../modal/modal.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { throwError, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-token-auth',
@@ -42,7 +43,6 @@ export class TokenAuthComponent {
     alert('Invalid Token provided');
   }
 
-
   authenticate(): Observable<boolean> {
     if (environment.externalSource.authentication.developmentToken) {
       if (environment.externalSource.authentication.developmentToken === this.authToken) {
@@ -55,7 +55,27 @@ export class TokenAuthComponent {
 
     // TODO: Call endpoint
     this.authenticationService.removeCurrentExternalToken();
-    return of<boolean>(false);
+    return this.validateToken();
+  }
+
+  validateToken(): Observable<boolean> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${environment.externalSource.authentication.header.name} ${this.authToken}`
+      })
+    };
+    return this.http.get(environment.externalSource.authentication.authEndpoint, httpOptions).pipe(
+      map(() => {
+        this.authenticationService.setCurrentExternalToken(this.authToken);
+        return true;
+      }),
+      catchError(err => {
+        // This manages 401 and CORS
+        this.handleError(err);
+        return of<boolean>(false);
+      })
+    );
   }
 
   private handleError(error: Response | any) {
