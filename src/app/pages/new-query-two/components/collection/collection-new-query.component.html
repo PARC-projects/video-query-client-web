@@ -23,20 +23,38 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"><input type="checkbox" class="form-check-input">All</th>
-          <th scope="col">VIDEO NAME</th>
+          <th scope="col"><input type="checkbox" [(ngModel)]="addAllChecked"
+              (ngModelChange)="onAddAllChecked()" class="form-check-input">All</th>
+          <th scope="col">
+            <div class="clearfix">
+              <div class="float-left">
+                VIDEO NAME
+              </div>
+              <div class="float-left ml-4">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="newQueryService.query.name"
+                  placeholder="Search Video by Name">
+              </div>
+            </div>
+          </th>
           <th scope="col">DATE ADDED</th>
           <th scope="col">VIDEO LENGTH</th>
+          <th class="clearfix">
+            <div class="form-group form-check m-0 float-right">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="viewSelectedChecked"
+                (ngModelChange)="onViewSelectedChecked()">
+              <label class="form-check-label">VIEW SELECTED</label>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let video of newQueryService.videos">
-          <td><input type="checkbox" class="form-check-input"></td>
-          <td> <b (click)="onPathClick(video)">{{video.name}}</b></td>
+          <td><input type="checkbox" class="form-check-input" [(ngModel)]="video.is_selected"></td>
+          <td><b (click)="onPathClick(video)">{{video.name}}</b></td>
           <td>
             Not Tracked
           </td>
-          <td>
+          <td colspan="2">
             Not Tracked
           </td>
         </tr>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewQueryTwoService } from '../../new-query-two.service';
+import { Video } from 'src/app/models/video.model';
 
 @Component({
   selector: 'app-collection-new-query',
@@ -8,6 +9,8 @@ import { NewQueryTwoService } from '../../new-query-two.service';
 })
 export class CollectionNewQueryTwoComponent implements OnInit {
   public disableVideoCollectionDropdown = false;
+  public viewSelectedChecked = false;
+  public addAllChecked = false;
 
   constructor(private newQueryService: NewQueryTwoService) { }
 
@@ -16,6 +19,18 @@ export class CollectionNewQueryTwoComponent implements OnInit {
   }
 
   onSelectedSearchSet(): void {
+  }
+
+  onViewSelectedChecked(): void {
+  }
+
+  onAddAllChecked(): void {
+    for (const video in this.newQueryService.videos) {
+      if (this.newQueryService.videos.hasOwnProperty(video)) {
+        const element = this.newQueryService.videos[video];
+        element.is_selected = !element.is_selected;
+      }
+    }
   }
 
   async onSelectNewVideosClicked(): Promise<void> {
