@@ -19,11 +19,10 @@ export const environment = {
       type: AuthenticationTypeEnum.SingleHeaderToken,
       uiMessage: 'This video comes from the Acme System and requires a token to access. Please provide the token assigned to you below.',
       header: {
-        name: 'Video-Query',
-        value: 'i-am-a-token'
+        name: 'Video-Query'
       },
       authEndpoint: 'https://stac.vtti.vt.edu/api/collections',
-      developmentToken: 'parc'
+      developmentToken: null
     }
   }
 };
