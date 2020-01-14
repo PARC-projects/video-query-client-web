@@ -9,12 +9,14 @@ import { SearchSetComponent } from './pages/admin/search-set/search-set.componen
 import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { QueryComponent } from './pages/query/query.component';
+import { NewQueryTwoComponent } from './pages/new-query-two/new-query-two.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'onboarding', component: OnboardingComponent, canActivate: [AuthenticationGuard] },
   { path: 'query/:id', component: QueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'new-query', component: NewQueryComponent, canActivate: [AuthenticationGuard] },
+  { path: 'new-query-two', component: NewQueryTwoComponent, canActivate: [AuthenticationGuard] },
   { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
   { path: 'search-sets/add', component: SearchSetAddComponent, canActivate: [AuthenticationGuard] },
   { path: '**', component: LoginComponent }

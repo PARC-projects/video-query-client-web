@@ -1,0 +1,25 @@
+@import "../../../custom";
+
+
+
+header {
+  margin: 3rem 0 1.5rem 0;
+}
+
+
+
+a:not([href]):not([tabindex]) {
+  padding: 6px 12px;
+  font-size: 1rem;
+  display: inline-block;
+  color: map-get($theme-colors, "warning");
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.25s all;
+    color: darken(map-get($theme-colors, "warning"), 20%);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

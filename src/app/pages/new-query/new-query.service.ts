@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../../models/video.model';
-import { IQuery, ProcessState, IQueryResponse } from '../../models/query.model';
+import { Query, ProcessState, QueryResponse } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { ISearchSetResponse, ISearchSet } from '../../models/search-set.model';
 import { SearchSetRepository } from '../../repositories/search-set.repository';
-import { environment } from '../../../environments/environment';
 
-export interface IQueryForm extends IQuery {
+export interface IQueryForm extends Query {
   reference_time_seconds: number;
   reference_time_minutes: number;
   reference_time_hours: number;
@@ -61,7 +60,7 @@ export class NewQueryService {
     return url;
   }
 
-  submitForm(): Promise<IQueryResponse> {
+  submitForm(): Promise<QueryResponse> {
     this.form.process_state = ProcessState.Submitted;
     // Remove tracking properties before submitting
     delete this.form.reference_time_hours;

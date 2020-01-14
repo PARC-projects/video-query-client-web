@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IQuery, IQueryView, ProcessState } from '../../models/query.model';
+import { Query, QueryView, ProcessState } from '../../models/query.model';
 import { QueryRepository } from '../../repositories/query.repository';
 import { VideoRepository } from '../../repositories/video.repository';
 import { Video } from '../../models/video.model';
@@ -10,7 +10,7 @@ import { IQueryResult } from '../../models/query-result.model';
 
 @Injectable()
 export class QueryService {
-  currentQuery = {} as IQueryView;
+  currentQuery = {} as QueryView;
   disabled: false;
 
   private cachedNotes: string; // We cache query notes on load for when the user wants to reset the state of the query.
@@ -21,10 +21,10 @@ export class QueryService {
     private searchSetRepository: SearchSetRepository
   ) { }
 
-  async getCurrentQuery(queryId: number): Promise<IQuery> {
+  async getCurrentQuery(queryId: number): Promise<Query> {
     const resp = await this.queryRepository.getById(queryId)
       .toPromise();
-    this.currentQuery = (resp as IQueryView);
+    this.currentQuery = (resp as QueryView);
     this.cachedNotes = this.currentQuery.notes;
     await this.getSearchSet();
     await this.getVideo();

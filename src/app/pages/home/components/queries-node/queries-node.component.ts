@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IQuery, ProcessState } from 'src/app/models/query.model';
+import { Query, ProcessState } from 'src/app/models/query.model';
 
 @Component({
   selector: 'app-queries-node',
@@ -9,7 +9,7 @@ import { IQuery, ProcessState } from 'src/app/models/query.model';
 export class QueriesNodeComponent implements OnInit {
 
   public showNotes = false;
-  @Input() query: IQuery;
+  @Input() query: Query;
 
   get buttonText(): string {
     switch (this.query.process_state) {

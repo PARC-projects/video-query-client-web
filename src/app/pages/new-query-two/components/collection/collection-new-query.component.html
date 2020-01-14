@@ -1,0 +1,68 @@
+<div class="vq-widget-container">
+  <h3>Choose video collection to find matches</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col pl-0">
+        <select class="form-control" [(ngModel)]="newQueryService.selectedSearchSet"
+          (ngModelChange)="onSelectedSearchSet()" [disabled]="disableVideoCollectionDropdown">
+          <option [ngValue]="null" disabled selected>Select Video Collection</option>
+          <option *ngFor="let searchSet of newQueryService.searchSets?.results" [ngValue]="searchSet">
+            {{searchSet.name}}</option>
+        </select>
+      </div>
+      <div class="col pr-0">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" [(ngModel)]="disableVideoCollectionDropdown"
+            (ngModelChange)="onSelectNewVideosClicked()">
+          <label class="form-check-label">Select new videos</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="new-videos-container" *ngIf="disableVideoCollectionDropdown">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox" [(ngModel)]="addAllChecked"
+              (ngModelChange)="onAddAllChecked()" class="form-check-input">All</th>
+          <th scope="col">
+            <div class="clearfix">
+              <div class="float-left">
+                VIDEO NAME
+              </div>
+              <div class="float-left ml-4">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="newQueryService.query.name"
+                  placeholder="Search Video by Name">
+              </div>
+            </div>
+          </th>
+          <th scope="col">DATE ADDED</th>
+          <th scope="col">VIDEO LENGTH</th>
+          <th class="clearfix">
+            <div class="form-group form-check m-0 float-right">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="viewSelectedChecked"
+                (ngModelChange)="onViewSelectedChecked()">
+              <label class="form-check-label">VIEW SELECTED</label>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of newQueryService.videos">
+          <td><input type="checkbox" class="form-check-input" [(ngModel)]="video.is_selected"></td>
+          <td><b (click)="onPathClick(video)">{{video.name}}</b></td>
+          <td>
+            Not Tracked
+          </td>
+          <td colspan="2">
+            Not Tracked
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <section class="vq-pagination">
+      <app-pagination [pagination]="pagination" (paginationClick)="onPaginationClick($event)"
+        (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+    </section>
+  </section>
+</div>

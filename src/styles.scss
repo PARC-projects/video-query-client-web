@@ -90,6 +90,22 @@ button.btn.btn-light-secondary.disabled, a.btn.btn-light-secondary.disabled {
   width: 100%;
 }
 
+.vq-widget-container {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  margin: 0 0 1.5rem;
+  border: 1px darken(map-get($parc-colors, "light-gray"), 5%) solid;
+  border-radius: 0.25rem;
+
+  h3 {
+    margin: 0 0 0.5rem;
+
+    span {
+      color: map-get($parc-colors, "medium-gray");
+    }
+  }
+}
+
 // .form-control.ng-invalid.ng-touched {
 //     @extend .form-control, .is-invalid;
 // }

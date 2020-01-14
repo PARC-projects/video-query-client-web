@@ -13,6 +13,9 @@ export class Video {
   path: string;
   external_source: boolean;
 
+  // UI
+  is_selected: boolean;
+
   get is_authenticated(): boolean {
     if (!this.external_source) {
       return true;
@@ -37,6 +40,9 @@ export class Video {
     this.name = input.name;
     this.path = input.path;
     this.external_source = input.external_source;
+
+    // UI
+    this.is_selected = false;
 
     return this;
   }
