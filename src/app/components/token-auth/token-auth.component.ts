@@ -59,13 +59,8 @@ export class TokenAuthComponent {
   }
 
   validateToken(): Observable<boolean> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `${environment.externalSource.authentication.header.name} ${this.authToken}`
-      })
-    };
-    return this.http.get(environment.externalSource.authentication.authEndpoint, httpOptions).pipe(
+    const headers = new HttpHeaders().set(environment.externalSource.authentication.header.name, this.authToken);
+    return this.http.get(environment.externalSource.authentication.authEndpoint, { headers }).pipe(
       map(() => {
         this.authenticationService.setCurrentExternalToken(this.authToken);
         return true;
