@@ -1,4 +1,4 @@
-<app-modal [widthByPercentage]="'57%'" [blockOverlayClose]="true">
+<app-modal [widthByPercentage]="'75%'" [blockOverlayClose]="true">
   <div class="onboarding-container" [ngSwitch]="currentPage">
     <div class="page-1-container" *ngSwitchCase="1">
       <h2 class="text-center font-weight-bold">Welcome!</h2>
@@ -59,12 +59,23 @@
         <div class="row">
           <div class="col">
             <div class="illustration">
+              <img src="assets\images\ill-0.png">
+            </div>
+            <div class="copy-container d-flex flex-row">
+              <div class="p-2">
+                <h5 class="font-weight-bold">0. Set Up</h5>
+                <p>Have your app administrator add your video collections to the database.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="illustration">
               <img src="assets\images\ill-1.png">
             </div>
             <div class="copy-container d-flex flex-row">
               <div class="p-2">
                 <h5 class="font-weight-bold">1. Create Query</h5>
-                <p>Have your video collections provisioned to the database. Select a reference
+                <p>Select a reference
                   video clip and a collection of videos to search for similarities.</p>
               </div>
             </div>
