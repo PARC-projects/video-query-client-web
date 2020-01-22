@@ -14,11 +14,11 @@
               <tbody>
                 <tr>
                   <td>Reference Video:</td>
-                  <td class="overflow">{{query.dataset}}</td>
+                  <td class="overflow">{{query.video_name}}</td>
                 </tr>
                 <tr>
                   <td>Video Collection:</td>
-                  <td class="overflow">{{query.video_name}}</td>
+                  <td class="overflow">{{query.dataset}}</td>
                 </tr>
               </tbody>
             </table>
@@ -27,21 +27,21 @@
             <table class="table table-borderless table-responsive">
               <tbody>
                 <tr>
-                  <td>Target bootstrapping:</td>
-                  <td *ngIf="query.use_dynamic_target_adjustment">yes</td>
-                  <td *ngIf="!query.use_dynamic_target_adjustment">no</td>
+                  <td>Reference time:</td>
+                  <td>{{query.reference_time}}</td>
                 </tr>
                 <tr>
                   <td>Clip duration:</td>
                   <td>{{query.clip_duration}} seconds</td>
                 </tr>
                 <tr>
-                  <td>Reference time:</td>
-                  <td>{{query.reference_time}}</td>
-                </tr>
-                <tr>
                   <td>Matches to review:</td>
                   <td>{{query.max_matches_for_review}}</td>
+                </tr>
+                <tr>
+                  <td>Target bootstrapping:</td>
+                  <td *ngIf="query.use_dynamic_target_adjustment">yes</td>
+                  <td *ngIf="!query.use_dynamic_target_adjustment">no</td>
                 </tr>
               </tbody>
             </table>
