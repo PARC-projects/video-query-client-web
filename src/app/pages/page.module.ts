@@ -34,12 +34,6 @@ import { QueriesNodeComponent } from './home/components/queries-node/queries-nod
  */
 import { QueryComponent } from './query/query.component';
 import { MatchVideoComponent } from './query/components/match-video/match-video.component';
-import { NewQueryTwoComponent } from './new-query-two/new-query-two.component';
-import { CollectionNewQueryTwoComponent } from './new-query-two/components/collection/collection-new-query.component';
-import { DefineNewQueryTwoComponent } from './new-query-two/components/define/define-new-query.component';
-import { NotesNewQueryTwoComponent } from './new-query-two/components/notes/notes-new-query.component';
-import { ReferenceNewQueryTwoComponent } from './new-query-two/components/reference/reference-new-query.component';
-import { SpecifyNewQueryTwoComponent } from './new-query-two/components/specify/specify-new-query.component';
 
 @NgModule({
   declarations: [
@@ -57,12 +51,6 @@ import { SpecifyNewQueryTwoComponent } from './new-query-two/components/specify/
 
     // New Query
     NewQueryComponent,
-    NewQueryTwoComponent,
-    CollectionNewQueryTwoComponent,
-    DefineNewQueryTwoComponent,
-    NotesNewQueryTwoComponent,
-    ReferenceNewQueryTwoComponent,
-    SpecifyNewQueryTwoComponent,
 
     // Search Set
     SearchSetComponent,
