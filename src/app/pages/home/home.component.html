@@ -5,6 +5,7 @@
       <div class="col">
         <header class="d-flex justify-content-start">
           <h1 class="font-weight-bold">My Queries</h1>
+          {{openCreateNewQueryModal}}
           <div class="d-flex align-items-center">
             <button class="btn btn-warning" (click)="openCreateNewQueryModal = true">Create New Query</button>
           </div>
@@ -40,15 +41,15 @@
   </div>
   <app-footer></app-footer>
 </div>
-<app-modal [show]="openCreateNewQueryModal" [widthByPercentage]="'30%'">
+<app-modal [(show)]="openCreateNewQueryModal" [widthByPercentage]="'30%'">
   <div class="p-4">
     <h3 class="font-weight-bold mb-5">Do you have the video collection you are using ready?</h3>
     <div class="d-flex justify-content-center">
       <div>
-        <button class="btn btn-warning mr-3 pl-4 pr-4">Yes</button>
+        <button class="btn btn-warning mr-3 pl-4 pr-4" routerLink="/new-query">Yes</button>
       </div>
       <div>
-        <a routerLink="/new-query">Manage video collection</a>
+        <a routerLink="/search-sets">Manage video collection</a>
       </div>
     </div>
   </div>

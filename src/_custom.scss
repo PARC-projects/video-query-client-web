@@ -15,7 +15,7 @@ $theme-colors: ("primary": map-get($parc-colors, "primary"),
   "success": #A8BC38,
   "warning": map-get($parc-colors, "orange"));
 
-$link-color: #F26722; //red
+$link-color: #F26722;
 
 // Required
 @import "../node_modules/bootstrap/scss/functions";
