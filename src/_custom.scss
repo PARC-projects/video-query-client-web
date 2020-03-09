@@ -15,6 +15,8 @@ $theme-colors: ("primary": map-get($parc-colors, "primary"),
   "success": #A8BC38,
   "warning": map-get($parc-colors, "orange"));
 
+$link-color: #F26722; //red
+
 // Required
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
@@ -30,7 +32,7 @@ $body-bg: map-get($parc-colors, "light-gray");
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 @import "../node_modules/bootstrap/scss/images";
-//@import "../node_modules/bootstrap/scss/code";w
+//@import "../node_modules/bootstrap/scss/code";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/tables";
 @import "../node_modules/bootstrap/scss/forms";

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   queries = [] as Query[];
   pagination: IPagination;
   searchTerm: string;
+  openCreateNewQueryModal = false;
 
   private timeout: any;
 

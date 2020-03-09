@@ -9,8 +9,7 @@ export class ModalComponent {
 
   @Input() widthByPercentage = '50%';
   @Input() blockOverlayClose = false;
-
-  show = false;
+  @Input() show = false;
 
   close(): void {
     this.show = false;
