@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppComponent } from './app.component';
 
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { ReferenceTimeValidatorDirective } from './pages/new-query/reference-time.validator';
@@ -17,6 +17,7 @@ import { RepositoryModule } from './repositories/repository.module';
 import { PageModule } from './pages/page.module';
 import { ServiceModule } from './services/service.module';
 import { RoutingModule } from './routing.module';
+import { MaterialModule } from './material-module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RoutingModule } from './routing.module';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatTooltipModule,
+    MaterialModule,
     BrowserAnimationsModule,
     RoutingModule,
     ComponentsModule,
