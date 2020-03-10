@@ -13,6 +13,10 @@
     text-align: center;
   }
 
+  li {
+    cursor: pointer;
+  }
+
   li,
   .help-link {
     padding: 0.5rem 0.5rem;
@@ -26,18 +30,7 @@
     text-align: center;
   }
 
-  .circle {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    font-size: 1rem;
-    line-height: 2.5rem;
-    text-align: center;
-    color: #fff;
-    background: map-get($parc-colors, "ting-light-blue");
-    margin: 0.5rem auto 0;
-    font-weight: bold;
-  }
+
 
   li.active {
     box-sizing: border-box;
@@ -72,4 +65,17 @@
     }
   }
 
+}
+
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #fff;
+  background: map-get($parc-colors, "ting-light-blue");
+  margin: 0.5rem auto 0;
+  font-weight: bold;
 }
