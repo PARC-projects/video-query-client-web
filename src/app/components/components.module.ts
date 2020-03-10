@@ -8,13 +8,13 @@ import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { NavComponent } from './nav/nav.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { RouterModule } from '@angular/router';
 import { TokenAuthComponent } from './token-auth/token-auth.component';
 import { OnboardingModalComponent } from './onboarding-modal/onboarding-modal.component';
+import { MaterialModule } from '../material-module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { OnboardingModalComponent } from './onboarding-modal/onboarding-modal.co
     FormsModule,
     BrowserModule,
     RouterModule,
-    MatTooltipModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   exports: [
     AlertComponent,

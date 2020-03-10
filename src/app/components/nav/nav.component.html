@@ -1,7 +1,14 @@
 <nav class="navigation min-vh-100">
   <ul class="list-unstyled">
-    <li>
+    <li mat-button [matMenuTriggerFor]="menu">
       <div class="circle">{{initials}}</div>
+      <mat-menu #menu="matMenu" yPosition="below" xPosition="after" class="ml-5 pt-2 pr-4 pb-3 pl-4 text-center">
+        <div class="circle mb-1">{{initials}}</div>
+        <p class="mt-2 mb-3 font-weight-bold text-uppercase">{{firstName}} {{lastName}}</p>
+        <a class="" routerLink="/" (click)="currentPage = ''">
+          Logout
+        </a>
+      </mat-menu>
     </li>
     <li [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}"
       class="d-flex align-items-center justify-content-center">
@@ -24,26 +31,21 @@
     <li [ngClass]="{'active': currentPage === 'search-sets'}" class="d-flex align-items-center justify-content-center">
       <a class="nav-link" [ngClass]="{'active': currentPage === 'search-sets'}" routerLink="/search-sets"
         (click)="currentPage = 'search-sets'">
-        <svg version="1.1" id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 26.3 21.4" style="enable-background:new 0 0 26.3 21.4;" xml:space="preserve">
-        <path class="st0" d="M24.6,0h-23C0.7,0,0,0.7,0,1.6c0,0,0,0,0,0v18.1c0,0.9,0.7,1.6,1.6,1.6c0,0,0,0,0,0h23c0.9,0,1.6-0.7,1.6-1.6
-        c0,0,0,0,0,0V1.6C26.3,0.7,25.5,0,24.6,0L24.6,0z M24.6,19.7h-23V1.6h23V19.7z"/>
-        <path class="st0" d="M9.4,14.6c0.3,0.2,0.6,0.2,0.8,0l6.6-3.3c0.4-0.2,0.6-0.7,0.4-1.1c-0.1-0.2-0.2-0.3-0.4-0.4l-6.6-3.2
-        C9.8,6.4,9.3,6.6,9.1,7c0,0,0,0,0,0C9.1,7.1,9,7.3,9,7.4V14C9,14.3,9.2,14.5,9.4,14.6z M10.7,8.7l3.9,2l-4,1.9L10.7,8.7z"/>
-      </svg>
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 26.3 21.4" style="enable-background:new 0 0 26.3 21.4;" xml:space="preserve">
+          <path class="st0" d="M24.6,0h-23C0.7,0,0,0.7,0,1.6c0,0,0,0,0,0v18.1c0,0.9,0.7,1.6,1.6,1.6c0,0,0,0,0,0h23c0.9,0,1.6-0.7,1.6-1.6
+        c0,0,0,0,0,0V1.6C26.3,0.7,25.5,0,24.6,0L24.6,0z M24.6,19.7h-23V1.6h23V19.7z" />
+          <path class="st0"
+            d="M9.4,14.6c0.3,0.2,0.6,0.2,0.8,0l6.6-3.3c0.4-0.2,0.6-0.7,0.4-1.1c-0.1-0.2-0.2-0.3-0.4-0.4l-6.6-3.2
+        C9.8,6.4,9.3,6.6,9.1,7c0,0,0,0,0,0C9.1,7.1,9,7.3,9,7.4V14C9,14.3,9.2,14.5,9.4,14.6z M10.7,8.7l3.9,2l-4,1.9L10.7,8.7z" />
+        </svg>
       </a>
     </li>
-    <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
+    <!-- <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
       <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
         <i class="fa fa-lock" aria-hidden="true"></i>
       </a>
-    </li>
-    <li>
-      <a class="nav-link" routerLink="/" (click)="currentPage = ''">
-        <i class="fa fa-sign-out"></i>
-      </a>
-    </li>
+    </li> -->
   </ul>
   <div class="help-link">
     <a href="https://github.com/PARC-projects/video-query-home/wiki/Web-Client-Example#example" target="_blank"
