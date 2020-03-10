@@ -1,7 +1,7 @@
 <nav class="navigation min-vh-100">
   <ul class="list-unstyled">
     <li>
-      <div class="circle">HW</div>
+      <div class="circle">{{initials}}</div>
     </li>
     <li [ngClass]="{'active': currentPage === 'home' || currentPage === 'query'}"
       class="d-flex align-items-center justify-content-center">
@@ -34,11 +34,11 @@
       </svg>
       </a>
     </li>
-    <!-- <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
+    <li class="staff-navigation" *ngIf="authenticationService.getCurrentToken().is_staff">
       <a class="nav-link" [href]="adminUrl" target="_blank" title="Admin">
         <i class="fa fa-lock" aria-hidden="true"></i>
       </a>
-    </li> -->
+    </li>
     <li>
       <a class="nav-link" routerLink="/" (click)="currentPage = ''">
         <i class="fa fa-sign-out"></i>
