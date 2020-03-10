@@ -3,6 +3,8 @@ export interface IToken {
   is_staff: boolean;
   profile_id: number;
   bypass_onboarding: boolean;
+  first_name: string;
+  last_name: string;
 }
 
 export class Profile {

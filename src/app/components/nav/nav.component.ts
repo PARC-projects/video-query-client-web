@@ -14,6 +14,34 @@ export class NavComponent {
   adminUrl = this.apiUrl + '/admin';
   currentPage = 'home';
 
+  get firstName(): string {
+    return this.authenticationService.getCurrentToken().first_name;
+  }
+
+  get firstNameInitial(): string {
+    const firstName = this.firstName;
+    if (firstName.length > 1) {
+      return firstName.charAt(0);
+    }
+    return this.lastName;
+  }
+
+  get lastName(): string {
+    return this.authenticationService.getCurrentToken().last_name;
+  }
+
+  get lastNameInitial(): string {
+    const lastName = this.lastName;
+    if (lastName.length > 1) {
+      return lastName.charAt(0);
+    }
+    return this.lastName;
+  }
+
+  get initials(): string {
+    return this.firstNameInitial + this.lastNameInitial;
+  }
+
   constructor(public authenticationService: AuthenticationService,
     private router: Router) {
     this.currentPage = this.router.url;
