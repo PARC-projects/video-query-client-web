@@ -35,6 +35,7 @@ import { QueriesNodeComponent } from './home/components/queries-node/queries-nod
 import { QueryComponent } from './query/query.component';
 import { MatchVideoComponent } from './query/components/match-video/match-video.component';
 import { MaterialModule } from '../material-module';
+import { CreateNewQueryComponent } from './create-new-query/create-new-query.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MaterialModule } from '../material-module';
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,
-    SearchSetAddComponent
+    SearchSetAddComponent,
+    CreateNewQueryComponent
   ],
   imports: [
     RouterModule,
