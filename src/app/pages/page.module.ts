@@ -37,6 +37,7 @@ import { MatchVideoComponent } from './query/components/match-video/match-video.
 import { MaterialModule } from '../material-module';
 import { CreateNewQueryComponent } from './create-new-query/create-new-query.component';
 import { MyVideoCollectionsComponent } from './my-video-collections/my-video-collections.component';
+import { VideoCollectionComponent } from './video-collection/video-collection.component';
 
 @NgModule({
   declarations: [
@@ -54,14 +55,15 @@ import { MyVideoCollectionsComponent } from './my-video-collections/my-video-col
 
     // New Query
     NewQueryComponent,
+    CreateNewQueryComponent,
 
     // Search Set
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,
     SearchSetAddComponent,
-    CreateNewQueryComponent,
-    MyVideoCollectionsComponent
+    MyVideoCollectionsComponent,
+    VideoCollectionComponent
   ],
   imports: [
     RouterModule,

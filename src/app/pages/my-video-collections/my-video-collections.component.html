@@ -3,6 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
+
         <header class="d-flex justify-content-start">
           <h1 class="font-weight-bold">My Video Collections</h1>
           <div class="d-flex align-items-center">
@@ -26,6 +27,26 @@
                 <option selected="selected">Order By</option>
                 <option>Query Name</option>
               </select>
+            </div>
+          </div>
+        </div>
+        <div class="border bg-white mb-3 p-4" *ngFor="let set of searchSets">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3>{{set.name}}</h3>
+            </div>
+            <div class="col-lg-3">
+              <table class="table table-borderless table-responsive">
+                <tbody>
+                  <tr>
+                    <td>Number of videos:</td>
+                    <td>{{set.videos.length}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-lg-3">
+              <a routerLink="/video-collection">View Collection</a>
             </div>
           </div>
         </div>
