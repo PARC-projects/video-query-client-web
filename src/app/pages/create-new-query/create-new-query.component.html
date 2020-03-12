@@ -10,13 +10,13 @@
             </p>
             <p>button when finished to run the query against the database for matches.</p>
           </header>
-
+          <pre>{{form.value|json}}</pre>
           <section class="bg-white matches-container p-4 mb-4">
             <h3 class="mb-4">Define your query</h3>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Query Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="name">
               </div>
             </div>
           </section>
@@ -26,9 +26,11 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select id="inputState" class="form-control">
-                    <option value="" disabled selected>Select Video Collection</option>
-                    <option>...</option>
+                  <select class="form-control" required formControlName="search_set_id"
+                    (ngModelChange)="onSelectedSearchSet()">
+                    <option *ngFor="let searchSet of searchSets?.results" [ngValue]="searchSet.id">
+                      {{searchSet.name}}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -39,7 +41,18 @@
             <h3 class="mb-2">Choose your reference video clip</h3>
             <p class="mb-4">THe system captures the closest 10 second clip to your specified time to use as reference.
             </p>
-            <input type="text" class="form-control" placeholder="Search Video By Name">
+            <div class="row">
+              <!-- <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Search Video By Name">
+              </div> -->
+              <div class="col-lg-6">
+                <select class="form-control">
+                  <option *ngFor="let video of videos" [ngValue]="video.id">
+                    {{video.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
           </section>
 
           <section class="bg-white specify-container p-4 mb-4">
@@ -47,11 +60,12 @@
             <div class="form-group row">
               <label class="col-lg-4 col-form-label">Number of matches to review for training</label>
               <div class="col-lg-8">
-                <input type="number" class="form-control" placeholder="5 to 10 matches is recommended">
+                <input type="number" class="form-control" placeholder="5 to 10 matches is recommended"
+                  formControlName="max_matches_for_review">
               </div>
             </div>
             <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input">
+              <input type="checkbox" class="form-check-input" formControlName="use_dynamic_target_adjustment">
               <label class="form-check-label">Use target bootstrap <span>?</span></label>
             </div>
           </section>
