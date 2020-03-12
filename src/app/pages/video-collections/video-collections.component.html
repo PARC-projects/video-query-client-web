@@ -3,7 +3,6 @@
   <div class="container">
     <div class="row">
       <div class="col">
-
         <header class="d-flex justify-content-start">
           <h1 class="font-weight-bold">My Video Collections</h1>
           <div class="d-flex align-items-center">
@@ -46,7 +45,7 @@
               </table>
             </div>
             <div class="col-lg-3">
-              <a routerLink="/video-collection">View Collection</a>
+              <a [routerLink]="['/video-collections/', set.id]">View Collection</a>
             </div>
           </div>
         </div>

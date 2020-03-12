@@ -1,1 +1,15 @@
-<p>video-collection works!</p>
+<app-nav></app-nav>
+<div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header class="d-flex justify-content-start">
+          <h1 class="font-weight-bold">My Video Collections</h1>
+        </header>
+        <div class="border bg-white mb-3 p-4" *ngFor="let video of videos">
+          {{video|json}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
