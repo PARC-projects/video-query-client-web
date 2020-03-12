@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,11 +64,12 @@ import { CreateNewQueryComponent } from './create-new-query/create-new-query.com
   imports: [
     RouterModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     ComponentsModule,
     MatTooltipModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class PageModule { }
