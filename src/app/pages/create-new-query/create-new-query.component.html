@@ -1,0 +1,98 @@
+<app-nav></app-nav>
+<section class="navigation-offset min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+          <header class="mb-4">
+            <h1 class="font-weight-bold">Create New Query</h1>
+            <p class="m-0">Make a new search of video matches with the video clip of your choice. Click the "Submit"
+            </p>
+            <p>button when finished to run the query against the database for matches.</p>
+          </header>
+          <!-- <pre>{{form.value|json}}</pre> -->
+          <section class="bg-white matches-container p-4 mb-4">
+            <h3 class="mb-4">Define your query</h3>
+            <div class="form-group row">
+              <label class="col-auto col-form-label">Query Name</label>
+              <div class="col">
+                <input type="text" class="form-control" formControlName="name">
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white video-container p-4 mb-4">
+            <h3 class="mb-4">Choose video collection to find matches</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <select class="form-control" required formControlName="search_set_to_query"
+                    (ngModelChange)="onSelectedSearchSet()">
+                    <option *ngFor="let searchSet of searchSets?.results" [ngValue]="searchSet.id">
+                      {{searchSet.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white reference-container p-4 mb-4">
+            <h3 class="mb-2">Choose your reference video clip</h3>
+            <p class="mb-4">The system captures the closest 10 second clip to your specified time to use as reference.
+            </p>
+            <div class="row mb-3">
+              <!-- <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Search Video By Name">
+              </div> -->
+              <div class="col-lg-6">
+                <select class="form-control" formControlName="video" (change)="onReferenceSelect()">
+                  <option *ngFor="let video of videos" [ngValue]="video.id">
+                    {{video.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <video controls #videoPlayer [style.display]="videoSrc ? 'block' : 'none'" class="w-100 mb-3">
+              <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+            </video>
+            <div class="row" *ngIf="videoSrc">
+              <div class="col-auto">
+                <button type="button m-0" class="btn btn-light-orange" (click)="onSelectCurrentTime()">Select Current
+                  Time</button>
+              </div>
+              <div class="col">
+                <p class="pt-2 sub-text  m-0">Reference video clip will include: {{reference_time.value}}</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white specify-container p-4 mb-4">
+            <h3 class="mb-4">Specify training details</h3>
+            <div class="form-group row">
+              <label class="col-auto col-form-label">Number of matches to review for training</label>
+              <div class="col">
+                <input type="number" class="form-control" placeholder="5 to 10 matches is recommended"
+                  formControlName="max_matches_for_review">
+              </div>
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" formControlName="use_dynamic_target_adjustment">
+              <label class="form-check-label">Use target bootstrap <span>?</span></label>
+            </div>
+          </section>
+
+          <section class="bg-white notes-container p-4">
+            <h3 class="mb-4">Notes <span>(Optional)</span></h3>
+            <div class="form-group mb-1">
+              <textarea class="form-control" rows="3" formControlName="notes"></textarea>
+            </div>
+          </section>
+
+          <button type="button" class="btn btn-warning mt-5 mb-5 btn-lg" [disabled]="form.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>

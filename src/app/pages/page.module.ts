@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +35,7 @@ import { QueriesNodeComponent } from './home/components/queries-node/queries-nod
 import { QueryComponent } from './query/query.component';
 import { MatchVideoComponent } from './query/components/match-video/match-video.component';
 import { MaterialModule } from '../material-module';
+import { CreateNewQueryComponent } from './create-new-query/create-new-query.component';
 
 @NgModule({
   declarations: [
@@ -57,16 +58,18 @@ import { MaterialModule } from '../material-module';
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,
-    SearchSetAddComponent
+    SearchSetAddComponent,
+    CreateNewQueryComponent
   ],
   imports: [
     RouterModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     ComponentsModule,
     MatTooltipModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class PageModule { }
