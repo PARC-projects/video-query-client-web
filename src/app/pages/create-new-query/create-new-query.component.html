@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select class="form-control" required formControlName="search_set_id"
+                  <select class="form-control" required formControlName="search_set_to_query"
                     (ngModelChange)="onSelectedSearchSet()">
                     <option *ngFor="let searchSet of searchSets?.results" [ngValue]="searchSet.id">
                       {{searchSet.name}}
@@ -39,20 +39,23 @@
 
           <section class="bg-white reference-container p-4 mb-4">
             <h3 class="mb-2">Choose your reference video clip</h3>
-            <p class="mb-4">THe system captures the closest 10 second clip to your specified time to use as reference.
+            <p class="mb-4">The system captures the closest 10 second clip to your specified time to use as reference.
             </p>
             <div class="row">
               <!-- <div class="col-lg-6">
                 <input type="text" class="form-control" placeholder="Search Video By Name">
               </div> -->
               <div class="col-lg-6">
-                <select class="form-control">
+                <select class="form-control" formControlName="video" (change)="onReferenceSelect()">
                   <option *ngFor="let video of videos" [ngValue]="video.id">
                     {{video.name}}
                   </option>
                 </select>
               </div>
             </div>
+            <video controls #videoPlayer>
+              <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+            </video>
           </section>
 
           <section class="bg-white specify-container p-4 mb-4">
@@ -73,7 +76,7 @@
           <section class="bg-white notes-container p-4">
             <h3 class="mb-4">Notes <span>(Optional)</span></h3>
             <div class="form-group mb-1">
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea class="form-control" rows="3" formControlName="notes"></textarea>
             </div>
           </section>
         </form>
