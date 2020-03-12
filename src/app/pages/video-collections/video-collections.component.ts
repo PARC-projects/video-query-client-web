@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchSetService } from '../admin/search-set/services/search-set.service';
 import { SearchSetRepository } from 'src/app/repositories/search-set.repository';
 import { ISearchSet, ISearchSetResponse } from 'src/app/models/search-set.model';
 import { Video } from 'src/app/models/video.model';
 import { IListNavConfig } from 'src/app/components/list-nav/list-nav.component';
 
 @Component({
-  selector: 'app-my-video-collections',
-  templateUrl: './my-video-collections.component.html',
-  styleUrls: ['./my-video-collections.component.scss']
+  selector: 'app-video-collections',
+  templateUrl: './video-collections.component.html',
+  styleUrls: ['./video-collections.component.scss']
 })
 export class MyVideoCollectionsComponent implements OnInit {
   public searchTerm: string;

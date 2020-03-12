@@ -11,7 +11,7 @@ import { SearchSetComponent } from './pages/admin/search-set/search-set.componen
 import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
 import { QueryComponent } from './pages/query/query.component';
 import { CreateNewQueryComponent } from './pages/create-new-query/create-new-query.component';
-import { MyVideoCollectionsComponent } from './pages/my-video-collections/my-video-collections.component';
+import { MyVideoCollectionsComponent } from './pages/video-collections/video-collections.component';
 import { VideoCollectionComponent } from './pages/video-collection/video-collection.component';
 
 export const appRoutes: Routes = [
