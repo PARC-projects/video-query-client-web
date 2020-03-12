@@ -10,7 +10,7 @@
             </p>
             <p>button when finished to run the query against the database for matches.</p>
           </header>
-          <pre>{{form.value|json}}</pre>
+          <!-- <pre>{{form.value|json}}</pre> -->
           <section class="bg-white matches-container p-4 mb-4">
             <h3 class="mb-4">Define your query</h3>
             <div class="form-group row">
@@ -41,7 +41,7 @@
             <h3 class="mb-2">Choose your reference video clip</h3>
             <p class="mb-4">The system captures the closest 10 second clip to your specified time to use as reference.
             </p>
-            <div class="row">
+            <div class="row mb-3">
               <!-- <div class="col-lg-6">
                 <input type="text" class="form-control" placeholder="Search Video By Name">
               </div> -->
@@ -53,9 +53,18 @@
                 </select>
               </div>
             </div>
-            <video controls #videoPlayer>
+            <video controls #videoPlayer [style.display]="videoSrc ? 'block' : 'none'" class="w-100 mb-3">
               <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
             </video>
+            <div class="row" *ngIf="videoSrc">
+              <div class="col-auto">
+                <button type="button m-0" class="btn btn-light-orange" (click)="onSelectCurrentTime()">Select Current
+                  Time</button>
+              </div>
+              <div class="col">
+                <p class="pt-2 sub-text  m-0">Reference video clip will include: {{reference_time.value}}</p>
+              </div>
+            </div>
           </section>
 
           <section class="bg-white specify-container p-4 mb-4">
@@ -79,6 +88,8 @@
               <textarea class="form-control" rows="3" formControlName="notes"></textarea>
             </div>
           </section>
+
+          <button type="button" class="btn btn-warning mt-5 mb-5 btn-lg" [disabled]="form.invalid">Submit</button>
         </form>
       </div>
     </div>
