@@ -11,15 +11,23 @@ import { SearchSetComponent } from './pages/admin/search-set/search-set.componen
 import { SearchSetAddComponent } from './pages/admin/search-set-add/search-set-add.component';
 import { QueryComponent } from './pages/query/query.component';
 import { CreateNewQueryComponent } from './pages/create-new-query/create-new-query.component';
+import { MyVideoCollectionsComponent } from './pages/my-video-collections/my-video-collections.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+
   { path: 'onboarding', component: OnboardingComponent, canActivate: [AuthenticationGuard] },
+
   { path: 'query/:id', component: QueryComponent, canActivate: [AuthenticationGuard] },
+
   { path: 'new-query', component: NewQueryComponent, canActivate: [AuthenticationGuard] },
   { path: 'create-new-query', component: CreateNewQueryComponent, canActivate: [AuthenticationGuard] },
+
   { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
+  { path: 'my-video-collections', component: MyVideoCollectionsComponent, canActivate: [AuthenticationGuard] },
+
   { path: 'search-sets/add', component: SearchSetAddComponent, canActivate: [AuthenticationGuard] },
+
   { path: '**', component: LoginComponent }
 ];
 
