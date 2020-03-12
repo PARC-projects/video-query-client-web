@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
           <header class="mb-4">
             <h1 class="font-weight-bold">Create New Query</h1>
             <p class="m-0">Make a new search of video matches with the video clip of your choice. Click the "Submit"
@@ -14,8 +14,8 @@
           <section class="bg-white matches-container p-4 mb-4">
             <h3 class="mb-4">Define your query</h3>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Query Name</label>
-              <div class="col-sm-10">
+              <label class="col-auto col-form-label">Query Name</label>
+              <div class="col">
                 <input type="text" class="form-control" formControlName="name">
               </div>
             </div>
@@ -70,8 +70,8 @@
           <section class="bg-white specify-container p-4 mb-4">
             <h3 class="mb-4">Specify training details</h3>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label">Number of matches to review for training</label>
-              <div class="col-lg-8">
+              <label class="col-auto col-form-label">Number of matches to review for training</label>
+              <div class="col">
                 <input type="number" class="form-control" placeholder="5 to 10 matches is recommended"
                   formControlName="max_matches_for_review">
               </div>
