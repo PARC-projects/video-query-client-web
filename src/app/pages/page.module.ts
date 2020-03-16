@@ -5,17 +5,14 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-import { SearchSetComponent } from './admin/search-set/search-set.component';
-import { SearchComponent } from './admin/search-set-add/components/search/search.component';
-import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
-import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
 import { ComponentsModule } from '../components/components.module';
 
 /**
  * New
  */
 import { NewQueryComponent } from './new-query/new-query.component';
+import { CreateNewQueryComponent } from './create-new-query/create-new-query.component';
+
 
 /**
  * Login
@@ -35,7 +32,17 @@ import { QueriesNodeComponent } from './home/components/queries-node/queries-nod
 import { QueryComponent } from './query/query.component';
 import { MatchVideoComponent } from './query/components/match-video/match-video.component';
 import { MaterialModule } from '../material-module';
-import { CreateNewQueryComponent } from './create-new-query/create-new-query.component';
+
+/**
+ * Video Collection
+ */
+import { SearchSetComponent } from './admin/search-set/search-set.component';
+import { SearchComponent } from './admin/search-set-add/components/search/search.component';
+import { CurrentComponent } from './admin/search-set-add/components/current/current.component';
+import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.component';
+
+import { MyVideoCollectionsComponent } from './video-collections/video-collections.component';
+import { VideoCollectionComponent } from './video-collection/video-collection.component';
 
 @NgModule({
   declarations: [
@@ -53,13 +60,15 @@ import { CreateNewQueryComponent } from './create-new-query/create-new-query.com
 
     // New Query
     NewQueryComponent,
+    CreateNewQueryComponent,
 
     // Search Set
     SearchSetComponent,
     SearchComponent,
     CurrentComponent,
     SearchSetAddComponent,
-    CreateNewQueryComponent
+    MyVideoCollectionsComponent,
+    VideoCollectionComponent
   ],
   imports: [
     RouterModule,
