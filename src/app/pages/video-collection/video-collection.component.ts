@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { SearchSetRepository } from 'src/app/repositories/search-set.repository';
 import { Video } from 'src/app/models/video.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-video-collection',
@@ -11,6 +13,8 @@ import { Video } from 'src/app/models/video.model';
 export class VideoCollectionComponent implements OnInit {
   public videos = [] as Video[];
   public loading = false;
+  public showModal = false;
+  public videoSrc = '';
 
   constructor(
     private searchSetRepository: SearchSetRepository,
@@ -29,4 +33,8 @@ export class VideoCollectionComponent implements OnInit {
     });
   }
 
+  onVideoClick(path: string) {
+    this.videoSrc = `${environment.fileStoreRoot}${path}`;
+    this.showModal = true;
+  }
 }

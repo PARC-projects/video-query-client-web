@@ -6,10 +6,34 @@
         <header class="d-flex justify-content-start">
           <h1 class="font-weight-bold">My Video Collections</h1>
         </header>
-        <div class="border bg-white mb-3 p-4" *ngFor="let video of videos">
-          {{video|json}}
+        <div class="table-responsive">
+          <table class="table border">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">VIDEO NAME</th>
+                <th scope="col">DATE CREATE</th>
+                <th scope="col">VIDEO LENGTH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let video of videos">
+                <th scope="row" class="text-center">
+                  <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
+                </th>
+                <td>{{video.name}}</td>
+                <td>Date</td>
+                <td>Length</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-modal [(show)]="showModal">
+  <video controls align="center" #videoPlayer class="w-100">
+    <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+  </video>
+</app-modal>
