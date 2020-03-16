@@ -19,4 +19,10 @@ table {
 i {
   font-size: 3rem;
   color: map-get($parc-colors, "light-orange");
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.25s;
+    color: darken(map-get($parc-colors, "light-orange"), 10%);
+  }
 }
