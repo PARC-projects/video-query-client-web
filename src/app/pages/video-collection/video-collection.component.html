@@ -2,10 +2,24 @@
 <div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
   <div class="container">
     <div class="row">
-      <div class="col">
-        <header class="d-flex justify-content-start">
-          <h1 class="font-weight-bold">My Video Collections</h1>
-        </header>
+      <div class="col mt-5">
+        <div class="row mb-2">
+          <div class="col-lg-8">
+            <header class="d-flex justify-content-start">
+              <h1 class="font-weight-bold">My Video Collections</h1>
+            </header>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group mt-2">
+              <select class="form-control muted" (change)="onOrderByChange($event)"  [(ngModel)]="selectedOrderby" >
+                <option value="" selected="selected" disabled="disabled">Order By</option>
+                <option value="name">Name</option>
+                <option value="date">Date Create</option>
+                <option value="length">Length</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table border">
             <thead>

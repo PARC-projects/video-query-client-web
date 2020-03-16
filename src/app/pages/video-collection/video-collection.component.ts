@@ -15,6 +15,7 @@ export class VideoCollectionComponent implements OnInit {
   public loading = false;
   public showModal = false;
   public videoSrc = '';
+  public selectedOrderby = '';
 
   constructor(
     private searchSetRepository: SearchSetRepository,
@@ -31,6 +32,11 @@ export class VideoCollectionComponent implements OnInit {
           this.loading = false;
         });
     });
+  }
+
+  onOrderByChange(event) {
+    const newVal = event.target.value;
+    console.log(newVal);
   }
 
   onVideoClick(path: string) {
