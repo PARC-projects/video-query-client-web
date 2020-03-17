@@ -22,19 +22,30 @@
           </div>
           <div class="col-3">
             <div class="form-group">
-              <select class="form-control muted">
-                <option selected="selected">Order By</option>
-                <option>Query Name</option>
+              <select class="form-control muted" (change)="onOrderByChange()" [(ngModel)]="selectedOrderby">
+                <option value="" selected="selected" disabled="disabled">Order By</option>
+                <option value="name">Name</option>
+                <option value="date_created">Date Created</option>
               </select>
             </div>
           </div>
         </div>
         <div class="border bg-white mb-3 p-4" *ngFor="let set of searchSets">
-          <div class="row">
-            <div class="col-lg-6">
+          <div class="row no-gutters">
+            <div class="col-lg-5">
               <h3>{{set.name}}</h3>
             </div>
             <div class="col-lg-3">
+              <table class="table table-borderless table-responsive">
+                <tbody>
+                  <tr>
+                    <td>Date Created:</td>
+                    <td>{{set.date_created | date : 'shortDate'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-lg-2">
               <table class="table table-borderless table-responsive">
                 <tbody>
                   <tr>
@@ -44,7 +55,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-2 text-center">
               <a [routerLink]="['/video-collections/', set.id]">View Collection</a>
             </div>
           </div>

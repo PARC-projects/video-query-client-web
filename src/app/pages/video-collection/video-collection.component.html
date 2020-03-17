@@ -36,7 +36,7 @@
                   <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
                 </th>
                 <td>{{video.name}}</td>
-                <td>{{video.date_created | date : 'short'}}</td>
+                <td>{{video.date_created | date : 'shortDate'}}</td>
                 <td>Length</td>
               </tr>
             </tbody>

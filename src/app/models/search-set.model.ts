@@ -9,6 +9,7 @@ export interface ISearchSet  {
   id: number;
   name: string;
   duration: number;
+  date_created: string;
 
   /**
    * Collection of FKs
