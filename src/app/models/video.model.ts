@@ -12,6 +12,7 @@ export class Video {
   name: string;
   path: string;
   external_source: boolean;
+  date_created: string;
 
   // UI
   is_selected: boolean;
@@ -40,7 +41,7 @@ export class Video {
     this.name = input.name;
     this.path = input.path;
     this.external_source = input.external_source;
-
+    this.date_created = input.date_created;
     // UI
     this.is_selected = false;
 

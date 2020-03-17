@@ -11,7 +11,7 @@
           </div>
           <div class="col-lg-4">
             <div class="form-group mt-2">
-              <select class="form-control muted" (change)="onOrderByChange($event)"  [(ngModel)]="selectedOrderby" >
+              <select class="form-control muted" (change)="onOrderByChange()" [(ngModel)]="selectedOrderby">
                 <option value="" selected="selected" disabled="disabled">Order By</option>
                 <option value="name">Name</option>
                 <option value="date">Date Create</option>
@@ -36,7 +36,7 @@
                   <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
                 </th>
                 <td>{{video.name}}</td>
-                <td>Date</td>
+                <td>{{video.date_created | date : 'short'}}</td>
                 <td>Length</td>
               </tr>
             </tbody>

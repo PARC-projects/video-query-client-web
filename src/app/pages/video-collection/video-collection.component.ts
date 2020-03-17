@@ -34,9 +34,7 @@ export class VideoCollectionComponent implements OnInit {
     });
   }
 
-  onOrderByChange(event) {
-    const newVal = event.target.value;
-    console.log(newVal);
+  onOrderByChange() {
   }
 
   onVideoClick(path: string) {
