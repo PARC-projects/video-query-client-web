@@ -15,6 +15,7 @@ export class MyVideoCollectionsComponent implements OnInit {
   public loading = false;
   public listNavConfig: IListNavConfig;
   public perPage = 10;
+  public selectedOrderby = '';
 
   /**
    * All available search sets based on pagination
@@ -38,9 +39,41 @@ export class MyVideoCollectionsComponent implements OnInit {
 
   constructor(private searchSetRepository: SearchSetRepository) { }
 
-  ngOnInit(page?: number): void {
+  ngOnInit(): void {
+    this.getCollections();
+  }
+
+  onSelected(id: number) {
     this.loading = true;
-    this.searchSetRepository.getAll(page, this.searchTerm, this.perPage)
+    this.searchSetRepository.getById(id)
+      .subscribe((resp: ISearchSet) => {
+        this.searchSet = resp;
+        this.getVideosInSelectedSearchSet(id);
+      }).add(() => {
+        this.loading = false;
+      });
+  }
+
+  getVideosInSelectedSearchSet(id: number) {
+    this.searchSetRepository.getVideosInSearchSet(id)
+      .subscribe((resp: Video[]) => {
+        this.videosInSearchSet = resp;
+      }).add(() => {
+        this.loading = false;
+      });
+  }
+
+  onOrderByChange(ordering: string) {
+    this.getCollections(ordering);
+  }
+
+  onSearch(ordering: string) {
+
+  }
+
+  private getCollections(ordering = 'name') {
+    this.loading = true;
+    this.searchSetRepository.getAll(ordering)
       .subscribe((resp: ISearchSetResponse) => {
         this.searchSets = resp.results;
         this.listNavConfig = {
@@ -53,30 +86,5 @@ export class MyVideoCollectionsComponent implements OnInit {
       }).add(() => {
         this.loading = false;
       });
-  }
-
-  onSelected(id: number) {
-    this.loading = true;
-    this.searchSetRepository.getById(id)
-      .subscribe((resp: ISearchSet) => {
-        this.searchSet = resp;
-        this.getVideosInSelectedSearchSet(id);
-      }).add(() => {
-        this.loading = false;
-      });
-
-  }
-
-  getVideosInSelectedSearchSet(id: number) {
-    this.searchSetRepository.getVideosInSearchSet(id)
-      .subscribe((resp: Video[]) => {
-        this.videosInSearchSet = resp;
-      }).add(() => {
-        this.loading = false;
-      });
-  }
-
-  onSearch($event) {
-
   }
 }

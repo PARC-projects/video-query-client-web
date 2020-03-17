@@ -35,7 +35,8 @@ export class SearchSetService {
   ) { }
 
   initialize(page?: number) {
-    return this.searchSetRepository.getAll(page, this.searchTerm, this.perPage)
+    //    return this.searchSetRepository.getAll(page, this.searchTerm, this.perPage)
+    return this.searchSetRepository.getAll('name')
       .toPromise()
       .then((resp: ISearchSetResponse) => {
         this.searchSets = resp.results;

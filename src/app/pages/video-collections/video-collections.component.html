@@ -22,9 +22,10 @@
           </div>
           <div class="col-3">
             <div class="form-group">
-              <select class="form-control muted">
-                <option selected="selected">Order By</option>
-                <option>Query Name</option>
+              <select class="form-control muted" (change)="onOrderByChange()" [(ngModel)]="selectedOrderby">
+                <option value="" selected="selected" disabled="disabled">Order By</option>
+                <option value="name">Name</option>
+                <option value="date_created">Date Created</option>
               </select>
             </div>
           </div>

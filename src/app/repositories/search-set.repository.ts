@@ -19,17 +19,24 @@ export class SearchSetRepository {
   constructor(private http: HttpClient,
     private injector: Injector) { }
 
-  getAll(page?: number, search?: string, perPage?: number): Observable<ISearchSetResponse> {
+  getAll(ordering = 'date_created'): Observable<ISearchSetResponse> {
     let url = `${API_URL}/search-sets`;
 
-    if (perPage) {
-      url = url + `/?page_size=${perPage}/`;
-      if (page) {
-        url = url + `&page=${page}`;
-        if (search) {
-          url = url + `&search=${search}`;
-        }
-      }
+    // TODO: Not sure if this is needed anymore
+    // if (perPage) {
+    //   url = url + `/?page_size=${perPage}/`;
+    //   if (page) {
+    //     url = url + `&page=${page}`;
+    //     if (search) {
+    //       url = url + `&search=${search}`;
+    //     }
+    //   }
+    // } else {
+    //   url = url + '-all/';
+    // }
+
+    if (ordering) {
+      url = url + `/?ordering=${ordering}`;
     } else {
       url = url + '-all/';
     }
