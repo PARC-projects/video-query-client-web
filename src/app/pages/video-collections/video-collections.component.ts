@@ -63,8 +63,8 @@ export class MyVideoCollectionsComponent implements OnInit {
       });
   }
 
-  onOrderByChange(ordering: string) {
-    this.getCollections(ordering);
+  onOrderByChange() {
+    this.getCollections(this.selectedOrderby);
   }
 
   onSearch(ordering: string) {
