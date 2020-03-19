@@ -20,21 +20,78 @@
         <section class="bg-white">
           <h3 class="pt-4 pl-4 pr-4 mb-2">Select videos to add to collection</h3>
 
-          <mat-tab-group>
+          <mat-tab-group [selectedIndex]="1">
+
             <mat-tab>
               <ng-template mat-tab-label>
                 Selected Videos
               </ng-template>
             </mat-tab>
+
             <mat-tab>
               <ng-template mat-tab-label>
                 All Videos
               </ng-template>
+
+              <div class="container mt-3 mb-3">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" placeholder="Search By Name">
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control muted">
+                      <option value="" selected="selected" disabled="disabled">Order By</option>
+                      <option value="name">Name</option>
+                      <option value="date_created">Date Create</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control muted">
+                      <option value="" selected="selected" disabled="disabled">Order By</option>
+                      <option value="name">Name</option>
+                      <option value="date_created">Date Create</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="border-right border-left">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">VIDEO NAME</th>
+                      <th scope="col">DATE CREATE</th>
+                      <th scope="col">VIDEO LENGTH</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let video of videos">
+                      <th scope="row" class="text-center">
+                        <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
+                      </th>
+                      <td>{{video.name}}</td>
+                      <td>{{video.date_created | date : 'shortDate'}}</td>
+                      <td>
+                        <ng-container *ngIf="!video.length_in_seconds">...</ng-container>
+                        <ng-container *ngIf="video.length_in_seconds">{{video.length_in_seconds}}</ng-container>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </mat-tab>
+
           </mat-tab-group>
         </section>
       </div>
     </div>
   </div>
 </div>
+<app-modal [(show)]="showModal">
+  <video controls align="center" #videoPlayer class="w-100">
+    <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+  </video>
+</app-modal>
 <app-loader [show]="loading"></app-loader>

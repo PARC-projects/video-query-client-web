@@ -1,3 +1,32 @@
+@import "../../../custom";
+
 header {
   margin: 3rem 0 1.5rem 0;
+}
+
+table {
+  thead th {
+    background-color: map-get($parc-colors, "light-gray");
+  }
+
+  tbody {
+    tr {
+      background-color: white;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+}
+
+i {
+  font-size: 3rem;
+  color: map-get($parc-colors, "light-orange");
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.25s;
+    color: darken(map-get($parc-colors, "light-orange"), 10%);
+  }
 }
