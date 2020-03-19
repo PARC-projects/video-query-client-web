@@ -53,6 +53,16 @@ export class VideoCollectionNewComponent implements OnInit {
     this.showModal = true;
   }
 
+  onPerPageSelection(perPageSelectedValue: number) {
+    this.perPage = perPageSelectedValue;
+    this.getVideos(1);
+  }
+
+  onPaginationClick(pageNumber: number): void {
+    this.getVideos(pageNumber);
+  }
+
+
   private getVideos(page?: number) {
     return this.videoRepository.getAll(page, this.searchTerm, this.perPage)
       .subscribe((resp: IVideoResponse) => {
