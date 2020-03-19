@@ -37,6 +37,8 @@ export class MyVideoCollectionsComponent implements OnInit {
    */
   public videos: Video[];
 
+  private timeout: any;
+
   constructor(private searchSetRepository: SearchSetRepository) { }
 
   ngOnInit(): void {
@@ -67,13 +69,17 @@ export class MyVideoCollectionsComponent implements OnInit {
     this.getCollections(this.selectedOrderby);
   }
 
-  onSearch(ordering: string) {
-
+  onSearch(search: string) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.searchTerm = search;
+      this.getCollections(this.selectedOrderby ? this.selectedOrderby : 'name');
+    }, 500);
   }
 
   private getCollections(ordering = 'name') {
     this.loading = true;
-    this.searchSetRepository.getAll(ordering)
+    this.searchSetRepository.getAll(ordering, this.searchTerm)
       .subscribe((resp: ISearchSetResponse) => {
         this.searchSets = resp.results;
         this.listNavConfig = {

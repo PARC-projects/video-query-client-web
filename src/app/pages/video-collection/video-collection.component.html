@@ -14,8 +14,7 @@
               <select class="form-control muted" (change)="onOrderByChange()" [(ngModel)]="selectedOrderby">
                 <option value="" selected="selected" disabled="disabled">Order By</option>
                 <option value="name">Name</option>
-                <option value="date">Date Create</option>
-                <option value="length">Length</option>
+                <option value="date_created">Date Create</option>
               </select>
             </div>
           </div>
@@ -37,7 +36,10 @@
                 </th>
                 <td>{{video.name}}</td>
                 <td>{{video.date_created | date : 'shortDate'}}</td>
-                <td>Length</td>
+                <td>
+                  <ng-container *ngIf="!video.length_in_seconds">...</ng-container>
+                  <ng-container *ngIf="video.length_in_seconds">{{video.length_in_seconds}}</ng-container>
+                </td>
               </tr>
             </tbody>
           </table>
