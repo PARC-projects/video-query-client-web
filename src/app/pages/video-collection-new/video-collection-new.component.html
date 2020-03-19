@@ -36,7 +36,8 @@
               <div class="container mt-3 mb-3">
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="text" class="form-control" placeholder="Search By Name">
+                    <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
+                    (ngModelChange)="onSearchTermUpdated($event)">
                   </div>
                   <div class="col-lg-3">
                     <select class="form-control muted">

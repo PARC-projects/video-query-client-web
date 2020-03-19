@@ -4,6 +4,7 @@ import { IPagination } from 'src/app/models/pagination';
 import { ISearchSet } from 'src/app/models/search-set.model';
 import { VideoRepository } from 'src/app/repositories/video.repository';
 import { environment } from 'src/environments/environment';
+import { SearchSetRepository } from 'src/app/repositories/search-set.repository';
 
 @Component({
   selector: 'app-video-collection-new',
@@ -40,6 +41,7 @@ export class VideoCollectionNewComponent implements OnInit {
   showModal = false;
 
   constructor(
+    private searchSetRepository: SearchSetRepository,
     private videoRepository: VideoRepository
   ) { }
 
@@ -62,8 +64,35 @@ export class VideoCollectionNewComponent implements OnInit {
     this.getVideos(pageNumber);
   }
 
+  onSelectedSearchSet(): void {
+    this.handleSearchEvent();
+  }
+
+  onSearchTermUpdated(term: string): void {
+    this.searchTerm = term;
+    this.handleSearchEvent();
+  }
+
+  private handleSearchEvent(): void {
+    if (this.selectedSearchSet) {
+      this.getVideosInSelectedSearchSet();
+      return;
+    }
+    this.getVideos();
+  }
+
+  private getVideosInSelectedSearchSet() {
+    this.loading = true;
+    return this.searchSetRepository.getVideosInSearchSet(this.selectedSearchSet.id, this.searchTerm)
+      .subscribe((resp: Video[]) => {
+        this.videos = resp;
+      }).add(() => {
+        this.loading = false;
+      });
+  }
 
   private getVideos(page?: number) {
+    this.loading = true;
     return this.videoRepository.getAll(page, this.searchTerm, this.perPage)
       .subscribe((resp: IVideoResponse) => {
         this.videos = resp.results;
