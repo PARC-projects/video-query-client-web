@@ -71,7 +71,12 @@
                   <tbody class="border-bottom">
                     <tr *ngFor="let video of videos">
                       <th scope="row" class="text-center">
-                        <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
+                        <div class="d-flex">
+                          <div class="form-group form-check ml-3 mr-5  mt-2 pt-1">
+                            <input type="checkbox" class="form-check-input" (click)="onAdd(video)">
+                          </div>
+                          <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
+                        </div>
                       </th>
                       <td>{{video.name}}</td>
                       <td>{{video.date_created | date : 'shortDate'}}</td>
