@@ -1,0 +1,40 @@
+<app-nav></app-nav>
+<div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header class="mb-4">
+          <h1 class="font-weight-bold">Create New Query</h1>
+        </header>
+
+        <section class="bg-white p-4 mb-4">
+          <h3 class="mb-4">Define your video collection</h3>
+          <div class="form-group row">
+            <label class="col-auto col-form-label">Collection Name</label>
+            <div class="col">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white">
+          <h3 class="pt-4 pl-4 pr-4 mb-2">Select videos to add to collection</h3>
+
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                Selected Videos
+              </ng-template>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                All Videos
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader [show]="loading"></app-loader>

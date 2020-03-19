@@ -13,6 +13,7 @@ import { QueryComponent } from './pages/query/query.component';
 import { CreateNewQueryComponent } from './pages/create-new-query/create-new-query.component';
 import { MyVideoCollectionsComponent } from './pages/video-collections/video-collections.component';
 import { VideoCollectionComponent } from './pages/video-collection/video-collection.component';
+import { VideoCollectionNewComponent } from './pages/video-collection-new/video-collection-new.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
@@ -26,6 +27,7 @@ export const appRoutes: Routes = [
 
   { path: 'search-sets', component: SearchSetComponent, canActivate: [AuthenticationGuard] },
   { path: 'video-collections', component: MyVideoCollectionsComponent, canActivate: [AuthenticationGuard] },
+  { path: 'video-collections-new', component: VideoCollectionNewComponent, canActivate: [AuthenticationGuard] },
   { path: 'video-collections/:id', component: VideoCollectionComponent, canActivate: [AuthenticationGuard] },
 
   { path: 'search-sets/add', component: SearchSetAddComponent, canActivate: [AuthenticationGuard] },
