@@ -19,8 +19,8 @@ export class SearchSetRepository {
   constructor(private http: HttpClient,
     private injector: Injector) { }
 
-  getAll(ordering = 'date_created'): Observable<ISearchSetResponse> {
-    let url = `${API_URL}/search-sets`;
+  getAll(ordering = 'name', search?: string): Observable<ISearchSetResponse> {
+    let url = `${API_URL}/search-sets/?`;
 
     // TODO: Not sure if this is needed anymore
     // if (perPage) {
@@ -35,8 +35,12 @@ export class SearchSetRepository {
     //   url = url + '-all/';
     // }
 
+    if (search) {
+      url += `search=${search}&`;
+    }
+
     if (ordering) {
-      url = url + `/?ordering=${ordering}`;
+      url += `ordering=${ordering}&`;
     } else {
       url = url + '-all/';
     }
@@ -58,11 +62,15 @@ export class SearchSetRepository {
     );
   }
 
-  getVideosInSearchSet(searchSetId: number, searchTerm?: string): Observable<Video[]> {
+  getVideosInSearchSet(searchSetId: number, ordering = 'date_created'): Observable<Video[]> {
     let url = `${API_URL}/search-sets/${searchSetId}/videos/`;
 
-    if (searchTerm) {
-      url = url + `?searchTerm=${searchTerm}`;
+    // if (searchTerm) {
+    //   url = url + `?searchTerm=${searchTerm}`;
+    // }
+
+    if (ordering) {
+      url = url + `?ordering=${ordering}`;
     }
 
     return this.http.get(url).pipe(

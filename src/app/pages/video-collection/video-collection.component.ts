@@ -17,6 +17,8 @@ export class VideoCollectionComponent implements OnInit {
   public videoSrc = '';
   public selectedOrderby = '';
 
+  private collectionId: number;
+
   constructor(
     private searchSetRepository: SearchSetRepository,
     private route: ActivatedRoute
@@ -24,21 +26,27 @@ export class VideoCollectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.loading = true;
-      this.searchSetRepository.getVideosInSearchSet(params.id)
-        .subscribe((resp: Video[]) => {
-          this.videos = resp;
-        }).add(() => {
-          this.loading = false;
-        });
+      this.collectionId = params.id;
+      this.getVideosInCollection();
     });
   }
 
   onOrderByChange() {
+    this.getVideosInCollection(this.selectedOrderby);
   }
 
   onVideoClick(path: string) {
     this.videoSrc = `${environment.fileStoreRoot}${path}`;
     this.showModal = true;
+  }
+
+  private getVideosInCollection(ordering = 'name') {
+    this.loading = true;
+    this.searchSetRepository.getVideosInSearchSet(this.collectionId, ordering)
+      .subscribe((resp: Video[]) => {
+        this.videos = resp;
+      }).add(() => {
+        this.loading = false;
+      });
   }
 }
