@@ -37,7 +37,10 @@
                 </th>
                 <td>{{video.name}}</td>
                 <td>{{video.date_created | date : 'shortDate'}}</td>
-                <td>Length</td>
+                <td>
+                  <ng-container *ngIf="!video.length_in_seconds">...</ng-container>
+                  <ng-container *ngIf="video.length_in_seconds">{{video.length_in_seconds}}</ng-container>
+                </td>
               </tr>
             </tbody>
           </table>
