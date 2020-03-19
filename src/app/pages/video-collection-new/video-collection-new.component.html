@@ -37,13 +37,15 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
-                    (ngModelChange)="onSearchTermUpdated($event)">
+                      (ngModelChange)="onSearchTermUpdated($event)">
                   </div>
                   <div class="col-lg-3">
-                    <select class="form-control muted">
-                      <option value="" selected="selected" disabled="disabled">Order By</option>
-                      <option value="name">Name</option>
-                      <option value="date_created">Date Create</option>
+                    <select class="form-control muted" required id="searchSet" name="searchSet"
+                      [(ngModel)]="selectedSearchSet" (ngModelChange)="onSelectedSearchSet()">
+                      <option value="undefined" selected="selected" disabled="disabled">View By Collection</option>
+                      <option [ngValue]="null">All</option>
+                      <option *ngFor="let searchSet of searchSets" [ngValue]="searchSet">
+                        {{searchSet.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-3">

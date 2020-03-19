@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IVideoResponse, Video } from 'src/app/models/video.model';
 import { IPagination } from 'src/app/models/pagination';
-import { ISearchSet } from 'src/app/models/search-set.model';
+import { ISearchSet, ISearchSetResponse } from 'src/app/models/search-set.model';
 import { VideoRepository } from 'src/app/repositories/video.repository';
 import { environment } from 'src/environments/environment';
 import { SearchSetRepository } from 'src/app/repositories/search-set.repository';
@@ -48,6 +48,7 @@ export class VideoCollectionNewComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.getVideos();
+    this.getSearchSets();
   }
 
   onVideoClick(path: string) {
@@ -90,6 +91,18 @@ export class VideoCollectionNewComponent implements OnInit {
         this.loading = false;
       });
   }
+
+
+  private getSearchSets() {
+    this.loading = true;
+    this.searchSetRepository.getAll()
+      .subscribe((resp: ISearchSetResponse) => {
+        this.searchSets = resp.results;
+      }).add(() => {
+        this.loading = false;
+      });
+  }
+
 
   private getVideos(page?: number) {
     this.loading = true;
