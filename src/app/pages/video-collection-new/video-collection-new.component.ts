@@ -97,7 +97,6 @@ export class VideoCollectionNewComponent implements OnInit {
       });
   }
 
-
   private getSearchSets() {
     this.loading = true;
     this.searchSetRepository.getAll()
@@ -107,7 +106,6 @@ export class VideoCollectionNewComponent implements OnInit {
         this.loading = false;
       });
   }
-
 
   private getVideos(page?: number) {
     this.loading = true;

@@ -6,7 +6,8 @@
         <header class="d-flex justify-content-start">
           <h1 class="font-weight-bold">My Video Collections</h1>
           <div class="d-flex align-items-center">
-            <button class="btn btn-warning" (click)="openCreateNewQueryModal = true" routerLink="/video-collections-new">Create New Query</button>
+            <button class="btn btn-warning" (click)="openCreateNewQueryModal = true"
+              routerLink="/video-collections-new">Create New Query</button>
           </div>
         </header>
         <div class="row">
@@ -60,6 +61,8 @@
             </div>
           </div>
         </div>
+        <app-pagination [pagination]="paginationConfig" (paginationClick)="onPaginationClick($event)"
+          (perPageSelected)="onPerPageSelection($event)"></app-pagination>
       </div>
     </div>
   </div>

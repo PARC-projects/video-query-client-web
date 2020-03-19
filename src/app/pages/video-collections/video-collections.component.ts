@@ -3,6 +3,7 @@ import { SearchSetRepository } from 'src/app/repositories/search-set.repository'
 import { ISearchSet, ISearchSetResponse } from 'src/app/models/search-set.model';
 import { Video } from 'src/app/models/video.model';
 import { IListNavConfig } from 'src/app/components/list-nav/list-nav.component';
+import { IPagination } from 'src/app/models/pagination';
 
 @Component({
   selector: 'app-video-collections',
@@ -39,6 +40,8 @@ export class MyVideoCollectionsComponent implements OnInit {
 
   private timeout: any;
 
+  paginationConfig: IPagination;
+
   constructor(private searchSetRepository: SearchSetRepository) { }
 
   ngOnInit(): void {
@@ -66,21 +69,32 @@ export class MyVideoCollectionsComponent implements OnInit {
   }
 
   onOrderByChange() {
-    this.getCollections(this.selectedOrderby);
+    this.getCollections();
   }
 
   onSearch(search: string) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.searchTerm = search;
-      this.getCollections(this.selectedOrderby ? this.selectedOrderby : 'name');
+      this.getCollections();
     }, 500);
   }
 
-  private getCollections(ordering = 'name') {
+  onPerPageSelection(perPageSelectedValue: number) {
+    this.perPage = perPageSelectedValue;
+    this.getCollections();
+  }
+
+  onPaginationClick(pageNumber: number): void {
+    this.getCollections(pageNumber);
+  }
+
+  private getCollections(page?: number) {
     this.loading = true;
-    this.searchSetRepository.getAll(ordering, this.searchTerm)
+    const ordering = this.selectedOrderby ? this.selectedOrderby : 'name';
+    this.searchSetRepository.getAll(page, this.searchTerm, this.perPage, ordering)
       .subscribe((resp: ISearchSetResponse) => {
+        this.paginationConfig = resp.pagination;
         this.searchSets = resp.results;
         this.listNavConfig = {
           data: this.searchSets,
