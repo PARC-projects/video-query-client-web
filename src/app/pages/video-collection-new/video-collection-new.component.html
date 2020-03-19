@@ -1,0 +1,108 @@
+<app-nav></app-nav>
+<div class="min-vh-100  navigation-offset min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header class="mb-4">
+          <h1 class="font-weight-bold">Create New Query</h1>
+        </header>
+
+        <section class="bg-white p-4 mb-4">
+          <h3 class="mb-4">Define your video collection</h3>
+          <div class="form-group row">
+            <label class="col-auto col-form-label">Collection Name</label>
+            <div class="col">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white mb-5">
+          <h3 class="pt-4 pl-4 pr-4 mb-2">Select videos to add to collection</h3>
+
+          <mat-tab-group [selectedIndex]="1">
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                Selected Videos
+              </ng-template>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                All Videos
+              </ng-template>
+
+              <div class="container mt-3 mb-3">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" placeholder="Search By Name" [ngModel]="searchTerm"
+                      (ngModelChange)="onSearchTermUpdated($event)">
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control muted" required id="searchSet" name="searchSet"
+                      [(ngModel)]="selectedSearchSet" (ngModelChange)="onSelectedSearchSet()">
+                      <option value="undefined" selected="selected" disabled="disabled">View By Collection</option>
+                      <option [ngValue]="null">All</option>
+                      <option *ngFor="let searchSet of searchSets" [ngValue]="searchSet">
+                        {{searchSet.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control muted" (change)="onOrderByChange()" [(ngModel)]="selectedOrderby">
+                      <option value="" selected="selected" disabled="disabled">Order By</option>
+                      <option value="name">Name</option>
+                      <option value="-date_created">Date Create</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="border-right border-left">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">VIDEO NAME</th>
+                      <th scope="col">DATE CREATE</th>
+                      <th scope="col">VIDEO LENGTH</th>
+                    </tr>
+                  </thead>
+                  <tbody class="border-bottom">
+                    <tr *ngFor="let video of videos">
+                      <th scope="row" class="text-center">
+                        <div class="d-flex">
+                          <div class="form-group form-check ml-3 mr-5  mt-2 pt-1">
+                            <input type="checkbox" class="form-check-input" (click)="onAdd(video)">
+                          </div>
+                          <i class="fa fa-play-circle" (click)="onVideoClick(video.path, video.external_source)"></i>
+                        </div>
+                      </th>
+                      <td>{{video.name}}</td>
+                      <td>{{video.date_created | date : 'shortDate'}}</td>
+                      <td>
+                        <ng-container *ngIf="!video.length_in_seconds">...</ng-container>
+                        <ng-container *ngIf="video.length_in_seconds">{{video.length_in_seconds}}</ng-container>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pl-3 pr-4">
+                <app-pagination [pagination]="paginationConfig" (paginationClick)="onPaginationClick($event)"
+                  (perPageSelected)="onPerPageSelection($event)"></app-pagination>
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal [(show)]="showModal">
+  <video controls align="center" #videoPlayer class="w-100">
+    <source src="{{videoSrc}}" type="video/mp4"> Your browser does not support the video tag.
+  </video>
+</app-modal>
+<app-loader [show]="loading"></app-loader>

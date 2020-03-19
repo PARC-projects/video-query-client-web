@@ -43,6 +43,7 @@ import { SearchSetAddComponent } from './admin/search-set-add/search-set-add.com
 
 import { MyVideoCollectionsComponent } from './video-collections/video-collections.component';
 import { VideoCollectionComponent } from './video-collection/video-collection.component';
+import { VideoCollectionNewComponent } from './video-collection-new/video-collection-new.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { VideoCollectionComponent } from './video-collection/video-collection.co
     CurrentComponent,
     SearchSetAddComponent,
     MyVideoCollectionsComponent,
-    VideoCollectionComponent
+    VideoCollectionComponent,
+    VideoCollectionNewComponent
   ],
   imports: [
     RouterModule,
