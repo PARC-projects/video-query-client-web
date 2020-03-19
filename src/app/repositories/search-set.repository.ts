@@ -19,8 +19,8 @@ export class SearchSetRepository {
   constructor(private http: HttpClient,
     private injector: Injector) { }
 
-  getAll(ordering = 'name', search?: string): Observable<ISearchSetResponse> {
-    let url = `${API_URL}/search-sets/?`;
+  getAll(page?: number, search?: string, perPage = 10, ordering = 'name'): Observable<ISearchSetResponse> {
+    let url = `${API_URL}/search-sets/?page_size=${perPage}`;
 
     // TODO: Not sure if this is needed anymore
     // if (perPage) {
@@ -35,15 +35,27 @@ export class SearchSetRepository {
     //   url = url + '-all/';
     // }
 
+    if (page) {
+      url = url + `&page=${page}`;
+    }
+
     if (search) {
-      url += `search=${search}&`;
+      url = url + `&search=${search}`;
     }
 
     if (ordering) {
-      url += `ordering=${ordering}&`;
-    } else {
-      url = url + '-all/';
+      url = url + `&ordering=${ordering}`;
     }
+
+    // if (search) {
+    //   url += `search=${search}&`;
+    // }
+
+    // if (ordering) {
+    //   url += `ordering=${ordering}&`;
+    // } else {
+    //   url = url + '-all/';
+    // }
 
     return this.http.get(url).pipe(
       map((resp: ISearchSetResponse) => {
