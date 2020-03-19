@@ -39,6 +39,7 @@ export class VideoCollectionNewComponent implements OnInit {
   searchSets: ISearchSet[];
   videoSrc = '';
   showModal = false;
+  selectedOrderby = '';
 
   constructor(
     private searchSetRepository: SearchSetRepository,
@@ -74,6 +75,10 @@ export class VideoCollectionNewComponent implements OnInit {
     this.handleSearchEvent();
   }
 
+  onOrderByChange() {
+    this.getVideos();
+  }
+
   private handleSearchEvent(): void {
     if (this.selectedSearchSet) {
       this.getVideosInSelectedSearchSet();
@@ -106,7 +111,7 @@ export class VideoCollectionNewComponent implements OnInit {
 
   private getVideos(page?: number) {
     this.loading = true;
-    return this.videoRepository.getAll(page, this.searchTerm, this.perPage)
+    return this.videoRepository.getAll(page, this.searchTerm, this.perPage, this.selectedOrderby)
       .subscribe((resp: IVideoResponse) => {
         this.videos = resp.results;
         this.paginationConfig = resp.pagination;
