@@ -24,11 +24,11 @@ export class SearchSetComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.searchSetService.initialize()
-      .then(() => {
-        this.loading = false;
-      })
-      .catch(this.handleError);
+    // this.searchSetService.initialize()
+    //   .then(() => {
+    //     this.loading = false;
+    //   })
+    //   .catch(this.handleError);
   }
 
   onSearch(searchTerm: string) {

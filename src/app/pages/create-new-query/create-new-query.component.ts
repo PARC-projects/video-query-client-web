@@ -55,6 +55,8 @@ export class CreateNewQueryComponent implements OnInit {
     this.searchSetRepository.getVideosInSearchSet(this.form.get('search_set_to_query').value)
       .subscribe((resp: Video[]) => {
         this.videos = resp;
+        this.videoSrc = null;
+        this.form.get('video').setValue(null);
       }).add(() => {
         this.loading = false;
       });
