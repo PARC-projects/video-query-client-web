@@ -36,18 +36,18 @@ export class SearchSetService {
 
   initialize(page?: number) {
     //    return this.searchSetRepository.getAll(page, this.searchTerm, this.perPage)
-    return this.searchSetRepository.getAll('name')
-      .toPromise()
-      .then((resp: ISearchSetResponse) => {
-        this.searchSets = resp.results;
-        this.listNavConfig = {
-          data: this.searchSets,
-          title: 'Video Collections',
-          tooltip: 'Select a Video Collection to review.',
-          displayPropertyName: 'name',
-          pagination: resp.pagination
-        } as IListNavConfig;
-      });
+    // return this.searchSetRepository.getAll('name')
+    //   .toPromise()
+    //   .then((resp: ISearchSetResponse) => {
+    //     this.searchSets = resp.results;
+    //     this.listNavConfig = {
+    //       data: this.searchSets,
+    //       title: 'Video Collections',
+    //       tooltip: 'Select a Video Collection to review.',
+    //       displayPropertyName: 'name',
+    //       pagination: resp.pagination
+    //     } as IListNavConfig;
+    //   });
   }
 
   getById(id: number) {

@@ -28,6 +28,7 @@
                 <div class="form-group">
                   <select class="form-control" required formControlName="search_set_to_query"
                     (ngModelChange)="onSelectedSearchSet()">
+                    <option value="null" selected="selected" disabled="disabled">Select Video Collection</option>
                     <option *ngFor="let searchSet of searchSets?.results" [ngValue]="searchSet.id">
                       {{searchSet.name}}
                     </option>
@@ -47,6 +48,7 @@
               </div> -->
               <div class="col-lg-6">
                 <select class="form-control" formControlName="video" (change)="onReferenceSelect()">
+                  <option value="null" selected="selected" disabled="disabled">Select Video Collection</option>
                   <option *ngFor="let video of videos" [ngValue]="video.id">
                     {{video.name}}
                   </option>
